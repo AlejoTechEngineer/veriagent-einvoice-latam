@@ -41,6 +41,7 @@
 - [📏 Métricas GQM](#-métricas-gqm)
 - [🗓️ Métodos de Planificación](#️-métodos-de-planificación)
 - [🧭 Trazabilidad Objetivos → Entregables](#-trazabilidad-objetivos--entregables)
+- [🧪 Inicio del Capítulo 4: Primeras Evidencias](#-inicio-del-capítulo-4-primeras-evidencias)
 - [⏭️ Próximas Entregas](#️-próximas-entregas)
 - [📚 Referencias](#-referencias)
 - [🔐 Confidencialidad](#-confidencialidad)
@@ -50,11 +51,11 @@
 
 ## 🎯 Propósito de la Entrega
 
-La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desarrolla por completo el capítulo 3, **Metodología**, sobre el contenido de la Entrega 1, y justifica cada método por la necesidad concreta que atiende de los objetivos específicos: **diagnosticar** el problema con evidencia, **decidir** la solución sin subjetividad, **diseñarla** de forma verificable y **planificar** su ejecución con plazos y costos cuantificados.
+La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desarrolla por completo el capítulo 3, **Metodología**, sobre el contenido de la Entrega 1, y justifica cada método por la necesidad concreta que atiende de los objetivos específicos: **diagnosticar** el problema con evidencia, **decidir** la solución sin subjetividad, **diseñarla** de forma verificable y **planificar** su ejecución con plazos y costos cuantificados. Además, **inicia el capítulo 4** con la aportación del trabajo y las **primeras evidencias** del prototipo.
 
 > **Enfoque:** investigación en ciencia del diseño, con un ciclo de vida por fases y un entregable al final de cada una.
 > **Diseño:** mixto. Cualitativo (análisis de causas, juicio experto) y cuantitativo (simulación y medición de la detección de defectos).
-> **Resultado de la entrega:** **8 apartados metodológicos**, **5 fases**, **5 métricas GQM** y una **matriz de trazabilidad** que conecta cada objetivo con su método y su entregable.
+> **Resultado de la entrega:** **8 apartados metodológicos**, **5 fases**, **5 métricas GQM** una **matriz de trazabilidad** que conecta cada objetivo con su método y su entregable, y un **banco de 22 defectos inyectados** con sus primeros resultados.
 
 ### 🌟 ¿Qué deja establecido esta entrega?
 
@@ -64,6 +65,7 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 - 🏗️ **Un diseño justificable**: escenarios de calidad ISO/IEC 25010, modelo C4 y registros de decisión (ADR).
 - 🧪 **Una validación objetiva**: banco de defectos por inyección con pruebas de mutación y métricas GQM.
 - 📈 **Un plan cuantitativo**: EDT, PERT, nivelación por recursos, Monte Carlo y riesgos de IA según NIST.
+- ✅ **Una primera evidencia medible**: el kit detecta el 86 % de los defectos en ejecución y el 100 % con integración continua, sin falsos positivos.
 
 ---
 
@@ -71,8 +73,8 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 
 <table align="center">
   <tr><th>Archivo</th><th>Descripción</th></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar.pdf</code></td><td>📘 <b>Versión de lectura</b> de la Entrega 2 (35 páginas)</td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar.docx</code></td><td>📝 <b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td>📘 <b>Versión de lectura</b> de la Entrega 2 (37 páginas)</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td>📝 <b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
   <tr><td><code>README.md</code></td><td>📄 Este documento: resumen de lo que contiene la entrega</td></tr>
 </table>
 
@@ -84,9 +86,10 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 |:---|:---:|:---:|
 | **Capítulo 3 · Metodología** | Enunciado | ✅ **8 apartados completos** |
 | **Figuras** | 3 | **5** · nuevas: fases de la metodología (Fig. 4) y diagrama de Ishikawa (Fig. 5) |
-| **Tablas** | 4 | **7** · nuevas: protocolo de búsqueda (T5), métricas GQM (T6) y trazabilidad (T7) |
+| **Capítulo 4 · Desarrollo de la solución** | Enunciado | 🚧 **Iniciado**: aportación, primeras evidencias y avance por objetivo (4.1 a 4.3) |
+| **Tablas** | 4 | **8** · nuevas: protocolo de búsqueda (T5), métricas GQM (T6), trazabilidad (T7) y resultados del banco de defectos (T8) |
 | **Referencias** | 37 | **53** · 16 nuevas sobre metodología, arquitectura y gestión de proyectos |
-| **Páginas** | 27 | **35** |
+| **Páginas** | 27 | **37** |
 | **Capítulos 1 y 2** | Completos | Se conservan; la revisión de la literatura remite ahora al apartado 3.2 |
 
 ---
@@ -106,8 +109,12 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 | &nbsp;&nbsp;3.6 Método de validación técnica | Prototipo, pruebas de mutación y GQM | 27 | 🆕 |
 | &nbsp;&nbsp;3.7 Métodos de planificación | EDT, PERT, nivelación, Monte Carlo y riesgos de IA | 28 | 🆕 |
 | &nbsp;&nbsp;3.8 Trazabilidad | Objetivos, fases, métodos y entregables | 29 | 🆕 |
-| **4–6. Desarrollo, resultados y conclusiones** | Se desarrollan en entregas posteriores | 29 | ⏳ |
-| **Referencias bibliográficas** | 53 referencias en formato APA | 30 | ✅ |
+| **4. Desarrollo de la solución** | **Iniciado en esta entrega** | **29** | 🚧 |
+| &nbsp;&nbsp;4.1 Aportación | Taxonomía de defectos y kit de verificación | 29 | 🆕 |
+| &nbsp;&nbsp;4.2 Primeras evidencias | Banco de defectos por inyección | 30 | 🆕 |
+| &nbsp;&nbsp;4.3 Avance frente a los objetivos | Estado de OE1, OE2 y OE3 | 30 | 🆕 |
+| **5–6. Resultados y conclusiones** | Se desarrollan en entregas posteriores | 31 | ⏳ |
+| **Referencias bibliográficas** | 53 referencias en formato APA | 32 | ✅ |
 
 <details>
 <summary><b>🖼️ Figuras y tablas de la entrega</b></summary>
@@ -126,6 +133,7 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 | Tabla 5 🆕 | Protocolo de búsqueda de la literatura | 24 |
 | Tabla 6 🆕 | Métricas de evaluación derivadas con el enfoque GQM | 28 |
 | Tabla 7 🆕 | Trazabilidad entre objetivos, fases, métodos y entregables | 29 |
+| Tabla 8 🆕 | Resultados del banco de defectos por mecanismo de verificación | 30 |
 
 </details>
 
@@ -332,11 +340,37 @@ Cada objetivo específico tiene **al menos un método** que lo desarrolla y **un
 
 ---
 
+## 🧪 Inicio del Capítulo 4: Primeras Evidencias
+
+La aportación central es un **kit de verificación determinista** construido sobre la taxonomía D1–D6. Somete cada comprobante transformado a tres controles sucesivos: **validación de esquema**, **reglas de negocio** por tipo de defecto y, en integración continua, **comparación con ejemplos validados por personas**. Cada hallazgo es trazable hasta la sección de la norma que lo origina.
+
+El kit opera en **modo de ejecución** (bloquea comprobantes defectuosos antes de salir hacia el proveedor) y en **modo de integración continua** (gate obligatorio sobre las propuestas de los agentes). Se validó con un **prototipo en Java 21**, sin dependencias externas y con **datos sintéticos**.
+
+Con **pruebas de mutación** se generaron **22 versiones defectuosas** de un mapeo correcto, al menos una por tipo de defecto:
+
+| Mecanismo de verificación | Defectos detectados | Tasa de detección | Falsos positivos |
+|:---|:---:|:---:|:---:|
+| Solo validación de esquema | 5 de 22 | 23 % | 0 |
+| Kit en ejecución | 19 de 22 | **86 %** | 0 |
+| Kit con ejemplos validados en integración continua | 22 de 22 | **100 %** | 0 |
+
+- 🎯 El kit en ejecución **supera la meta del 80 %** del OE2 sin rechazar ningún comprobante correcto.
+- 🧠 Los 3 defectos que escapan en ejecución solo se distinguen con conocimiento del negocio y los detecta el control de integración continua.
+- 🤖 El agente de mapeo propuso correctamente **23 de 24 campos** (95,8 %) de una especificación nueva; el campo erróneo lo bloqueó el kit antes de la revisión humana.
+
+| Objetivo | Avance |
+|:---|:---|
+| **OE1** · Caracterizar | ✅ Cumplido: seis tipos de defecto, cada uno con su regla de verificación y su operador de mutación |
+| **OE2** · Diseñar | 🚧 Avance verificable: el kit supera la meta de detección; falta documentar todas las decisiones arquitectónicas |
+| **OE3** · Planificar | ⏳ Plan con plazo y costo por simulación de Monte Carlo en la siguiente entrega |
+
+---
+
 ## ⏭️ Próximas Entregas
 
 | Capítulo | Qué contendrá |
 |:---|:---|
-| ⏳ **4. Desarrollo de la solución** | Arquitectura de referencia, kit de verificación, prototipo y plan del proyecto, incluido el modelo de punto de equilibrio |
+| 🚧 **4. Desarrollo de la solución** | Completar la arquitectura de referencia y sus decisiones (ADR) y el plan del proyecto, incluido el modelo de punto de equilibrio |
 | ⏳ **5. Resultados obtenidos** | Resultados por objetivo específico frente a las métricas GQM |
 | ⏳ **6. Conclusiones** | Respuesta a la pregunta de investigación |
 | ⏳ **Anexos** | Repositorio del prototipo funcional, bitácora de búsqueda bibliográfica, EDT y cronograma del proyecto |

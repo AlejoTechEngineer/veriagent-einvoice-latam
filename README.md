@@ -104,9 +104,9 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
   <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.docx</code></td><td>📝 Versión editable en Word de la Entrega 1</td></tr>
   <tr><td><code>README.md</code></td><td>📄 <a href="entrega-1-borrador-inicial/"><b>Resumen detallado de la Entrega 1</b></a>: problema, Pareto, objetivos, situación de partida, puntos de dolor, taxonomía y análisis</td></tr>
   <tr><td colspan="2"><b>📂 entrega-2-borrador-intermedio/</b></td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar.pdf</code></td><td>📘 <b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa sobre el contenido de la Entrega 1</td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar.docx</code></td><td>📝 Versión editable en Word de la Entrega 2</td></tr>
-  <tr><td><code>README.md</code></td><td>📄 <a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM y planificación</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td>📘 <b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa y el <b>inicio del capítulo 4</b> con las primeras evidencias del prototipo, sobre el contenido de la Entrega 1</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td>📝 Versión editable en Word de la Entrega 2</td></tr>
+  <tr><td><code>README.md</code></td><td>📄 <a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM, planificación y primeras evidencias del banco de defectos</td></tr>
 </table>
 
 ---
@@ -118,7 +118,7 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 | **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | ✅ | ✅ |
 | **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | ✅ | ✅ |
 | **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | — | ✅ |
-| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | — | ⏳ |
+| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | — | 🚧 |
 | **5. Resultados obtenidos** | Resultados por objetivo específico | — | ⏳ |
 | **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | — | ⏳ |
 
@@ -144,10 +144,13 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 - Diseño arquitectónico con escenarios de calidad **ISO/IEC 25010**, **modelo C4** y **registros de decisión (ADR)**.
 - Validación con **banco de defectos por inyección** (pruebas de mutación) y métricas **GQM**.
 - Planificación con **EDT, PERT, nivelación de recursos y simulación de Monte Carlo**, y riesgos de IA según **NIST AI RMF**.
+- **Inicio del capítulo 4**: aportación (taxonomía D1–D6 y kit de verificación) y **primeras evidencias** del banco de defectos: el kit detecta el **86 %** en ejecución y el **100 %** con integración continua, con **cero falsos positivos**.
 
 </details>
 
-> La Entrega 2 es **acumulativa**: contiene la Entrega 1 más la metodología.
+> La Entrega 2 es **acumulativa**: contiene la Entrega 1, la metodología y el inicio del capítulo 4.
+>
+> 🚧 = capítulo iniciado en esta entrega · ⏳ = pendiente
 
 ---
 
@@ -344,7 +347,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 |:---|:---|
 | 📕 **Leer** una entrega | Entra a la carpeta de la entrega y abre el **PDF** |
 | 📝 **Revisar o editar** | Descarga el archivo **Word (.docx)** |
-| 🧭 **Ver el trabajo completo hasta hoy** | Abre la **Entrega 2**, que es acumulativa: contiene la Entrega 1 más la metodología |
+| 🧭 **Ver el trabajo completo hasta hoy** | Abre la **Entrega 2**, que es acumulativa: contiene la Entrega 1, la metodología y el inicio del capítulo 4 |
 
 ---
 
