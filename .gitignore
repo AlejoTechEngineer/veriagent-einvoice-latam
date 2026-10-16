@@ -11,3 +11,9 @@
 !entrega-2-borrador-intermedio/TFG_Entrega2_DeMendozaTovar.docx
 !entrega-2-borrador-intermedio/TFG_Entrega2_DeMendozaTovar.pdf
 !entrega-2-borrador-intermedio/README.md
+# Nunca publicar configuración ni archivos de asistentes de IA
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+**/.claude/
+**/CLAUDE.md
