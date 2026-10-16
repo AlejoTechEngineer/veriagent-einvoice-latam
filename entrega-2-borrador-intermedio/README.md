@@ -14,7 +14,7 @@
 [![Fases](https://img.shields.io/badge/Fases-0%E2%80%934%20encadenadas%20a%20OE1%E2%80%93OE3-E36209.svg)]()
 [![Estado](https://img.shields.io/badge/Estado-Entregada-success.svg)]()
 
-**[Entrega 1](../entrega-1-borrador-inicial/) • [Repositorio](../README.md) • [Enfoque](#-enfoque-metodológico) • [Diagnóstico](#-métodos-de-diagnóstico) • [Diseño](#-métodos-de-diseño-arquitectónico) • [Validación](#-método-de-validación-técnica) • [Planificación](#-métodos-de-planificación)**
+**[Entrega 1](../entrega-1-borrador-inicial/) • [Repositorio](../README.md) • [Enfoque](#enfoque-metodológico) • [Diagnóstico](#métodos-de-diagnóstico) • [Diseño](#métodos-de-diseño-arquitectónico) • [Validación](#método-de-validación-técnica) • [Planificación](#métodos-de-planificación)**
 
 <img src="https://img.shields.io/badge/PDF-lectura-B30B00?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="PDF"/>
 <img src="https://img.shields.io/badge/Word-editable-2B579A?style=flat-square&logo=microsoftword&logoColor=white" alt="Word"/>
@@ -28,24 +28,24 @@
 
 ## Tabla de Contenidos
 
-- [Propósito de la Entrega](#-propósito-de-la-entrega)
-- [Archivos de esta Carpeta](#-archivos-de-esta-carpeta)
-- [Novedades frente a la Entrega 1](#-novedades-frente-a-la-entrega-1)
-- [Estructura del Documento](#-estructura-del-documento)
-- [Enfoque Metodológico](#-enfoque-metodológico)
-- [Revisión de la Literatura](#-revisión-de-la-literatura)
-- [Métodos de Diagnóstico](#-métodos-de-diagnóstico)
-- [Método de Decisión](#-método-de-decisión)
-- [Métodos de Diseño Arquitectónico](#-métodos-de-diseño-arquitectónico)
-- [Método de Validación Técnica](#-método-de-validación-técnica)
-- [Métricas GQM](#-métricas-gqm)
-- [Métodos de Planificación](#-métodos-de-planificación)
-- [Trazabilidad Objetivos → Entregables](#-trazabilidad-objetivos--entregables)
-- [Inicio del Capítulo 4: Primeras Evidencias](#-inicio-del-capítulo-4-primeras-evidencias)
-- [Próximas Entregas](#-próximas-entregas)
-- [Referencias](#-referencias)
-- [Confidencialidad](#-confidencialidad)
-- [Autor](#-autor)
+- [Propósito de la Entrega](#propósito-de-la-entrega)
+- [Archivos de esta Carpeta](#archivos-de-esta-carpeta)
+- [Novedades frente a la Entrega 1](#novedades-frente-a-la-entrega-1)
+- [Estructura del Documento](#estructura-del-documento)
+- [Enfoque Metodológico](#enfoque-metodológico)
+- [Revisión de la Literatura](#revisión-de-la-literatura)
+- [Métodos de Diagnóstico](#métodos-de-diagnóstico)
+- [Método de Decisión](#método-de-decisión)
+- [Métodos de Diseño Arquitectónico](#métodos-de-diseño-arquitectónico)
+- [Método de Validación Técnica](#método-de-validación-técnica)
+- [Métricas GQM](#métricas-gqm)
+- [Métodos de Planificación](#métodos-de-planificación)
+- [Trazabilidad Objetivos → Entregables](#trazabilidad-objetivos--entregables)
+- [Inicio del Capítulo 4: Primeras Evidencias](#inicio-del-capítulo-4-primeras-evidencias)
+- [Próximas Entregas](#próximas-entregas)
+- [Referencias](#referencias)
+- [Confidencialidad](#confidencialidad)
+- [Autor](#autor)
 
 ---
 

@@ -14,7 +14,7 @@
 [![Metodología](https://img.shields.io/badge/Metodolog%C3%ADa-Design%20Science%20Research-6F42C1.svg)]()
 [![Verificación](https://img.shields.io/badge/Verificaci%C3%B3n-Determinista%20y%20trazable%20a%20la%20norma-success.svg)]()
 
-**[Contexto](#-contexto-y-alcance) • [Objetivos](#-objetivos) • [Entregas](#-entregas) • [Arquitectura](#-arquitectura) • [Taxonomía](#-taxonomía-de-defectos-d1d6) • [Metodología](#-metodología) • [Autor](#-autor)**
+**[Contexto](#contexto-y-alcance) • [Objetivos](#objetivos) • [Entregas](#entregas) • [Arquitectura](#arquitectura) • [Taxonomía](#taxonomía-de-defectos-d1d6) • [Metodología](#metodología) • [Autor](#autor)**
 
 <img src="https://img.shields.io/badge/Java-21-ED8B00?style=flat-square&logo=openjdk&logoColor=white" alt="Java 21"/>
 <img src="https://img.shields.io/badge/Spring%20Boot-integraci%C3%B3n-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Spring Boot"/>
@@ -31,22 +31,22 @@
 
 ## Tabla de Contenidos
 
-- [Contexto y Alcance](#-contexto-y-alcance)
-- [Pregunta de Investigación](#-pregunta-de-investigación)
-- [Objetivos](#-objetivos)
-- [Contenido del Repositorio](#-contenido-del-repositorio)
-- [Entregas](#-entregas)
-- [Arquitectura](#-arquitectura)
-- [Ciclo Gobernado de una Propuesta](#-ciclo-gobernado-de-una-propuesta)
-- [Taxonomía de Defectos D1–D6](#-taxonomía-de-defectos-d1d6)
-- [Metodología](#-metodología)
-- [Métricas de Evaluación (GQM)](#-métricas-de-evaluación-gqm)
-- [Trazabilidad Objetivos → Entregables](#-trazabilidad-objetivos--entregables)
-- [Tecnologías, Estándares y Marcos](#-tecnologías-estándares-y-marcos)
-- [Consulta de los Documentos](#-consulta-de-los-documentos)
-- [Confidencialidad y Alcance](#-confidencialidad-y-alcance)
-- [Referencias Clave](#-referencias-clave)
-- [Autor](#-autor)
+- [Contexto y Alcance](#contexto-y-alcance)
+- [Pregunta de Investigación](#pregunta-de-investigación)
+- [Objetivos](#objetivos)
+- [Contenido del Repositorio](#contenido-del-repositorio)
+- [Entregas](#entregas)
+- [Arquitectura](#arquitectura)
+- [Ciclo Gobernado de una Propuesta](#ciclo-gobernado-de-una-propuesta)
+- [Taxonomía de Defectos D1–D6](#taxonomía-de-defectos-d1d6)
+- [Metodología](#metodología)
+- [Métricas de Evaluación (GQM)](#métricas-de-evaluación-gqm)
+- [Trazabilidad Objetivos → Entregables](#trazabilidad-objetivos--entregables)
+- [Tecnologías, Estándares y Marcos](#tecnologías-estándares-y-marcos)
+- [Consulta de los Documentos](#consulta-de-los-documentos)
+- [Confidencialidad y Alcance](#confidencialidad-y-alcance)
+- [Referencias Clave](#referencias-clave)
+- [Autor](#autor)
 
 ---
 

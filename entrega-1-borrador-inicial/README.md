@@ -14,7 +14,7 @@
 [![Puntos de dolor](https://img.shields.io/badge/Puntos%20de%20dolor-7%20identificados-150458.svg)]()
 [![Estado](https://img.shields.io/badge/Estado-Entregada-success.svg)]()
 
-**[Repositorio](../README.md) • [Problema](#-planteamiento-del-problema) • [Objetivos](#-objetivos) • [Situación de partida](#-situación-de-partida) • [Taxonomía](#-taxonomía-de-defectos-d1d6) • [Análisis](#-análisis-del-problema) • [Entrega 2](../entrega-2-borrador-intermedio/)**
+**[Repositorio](../README.md) • [Problema](#planteamiento-del-problema) • [Objetivos](#objetivos) • [Situación de partida](#situación-de-partida) • [Taxonomía](#taxonomía-de-defectos-d1d6) • [Análisis](#análisis-del-problema) • [Entrega 2](../entrega-2-borrador-intermedio/)**
 
 <img src="https://img.shields.io/badge/PDF-lectura-B30B00?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="PDF"/>
 <img src="https://img.shields.io/badge/Word-editable-2B579A?style=flat-square&logo=microsoftword&logoColor=white" alt="Word"/>
@@ -27,21 +27,21 @@
 
 ## Tabla de Contenidos
 
-- [Propósito de la Entrega](#-propósito-de-la-entrega)
-- [Archivos de esta Carpeta](#-archivos-de-esta-carpeta)
-- [Estructura del Documento](#-estructura-del-documento)
-- [Planteamiento del Problema](#-planteamiento-del-problema)
-- [Propuesta y Justificación](#-propuesta-y-justificación)
-- [Objetivos](#-objetivos)
-- [Elementos Innovadores](#-elementos-innovadores)
-- [Situación de Partida](#-situación-de-partida)
-- [Puntos de Dolor](#-puntos-de-dolor)
-- [Taxonomía de Defectos D1–D6](#-taxonomía-de-defectos-d1d6)
-- [Análisis del Problema](#-análisis-del-problema)
-- [Qué Incorpora la Entrega 2](#-qué-incorpora-la-entrega-2)
-- [Referencias](#-referencias)
-- [Confidencialidad](#-confidencialidad)
-- [Autor](#-autor)
+- [Propósito de la Entrega](#propósito-de-la-entrega)
+- [Archivos de esta Carpeta](#archivos-de-esta-carpeta)
+- [Estructura del Documento](#estructura-del-documento)
+- [Planteamiento del Problema](#planteamiento-del-problema)
+- [Propuesta y Justificación](#propuesta-y-justificación)
+- [Objetivos](#objetivos)
+- [Elementos Innovadores](#elementos-innovadores)
+- [Situación de Partida](#situación-de-partida)
+- [Puntos de Dolor](#puntos-de-dolor)
+- [Taxonomía de Defectos D1–D6](#taxonomía-de-defectos-d1d6)
+- [Análisis del Problema](#análisis-del-problema)
+- [Qué Incorpora la Entrega 2](#qué-incorpora-la-entrega-2)
+- [Referencias](#referencias)
+- [Confidencialidad](#confidencialidad)
+- [Autor](#autor)
 
 ---
 
