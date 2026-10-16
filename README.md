@@ -106,6 +106,7 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
   <tr><td colspan="2"><b>📂 entrega-2-borrador-intermedio/</b></td></tr>
   <tr><td><code>TFG_Entrega2_DeMendozaTovar.pdf</code></td><td>📘 <b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa sobre el contenido de la Entrega 1</td></tr>
   <tr><td><code>TFG_Entrega2_DeMendozaTovar.docx</code></td><td>📝 Versión editable en Word de la Entrega 2</td></tr>
+  <tr><td><code>README.md</code></td><td>📄 <a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM y planificación</td></tr>
 </table>
 
 ---
