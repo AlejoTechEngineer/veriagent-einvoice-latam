@@ -1,6 +1,6 @@
 <div align="center">
 
-# 📕 Entrega 1 — Borrador Inicial
+# Entrega 1 — Borrador Inicial
 
 ### *Planteamiento del problema, objetivos, elementos innovadores y análisis de la situación de partida*
 
@@ -14,7 +14,7 @@
 [![Puntos de dolor](https://img.shields.io/badge/Puntos%20de%20dolor-7%20identificados-150458.svg)]()
 [![Estado](https://img.shields.io/badge/Estado-Entregada-success.svg)]()
 
-**[⬅️ Repositorio](../README.md) • [Problema](#-planteamiento-del-problema) • [Objetivos](#-objetivos) • [Situación de partida](#-situación-de-partida) • [Taxonomía](#-taxonomía-de-defectos-d1d6) • [Análisis](#-análisis-del-problema) • [Entrega 2 ➡️](../entrega-2-borrador-intermedio/)**
+**[Repositorio](../README.md) • [Problema](#-planteamiento-del-problema) • [Objetivos](#-objetivos) • [Situación de partida](#-situación-de-partida) • [Taxonomía](#-taxonomía-de-defectos-d1d6) • [Análisis](#-análisis-del-problema) • [Entrega 2](../entrega-2-borrador-intermedio/)**
 
 <img src="https://img.shields.io/badge/PDF-lectura-B30B00?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="PDF"/>
 <img src="https://img.shields.io/badge/Word-editable-2B579A?style=flat-square&logo=microsoftword&logoColor=white" alt="Word"/>
@@ -25,27 +25,27 @@
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [🎯 Propósito de la Entrega](#-propósito-de-la-entrega)
-- [📁 Archivos de esta Carpeta](#-archivos-de-esta-carpeta)
-- [🗂️ Estructura del Documento](#️-estructura-del-documento)
-- [🧩 Planteamiento del Problema](#-planteamiento-del-problema)
-- [💡 Propuesta y Justificación](#-propuesta-y-justificación)
-- [🏁 Objetivos](#-objetivos)
-- [🌟 Elementos Innovadores](#-elementos-innovadores)
-- [🏢 Situación de Partida](#-situación-de-partida)
-- [😣 Puntos de Dolor](#-puntos-de-dolor)
-- [🧬 Taxonomía de Defectos D1–D6](#-taxonomía-de-defectos-d1d6)
-- [🔭 Análisis del Problema](#-análisis-del-problema)
-- [➡️ Qué Incorpora la Entrega 2](#️-qué-incorpora-la-entrega-2)
-- [📚 Referencias](#-referencias)
-- [🔐 Confidencialidad](#-confidencialidad)
-- [👤 Autor](#-autor)
+- [Propósito de la Entrega](#-propósito-de-la-entrega)
+- [Archivos de esta Carpeta](#-archivos-de-esta-carpeta)
+- [Estructura del Documento](#-estructura-del-documento)
+- [Planteamiento del Problema](#-planteamiento-del-problema)
+- [Propuesta y Justificación](#-propuesta-y-justificación)
+- [Objetivos](#-objetivos)
+- [Elementos Innovadores](#-elementos-innovadores)
+- [Situación de Partida](#-situación-de-partida)
+- [Puntos de Dolor](#-puntos-de-dolor)
+- [Taxonomía de Defectos D1–D6](#-taxonomía-de-defectos-d1d6)
+- [Análisis del Problema](#-análisis-del-problema)
+- [Qué Incorpora la Entrega 2](#-qué-incorpora-la-entrega-2)
+- [Referencias](#-referencias)
+- [Confidencialidad](#-confidencialidad)
+- [Autor](#-autor)
 
 ---
 
-## 🎯 Propósito de la Entrega
+## Propósito de la Entrega
 
 La **Entrega 1** construye la base del Trabajo de Fin de Grado: **qué problema se resuelve, por qué importa, qué se propone y qué se va a lograr**. Desarrolla por completo los capítulos 1 y 2. Los capítulos 3 a 6 quedan enunciados con su alcance y se desarrollan en las entregas siguientes.
 
@@ -53,46 +53,46 @@ La **Entrega 1** construye la base del Trabajo de Fin de Grado: **qué problema 
 > **Propuesta:** agentes de IA que **proponen** mapeos, un **kit de verificación determinista** que los comprueba contra la norma y una **persona que aprueba**.
 > **Resultado de la entrega:** problema medido con **Pareto**, **3 objetivos específicos** medibles, **5 elementos innovadores**, **7 puntos de dolor** y una **taxonomía propia de 6 tipos de defecto**.
 
-### 🌟 ¿Qué deja establecido esta entrega?
+### ¿Qué deja establecido esta entrega?
 
-- 📊 **El problema medido**: análisis de Pareto que muestra que **tres tipos de defecto explican el 80,8 %** de los casos.
-- 🎯 **Objetivos verificables**: un objetivo general y tres específicos, cada uno con resultado medible y plazo.
-- 🧬 **Una contribución original**: la taxonomía D1–D6, con regla de verificación y operador de mutación por tipo.
-- 🏢 **La situación real de partida**: plataforma de integración con flujos **asíncrono** y **síncrono**, y un procedimiento tácito que explica buena parte de los defectos.
-- 🔭 **El vacío en la literatura**: no se encontraron propuestas que combinen IA generativa, verificación determinista trazable a la norma y un plan de proyecto que gobierne ambas.
+- **El problema medido**: análisis de Pareto que muestra que **tres tipos de defecto explican el 80,8 %** de los casos.
+- **Objetivos verificables**: un objetivo general y tres específicos, cada uno con resultado medible y plazo.
+- **Una contribución original**: la taxonomía D1–D6, con regla de verificación y operador de mutación por tipo.
+- **La situación real de partida**: plataforma de integración con flujos **asíncrono** y **síncrono**, y un procedimiento tácito que explica buena parte de los defectos.
+- **El vacío en la literatura**: no se encontraron propuestas que combinen IA generativa, verificación determinista trazable a la norma y un plan de proyecto que gobierne ambas.
 
 ---
 
-## 📁 Archivos de esta Carpeta
+## Archivos de esta Carpeta
 
 <table align="center">
   <tr><th>Archivo</th><th>Descripción</th></tr>
-  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.pdf</code></td><td>📕 <b>Versión de lectura</b> de la Entrega 1 (27 páginas)</td></tr>
-  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.docx</code></td><td>📝 <b>Versión editable</b> en Word, con índices, figuras y tablas</td></tr>
-  <tr><td><code>README.md</code></td><td>📄 Este documento: resumen de lo que contiene la entrega</td></tr>
+  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.pdf</code></td><td><b>Versión de lectura</b> de la Entrega 1 (27 páginas)</td></tr>
+  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.docx</code></td><td><b>Versión editable</b> en Word, con índices, figuras y tablas</td></tr>
+  <tr><td><code>README.md</code></td><td>Este documento: resumen de lo que contiene la entrega</td></tr>
 </table>
 
 ---
 
-## 🗂️ Estructura del Documento
+## Estructura del Documento
 
 | Capítulo / Apartado | Contenido | Pág. | Estado |
 |:---|:---|:---:|:---:|
-| **Resumen · Abstract** | Síntesis del trabajo en español e inglés, con palabras clave | 2–3 | ✅ |
-| **1. Introducción** | Problema, línea general de la solución y organización del documento | 7 | ✅ |
-| &nbsp;&nbsp;1.1.1 Planteamiento del problema | Diversidad normativa, proceso manual y Pareto de defectos | 8 | ✅ |
-| &nbsp;&nbsp;1.1.2 Descripción y justificación | Propuesta, justificación económica, organizacional y normativa | 9 | ✅ |
-| &nbsp;&nbsp;1.2 Objetivos del TFG | Objetivo general, OE1–OE3, pregunta de investigación y alcance | 11 | ✅ |
-| &nbsp;&nbsp;1.3 Elementos innovadores | Cinco contribuciones frente a lo existente | 12 | ✅ |
-| **2. Situación de partida** | Organización de referencia y plataforma de integración | 14 | ✅ |
-| &nbsp;&nbsp;2.2 Identificación del problema | Flujos, estados del comprobante, puntos de dolor y taxonomía | 15 | ✅ |
-| &nbsp;&nbsp;2.3 Análisis del problema | Contextualización, antecedentes, trabajos relacionados y conclusiones | 18 | ✅ |
-| **3. Metodología** | Enunciada; se desarrolla en la Entrega 2 | 22 | ⏳ |
-| **4–6. Desarrollo, resultados y conclusiones** | Enunciados; se desarrollan en entregas posteriores | 22 | ⏳ |
-| **Referencias bibliográficas** | 37 referencias en formato APA | 23 | ✅ |
+| **Resumen · Abstract** | Síntesis del trabajo en español e inglés, con palabras clave | 2–3 | |
+| **1. Introducción** | Problema, línea general de la solución y organización del documento | 7 | |
+| &nbsp;&nbsp;1.1.1 Planteamiento del problema | Diversidad normativa, proceso manual y Pareto de defectos | 8 | |
+| &nbsp;&nbsp;1.1.2 Descripción y justificación | Propuesta, justificación económica, organizacional y normativa | 9 | |
+| &nbsp;&nbsp;1.2 Objetivos del TFG | Objetivo general, OE1–OE3, pregunta de investigación y alcance | 11 | |
+| &nbsp;&nbsp;1.3 Elementos innovadores | Cinco contribuciones frente a lo existente | 12 | |
+| **2. Situación de partida** | Organización de referencia y plataforma de integración | 14 | |
+| &nbsp;&nbsp;2.2 Identificación del problema | Flujos, estados del comprobante, puntos de dolor y taxonomía | 15 | |
+| &nbsp;&nbsp;2.3 Análisis del problema | Contextualización, antecedentes, trabajos relacionados y conclusiones | 18 | |
+| **3. Metodología** | Enunciada; se desarrolla en la Entrega 2 | 22 | |
+| **4–6. Desarrollo, resultados y conclusiones** | Enunciados; se desarrollan en entregas posteriores | 22 | |
+| **Referencias bibliográficas** | 37 referencias en formato APA | 23 | |
 
 <details>
-<summary><b>🖼️ Figuras y tablas de la entrega</b></summary>
+<summary><b>Figuras y tablas de la entrega</b></summary>
 
 | Elemento | Título | Pág. |
 |:---|:---|:---:|
@@ -108,16 +108,16 @@ La **Entrega 1** construye la base del Trabajo de Fin de Grado: **qué problema 
 
 ---
 
-## 🧩 Planteamiento del Problema
+## Planteamiento del Problema
 
 La factura electrónica es obligatoria en la mayoría de los países de Latinoamérica: **más de quince** la han implementado, con un modelo de **control previo** en el que el comprobante debe ser validado antes de tener efectos fiscales. Por eso un error en una factura no es un problema de calidad de datos, sino **un documento rechazado o una contingencia fiscal**.
 
 | Fuente del problema | Descripción |
 |:---|:---|
-| 🌎 **Diversidad normativa** | Cada país tiene su calendario, su esquema y sus catálogos, y los cambia por versiones (en Colombia, la Resolución 000165 de 2023 adoptó la versión 1.9 del anexo técnico; en Perú, la Resolución 188-2010/SUNAT inició el sistema). No existe en la región un modelo semántico común como la norma europea **EN 16931** |
-| 🛠️ **Proceso manual** | Cada país o proveedor nuevo exige construir a mano el mapeo de **~100 campos** entre el modelo canónico y el formato del proveedor: **JSON**, **texto plano por segmentos** o **XML basado en UBL 2.1** |
+| **Diversidad normativa** | Cada país tiene su calendario, su esquema y sus catálogos, y los cambia por versiones (en Colombia, la Resolución 000165 de 2023 adoptó la versión 1.9 del anexo técnico; en Perú, la Resolución 188-2010/SUNAT inició el sistema). No existe en la región un modelo semántico común como la norma europea **EN 16931** |
+| **Proceso manual** | Cada país o proveedor nuevo exige construir a mano el mapeo de **~100 campos** entre el modelo canónico y el formato del proveedor: **JSON**, **texto plano por segmentos** o **XML basado en UBL 2.1** |
 
-### 📊 Análisis de Pareto
+### Análisis de Pareto
 
 | Posición | Tipo | Defecto | Peso estimado | Acumulado |
 |:---:|:---:|:---|:---:|:---:|
@@ -143,21 +143,21 @@ Los pesos se estiman por **juicio experto** a partir de la experiencia del autor
 
 | Área | Impacto |
 |:---|:---|
-| ⚙️ **Integración** | Semanas de trabajo por cada país o proveedor nuevo |
-| 🧾 **Tributaria** | Interpreta la norma y valida catálogos sin una herramienta que conecte cada regla con su fuente |
-| 💼 **Negocio** | Recibe rechazos tardíos y debe corregir los datos en origen |
+| **Integración** | Semanas de trabajo por cada país o proveedor nuevo |
+| **Tributaria** | Interpreta la norma y valida catálogos sin una herramienta que conecte cada regla con su fuente |
+| **Negocio** | Recibe rechazos tardíos y debe corregir los datos en origen |
 
 ---
 
-## 💡 Propuesta y Justificación
+## Propuesta y Justificación
 
 ```mermaid
 flowchart LR
-    ES["📄 Especificación del proveedor<br/>y catálogos oficiales"] --> AG["🤖 Agente de IA<br/>propone mapeo, plantillas y pruebas"]
-    AG --> KV{{"🛡️ Kit de verificación determinista<br/>esquema · catálogos versionados · reglas D1–D6"}}
+    ES["Especificación del proveedor<br/>y catálogos oficiales"] --> AG["Agente de IA<br/>propone mapeo, plantillas y pruebas"]
+    AG --> KV{{"Kit de verificación determinista<br/>esquema · catálogos versionados · reglas D1–D6"}}
     KV -->|no supera| AG
-    KV -->|supera| RH["👤 Revisión humana"]
-    RH --> CI["⚙️ Integración y despliegue continuos"]
+    KV -->|supera| RH["Revisión humana"]
+    RH --> CI["Integración y despliegue continuos"]
     CI --> AS["Flujo asíncrono<br/>kit en los adaptadores"]
     CI --> SY["Flujo síncrono<br/>kit en los conectores"]
 ```
@@ -166,15 +166,15 @@ En lugar de que una persona escriba el mapeo desde cero, un **agente** lee la es
 
 | Dimensión | Justificación |
 |:---|:---|
-| 💰 **Económica** | El esfuerzo se repite por cada país y proveedor y crece de forma lineal; el plan incluye un **modelo de punto de equilibrio** para saber a partir de cuántas incorporaciones se recupera la inversión |
-| 👥 **Organizacional** | El desarrollador pasa de transcribir especificaciones a **revisar propuestas con evidencia**; el especialista tributario, a **mantener reglas trazables**; el líder técnico **aprueba** cada cambio, con una matriz de responsabilidades |
-| 🔄 **Procesos** | El conocimiento tácito (reglas en código heredado, códigos acordados en reuniones) se convierte en **reglas escritas, versionadas y verificables** |
-| 🗃️ **Información** | Cada regla queda ligada a la sección y a la huella digital de la norma; un cambio de versión indica **qué reglas revisar** |
-| 🏛️ **Política pública** | Coherente con el **CONPES 4144 de 2025**, que fija la mitigación de riesgos y el uso responsable de la IA como ejes estratégicos |
+| **Económica** | El esfuerzo se repite por cada país y proveedor y crece de forma lineal; el plan incluye un **modelo de punto de equilibrio** para saber a partir de cuántas incorporaciones se recupera la inversión |
+| **Organizacional** | El desarrollador pasa de transcribir especificaciones a **revisar propuestas con evidencia**; el especialista tributario, a **mantener reglas trazables**; el líder técnico **aprueba** cada cambio, con una matriz de responsabilidades |
+| **Procesos** | El conocimiento tácito (reglas en código heredado, códigos acordados en reuniones) se convierte en **reglas escritas, versionadas y verificables** |
+| **Información** | Cada regla queda ligada a la sección y a la huella digital de la norma; un cambio de versión indica **qué reglas revisar** |
+| **Política pública** | Coherente con el **CONPES 4144 de 2025**, que fija la mitigación de riesgos y el uso responsable de la IA como ejes estratégicos |
 
 ---
 
-## 🏁 Objetivos
+## Objetivos
 
 **Objetivo general.** Planificar la implementación de una arquitectura agéntica verificable para la incorporación de nuevos países y proveedores de facturación electrónica en Latinoamérica, validando su viabilidad técnica mediante un prototipo funcional evaluado con un banco de defectos inyectados.
 
@@ -184,34 +184,34 @@ En lugar de que una persona escriba el mapeo desde cero, un **agente** lee la es
 | **OE2 · Diseñar** la arquitectura de referencia y el kit de verificación | Al menos **10 decisiones arquitectónicas** y detección mínima del **80 %** de los defectos inyectados en ejecución, **sin falsos positivos** | 4 semanas |
 | **OE3 · Elaborar** el plan de ejecución del proyecto | EDT, cronograma nivelado, presupuesto, riesgos y CI/CD, con plazo y costo al **80 % de confianza** (Monte Carlo) | Cierre del TFG |
 
-> ❓ **Pregunta de investigación:** ¿en qué medida una arquitectura agéntica con verificación determinista reduce el esfuerzo de incorporar un nuevo país o proveedor de facturación electrónica, manteniendo o mejorando la tasa de comprobantes válidos frente al proceso manual?
+>**Pregunta de investigación:** ¿en qué medida una arquitectura agéntica con verificación determinista reduce el esfuerzo de incorporar un nuevo país o proveedor de facturación electrónica, manteniendo o mejorando la tasa de comprobantes válidos frente al proceso manual?
 
 **Alcance.** El trabajo llega hasta el diseño de la arquitectura y la planificación de su implementación, y valida las decisiones críticas con un prototipo sobre una especificación y datos sintéticos. **No incluye** la operación en producción, la negociación con proveedores ni el uso de datos tributarios reales.
 
 ---
 
-## 🌟 Elementos Innovadores
+## Elementos Innovadores
 
 Según el **Manual de Oslo** (OCDE y Eurostat, 2006), el proyecto es una **innovación de proceso**: cambia la forma en que la organización incorpora países y proveedores de facturación electrónica.
 
 | # | Elemento | Contribución |
 |:---:|:---|:---|
-| 1 | 🧬 **Taxonomía de defectos con reglas y operadores de mutación** | La literatura regional describe beneficios y desafíos, pero no una clasificación operativa de defectos de integración. D1–D6 sirve a la vez para diagnosticar, construir el verificador y evaluarlo |
-| 2 | 🛡️ **Verificación determinista con procedencia normativa** | Un verificador que no depende del juicio del modelo: cada regla cita la sección y la huella digital del documento normativo |
-| 3 | 🤖 **Ciclo gobernado para la IA** | Los agentes solo entregan solicitudes de cambio; no despliegan ni escriben en producción, y lo que no pasa el kit no se aprueba. Cada decisión queda registrada |
-| 4 | 🧪 **Evaluación por inyección de defectos** | Pruebas de mutación aplicadas a mapeos de facturación: se mide qué porcentaje detecta cada mecanismo |
-| 5 | 📈 **Planificación cuantitativa bajo incertidumbre** | Tres estimaciones por paquete, nivelación de carga y Monte Carlo: plazo y costo con su probabilidad, consumo de LLM y punto de equilibrio |
+| 1 | **Taxonomía de defectos con reglas y operadores de mutación** | La literatura regional describe beneficios y desafíos, pero no una clasificación operativa de defectos de integración. D1–D6 sirve a la vez para diagnosticar, construir el verificador y evaluarlo |
+| 2 | **Verificación determinista con procedencia normativa** | Un verificador que no depende del juicio del modelo: cada regla cita la sección y la huella digital del documento normativo |
+| 3 | **Ciclo gobernado para la IA** | Los agentes solo entregan solicitudes de cambio; no despliegan ni escriben en producción, y lo que no pasa el kit no se aprueba. Cada decisión queda registrada |
+| 4 | **Evaluación por inyección de defectos** | Pruebas de mutación aplicadas a mapeos de facturación: se mide qué porcentaje detecta cada mecanismo |
+| 5 | **Planificación cuantitativa bajo incertidumbre** | Tres estimaciones por paquete, nivelación de carga y Monte Carlo: plazo y costo con su probabilidad, consumo de LLM y punto de equilibrio |
 
 | Proceso | Alcance esperado |
 |:---|:---|
-| 🌎 Incorporación de países | Reducir el esfuerzo manual de mapeo y medirlo frente a una línea base |
-| 🧾 Emisión | Que el **100 %** de los comprobantes pase la verificación antes de salir hacia el proveedor |
-| 📜 Conocimiento normativo | Que cada regla sea trazable a su fuente |
-| 🗓️ Gestión del proyecto | Que el plan comunique fechas y costos con su nivel de confianza |
+| Incorporación de países | Reducir el esfuerzo manual de mapeo y medirlo frente a una línea base |
+| Emisión | Que el **100 %** de los comprobantes pase la verificación antes de salir hacia el proveedor |
+| Conocimiento normativo | Que cada regla sea trazable a su fuente |
+| Gestión del proyecto | Que el plan comunique fechas y costos con su nivel de confianza |
 
 ---
 
-## 🏢 Situación de Partida
+## Situación de Partida
 
 La organización de referencia es una **empresa multinacional de servicios** con operación en varios países de Latinoamérica, que emite del orden de **cientos de miles de comprobantes al mes** (facturas, boletas y notas de crédito), con picos en los cierres de mes. Se describe en **tres niveles**: sistemas de origen, plataforma de integración y sistemas externos.
 
@@ -234,7 +234,7 @@ flowchart TD
 
     subgraph N3["Nivel 3 · Sistemas externos"]
         PT["Proveedores tecnológicos"]
-        AT["🏛️ Autoridad tributaria"]
+        AT["Autoridad tributaria"]
     end
 
     SO -->|"asíncrono · archivos"| IG
@@ -251,7 +251,7 @@ flowchart TD
 
 La plataforma sigue los **patrones de integración empresarial** (Hohpe y Woolf, 2003): modelo de datos canónico, enrutador basado en contenido y traductor de mensajes. Los dos flujos se interconectan en **tres puntos**: comparten la **base de datos de trazabilidad**, los **proveedores tecnológicos** y las **reglas de transformación**, de modo que **un defecto de mapeo afecta por igual a la emisión masiva y a la unitaria**.
 
-### 🔄 Estados del comprobante
+### Estados del comprobante
 
 ```mermaid
 stateDiagram-v2
@@ -274,30 +274,30 @@ stateDiagram-v2
 
 | Canal | Cómo se manifiesta un defecto de mapeo |
 |:---|:---|
-| 📦 **Asíncrono** (lotes) | Se descubre **tarde**: el lote ya se envió y regresa con rechazos masivos que deben corregirse en origen |
-| ⚡ **Síncrono** (en línea) | Se descubre **de inmediato**, pero el error llega al usuario en el momento mismo de la transacción |
+| **Asíncrono** (lotes) | Se descubre **tarde**: el lote ya se envió y regresa con rechazos masivos que deben corregirse en origen |
+| **Síncrono** (en línea) | Se descubre **de inmediato**, pero el error llega al usuario en el momento mismo de la transacción |
 
 > En ambos casos el origen es el mismo, **el mapeo manual**, y por eso la verificación debe operar en los dos canales. Junto al procedimiento escrito existe un **procedimiento tácito** (códigos acordados en reuniones, reglas en código heredado, conocimiento de pocas personas y gestión de credenciales y accesos) que explica buena parte de los defectos y que la solución convierte en reglas explícitas.
 
 ---
 
-## 😣 Puntos de Dolor
+## Puntos de Dolor
 
 | # | Punto de dolor | Efecto | Respuesta de la propuesta |
 |:---:|:---|:---|:---|
-| **P1** | Mapeo manual de unos cien campos entre formatos | Semanas de trabajo por país y defectos recurrentes | 🤖 Agente de mapeo y kit de verificación |
-| **P2** | Formatos heterogéneos: JSON, texto por segmentos y XML | Un adaptador distinto por proveedor | 🧱 Arquetipo de adaptador |
-| **P3** | Datos de origen incompletos que se corrigen en origen | Rechazos que regresan tarde | 🛡️ Verificación en ejecución y clasificación de fallos |
-| **P4** | Reglas ocultas en código heredado | Conocimiento tácito y riesgo de omisión | 🔎 Agente de extracción de reglas con evidencia |
-| **P5** | Credenciales, llaves, puertos y accesos | Del orden de una semana por gestión | 🗓️ Planificación temprana y en paralelo |
-| **P6** | Coordinación entre muchos actores | Esperas y retrabajo | 👥 Matriz de responsabilidades y gestión de interesados |
-| **P7** | El ciclo se repite por país y por proveedor | Costo que crece de forma lineal | ♻️ Arquetipo, kit y agentes reutilizables |
+| **P1** | Mapeo manual de unos cien campos entre formatos | Semanas de trabajo por país y defectos recurrentes | Agente de mapeo y kit de verificación |
+| **P2** | Formatos heterogéneos: JSON, texto por segmentos y XML | Un adaptador distinto por proveedor | Arquetipo de adaptador |
+| **P3** | Datos de origen incompletos que se corrigen en origen | Rechazos que regresan tarde | Verificación en ejecución y clasificación de fallos |
+| **P4** | Reglas ocultas en código heredado | Conocimiento tácito y riesgo de omisión | Agente de extracción de reglas con evidencia |
+| **P5** | Credenciales, llaves, puertos y accesos | Del orden de una semana por gestión | Planificación temprana y en paralelo |
+| **P6** | Coordinación entre muchos actores | Esperas y retrabajo | Matriz de responsabilidades y gestión de interesados |
+| **P7** | El ciclo se repite por país y por proveedor | Costo que crece de forma lineal | Arquetipo, kit y agentes reutilizables |
 
 No todos los puntos de dolor se resuelven con IA: P5 y P6 son de **gestión** y se atienden con el plan del proyecto.
 
 ---
 
-## 🧬 Taxonomía de Defectos D1–D6
+## Taxonomía de Defectos D1–D6
 
 El punto de dolor **P1** es el núcleo técnico del problema. Sus defectos se clasifican en una **taxonomía propia**: cada tipo tiene una regla que el kit implementa y un operador de mutación para evaluarlo.
 
@@ -310,36 +310,36 @@ El punto de dolor **P1** es el núcleo técnico del problema. Sus defectos se cl
 | **D5** | Campo obsoleto por versión | Campo retirado en la versión vigente del estándar | Esquema vigente y lista de elementos retirados | Añadir un elemento de la versión anterior |
 | **D6** | Carácter reservado en el contenido | Separador del formato dentro de un texto libre | Conteo de campos y datos adversarios | Desactivar el saneamiento de un texto libre |
 
-> 💡 **Hallazgo de diseño:** un código de catálogo **válido pero equivocado** no lo detecta la validación de esquema, porque en UBL los códigos son cadenas de texto libres. Solo lo detecta una regla de negocio que conozca la semántica del catálogo o la comparación con ejemplos validados por personas.
+>**Hallazgo de diseño:** un código de catálogo **válido pero equivocado** no lo detecta la validación de esquema, porque en UBL los códigos son cadenas de texto libres. Solo lo detecta una regla de negocio que conozca la semántica del catálogo o la comparación con ejemplos validados por personas.
 
 El problema queda identificado en **tres dimensiones**: **técnica** (el mapeo manual introduce defectos que el esquema no detecta), **organizacional** (el conocimiento está repartido entre pocas personas) y **de gestión** (el calendario depende de trámites de acceso). La arquitectura ataca las dos primeras y el plan del proyecto, la tercera.
 
 ---
 
-## 🔭 Análisis del Problema
+## Análisis del Problema
 
-### 📖 Contextualización
+### Contextualización
 
 | Concepto | Definición en el trabajo |
 |:---|:---|
-| 🧾 **Factura electrónica con validación previa** | Comprobante fiscal digital que la autoridad, o un intermediario autorizado, valida antes de que tenga efectos legales |
-| 📐 **UBL y modelo semántico** | UBL 2.1 (OASIS) define documentos comerciales en XML y es base de varios perfiles nacionales; EN 16931-1 define en Europa un modelo semántico común |
-| 🔀 **Integración orientada a eventos** | Sistemas conectados por mensajes asíncronos y patrones reutilizables; el **traductor de mensajes** es justo el componente que hoy se escribe a mano |
-| ✅ **Verificación del software** | Validar es construir el producto correcto; **verificar** es comprobar que cumple su especificación. El kit es un mecanismo de verificación automático |
-| 🤖 **LLM y agentes** | Un agente alterna razonamiento y acciones sobre herramientas (ReAct); el **Model Context Protocol** estandariza su acceso a herramientas y datos |
-| 👻 **Alucinación** | Contenido plausible pero falso; la generación aumentada con recuperación (RAG) la reduce, pero no la elimina |
-| 🚀 **Integración y despliegue continuos** | Prácticas DevOps que automatizan construcción, pruebas y despliegue; aquí, el canal donde el kit es **control obligatorio** |
+| **Factura electrónica con validación previa** | Comprobante fiscal digital que la autoridad, o un intermediario autorizado, valida antes de que tenga efectos legales |
+| **UBL y modelo semántico** | UBL 2.1 (OASIS) define documentos comerciales en XML y es base de varios perfiles nacionales; EN 16931-1 define en Europa un modelo semántico común |
+| **Integración orientada a eventos** | Sistemas conectados por mensajes asíncronos y patrones reutilizables; el **traductor de mensajes** es justo el componente que hoy se escribe a mano |
+| **Verificación del software** | Validar es construir el producto correcto; **verificar** es comprobar que cumple su especificación. El kit es un mecanismo de verificación automático |
+| **LLM y agentes** | Un agente alterna razonamiento y acciones sobre herramientas (ReAct); el **Model Context Protocol** estandariza su acceso a herramientas y datos |
+| **Alucinación** | Contenido plausible pero falso; la generación aumentada con recuperación (RAG) la reduce, pero no la elimina |
+| **Integración y despliegue continuos** | Prácticas DevOps que automatizan construcción, pruebas y despliegue; aquí, el canal donde el kit es **control obligatorio** |
 
-### 🌐 Antecedentes
+### Antecedentes
 
 | Ámbito | Hallazgos |
 |:---|:---|
-| 🌍 **Internacional** | La OCDE trata la factura electrónica como pieza de la administración tributaria digital; el BID describe la administración tributaria 3.0; Europa adoptó EN 16931; el **NIST AI RMF** organiza el riesgo de IA en gobernar, mapear, medir y gestionar |
-| 🌎 **Regional** | Latinoamérica es pionera: experiencias documentadas por Barreix y Zambrano (2018), evaluación de impacto en Ecuador, automatización de controles en Perú y equivalencia funcional en Chile |
-| 🇨🇴 **Nacional** | La DIAN regula con anexos técnicos versionados (v1.9, Resolución 000165 de 2023, y ajuste de plazos en 2024); el **CONPES 4144 de 2025** fija la política nacional de IA |
-| 🏢 **Local** | La incorporación sucesiva de países y proveedores con el procedimiento manual del caso de referencia y sus defectos registrados |
+| **Internacional** | La OCDE trata la factura electrónica como pieza de la administración tributaria digital; el BID describe la administración tributaria 3.0; Europa adoptó EN 16931; el **NIST AI RMF** organiza el riesgo de IA en gobernar, mapear, medir y gestionar |
+| **Regional** | Latinoamérica es pionera: experiencias documentadas por Barreix y Zambrano (2018), evaluación de impacto en Ecuador, automatización de controles en Perú y equivalencia funcional en Chile |
+| **Nacional** | La DIAN regula con anexos técnicos versionados (v1.9, Resolución 000165 de 2023, y ajuste de plazos en 2024); el **CONPES 4144 de 2025** fija la política nacional de IA |
+| **Local** | La incorporación sucesiva de países y proveedores con el procedimiento manual del caso de referencia y sus defectos registrados |
 
-### 🔬 Trabajos relacionados
+### Trabajos relacionados
 
 | Tema | Lo que aporta la literatura | Lo que falta |
 |:---|:---|:---|
@@ -354,9 +354,9 @@ El problema queda identificado en **tres dimensiones**: **técnica** (el mapeo m
 | Desarrollo tradicional | No | Sí, si se programan las reglas | Solo si se documenta | No aplica |
 | Emparejamiento con LLM | Sí, correspondencias | No | No | No tratado |
 | Agentes de código | Sí, código y pruebas | Solo con pruebas existentes | No | Parcial |
-| **Arquitectura propuesta** | ✅ **Sí, gobernado** | ✅ **Verificación obligatoria** | ✅ **Regla a fuente** | ✅ **NIST y CONPES 4144** |
+| **Arquitectura propuesta** | **Sí, gobernado** | **Verificación obligatoria** | **Regla a fuente** | **NIST y CONPES 4144** |
 
-### 🧠 Conclusiones del análisis
+### Conclusiones del análisis
 
 1. **El problema es estructural en la región**: la validación previa es obligatoria, los formatos son nacionales y cambian por versiones, y no hay un modelo semántico común.
 2. **Los LLM pueden acelerar el mapeo**, pero la literatura coincide en que sus resultados requieren verificación y supervisión humana, y la alucinación no desaparece.
@@ -364,21 +364,21 @@ El problema queda identificado en **tres dimensiones**: **técnica** (el mapeo m
 
 ---
 
-## ➡️ Qué Incorpora la Entrega 2
+## Qué Incorpora la Entrega 2
 
 La Entrega 1 deja enunciado el capítulo 3. La [**Entrega 2**](../entrega-2-borrador-intermedio/) lo desarrolla por completo:
 
 | Anunciado en la Entrega 1 | Desarrollado en la Entrega 2 |
 |:---|:---|
-| Investigación en ciencia del diseño y ciclo de vida por fases | ✅ Enfoque de Hevner y Peffers con fases 0–4 encadenadas a los objetivos |
-| Diagrama de Ishikawa de las causas de rechazo | ✅ Seis categorías adaptadas al dominio de la integración |
-| Análisis de decisión multicriterio | ✅ Cinco alternativas, seis criterios y análisis de sensibilidad |
-| Estimación de tres puntos con Monte Carlo | ✅ EDT, PERT, nivelación por recursos y simulación |
-| Banco de defectos por inyección | ✅ Pruebas de mutación y métricas GQM |
+| Investigación en ciencia del diseño y ciclo de vida por fases | Enfoque de Hevner y Peffers con fases 0–4 encadenadas a los objetivos |
+| Diagrama de Ishikawa de las causas de rechazo | Seis categorías adaptadas al dominio de la integración |
+| Análisis de decisión multicriterio | Cinco alternativas, seis criterios y análisis de sensibilidad |
+| Estimación de tres puntos con Monte Carlo | EDT, PERT, nivelación por recursos y simulación |
+| Banco de defectos por inyección | Pruebas de mutación y métricas GQM |
 
 ---
 
-## 📚 Referencias
+## Referencias
 
 La entrega se apoya en **37 referencias** en formato APA: normativa oficial (DIAN, SUNAT, CEN, OASIS), organismos internacionales (BID, OCDE, NIST), política pública (CONPES 4144), literatura regional sobre factura electrónica y literatura sobre LLM, agentes y verificación.
 
@@ -407,7 +407,7 @@ La lista completa está en el capítulo **Referencias Bibliográficas** del docu
 
 ---
 
-## 🔐 Confidencialidad
+## Confidencialidad
 
 - El caso de referencia está **anonimizado**: no se identifica ninguna organización, proveedor ni sistema real.
 - Las cifras se presentan como **órdenes de magnitud** y los pesos del análisis de Pareto son **estimaciones por juicio experto**, no mediciones.
@@ -415,7 +415,7 @@ La lista completa está en el capítulo **Referencias Bibliográficas** del docu
 
 ---
 
-## 👤 Autor
+## Autor
 
 <div align="center">
 
@@ -441,9 +441,9 @@ Entrega desarrollada como parte del **Trabajo de Fin de Grado** del programa de 
 
 <div align="center">
 
-### 📕 *Antes de resolver un problema, hay que medirlo*
+### *Antes de resolver un problema, hay que medirlo*
 
-**[⬅️ Volver al repositorio](../README.md) · [Ir a la Entrega 2 ➡️](../entrega-2-borrador-intermedio/)**
+**[Volver al repositorio](../README.md) · [Ir a la Entrega 2](../entrega-2-borrador-intermedio/)**
 
 **Entrega 1 · Borrador inicial · Veriagent eInvoice LATAM · UNIR · 2026**
 

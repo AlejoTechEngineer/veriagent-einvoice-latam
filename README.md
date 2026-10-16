@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧾 Veriagent eInvoice LATAM
+# Veriagent eInvoice LATAM
 
 ### *Planificación de una arquitectura agéntica verificable para facturación electrónica multipaís en Latinoamérica*
 
@@ -14,7 +14,7 @@
 [![Metodología](https://img.shields.io/badge/Metodolog%C3%ADa-Design%20Science%20Research-6F42C1.svg)]()
 [![Verificación](https://img.shields.io/badge/Verificaci%C3%B3n-Determinista%20y%20trazable%20a%20la%20norma-success.svg)]()
 
-**[Contexto](#-contexto-y-alcance) • [Objetivos](#-objetivos) • [Entregas](#-entregas) • [Arquitectura](#️-arquitectura) • [Taxonomía](#-taxonomía-de-defectos-d1d6) • [Metodología](#-metodología) • [Autor](#-autor)**
+**[Contexto](#-contexto-y-alcance) • [Objetivos](#-objetivos) • [Entregas](#-entregas) • [Arquitectura](#-arquitectura) • [Taxonomía](#-taxonomía-de-defectos-d1d6) • [Metodología](#-metodología) • [Autor](#-autor)**
 
 <img src="https://img.shields.io/badge/Java-21-ED8B00?style=flat-square&logo=openjdk&logoColor=white" alt="Java 21"/>
 <img src="https://img.shields.io/badge/Spring%20Boot-integraci%C3%B3n-6DB33F?style=flat-square&logo=springboot&logoColor=white" alt="Spring Boot"/>
@@ -29,28 +29,28 @@
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
-- [🎯 Contexto y Alcance](#-contexto-y-alcance)
-- [❓ Pregunta de Investigación](#-pregunta-de-investigación)
-- [🏁 Objetivos](#-objetivos)
-- [📁 Contenido del Repositorio](#-contenido-del-repositorio)
-- [📦 Entregas](#-entregas)
-- [🏗️ Arquitectura](#️-arquitectura)
-- [🔁 Ciclo Gobernado de una Propuesta](#-ciclo-gobernado-de-una-propuesta)
-- [🧬 Taxonomía de Defectos D1–D6](#-taxonomía-de-defectos-d1d6)
-- [🔬 Metodología](#-metodología)
-- [📏 Métricas de Evaluación (GQM)](#-métricas-de-evaluación-gqm)
-- [🧭 Trazabilidad Objetivos → Entregables](#-trazabilidad-objetivos--entregables)
-- [🧰 Tecnologías, Estándares y Marcos](#-tecnologías-estándares-y-marcos)
-- [📖 Consulta de los Documentos](#-consulta-de-los-documentos)
-- [🔐 Confidencialidad y Alcance](#-confidencialidad-y-alcance)
-- [📚 Referencias Clave](#-referencias-clave)
-- [👤 Autor](#-autor)
+- [Contexto y Alcance](#-contexto-y-alcance)
+- [Pregunta de Investigación](#-pregunta-de-investigación)
+- [Objetivos](#-objetivos)
+- [Contenido del Repositorio](#-contenido-del-repositorio)
+- [Entregas](#-entregas)
+- [Arquitectura](#-arquitectura)
+- [Ciclo Gobernado de una Propuesta](#-ciclo-gobernado-de-una-propuesta)
+- [Taxonomía de Defectos D1–D6](#-taxonomía-de-defectos-d1d6)
+- [Metodología](#-metodología)
+- [Métricas de Evaluación (GQM)](#-métricas-de-evaluación-gqm)
+- [Trazabilidad Objetivos → Entregables](#-trazabilidad-objetivos--entregables)
+- [Tecnologías, Estándares y Marcos](#-tecnologías-estándares-y-marcos)
+- [Consulta de los Documentos](#-consulta-de-los-documentos)
+- [Confidencialidad y Alcance](#-confidencialidad-y-alcance)
+- [Referencias Clave](#-referencias-clave)
+- [Autor](#-autor)
 
 ---
 
-## 🎯 Contexto y Alcance
+## Contexto y Alcance
 
 La factura electrónica con **validación previa** es hoy la base de la fiscalización digital en Latinoamérica: más de quince países de la región la exigen, y el comprobante solo tiene efectos fiscales después de que la autoridad tributaria, o un proveedor autorizado, lo valida. Cada país define **su propio formato, sus catálogos de códigos y sus reglas**, y los cambia por versiones; a diferencia de Europa con la norma EN 16931, la región no tiene un modelo semántico común.
 
@@ -62,25 +62,25 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 > **Propuesta:** la IA propone, un verificador determinista comprueba contra esquema, catálogos y reglas de la norma, y una persona aprueba.
 > **Alcance:** diseño de la arquitectura y planificación de su implementación, con un prototipo funcional que valida la viabilidad técnica sobre una especificación y datos **sintéticos**.
 
-### 🌟 Elementos innovadores
+### Elementos innovadores
 
 | # | Innovación | Qué aporta frente a lo existente |
 |:---:|:---|:---|
-| 1 | 🧬 **Taxonomía de defectos con reglas y operadores de mutación** | Cada tipo D1–D6 tiene una regla de verificación automática y un operador para inyectarlo: la misma taxonomía sirve para diagnosticar, construir el verificador y evaluarlo |
-| 2 | 🛡️ **Verificación determinista con procedencia normativa** | Cada regla cita la sección y la huella digital del documento normativo del que proviene; un auditor rastrea cualquier rechazo hasta la norma |
-| 3 | 🤖 **Ciclo gobernado para la IA** | Los agentes solo entregan propuestas como solicitudes de cambio; no pueden desplegar ni escribir en producción, y lo que no pasa el kit no puede aprobarse |
-| 4 | 🧪 **Evaluación objetiva por inyección de defectos** | Pruebas de mutación aplicadas a mapeos de facturación: la eficacia del kit se demuestra con datos, no con opiniones |
-| 5 | 📈 **Planificación cuantitativa bajo incertidumbre** | PERT, nivelación de recursos y simulación de Monte Carlo: plazo y costo con su probabilidad, consumo de modelos de lenguaje y punto de equilibrio |
+| 1 | **Taxonomía de defectos con reglas y operadores de mutación** | Cada tipo D1–D6 tiene una regla de verificación automática y un operador para inyectarlo: la misma taxonomía sirve para diagnosticar, construir el verificador y evaluarlo |
+| 2 | **Verificación determinista con procedencia normativa** | Cada regla cita la sección y la huella digital del documento normativo del que proviene; un auditor rastrea cualquier rechazo hasta la norma |
+| 3 | **Ciclo gobernado para la IA** | Los agentes solo entregan propuestas como solicitudes de cambio; no pueden desplegar ni escribir en producción, y lo que no pasa el kit no puede aprobarse |
+| 4 | **Evaluación objetiva por inyección de defectos** | Pruebas de mutación aplicadas a mapeos de facturación: la eficacia del kit se demuestra con datos, no con opiniones |
+| 5 | **Planificación cuantitativa bajo incertidumbre** | PERT, nivelación de recursos y simulación de Monte Carlo: plazo y costo con su probabilidad, consumo de modelos de lenguaje y punto de equilibrio |
 
 ---
 
-## ❓ Pregunta de Investigación
+## Pregunta de Investigación
 
 > ¿En qué medida una arquitectura agéntica con verificación determinista reduce el esfuerzo de incorporar un nuevo país o proveedor de facturación electrónica, manteniendo o mejorando la tasa de comprobantes válidos frente al proceso manual?
 
 ---
 
-## 🏁 Objetivos
+## Objetivos
 
 **Objetivo general.** Planificar la implementación de una arquitectura agéntica verificable para la incorporación de nuevos países y proveedores de facturación electrónica en Latinoamérica, validando su viabilidad técnica mediante un prototipo funcional evaluado con un banco de defectos inyectados.
 
@@ -92,38 +92,38 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 
 ---
 
-## 📁 Contenido del Repositorio
+## Contenido del Repositorio
 
 <table align="center">
   <tr><th>Elemento</th><th>Descripción</th></tr>
-  <tr><td colspan="2"><b>📂 raíz</b></td></tr>
-  <tr><td><code>README.md</code></td><td>📄 Este documento</td></tr>
-  <tr><td><code>.gitignore</code></td><td>🚫 Lista blanca: solo se publican este README y los documentos finales de cada entrega; el material de trabajo nunca se sube</td></tr>
-  <tr><td colspan="2"><b>📂 entrega-1-borrador-inicial/</b></td></tr>
-  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.pdf</code></td><td>📕 <b>Entrega 1 (borrador inicial)</b>: introducción, planteamiento del problema con análisis de Pareto, objetivos, elementos innovadores, situación de partida y análisis del problema</td></tr>
-  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.docx</code></td><td>📝 Versión editable en Word de la Entrega 1</td></tr>
-  <tr><td><code>README.md</code></td><td>📄 <a href="entrega-1-borrador-inicial/"><b>Resumen detallado de la Entrega 1</b></a>: problema, Pareto, objetivos, situación de partida, puntos de dolor, taxonomía y análisis</td></tr>
-  <tr><td colspan="2"><b>📂 entrega-2-borrador-intermedio/</b></td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td>📘 <b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa y el <b>inicio del capítulo 4</b> con las primeras evidencias del prototipo, sobre el contenido de la Entrega 1</td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td>📝 Versión editable en Word de la Entrega 2</td></tr>
-  <tr><td><code>README.md</code></td><td>📄 <a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM, planificación y primeras evidencias del banco de defectos</td></tr>
+  <tr><td colspan="2"><b>raíz</b></td></tr>
+  <tr><td><code>README.md</code></td><td>Este documento</td></tr>
+  <tr><td><code>.gitignore</code></td><td>Lista blanca: solo se publican este README y los documentos finales de cada entrega; el material de trabajo nunca se sube</td></tr>
+  <tr><td colspan="2"><b>entrega-1-borrador-inicial/</b></td></tr>
+  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.pdf</code></td><td><b>Entrega 1 (borrador inicial)</b>: introducción, planteamiento del problema con análisis de Pareto, objetivos, elementos innovadores, situación de partida y análisis del problema</td></tr>
+  <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.docx</code></td><td>Versión editable en Word de la Entrega 1</td></tr>
+  <tr><td><code>README.md</code></td><td><a href="entrega-1-borrador-inicial/"><b>Resumen detallado de la Entrega 1</b></a>: problema, Pareto, objetivos, situación de partida, puntos de dolor, taxonomía y análisis</td></tr>
+  <tr><td colspan="2"><b>entrega-2-borrador-intermedio/</b></td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td><b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa y el <b>inicio del capítulo 4</b> con las primeras evidencias del prototipo, sobre el contenido de la Entrega 1</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td>Versión editable en Word de la Entrega 2</td></tr>
+  <tr><td><code>README.md</code></td><td><a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM, planificación y primeras evidencias del banco de defectos</td></tr>
 </table>
 
 ---
 
-## 📦 Entregas
+## Entregas
 
 | Capítulo | Contenido | Entrega 1 | Entrega 2 |
 |:---|:---|:---:|:---:|
-| **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | ✅ | ✅ |
-| **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | ✅ | ✅ |
-| **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | — | ✅ |
-| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | — | 🚧 |
-| **5. Resultados obtenidos** | Resultados por objetivo específico | — | ⏳ |
-| **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | — | ⏳ |
+| **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | | |
+| **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | | |
+| **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | — | |
+| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | — | |
+| **5. Resultados obtenidos** | Resultados por objetivo específico | — | |
+| **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | — | |
 
 <details>
-<summary><b>📕 Entrega 1 — Borrador inicial</b></summary>
+<summary><b>Entrega 1 — Borrador inicial</b></summary>
 
 - Planteamiento del problema con **análisis de Pareto** de los defectos de mapeo.
 - **Objetivo general y tres objetivos específicos** con resultado medible y plazo.
@@ -135,7 +135,7 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 </details>
 
 <details>
-<summary><b>📘 Entrega 2 — Borrador intermedio</b></summary>
+<summary><b>Entrega 2 — Borrador intermedio</b></summary>
 
 - Enfoque de **investigación en ciencia del diseño** con fases encadenadas a los objetivos.
 - Revisión de la literatura con un **protocolo de búsqueda inspirado en PRISMA 2020**.
@@ -150,38 +150,38 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 
 > La Entrega 2 es **acumulativa**: contiene la Entrega 1, la metodología y el inicio del capítulo 4.
 >
-> 🚧 = capítulo iniciado en esta entrega · ⏳ = pendiente
+>= capítulo iniciado en esta entrega · = pendiente
 
 ---
 
-## 🏗️ Arquitectura
+## Arquitectura
 
 ```mermaid
 flowchart TD
-    SO["🏢 Sistemas de origen<br/>ventas · contratos · contabilidad"] --> IN
+    SO["Sistemas de origen<br/>ventas · contratos · contabilidad"] --> IN
 
     subgraph PI["Plano de integración · Java 21 · Spring Boot · Camel · Kafka"]
         IN["Ingesta y enrutamiento por país<br/>modelo canónico"]
         IN --> AS["Flujo asíncrono<br/>emisión masiva por lotes"]
         IN --> SY["Flujo síncrono<br/>emisión unitaria en línea"]
-        AS --> KA{{"🛡️ Kit de verificación<br/>en el adaptador"}}
-        SY --> KS{{"🛡️ Kit de verificación<br/>en el conector"}}
+        AS --> KA{{"Kit de verificación<br/>en el adaptador"}}
+        SY --> KS{{"Kit de verificación<br/>en el conector"}}
     end
 
     subgraph PA["Plano agéntico · Agentes de IA · Servidores MCP"]
-        AG["🤖 Agentes<br/>mapeo · plantillas · pruebas"] --> PR["Propuesta de mapeo"]
+        AG["Agentes<br/>mapeo · plantillas · pruebas"] --> PR["Propuesta de mapeo"]
     end
 
-    PR --> KV{{"🛡️ Kit de verificación determinista<br/>esquema vigente · catálogos versionados<br/>reglas D1–D6 trazables a la norma"}}
-    KV -->|supera el kit| RH["👤 Pull request y revisión humana"]
+    PR --> KV{{"Kit de verificación determinista<br/>esquema vigente · catálogos versionados<br/>reglas D1–D6 trazables a la norma"}}
+    KV -->|supera el kit| RH["Pull request y revisión humana"]
     KV -.->|no supera| AG
-    RH --> CI["⚙️ Jenkins<br/>gate de CI y despliegue"]
+    RH --> CI["Jenkins<br/>gate de CI y despliegue"]
     CI -.->|reglas de transformación| AS
     CI -.->|reglas de transformación| SY
 
     KA --> PT["Proveedores tecnológicos"]
     KS --> PT
-    PT --> AT["🏛️ Autoridad tributaria"]
+    PT --> AT["Autoridad tributaria"]
 ```
 
 La arquitectura combina **dos planos**. El **plano de integración**, orientado a eventos, recibe los comprobantes en un modelo canónico, los enruta por país y los transforma al formato de cada proveedor por dos canales que comparten infraestructura: el **flujo asíncrono** para la emisión masiva por lotes y el **flujo síncrono** para la emisión unitaria en línea. El **plano agéntico** aloja los agentes que proponen mapeos, plantillas y pruebas, con acceso a herramientas y datos a través del **Model Context Protocol**.
@@ -190,7 +190,7 @@ Entre ambos se ubica el **kit de verificación determinista**. Actúa dos veces:
 
 ---
 
-## 🔁 Ciclo Gobernado de una Propuesta
+## Ciclo Gobernado de una Propuesta
 
 ```mermaid
 sequenceDiagram
@@ -220,7 +220,7 @@ sequenceDiagram
 
 ---
 
-## 🧬 Taxonomía de Defectos D1–D6
+## Taxonomía de Defectos D1–D6
 
 Taxonomía propia del trabajo. Cada tipo tiene una **regla de verificación** que implementa el kit y un **operador de mutación** que permite inyectarlo para evaluar el verificador.
 
@@ -244,11 +244,11 @@ xychart-beta
 
 **D1, D4 y D2 concentran el 80,8 %** de los defectos estimados: son los *pocos vitales*. Por eso el kit prioriza sus reglas y el banco de defectos les asigna más casos de prueba. Los pesos provienen de un orden de frecuencia por **juicio experto**, convertido a pesos con el **método de centroide de rangos** (Barron y Barrett, 1996); se declaran como estimación, no como medición.
 
-> 💡 Un código de catálogo **válido pero equivocado** (D1) no lo detecta la validación de esquema, porque en UBL los códigos son cadenas de texto libres. Solo lo detecta una regla de negocio que conozca la semántica del catálogo o la comparación con ejemplos validados por personas.
+>Un código de catálogo **válido pero equivocado** (D1) no lo detecta la validación de esquema, porque en UBL los códigos son cadenas de texto libres. Solo lo detecta una regla de negocio que conozca la semántica del catálogo o la comparación con ejemplos validados por personas.
 
 ---
 
-## 🔬 Metodología
+## Metodología
 
 El trabajo sigue la **investigación en ciencia del diseño** (Hevner et al., 2004) con el proceso de seis actividades de Peffers et al. (2007): identificar el problema, definir objetivos, diseñar y desarrollar, demostrar, evaluar y comunicar. Se organiza en un **ciclo de vida por fases** con un entregable al final de cada una, iterativo dentro de las fases de diseño y planificación, con un **diseño mixto** cualitativo y cuantitativo.
 
@@ -263,17 +263,17 @@ flowchart LR
 
 | Necesidad | Método | Por qué se selecciona |
 |:---|:---|:---|
-| 📚 Antecedentes verificables | Protocolo de búsqueda inspirado en **PRISMA 2020** | Fuentes, cadenas y criterios documentados y reproducibles |
-| 🐟 Causas del rechazo | **Diagrama de Ishikawa** (método, personas, normativa, datos, sistemas, medición) | El rechazo no tiene una causa única y no debe atribuirse solo a la tecnología |
-| 📊 Priorización | **Pareto** por juicio experto y **centroide de rangos** | Concentrar reglas y casos de prueba en los pocos tipos vitales |
-| ⚖️ Selección de la solución | **Decisión multicriterio** ponderada con análisis de sensibilidad | Criterios y pesos escritos, discutibles y reproducibles; práctica DAR de CMMI |
-| 🏗️ Diseño | Requisitos, escenarios de calidad **ISO/IEC 25010**, **C4** y **ADR** | Cada elemento se justifica con un escenario medible y una decisión documentada |
-| 🧪 Validación técnica | **Prototipo** con datos sintéticos y **pruebas de mutación** | Medida objetiva de la eficacia del kit, no una apreciación |
-| 🗓️ Planificación | **EDT**, **PERT** `tₑ = (o + 4m + p) / 6`, nivelación por recursos y **Monte Carlo** | Plazo y costo como distribuciones, comunicados al percentil 80 |
-| ⚠️ Riesgos de IA | **NIST AI RMF** (gobernar, mapear, medir, gestionar) y **CONPES 4144** | El riesgo de la IA se gestiona con responsables y respuestas |
+| Antecedentes verificables | Protocolo de búsqueda inspirado en **PRISMA 2020** | Fuentes, cadenas y criterios documentados y reproducibles |
+| Causas del rechazo | **Diagrama de Ishikawa** (método, personas, normativa, datos, sistemas, medición) | El rechazo no tiene una causa única y no debe atribuirse solo a la tecnología |
+| Priorización | **Pareto** por juicio experto y **centroide de rangos** | Concentrar reglas y casos de prueba en los pocos tipos vitales |
+| Selección de la solución | **Decisión multicriterio** ponderada con análisis de sensibilidad | Criterios y pesos escritos, discutibles y reproducibles; práctica DAR de CMMI |
+| Diseño | Requisitos, escenarios de calidad **ISO/IEC 25010**, **C4** y **ADR** | Cada elemento se justifica con un escenario medible y una decisión documentada |
+| Validación técnica | **Prototipo** con datos sintéticos y **pruebas de mutación** | Medida objetiva de la eficacia del kit, no una apreciación |
+| Planificación | **EDT**, **PERT** `tₑ = (o + 4m + p) / 6`, nivelación por recursos y **Monte Carlo** | Plazo y costo como distribuciones, comunicados al percentil 80 |
+| Riesgos de IA | **NIST AI RMF** (gobernar, mapear, medir, gestionar) y **CONPES 4144** | El riesgo de la IA se gestiona con responsables y respuestas |
 
 <details>
-<summary><b>⚖️ Alternativas y criterios de la decisión multicriterio</b></summary>
+<summary><b>Alternativas y criterios de la decisión multicriterio</b></summary>
 
 | Alternativas comparadas | Criterios |
 |:---|:---|
@@ -290,7 +290,7 @@ La robustez de la decisión se comprueba variando el peso del criterio más déb
 
 ---
 
-## 📏 Métricas de Evaluación (GQM)
+## Métricas de Evaluación (GQM)
 
 Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 1994), para que cada métrica responda a una pregunta asociada a un objetivo.
 
@@ -304,7 +304,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 
 ---
 
-## 🧭 Trazabilidad Objetivos → Entregables
+## Trazabilidad Objetivos → Entregables
 
 | Objetivo | Fase | Métodos | Entregable |
 |:---|:---|:---|:---|
@@ -315,7 +315,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 
 ---
 
-## 🧰 Tecnologías, Estándares y Marcos
+## Tecnologías, Estándares y Marcos
 
 <div align="center">
 
@@ -331,27 +331,27 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 
 | Ámbito | Elemento | Uso en el trabajo |
 |:---|:---|:---|
-| ⚙️ **Plano de integración** | Java 21 · Spring Boot · Apache Camel · Apache Kafka | Microservicios orientados a eventos con patrones de integración empresarial: modelo canónico, enrutador por contenido y traductor de mensajes |
-| 🤖 **Plano agéntico** | Agentes basados en LLM · Model Context Protocol | Proponer mapeos, plantillas y pruebas con acceso estandarizado a herramientas y datos |
-| 🚀 **Entrega continua** | Jenkins | Gate de CI donde el kit de verificación es control obligatorio antes de cualquier despliegue |
-| 🧾 **Formatos** | UBL 2.1 (OASIS) · EN 16931 · anexos técnicos nacionales | Base de los perfiles nacionales y referencia de modelo semántico común |
-| 🏛️ **Arquitectura** | Modelo C4 · ADR · ISO/IEC 25010 | Documentación por niveles, decisiones registradas y atributos de calidad medibles |
-| 🛡️ **Gobierno de la IA** | NIST AI RMF 1.0 · CONPES 4144 de 2025 | Gestión de riesgos de IA y alineación con la política nacional de IA de Colombia |
-| 🗓️ **Gestión de proyectos** | Guía del PMBOK · PERT · Monte Carlo | Plan con estimaciones de tres puntos y plazo y costo con nivel de confianza |
+| **Plano de integración** | Java 21 · Spring Boot · Apache Camel · Apache Kafka | Microservicios orientados a eventos con patrones de integración empresarial: modelo canónico, enrutador por contenido y traductor de mensajes |
+| **Plano agéntico** | Agentes basados en LLM · Model Context Protocol | Proponer mapeos, plantillas y pruebas con acceso estandarizado a herramientas y datos |
+| **Entrega continua** | Jenkins | Gate de CI donde el kit de verificación es control obligatorio antes de cualquier despliegue |
+| **Formatos** | UBL 2.1 (OASIS) · EN 16931 · anexos técnicos nacionales | Base de los perfiles nacionales y referencia de modelo semántico común |
+| **Arquitectura** | Modelo C4 · ADR · ISO/IEC 25010 | Documentación por niveles, decisiones registradas y atributos de calidad medibles |
+| **Gobierno de la IA** | NIST AI RMF 1.0 · CONPES 4144 de 2025 | Gestión de riesgos de IA y alineación con la política nacional de IA de Colombia |
+| **Gestión de proyectos** | Guía del PMBOK · PERT · Monte Carlo | Plan con estimaciones de tres puntos y plazo y costo con nivel de confianza |
 
 ---
 
-## 📖 Consulta de los Documentos
+## Consulta de los Documentos
 
 | Para… | Haz esto |
 |:---|:---|
-| 📕 **Leer** una entrega | Entra a la carpeta de la entrega y abre el **PDF** |
-| 📝 **Revisar o editar** | Descarga el archivo **Word (.docx)** |
-| 🧭 **Ver el trabajo completo hasta hoy** | Abre la **Entrega 2**, que es acumulativa: contiene la Entrega 1, la metodología y el inicio del capítulo 4 |
+| **Leer** una entrega | Entra a la carpeta de la entrega y abre el **PDF** |
+| **Revisar o editar** | Descarga el archivo **Word (.docx)** |
+| **Ver el trabajo completo hasta hoy** | Abre la **Entrega 2**, que es acumulativa: contiene la Entrega 1, la metodología y el inicio del capítulo 4 |
 
 ---
 
-## 🔐 Confidencialidad y Alcance
+## Confidencialidad y Alcance
 
 - El caso de referencia está **anonimizado**: no se identifica ninguna organización, proveedor ni sistema real.
 - Las cifras se presentan como **órdenes de magnitud** y los ejemplos usan **datos sintéticos**.
@@ -360,7 +360,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 
 ---
 
-## 📚 Referencias Clave
+## Referencias Clave
 
 <details>
 <summary><b>Ver selección de referencias del trabajo</b></summary>
@@ -386,13 +386,13 @@ La lista completa está en el capítulo **Referencias Bibliográficas** de cada 
 
 ---
 
-## 📝 Nota
+## Nota
 
 Este repositorio corresponde a un **trabajo académico** en curso y se publica con fines formativos. Las cifras del caso de referencia son estimaciones expresadas como órdenes de magnitud, y los ejemplos usan datos sintéticos.
 
 ---
 
-## 👤 Autor
+## Autor
 
 <div align="center">
 
@@ -418,7 +418,7 @@ Este trabajo fue desarrollado como **Trabajo de Fin de Grado** del programa de *
 
 <div align="center">
 
-### 🧾 *La IA propone, la norma verifica y las personas deciden*
+### *La IA propone, la norma verifica y las personas deciden*
 
 **Trabajo de Fin de Grado · Ingeniería Informática · UNIR · 2026**
 
