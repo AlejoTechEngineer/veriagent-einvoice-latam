@@ -9,7 +9,7 @@
 [![Programa](https://img.shields.io/badge/Programa-Ingenier%C3%ADa%20Inform%C3%A1tica-0052CC.svg)]()
 [![Institución](https://img.shields.io/badge/Instituci%C3%B3n-UNIR%20Colombia-0098CD.svg)]()
 [![Modalidad](https://img.shields.io/badge/Modalidad-TFG%20Tipo%202%20%C2%B7%20Planificaci%C3%B3n-3776AB.svg)]()
-[![Estado](https://img.shields.io/badge/Estado-Entrega%202%20%C2%B7%20Borrador%20intermedio-E36209.svg)]()
+[![Estado](https://img.shields.io/badge/Estado-Entrega%203%20%C2%B7%20Borrador%20final-E36209.svg)]()
 [![Taxonomía](https://img.shields.io/badge/Taxonom%C3%ADa-6%20tipos%20de%20defecto%20D1%E2%80%93D6-150458.svg)]()
 [![Metodología](https://img.shields.io/badge/Metodolog%C3%ADa-Design%20Science%20Research-6F42C1.svg)]()
 [![Verificación](https://img.shields.io/badge/Verificaci%C3%B3n-Determinista%20y%20trazable%20a%20la%20norma-success.svg)]()
@@ -116,14 +116,16 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 
 ## Entregas
 
-| Capítulo | Contenido | Entrega 1 | Entrega 2 |
-|:---|:---|:---:|:---:|
-| **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | | |
-| **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | | |
-| **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | — | |
-| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | — | |
-| **5. Resultados obtenidos** | Resultados por objetivo específico | — | |
-| **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | — | |
+| Capítulo | Contenido | Entrega 1 | Entrega 2 | Entrega 3 |
+|:---|:---|:---:|:---:|:---:|
+| **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | Completo | Completo | Completo |
+| **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | Completo | Completo | Completo |
+| **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | Pendiente | Completo | Completo |
+| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | Pendiente | Iniciado | Completo |
+| **5. Resultados obtenidos** | Resultados por objetivo específico | Pendiente | Pendiente | Completo |
+| **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | Pendiente | Pendiente | Completo |
+| **Referencias Bibliográficas** | Fuentes citadas en el trabajo | Completo | Completo | Completo |
+| **Anexos** | Decisiones arquitectónicas completas, supuestos de planificación y resultados del banco de defectos | Pendiente | Pendiente | Completo |
 
 <details>
 <summary><b>Entrega 1 — Borrador inicial</b></summary>
@@ -165,7 +167,7 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 
 > Las entregas son acumulativas: la Entrega 2 incluye la Entrega 1 más la metodología, y la Entrega 3 incluye todo lo anterior más el desarrollo de la solución, los resultados y las conclusiones.
 >
->= capítulo iniciado en esta entrega · = pendiente
+> Completo = capítulo desarrollado en esa entrega · Iniciado = capítulo con avance parcial · Pendiente = aún no desarrollado
 
 ---
 
