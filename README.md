@@ -107,6 +107,9 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
   <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td><b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa y el <b>inicio del capítulo 4</b> con las primeras evidencias del prototipo, sobre el contenido de la Entrega 1</td></tr>
   <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td>Versión editable en Word de la Entrega 2</td></tr>
   <tr><td><code>README.md</code></td><td><a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM, planificación y primeras evidencias del banco de defectos</td></tr>
+  <tr><td colspan="2"><b>entrega-3-borrador-final/</b></td></tr>
+  <tr><td><code>TFG_Entrega3_DeMendozaTovar.pdf</code></td><td><b>Entrega 3 (borrador final)</b>: incorpora el <b>desarrollo de la solución</b>, los <b>resultados</b> y las <b>conclusiones</b> sobre el contenido de las entregas anteriores</td></tr>
+  <tr><td><code>TFG_Entrega3_DeMendozaTovar.docx</code></td><td>Versión editable en Word de la Entrega 3</td></tr>
 </table>
 
 ---
@@ -148,7 +151,19 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 
 </details>
 
-> La Entrega 2 es **acumulativa**: contiene la Entrega 1, la metodología y el inicio del capítulo 4.
+<details>
+<summary><b>Entrega 3 — Borrador final</b></summary>
+
+- Aportación: taxonomía de defectos y **kit de verificación determinista**.
+- Requisitos y atributos de calidad, **matriz de decisión multicriterio** y **arquitectura de referencia (modelo C4)** con diez decisiones documentadas.
+- **Perfiles del equipo y matriz RACI**, EDT, PERT, **cronograma nivelado por recursos** y presupuesto con referentes salariales y análisis de sensibilidad.
+- Análisis de riesgos, plan de calidad, integración y despliegue continuos con Jenkins, y evaluación de la solución.
+- Resultados: prueba de concepto, **banco de 22 defectos inyectados** (86 % de detección en ejecución y 100 % con integración continua, sin falsos positivos), simulación de **Monte Carlo** y punto de equilibrio.
+- Conclusiones, limitaciones y trabajo futuro.
+
+</details>
+
+> Las entregas son acumulativas: la Entrega 2 incluye la Entrega 1 más la metodología, y la Entrega 3 incluye todo lo anterior más el desarrollo de la solución, los resultados y las conclusiones.
 >
 >= capítulo iniciado en esta entrega · = pendiente
 
@@ -347,7 +362,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 |:---|:---|
 | **Leer** una entrega | Entra a la carpeta de la entrega y abre el **PDF** |
 | **Revisar o editar** | Descarga el archivo **Word (.docx)** |
-| **Ver el trabajo completo hasta hoy** | Abre la **Entrega 2**, que es acumulativa: contiene la Entrega 1, la metodología y el inicio del capítulo 4 |
+| **Ver el trabajo completo hasta hoy** | Abre la **Entrega 3**. Las entregas son acumulativas: la Entrega 2 incluye la Entrega 1 más la metodología, y la Entrega 3 incluye todo lo anterior más el desarrollo de la solución, los resultados y las conclusiones. |
 
 ---
 
