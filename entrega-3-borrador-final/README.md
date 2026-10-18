@@ -195,23 +195,23 @@ La aportación central es un **kit de verificación determinista** construido so
 
 ```mermaid
 flowchart LR
-    RQ["Requisitos y escenarios<br/>de calidad"] --> DEC["Matriz de decisión<br/>ponderada"]
-    DEC --> ARQ["Arquitectura de referencia<br/>C4 · 10 ADR"]
-    ARQ --> EQ["Equipo y RACI<br/>10 personas · 8 roles"]
-    EQ --> EDT["EDT · 24 paquetes<br/>PERT y nivelación"]
-    EDT --> PRE["Presupuesto<br/>y sensibilidad"]
-    PRE --> RIE["Riesgos, calidad,<br/>CI/CD y evaluación"]
+    RQ["1️⃣ <b>Requisitos</b><br/>y escenarios de calidad"] --> DEC["2️⃣ <b>Matriz de decisión</b><br/>ponderada"]
+    DEC --> ARQ["3️⃣ <b>Arquitectura de referencia</b><br/>C4 · 10 ADR"]
+    ARQ --> EQ["4️⃣ <b>Equipo y RACI</b><br/>10 personas · 8 roles"]
+    EQ --> EDT["5️⃣ <b>EDT</b><br/>24 paquetes<br/>PERT y nivelación"]
+    EDT --> PRE["6️⃣ <b>Presupuesto</b><br/>y sensibilidad"]
+    PRE --> RIE["7️⃣ <b>Riesgos</b><br/>calidad, CI/CD y evaluación"]
 ```
 
 | Apartado | Qué aporta |
-|:---|:---|
-| **Selección de la alternativa** | Cinco alternativas puntuadas en seis criterios ponderados, con análisis de sensibilidad sobre el punto débil de la propuesta |
-| **Arquitectura de referencia** | Diagramas de contexto, contenedores y componentes (C4), microservicios, stack tecnológico, contratos, modelo de datos y seguridad por diseño |
-| **Decisiones arquitectónicas** | Diez ADR con contexto, opciones, decisión, consecuencias y escenario de calidad; el detalle completo está en el **Anexo A** |
-| **Perfiles y responsabilidades** | Equipo del proyecto con su capacidad y matriz RACI por actividad |
-| **Planificación** | Seis fases con cinco hitos de control, EDT con estimaciones de tres puntos, nivelación por recursos y cronograma con ruta crítica |
-| **Presupuesto** | Cuatro partidas (personas, nube, licencias y herramientas, y consumo de LLM), con tarifas calibradas con referentes salariales públicos; el LLM representa **menos del 0,2 %** del presupuesto |
-| **Riesgos, calidad y CI/CD** | Registro de riesgos con funciones del NIST AI RMF, plan de pruebas y pipeline de Jenkins con el kit como gate |
+|:---:|:---|
+| 1️⃣ Selección de la alternativa | Cinco alternativas puntuadas en seis criterios ponderados, con análisis de sensibilidad sobre el punto débil de la propuesta |
+| 2️⃣ Arquitectura de referencia | Diagramas de contexto, contenedores y componentes (C4), microservicios, stack tecnológico, contratos, modelo de datos y seguridad por diseño |
+| 3️⃣ Decisiones arquitectónicas | Diez ADR con contexto, opciones, decisión, consecuencias y escenario de calidad; el detalle completo está en el **Anexo A** |
+| 4️⃣ Perfiles y responsabilidades | Equipo del proyecto con su capacidad y matriz RACI por actividad |
+| 5️⃣ Planificación | Seis fases con cinco hitos de control, EDT con estimaciones de tres puntos, nivelación por recursos y cronograma con ruta crítica |
+| 6️⃣ Presupuesto | Cuatro partidas (personas, nube, licencias y herramientas, y consumo de LLM), con tarifas calibradas con referentes salariales públicos; el LLM representa **menos del 0,2 %** del presupuesto |
+| 7️⃣ Riesgos, calidad y CI/CD | Registro de riesgos con funciones del NIST AI RMF, plan de pruebas y pipeline de Jenkins con el kit como gate |
 
 ---
 
