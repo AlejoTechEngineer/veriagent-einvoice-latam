@@ -9,7 +9,7 @@
 [![Entrega](https://img.shields.io/badge/Entrega-3%20%C2%B7%20Borrador%20final-1F6FEB.svg)]()
 [![Capítulos](https://img.shields.io/badge/Cap%C3%ADtulos-1%20a%206%20completos-0052CC.svg)]()
 [![Páginas](https://img.shields.io/badge/Documento-75%20p%C3%A1ginas-3776AB.svg)]()
-[![Referencias](https://img.shields.io/badge/Referencias-58%20%C2%B7%205%20nuevas-6F42C1.svg)]()
+[![Referencias](https://img.shields.io/badge/Referencias-59%20%C2%B7%206%20nuevas-6F42C1.svg)]()
 [![Detección](https://img.shields.io/badge/Detecci%C3%B3n-86%20%25%20en%20ejecuci%C3%B3n%20%C2%B7%20100%20%25%20con%20CI-150458.svg)]()
 [![Plazo](https://img.shields.io/badge/Plazo%20P80-42%2C2%20semanas-E36209.svg)]()
 [![Anexos](https://img.shields.io/badge/Anexos-A%2C%20B%20y%20C-success.svg)]()
@@ -80,7 +80,7 @@ La **Entrega 3** responde a la pregunta **qué se diseñó, qué se obtuvo y qu�
 | **Anexos** | Pendiente | **A**, decisiones arquitectónicas completas · **B**, supuestos de planificación · **C**, resultados detallados del banco de defectos |
 | **Figuras** | 5 | **18** |
 | **Tablas** | 8 | **35** |
-| **Referencias** | 53 | **58** · 5 nuevas sobre referentes salariales del mercado colombiano |
+| **Referencias** | 53 | **59** · 6 nuevas sobre referentes salariales del mercado colombiano y la escala de madurez tecnológica (TRL) |
 | **Páginas** | 37 | **75** |
 | **Capítulos 1 a 3** | Completos | Se conservan |
 
@@ -115,7 +115,7 @@ La **Entrega 3** responde a la pregunta **qué se diseñó, qué se obtuvo y qu�
 | &nbsp;&nbsp;5.7 Amenazas a la validez | Límites de la evidencia obtenida | 57 | |
 | &nbsp;&nbsp;5.8 Cumplimiento de los objetivos | Evidencia y estado por objetivo | 58 | |
 | **6. Conclusiones** | **Nuevo en esta entrega** | **59** | Completo |
-| **Referencias bibliográficas** | 58 referencias en formato APA | 64 | Completo |
+| **Referencias bibliográficas** | 59 referencias en formato APA | 64 | Completo |
 | **Anexos** | Anexo A (69), Anexo B (74) y Anexo C (75) | 69 | Completo |
 
 <details>
@@ -209,7 +209,7 @@ flowchart LR
 | 2️⃣ Arquitectura de referencia | Diagramas de contexto, contenedores y componentes (C4), microservicios, stack tecnológico, contratos, modelo de datos y seguridad por diseño |
 | 3️⃣ Decisiones arquitectónicas | Diez ADR con contexto, opciones, decisión, consecuencias y escenario de calidad; el detalle completo está en el **Anexo A** |
 | 4️⃣ Perfiles y responsabilidades | Equipo del proyecto con su capacidad y matriz RACI por actividad |
-| 5️⃣ Planificación | Seis fases con cinco hitos de control, EDT con estimaciones de tres puntos, nivelación por recursos y cronograma con ruta crítica |
+| 5️⃣ Planificación | Seis fases con seis hitos de control (G0 a G5), EDT con estimaciones de tres puntos, nivelación por recursos y cronograma con ruta crítica |
 | 6️⃣ Presupuesto | Cuatro partidas (personas, nube, licencias y herramientas, y consumo de LLM), con tarifas calibradas con referentes salariales públicos; el LLM representa **menos del 0,2 %** del presupuesto |
 | 7️⃣ Riesgos, calidad y CI/CD | Registro de riesgos con funciones del NIST AI RMF, plan de pruebas y pipeline de Jenkins con el kit como gate |
 
@@ -217,7 +217,7 @@ flowchart LR
 
 ## Resultados Obtenidos
 
-La prueba de concepto se construyó sobre **una especificación y datos sintéticos**. El banco aplica **22 mutantes** de los seis tipos sobre **300 comprobantes sintéticos y 12 fixtures**, en total **14.688 verificaciones**.
+La prueba de concepto se construyó sobre **una especificación y datos sintéticos**. El banco aplica **22 mutantes** de los seis tipos sobre **300 comprobantes sintéticos y 12 ejemplos validados**, en total **14.688 verificaciones**.
 
 | Mecanismo de verificación | Defectos detectados | Tasa de detección | Falsos positivos |
 |:---|:---:|:---:|:---:|
@@ -258,10 +258,10 @@ La prueba de concepto se construyó sobre **una especificación y datos sintéti
 
 ## Referencias
 
-La entrega se apoya en **58 referencias** en formato APA. Las **5 nuevas** respecto a la Entrega 2 sustentan los referentes salariales del presupuesto:
+La entrega se apoya en **59 referencias** en formato APA. Las **6 nuevas** respecto a la Entrega 2 sustentan los referentes salariales del mercado colombiano y la escala de madurez tecnológica (TRL):
 
 <details>
-<summary><b>Ver las 5 referencias nuevas</b></summary>
+<summary><b>Ver las 6 referencias nuevas</b></summary>
 
 | Ámbito | Referencia |
 |:---|:---|
@@ -270,6 +270,7 @@ La entrega se apoya en **58 referencias** en formato APA. Las **5 nuevas** respe
 | Presupuesto | La FM (2024). *Las profesiones mejor pagadas: se gana hasta $26 millones al mes*. |
 | Presupuesto | Portafolio (2026). *Salarios en tecnología en Colombia 2026: cuánto ganan perfiles en inteligencia artificial, datos y software*. |
 | Presupuesto | Valora Analitik (2026). *Estos trabajos en Colombia están pagando hasta $23 millones mensuales*. |
+| Madurez tecnológica | Comisión Europea (2014). *Horizon 2020 – Work Programme 2014-2015: General annexes. G. Technology readiness levels (TRL)*. |
 
 La lista completa está en el capítulo **Referencias Bibliográficas** del documento.
 

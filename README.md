@@ -259,7 +259,7 @@ xychart-beta
     line [40.8, 65.0, 80.8, 91.1, 97.2, 100.0]
 ```
 
-**D1, D4 y D2 concentran el 80,8 %** de los defectos estimados: son los *pocos vitales*. Por eso el kit prioriza sus reglas y el banco de defectos les asigna más casos de prueba. Los pesos provienen de un orden de frecuencia por **juicio experto**, convertido a pesos con el **método de centroide de rangos** (Barron y Barrett, 1996); se declaran como estimación, no como medición.
+**D1, D4 y D2 concentran el 80,8 %** de los defectos estimados: son los *pocos vitales*. Por eso el kit prioriza sus reglas, y el banco de defectos incluye al menos dos mutantes de cada tipo, con el mayor número (siete) en D1. Los pesos provienen de un orden de frecuencia por **juicio experto**, convertido a pesos con el **método de centroide de rangos** (Barron y Barrett, 1996); se declaran como estimación, no como medición.
 
 >Un código de catálogo **válido pero equivocado** (D1) no lo detecta la validación de esquema, porque en UBL los códigos son cadenas de texto libres. Solo lo detecta una regla de negocio que conozca la semántica del catálogo o la comparación con ejemplos validados por personas.
 
@@ -282,7 +282,7 @@ flowchart LR
 |:---|:---|:---|
 | Antecedentes verificables | Protocolo de búsqueda inspirado en **PRISMA 2020** | Fuentes, cadenas y criterios documentados y reproducibles |
 | Causas del rechazo | **Diagrama de Ishikawa** (método, personas, normativa, datos, sistemas, medición) | El rechazo no tiene una causa única y no debe atribuirse solo a la tecnología |
-| Priorización | **Pareto** por juicio experto y **centroide de rangos** | Concentrar reglas y casos de prueba en los pocos tipos vitales |
+| Priorización | **Pareto** por juicio experto y **centroide de rangos** | Concentrar las reglas en los pocos tipos vitales y cubrir cada tipo con al menos dos mutantes |
 | Selección de la solución | **Decisión multicriterio** ponderada con análisis de sensibilidad | Criterios y pesos escritos, discutibles y reproducibles; práctica DAR de CMMI |
 | Diseño | Requisitos, escenarios de calidad **ISO/IEC 25010**, **C4** y **ADR** | Cada elemento se justifica con un escenario medible y una decisión documentada |
 | Validación técnica | **Prototipo** con datos sintéticos y **pruebas de mutación** | Medida objetiva de la eficacia del kit, no una apreciación |
@@ -314,7 +314,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 | Objetivo | Pregunta | Métrica | Meta |
 |:---|:---|:---|:---|
 | **OE1** · Caracterizar | ¿Qué tipos de defecto concentran la mayoría de los rechazos? | Peso relativo por tipo (Pareto) | Identificar los tipos que suman al menos el **80 %** |
-| **OE2** · Diseñar | ¿Qué proporción de los defectos detecta el kit? | Defectos detectados / defectos inyectados, por tipo | **≥ 80 %** en ejecución y **100 %** con fixtures de CI |
+| **OE2** · Diseñar | ¿Qué proporción de los defectos detecta el kit? | Defectos detectados / defectos inyectados, por tipo | **≥ 80 %** en ejecución y **100 %** con ejemplos validados de integración continua |
 | **OE2** · Diseñar | ¿Rechaza el kit comprobantes correctos? | Falsos positivos sobre salidas correctas | **Cero** |
 | **OE3** · Elaborar | ¿Cuál es el plazo y el costo con un nivel de confianza conocido? | Duración y costo en el percentil 80 | Plazo **P80 ≤ 12 meses** |
 | **General** | ¿Se recupera la inversión frente al proceso manual? | Punto de equilibrio **n\*** en número de países o proveedores | Calcular n\* y contrastarlo con los países previstos |
