@@ -19,8 +19,13 @@ import java.util.concurrent.Executors;
 public final class KitHttpServer {
     private static final int MAX_BODY = 2 * 1024 * 1024;
 
+    /** Escucha solo en la interfaz local; para contenedores se usa {@link #start(VerificationKit, String, int)}. */
     public static HttpServer start(VerificationKit kit, int port) throws IOException {
-        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        return start(kit, "127.0.0.1", port);
+    }
+
+    public static HttpServer start(VerificationKit kit, String bindAddress, int port) throws IOException {
+        HttpServer server = HttpServer.create(new InetSocketAddress(bindAddress, port), 0);
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
         server.createContext("/health", ex -> send(ex, 200, "{\"status\":\"UP\",\"spec\":\"" + kit.spec().sha256() + "\"}"));
         server.createContext("/verify", ex -> {

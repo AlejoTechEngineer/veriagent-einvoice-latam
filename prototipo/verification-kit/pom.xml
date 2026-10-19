@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Kit de verificación determinista: solo JDK en tiempo de ejecución. También se compila con
+       ci/run-pipeline.sh (javac directo); este POM lo publica como biblioteca para el plano de integración. -->
+  <groupId>org.veriagent</groupId>
+  <artifactId>verification-kit</artifactId>
+  <version>0.2.0</version>
+  <packaging>jar</packaging>
+  <name>verification-kit</name>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.version>5.11.4</junit.version>
+    <!-- Raíz del prototipo: allí están specs/, catalogs/ y schemas/ -->
+    <kit.home>${project.basedir}/..</kit.home>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.0</version>
+        <configuration>
+          <compilerArgs>
+            <arg>-Xlint:all</arg>
+            <arg>-Werror</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <configuration>
+          <!-- La suite se ejecuta dos veces, con mensajes de JAXP en español y en inglés:
+               la clasificación de los errores del XSD no puede depender del idioma. -->
+          <skip>true</skip>
+        </configuration>
+        <executions>
+          <execution>
+            <id>locale-es</id>
+            <goals><goal>test</goal></goals>
+            <configuration>
+              <skip>false</skip>
+              <argLine>-Duser.language=es -Duser.country=CO</argLine>
+              <systemPropertyVariables><kit.home>${kit.home}</kit.home></systemPropertyVariables>
+              <reportsDirectory>${project.build.directory}/surefire-reports/es</reportsDirectory>
+            </configuration>
+          </execution>
+          <execution>
+            <id>locale-en</id>
+            <goals><goal>test</goal></goals>
+            <configuration>
+              <skip>false</skip>
+              <argLine>-Duser.language=en -Duser.country=US</argLine>
+              <systemPropertyVariables><kit.home>${kit.home}</kit.home></systemPropertyVariables>
+              <reportsDirectory>${project.build.directory}/surefire-reports/en</reportsDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

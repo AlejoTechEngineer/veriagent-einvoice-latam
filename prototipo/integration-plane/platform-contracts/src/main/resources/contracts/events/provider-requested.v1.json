@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:provider-requested:v1",
+  "title": "ProviderRequested v1 ({pais}.{proveedor}.request.v1)",
+  "type": "object",
+  "required": ["provider", "routingRule", "invoice"],
+  "additionalProperties": false,
+  "properties": {
+    "provider": { "type": "string", "pattern": "^[a-z]+$" },
+    "routingRule": { "type": "string", "minLength": 1, "maxLength": 120 },
+    "invoice": { "type": "object", "description": "Comprobante canónico; se valida con canonical/invoice-request.v1.json" }
+  }
+}

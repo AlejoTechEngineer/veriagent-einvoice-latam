@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:mapping-activated:v1",
+  "title": "MappingActivated v1 (platform.mapping.activated.v1)",
+  "description": "Una versión de mapeo aprobada pasó a ser la vigente; adaptadores y conectores la recargan en caliente.",
+  "type": "object",
+  "required": ["provider", "country", "version", "mappingSha256", "activatedBy"],
+  "additionalProperties": false,
+  "properties": {
+    "provider": { "type": "string", "pattern": "^[a-z]+$" },
+    "country": { "enum": ["CO", "PE", "XX"] },
+    "version": { "type": "integer", "minimum": 1 },
+    "mappingSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "activatedBy": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "reason": { "type": ["string", "null"], "maxLength": 500 }
+  }
+}

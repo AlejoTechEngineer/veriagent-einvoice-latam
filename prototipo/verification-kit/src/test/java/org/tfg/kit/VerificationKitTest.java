@@ -99,4 +99,13 @@ class VerificationKitTest {
         String xxe = "<?xml version=\"1.0\"?><!DOCTYPE x [<!ENTITY e SYSTEM \"file:///etc/passwd\">]>" + valid.substring(valid.indexOf("<Invoice"));
         assertFalse(kit.verifyXml("x", xxe, Mode.RUNTIME, null).passed());
     }
+
+    @Test @DisplayName("Seguridad: el DOCTYPE se rechaza antes de cualquier análisis, también en modo solo esquema")
+    void rejectsDoctypeBeforeSchemaValidation() {
+        String bomb = "<?xml version=\"1.0\"?><!doctype x [<!ENTITY a \"aaaa\"><!ENTITY b \"&a;&a;&a;&a;\">]>"
+            + valid.substring(valid.indexOf("<Invoice"));
+        VerificationReport r = kit.verifyXml("b", bomb, Mode.SCHEMA_ONLY, null);
+        assertEquals(1, r.findings().size(), r::toJson);
+        assertEquals("R-E0-03", r.findings().get(0).ruleId());
+    }
 }

@@ -60,3 +60,39 @@ corregirá en la Fase 4.
   (H-02); además, la validación XSD antes del rechazo del DOCTYPE (H-03) y el servidor del kit escuchando en
   todas las interfaces (H-04). Todo registrado en `docs/SEGURIDAD.md` como pendiente.
 - `README.md`: advertencia al inicio (datos sintéticos, sin autenticación real, no apto para producción).
+
+## Fase 1. Núcleo compartido (2026-10-19)
+
+### Kit de verificación
+- `XsdValidator` clasifica los errores del XSD por el código `cvc-...` y el nombre del elemento, no por el texto
+  traducido. Nueva prueba `XsdLocaleTest` (5 casos, con `es-CO` y `en-US` dentro de la propia prueba).
+- `pom.xml` del kit: la suite completa se ejecuta dos veces, con `-Duser.language=es` y `-Duser.language=en`.
+- H-03: el DOCTYPE se rechaza antes de cualquier análisis, también en modo solo esquema (regla `R-E0-03`);
+  validación XSD con `FEATURE_SECURE_PROCESSING` y sin acceso externo.
+- H-04: `KitHttpServer` escucha por defecto en 127.0.0.1; `--bind 0.0.0.0` solo en la imagen de contenedor.
+- `mvn install` del kit: **23 de 23 con `es` y 23 de 23 con `en`** (17 de la base + 5 de idioma + 1 de DOCTYPE).
+
+### Plano de integración (`integration-plane`, Maven multimódulo)
+| Módulo | Contenido | Pruebas |
+|:---|:---|:---|
+| `platform-contracts` | Canónico InvoiceRequest v1 (Java y JSON Schema 2020-12), 6 eventos + sobre, convención de topics, invariantes | 8 de 8 |
+| `platform-core` | Bus (memoria y Kafka), `authorization_log` + historial (Flyway), idempotencia, correlación, estados, reintentos, auditoría, seguridad | 22 de 22; 1 omitida (`KafkaEventBusIT`: sin Docker) |
+| `kit-adapter` | Kit como biblioteca, registro de perfiles (`alfa`, `beta`), `POST /api/kit/verify`, `GET /api/kit/profiles` | 5 de 5 |
+
+Comando: `mvn install` en `integration-plane` (JDK 21) → `BUILD SUCCESS`, 5 módulos.
+
+### Seguridad implementada en el núcleo
+- Roles `REVIEWER`, `AGENT`, `OPERATOR`, `SYSTEM`; tokens de demostración aleatorios (32 bytes) generados al
+  arrancar en `results/runtime/demo-tokens.json` (ignorado); en memoria solo su SHA-256.
+- Denegar por defecto: todo excepto salud, OpenAPI y estáticos del front exige token; CORS limitado al origen
+  del front; cabeceras CSP.
+- Identidad siempre del token (`CurrentActor`); `IdentityGuard` rechaza con 403 un `reviewer` del cuerpo que no
+  coincide. Pruebas: sin token 401, token inválido 401, agente/operador/sistema 403 en una decisión, la auditoría
+  registra el sujeto del token, la suplantación en el cuerpo no deja rastro, las cabeceras editables no cambian
+  la identidad.
+- `SafeFiles`: nombres saneados y rutas confinadas (prueba con `../../etc/passwd`, `CON.json`, etc.).
+
+### Plano agéntico
+- `pyproject.toml`: `[build-system]` y `packages = ["tfg_agents"]`; `uv pip install -e ".[test]"` funciona.
+- pytest: **15 de 15**. Banco de defectos tras los cambios del kit: 22 mutantes, esquema 5, ejecución 19, CI 22,
+  0 falsos positivos (sin cambios).

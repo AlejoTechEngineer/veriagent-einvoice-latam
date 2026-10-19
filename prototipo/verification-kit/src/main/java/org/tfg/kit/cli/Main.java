@@ -57,8 +57,9 @@ public final class Main {
             }
             case "serve" -> {
                 int port = Integer.parseInt(arg(args, "--port", "8085"));
-                KitHttpServer.start(kit, port);
-                System.err.println("Kit de verificación escuchando en el puerto " + port);
+                String bind = arg(args, "--bind", "127.0.0.1");
+                KitHttpServer.start(kit, bind, port);
+                System.err.println("Kit de verificación escuchando en " + bind + ":" + port);
             }
             default -> { usage(); System.exit(64); }
         }

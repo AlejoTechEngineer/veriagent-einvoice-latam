@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:invoice-requested:v1",
+  "title": "InvoiceRequested v1 ({pais}.invoice.request.v1)",
+  "type": "object",
+  "required": ["channel", "invoice"],
+  "additionalProperties": false,
+  "properties": {
+    "channel": { "enum": ["SYNC", "BATCH"] },
+    "sourceFile": { "type": ["string", "null"], "maxLength": 255 },
+    "invoice": { "type": "object", "description": "Comprobante canónico; se valida con canonical/invoice-request.v1.json" }
+  }
+}

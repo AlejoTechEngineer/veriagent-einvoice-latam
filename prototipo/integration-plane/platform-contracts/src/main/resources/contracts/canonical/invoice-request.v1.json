@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:canonical:invoice-request:v1",
+  "title": "InvoiceRequest v1",
+  "description": "Modelo canónico del comprobante (apartado 4.4.4). Compatibilidad BACKWARD: los campos nuevos nacen opcionales.",
+  "type": "object",
+  "required": ["country", "correlationId", "documentNumber", "documentType", "issueDate", "currency",
+               "supplier", "customer", "lines", "totals"],
+  "additionalProperties": false,
+  "properties": {
+    "country": { "enum": ["CO", "PE", "XX"] },
+    "correlationId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9._:-]+$" },
+    "documentNumber": { "type": "string", "minLength": 1, "maxLength": 30, "pattern": "^[A-Z0-9-]+$" },
+    "documentType": { "enum": ["INVOICE", "CREDIT_NOTE", "DEBIT_NOTE"] },
+    "issueDate": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "currency": { "enum": ["COP", "USD", "PEN", "MXN"] },
+    "originalDocumentNumber": { "type": ["string", "null"], "maxLength": 30, "pattern": "^[A-Z0-9-]+$" },
+    "supplier": { "$ref": "#/$defs/party" },
+    "customer": { "$ref": "#/$defs/party" },
+    "lines": {
+      "type": "array", "minItems": 1, "maxItems": 500,
+      "items": { "$ref": "#/$defs/line" }
+    },
+    "totals": {
+      "type": "object",
+      "required": ["baseAmount", "taxAmount", "payableAmount"],
+      "additionalProperties": false,
+      "properties": {
+        "baseAmount": { "$ref": "#/$defs/decimal" },
+        "taxAmount": { "$ref": "#/$defs/decimal" },
+        "payableAmount": { "$ref": "#/$defs/decimal" }
+      }
+    }
+  },
+  "$defs": {
+    "decimal": {
+      "description": "Importe o cantidad: número JSON o cadena decimal (como serializa Pydantic).",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "string", "pattern": "^-?[0-9]+(\\.[0-9]+)?$", "maxLength": 24 }
+      ]
+    },
+    "party": {
+      "type": "object",
+      "required": ["name", "taxId", "idType"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 200 },
+        "taxId": { "type": "string", "minLength": 1, "maxLength": 20, "pattern": "^[A-Za-z0-9-]+$" },
+        "idType": { "enum": ["NIT", "CC", "CE", "PAS", "RUC", "DNI", "TIN"] },
+        "email": { "type": ["string", "null"], "maxLength": 254 }
+      }
+    },
+    "line": {
+      "type": "object",
+      "required": ["number", "description", "quantity", "unitPrice", "amount", "taxCode", "taxRate"],
+      "additionalProperties": false,
+      "properties": {
+        "number": { "type": "integer", "minimum": 1 },
+        "description": { "type": "string", "minLength": 1, "maxLength": 500 },
+        "quantity": { "$ref": "#/$defs/decimal" },
+        "unitPrice": { "$ref": "#/$defs/decimal" },
+        "amount": { "$ref": "#/$defs/decimal" },
+        "taxCode": { "enum": ["IVA19", "IVA5", "EXENTO", "IGV18", "EXONERADO", "VAT12", "ZERO"] },
+        "taxRate": { "$ref": "#/$defs/decimal" }
+      }
+    }
+  }
+}

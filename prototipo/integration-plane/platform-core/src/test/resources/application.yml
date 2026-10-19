@@ -1,0 +1,26 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:core-${random.uuid};MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  main:
+    banner-mode: off
+
+veriagent:
+  home: ${veriagent.home:..}
+  bus:
+    type: memory
+  security:
+    tokens-file: ${java.io.tmpdir}/veriagent-test/demo-tokens-${random.uuid}.json
+  retry:
+    max-attempts: 4
+    initial-interval: 10ms
+    multiplier: 2.0
+    max-interval: 1s
+  test:
+    secured-probe: true
+
+logging:
+  level:
+    root: warn
+    org.veriagent: info

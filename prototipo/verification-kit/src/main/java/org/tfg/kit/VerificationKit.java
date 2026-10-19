@@ -36,6 +36,12 @@ public final class VerificationKit {
 
     public VerificationReport verifyXml(String id, String xml, Mode mode, String expectedXml) {
         VerificationReport r = new VerificationReport(id, mode.name());
+        // Antes de cualquier análisis (también del XSD): ningún DOCTYPE, para cerrar XXE y la expansión de entidades.
+        if (hasDoctype(xml)) {
+            r.add(new Finding("R-E0-03", DefectType.E0, "documento",
+                "El documento declara un DOCTYPE; no se admiten DTD ni entidades externas", null));
+            return r;
+        }
         r.addAll(xsd.validate(xml));
         if (mode == Mode.SCHEMA_ONLY) return r;
         try {
@@ -61,6 +67,11 @@ public final class VerificationKit {
                 List.of(text.strip().split("\\R")), Provenance.of(spec, "fixture validado", "2.1.0")));
         }
         return r;
+    }
+
+    /** Detecta una declaración DOCTYPE en cualquier combinación de mayúsculas y minúsculas. */
+    static boolean hasDoctype(String xml) {
+        return xml != null && xml.toUpperCase(java.util.Locale.ROOT).contains("<!DOCTYPE");
     }
 
     /** Lista ordenada "ruta=valor" de hojas y atributos, para comparar con el fixture. */

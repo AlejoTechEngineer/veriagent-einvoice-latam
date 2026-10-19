@@ -1,0 +1,18 @@
+{
+  "country": "CO",
+  "correlationId": "corr-000001",
+  "documentNumber": "SETP-990000001",
+  "documentType": "INVOICE",
+  "issueDate": "2026-10-01",
+  "currency": "COP",
+  "originalDocumentNumber": null,
+  "supplier": { "name": "Comercializadora Sintética S.A.S.", "taxId": "900123456-8", "idType": "NIT", "email": null },
+  "customer": { "name": "Cliente de Prueba", "taxId": "1020304050", "idType": "CC", "email": "cliente@ejemplo.test" },
+  "lines": [
+    { "number": 1, "description": "Servicio de soporte", "quantity": 2, "unitPrice": "100.00", "amount": "200.00",
+      "taxCode": "IVA19", "taxRate": "19.00" },
+    { "number": 2, "description": "Capacitación virtual", "quantity": "1", "unitPrice": 50.00, "amount": 50.00,
+      "taxCode": "IVA5", "taxRate": 5.00 }
+  ],
+  "totals": { "baseAmount": "250.00", "taxAmount": "40.50", "payableAmount": "290.50" }
+}

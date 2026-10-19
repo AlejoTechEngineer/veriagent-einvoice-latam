@@ -15,4 +15,4 @@ COPY schemas ./schemas
 USER kit
 EXPOSE 8085
 HEALTHCHECK --interval=15s --timeout=3s CMD wget -qO- http://localhost:8085/health || exit 1
-ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-jar", "/app/kit.jar", "serve", "--home", "/app", "--port", "8085"]
+ENTRYPOINT ["java", "-XX:MaxRAMPercentage=75", "-jar", "/app/kit.jar", "serve", "--home", "/app", "--bind", "0.0.0.0", "--port", "8085"]

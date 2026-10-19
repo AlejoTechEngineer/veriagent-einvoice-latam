@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:invoice-responded:v1",
+  "title": "InvoiceResponded v1 ({pais}.invoice.response.v1)",
+  "type": "object",
+  "required": ["status", "channel"],
+  "additionalProperties": false,
+  "properties": {
+    "status": { "enum": ["AUTHORIZED", "FAILED"] },
+    "channel": { "enum": ["SYNC", "BATCH"] },
+    "provider": { "type": ["string", "null"], "pattern": "^[a-z]+$" },
+    "reasonCode": { "type": ["string", "null"], "maxLength": 60 },
+    "reason": { "type": ["string", "null"], "maxLength": 2000 },
+    "authorizationNumber": { "type": ["string", "null"], "maxLength": 80 },
+    "findings": { "type": ["array", "null"], "maxItems": 200, "items": { "$ref": "#/$defs/finding" } }
+  },
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": ["ruleId", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "ruleId": { "type": "string", "maxLength": 40 },
+        "type": { "enum": ["D1", "D2", "D3", "D4", "D5", "D6", "E0"] },
+        "location": { "type": ["string", "null"], "maxLength": 300 },
+        "message": { "type": ["string", "null"], "maxLength": 2000 },
+        "source": { "type": ["string", "null"], "maxLength": 300 },
+        "sourceSha256": { "type": ["string", "null"], "maxLength": 64 },
+        "ruleVersion": { "type": ["string", "null"], "maxLength": 20 }
+      }
+    }
+  }
+}

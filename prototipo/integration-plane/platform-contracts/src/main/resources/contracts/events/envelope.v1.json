@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:envelope:v1",
+  "title": "EventEnvelope v1",
+  "description": "Sobre común de los eventos. La carga útil se valida aparte según eventType.",
+  "type": "object",
+  "required": ["eventId", "eventType", "schemaVersion", "correlationId", "occurredAt", "producer", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "eventId": { "type": "string", "pattern": "^[0-9a-f-]{36}$" },
+    "eventType": { "enum": ["InvoiceRequested", "ProviderRequested", "ProviderResponded", "InvoiceResponded",
+                            "InvoiceDeadLettered", "MappingActivated"] },
+    "schemaVersion": { "type": "integer", "minimum": 1 },
+    "correlationId": { "type": "string", "minLength": 1, "maxLength": 64, "pattern": "^[A-Za-z0-9._:-]+$" },
+    "invoiceKey": { "type": ["string", "null"], "maxLength": 120 },
+    "country": { "type": ["string", "null"], "enum": ["CO", "PE", "XX", null] },
+    "occurredAt": { "type": "string", "minLength": 20 },
+    "producer": { "type": "string", "minLength": 1, "maxLength": 60 },
+    "payload": { "type": "object" }
+  }
+}

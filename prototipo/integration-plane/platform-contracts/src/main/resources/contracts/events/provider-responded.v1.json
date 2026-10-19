@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:provider-responded:v1",
+  "title": "ProviderResponded v1 ({pais}.{proveedor}.response.v1)",
+  "description": "Respuesta del proveedor (fuente primaria) o constancia oficial (respaldo), ADR-06.",
+  "type": "object",
+  "required": ["provider", "outcome", "source"],
+  "additionalProperties": false,
+  "properties": {
+    "provider": { "type": "string", "pattern": "^[a-z]+$" },
+    "batchId": { "type": ["string", "null"], "maxLength": 80 },
+    "outcome": { "enum": ["AUTHORIZED", "REJECTED"] },
+    "providerCode": { "type": ["string", "null"], "maxLength": 40 },
+    "message": { "type": ["string", "null"], "maxLength": 1000 },
+    "authorizationNumber": { "type": ["string", "null"], "maxLength": 80 },
+    "receiptSha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "source": { "enum": ["PROVIDER", "AUTHORITY_RECEIPT"] }
+  }
+}

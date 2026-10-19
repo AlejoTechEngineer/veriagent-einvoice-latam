@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:veriagent:contracts:events:invoice-dead-lettered:v1",
+  "title": "InvoiceDeadLettered v1 ({pais}.invoice.dlq.v1)",
+  "type": "object",
+  "required": ["stage", "category", "attempts", "lastError"],
+  "additionalProperties": false,
+  "properties": {
+    "stage": { "enum": ["INGEST", "ROUTING", "ADAPTER", "CONNECTOR", "PROVIDER", "RESPONSE", "ARCHIVE"] },
+    "category": { "enum": ["RECOVERABLE", "NON_RECOVERABLE"] },
+    "attempts": { "type": "integer", "minimum": 0 },
+    "lastError": { "type": "string", "minLength": 1, "maxLength": 2000 },
+    "provider": { "type": ["string", "null"], "pattern": "^[a-z]+$" },
+    "findings": { "type": ["array", "null"], "maxItems": 200 }
+  }
+}

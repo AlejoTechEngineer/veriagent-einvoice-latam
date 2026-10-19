@@ -9,8 +9,23 @@ demostración: no tiene autenticación real y no es apto para producción.
 |:---|:---:|:---|:---|:---|
 | H-01 | Alta | `agentic-plane/tfg_agents/review_api.py`, `POST /api/proposals/{pid}/decision` | La ruta que aprueba o rechaza propuestas de IA no exige autenticación y toma la identidad del revisor del cuerpo de la petición (`reviewer`). Cualquiera que alcance la API puede aprobar una propuesta que pasó el kit en nombre de otra persona, y la auditoría de `agent_proposal` no es fiable. El bloqueo con 409 de lo que no pasó el kit sí funciona. Origen: revisión automática de seguridad sobre la base heredada. | Pendiente, corrección en la Fase 4 |
 | H-02 | Media | `review-console-web/app.js` y `review-console-javafx/.../ReviewApi.java` | Los clientes de revisión envían el revisor como campo del cuerpo: dependen del patrón de H-01. | Pendiente, corrección en las Fases 4 y 5 |
-| H-03 | Media | `verification-kit/.../xml/XsdValidator.java` | La validación XSD se ejecuta sobre el texto original antes de que `Dom` rechace el DOCTYPE; el rechazo del DOCTYPE debe ocurrir antes de cualquier análisis. | Pendiente, corrección en la Fase 1 |
-| H-04 | Baja | `verification-kit/.../cli/KitHttpServer.java` | El servidor HTTP del kit escucha en todas las interfaces y sin autenticación. `/verify` no cambia estado, pero en el perfil local debe escuchar solo en 127.0.0.1. | Pendiente, corrección en la Fase 1 |
+| H-03 | Media | `verification-kit/.../xml/XsdValidator.java` | La validación XSD se ejecuta sobre el texto original antes de que `Dom` rechace el DOCTYPE; el rechazo del DOCTYPE debe ocurrir antes de cualquier análisis. | **Corregido (Fase 1)**: `VerificationKit.verifyXml` rechaza el DOCTYPE antes del XSD (regla `R-E0-03`) y el validador XSD usa procesamiento seguro sin acceso externo. Prueba: `rejectsDoctypeBeforeSchemaValidation`. |
+| H-04 | Baja | `verification-kit/.../cli/KitHttpServer.java` | El servidor HTTP del kit escucha en todas las interfaces y sin autenticación. `/verify` no cambia estado, pero en el perfil local debe escuchar solo en 127.0.0.1. | **Corregido (Fase 1)**: escucha en 127.0.0.1 por defecto; `--bind 0.0.0.0` solo en la imagen de contenedor. En el plano de integración el kit se expone en `/api/kit/verify`, detrás del token. |
+
+## Controles implementados
+
+| Control | Dónde | Prueba | Estado |
+|:---|:---|:---|:---|
+| Denegar por defecto (todo exige token salvo salud, OpenAPI y estáticos) | `platform-core` `SecurityConfiguration` | `SecurityTest.noTokenIs401` | Fase 1 |
+| Roles y 403 para roles no autorizados | `@PreAuthorize` + `Role` | `SecurityTest.agentCannotDecide` | Fase 1 (núcleo); por endpoint en cada servicio |
+| Identidad del token, nunca del cuerpo ni de cabeceras | `CurrentActor`, `IdentityGuard` | `identityComesFromToken`, `impersonationHasNoEffect`, `headersDoNotChangeIdentity` | Fase 1 |
+| Tokens aleatorios generados al arrancar, en archivo ignorado | `DemoTokenStore` | `tokensAreRandomAndWrittenToFile` | Fase 1 |
+| CORS limitado al origen del front | `SecurityConfiguration` | `corsIsRestricted` | Fase 1 |
+| Escucha solo en 127.0.0.1 en el perfil local | `server.address` del perfil local | Fase 2 (aplicación) | Pendiente |
+| Nombres de archivo saneados y rutas confinadas | `SafeFiles` | `UtilitiesTest.safeFileNames` | Fase 1 (utilidad); uso en la ingesta en la Fase 2 |
+| Límites de tamaño y de descompresión en la carga de lotes | `VeriagentProperties.Limits` | Fase 2 | Pendiente |
+| XML sin DTD ni entidades externas | Kit (`Dom`, `XsdValidator`, `VerificationKit`) | `rejectsDoctype`, `rejectsDoctypeBeforeSchemaValidation`, `KitControllerTest.hostileInputs` | Fase 1 |
+| Validación de esquema antes de procesar | `ContractValidator` (canónico y eventos) | `ContractTest` | Fase 1 (contratos); en la ingesta en la Fase 2 |
 
 Búsqueda del patrón en el resto de la base (Fase 0): `grep` de rutas `POST/PUT/DELETE/PATCH`, campos
 `reviewer`, servidores HTTP, configuración de CORS y analizadores XML en el código Python, Java y JavaScript.
