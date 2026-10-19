@@ -1,5 +1,6 @@
 package org.veriagent.core.security;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -45,8 +46,11 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, DemoTokenStore tokens, VeriagentProperties props) throws Exception {
-        String[] simulatorPaths = props.getSecurity().getSimulatorPublicPaths().toArray(String[]::new);
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, DemoTokenStore tokens, VeriagentProperties props,
+                                                   @Value("${veriagent.services.provider-simulators:false}") boolean simulatorsEnabled)
+        throws Exception {
+        // Las rutas /sim/ sin token solo valen si los simuladores están habilitados explícitamente (desactivados por defecto).
+        String[] simulatorPaths = simulatorsEnabled ? props.getSecurity().getSimulatorPublicPaths().toArray(String[]::new) : new String[0];
         http
             .csrf(c -> c.disable())
             .httpBasic(b -> b.disable())

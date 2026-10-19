@@ -35,8 +35,14 @@ suplantación 403, identidad del token en `dlq_entry.resolved_by` y en `audit_lo
 | Validación de esquema antes de procesar | `ContractValidator` en la ingesta, la fachada y cada evento publicado | `ContractTest`, `IngestTest.invalidItemsGoToDlq`, `InvoiceFacadeTest.validatesBeforeProcessing` | Fase 2 |
 | Registro de mapeos: proponer AGENT, REVIEWER o SYSTEM; aprobar, rechazar, activar y revertir solo REVIEWER; bloqueada por el kit → 409; identidad del token | `svc-mapping-registry` | `MappingRegistryTest.lifecycle` (401, 403 del agente, 403 por suplantación, 409, `approvedBy` y `activatedBy` del token) | Fase 3 |
 | Fallos de los simuladores: solo OPERATOR | `provider-simulators` | `ProviderSimulatorTest.adminFaults` (401, 403 de agente y revisor) | Fase 3 |
-| Rutas sin token solo para la recepción de los proveedores simulados (`/sim/*/api/v1/**`), declaradas explícitamente en el perfil local; la propiedad rechaza cualquier ruta que no empiece por `/sim/` | `VeriagentProperties.Security.simulatorPublicPaths` | `SecurityPolicyTest` (toda otra mutación declara rol) | Fase 3 |
+| Rutas sin token solo para la recepción de los proveedores simulados (`/sim/*/api/v1/**`), declaradas explícitamente en el perfil local y efectivas solo con los simuladores habilitados; la propiedad rechaza cualquier ruta que no empiece por `/sim/` | `VeriagentProperties.Security.simulatorPublicPaths`, `SecurityConfiguration` | `SecurityPolicyTest` (toda otra mutación declara rol), `SimulatorExposureTest` (simuladores desactivados: sin rutas `/sim/` y 401) | Fase 3 |
 | Lotes ZIP de los simuladores: límite de tamaño, de descompresión y de documentos; nombres de entrada sin rutas | `SimulatorController.unzip` | `ProviderSimulatorTest.zipTraversal` | Fase 3 |
+
+## Riesgos residuales aceptados
+
+| ID | Riesgo | Decisión del autor | Condiciones que lo acotan | Comprobación |
+|:---|:---|:---|:---|:---|
+| RR-01 | Las rutas de recepción de los proveedores simulados (`/sim/*/api/v1/**`) aceptan peticiones sin token: cualquiera que alcance el puerto puede enviar documentos a un simulador. Representan sistemas externos, que en la realidad tendrían su propio control de acceso. | **Aceptado (2026-10-19)** | (a) Las rutas `/sim/` solo existen si los simuladores se habilitan por configuración explícita (`veriagent.services.provider-simulators=true`); están desactivados por defecto y solo los activan el perfil local y las pruebas. Con los simuladores desactivados, la lista de rutas públicas de simulador se ignora. (b) En el perfil local la aplicación escucha solo en 127.0.0.1. (c) Las rutas de administración de fallos (`/api/simulators/**`) exigen token y rol OPERATOR, y ninguna ruta de la plataforma puede declararse pública por esta vía. | `SimulatorExposureTest`, `LocalProfileTest.bindsLoopbackOnly`, `ProviderSimulatorTest.adminFaults`, `SecurityPolicyTest` |
 
 Búsqueda del patrón en el resto de la base (Fase 0): `grep` de rutas `POST/PUT/DELETE/PATCH`, campos
 `reviewer`, servidores HTTP, configuración de CORS y analizadores XML en el código Python, Java y JavaScript.
