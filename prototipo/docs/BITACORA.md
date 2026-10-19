@@ -96,3 +96,34 @@ Comando: `mvn install` en `integration-plane` (JDK 21) → `BUILD SUCCESS`, 5 m�
 - `pyproject.toml`: `[build-system]` y `packages = ["tfg_agents"]`; `uv pip install -e ".[test]"` funciona.
 - pytest: **15 de 15**. Banco de defectos tras los cambios del kit: 22 mutantes, esquema 5, ejecución 19, CI 22,
   0 falsos positivos (sin cambios).
+
+## Fase 2. Servicios del plano de integración (2026-10-19)
+
+### Módulos nuevos
+| Módulo | Responsabilidad | Pruebas |
+|:---|:---|:---|
+| `provider-common` | Motor de mapeo Java (portado de `tfg_agents/mapping.py`), tabla de enrutamiento versionada (`data/routing/routing-table.v1.json`), preparador (mapeo vigente + kit en ejecución), cliente de proveedores y contrato `ProviderProtocol` | 6 de 6 |
+| `svc-invoice-router` | `{pais}.invoice.request.v1` → `{pais}.{proveedor}.request.v1`; sin regla → DLQ | 2 de 2 |
+| `svc-ingest-sftp` | Sondeo del buzón con Camel, carga por API, descompresión acotada, validación del canónico antes de procesar, idempotencia, inválidos a la DLQ | 4 de 4 |
+| `svc-provider-adapter` | Kit antes de agrupar, lotes (alfa: ZIP por HTTP; beta: carpeta SFTP), reintentos con espera creciente, DLQ si el proveedor sigue caído | 3 de 3 |
+| `svc-provider-connector` | Conector síncrono con estrategias por proveedor; kit antes de invocar | cubierto por la fachada |
+| `svc-invoice-facade` | `POST /api/invoices` con idempotencia por clave de comprobante | 6 de 6 |
+| `svc-response-processor` | Carpeta de retorno con Camel (fuente primaria), respuestas duplicadas, conciliación con la constancia oficial (respaldo, ADR-06) | 3 de 3 |
+| `svc-response-publisher` | Respuesta al origen: JSONL por lote de origen; síncrono registrado | 1 de 1 |
+| `svc-legal-archive` | Solo anexado, cadena de huellas SHA-256, retención por país, mejor esfuerzo con reintento (ADR-07) | 3 de 3 |
+| `svc-invoice-registry` | Consulta, línea de tiempo, hallazgos con procedencia, auditoría y balance de conservación | 1 de 1 |
+| `svc-dlq-handler` | Único dueño del estado DLQ; reproceso y descarte (solo OPERATOR, identidad del token); reintento controlado | 3 de 3 |
+| `platform-app` | Aplicación Boot única; perfiles `local` y `full`; política de seguridad y flujo de extremo a extremo | 4 de 4 |
+
+### Resultados
+- **Conformidad del porte del motor de mapeo**: 30 casos exportados desde Python (18 generados + 12 fixtures).
+  Beta: idéntico carácter a carácter. Alfa: hoja por hoja (kit en modo CI) y sin hallazgos en ejecución.
+- `mvn install` del reactor completo (17 módulos): **118 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker).
+- Prueba de humo del JAR (`--spring.profiles.active=local`): arranca en 10,5 s; `/actuator/health` UP; `/api/invoices/stats`
+  401 sin token y 200 con el token de operador generado; OpenAPI agregado con 22 rutas.
+
+### Defectos encontrados y corregidos durante la fase
+- Archivo legal: si un intento escribía el objeto y fallaba antes de registrarlo, el reintento no terminaba nunca
+  (`CREATE_NEW`). Ahora se reutiliza el objeto si su huella coincide y se rechaza si es distinto.
+- Adaptador: carrera en las pruebas entre el vaciado periódico y la espera del bus. Se añade el contador de envíos en
+  curso y `awaitIdle()`, que transfiere la propiedad del envío del vaciado al envío.

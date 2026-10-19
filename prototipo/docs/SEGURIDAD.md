@@ -14,6 +14,12 @@ demostración: no tiene autenticación real y no es apto para producción.
 
 ## Controles implementados
 
+Política comprobada sobre la aplicación completa (`SecurityPolicyTest`): toda operación que cambia estado declara
+`@PreAuthorize` (salvo `KitController.verify` y `RouterController.preview`, de solo lectura) y ninguna ruta GET de la
+API responde sin token. Reproceso y descarte de la DLQ: solo OPERATOR (`DlqHandlerTest`: agente y revisor 403,
+suplantación 403, identidad del token en `dlq_entry.resolved_by` y en `audit_log`).
+
+
 | Control | Dónde | Prueba | Estado |
 |:---|:---|:---|:---|
 | Denegar por defecto (todo exige token salvo salud, OpenAPI y estáticos) | `platform-core` `SecurityConfiguration` | `SecurityTest.noTokenIs401` | Fase 1 |
@@ -21,11 +27,11 @@ demostración: no tiene autenticación real y no es apto para producción.
 | Identidad del token, nunca del cuerpo ni de cabeceras | `CurrentActor`, `IdentityGuard` | `identityComesFromToken`, `impersonationHasNoEffect`, `headersDoNotChangeIdentity` | Fase 1 |
 | Tokens aleatorios generados al arrancar, en archivo ignorado | `DemoTokenStore` | `tokensAreRandomAndWrittenToFile` | Fase 1 |
 | CORS limitado al origen del front | `SecurityConfiguration` | `corsIsRestricted` | Fase 1 |
-| Escucha solo en 127.0.0.1 en el perfil local | `server.address` del perfil local | Fase 2 (aplicación) | Pendiente |
-| Nombres de archivo saneados y rutas confinadas | `SafeFiles` | `UtilitiesTest.safeFileNames` | Fase 1 (utilidad); uso en la ingesta en la Fase 2 |
-| Límites de tamaño y de descompresión en la carga de lotes | `VeriagentProperties.Limits` | Fase 2 | Pendiente |
+| Escucha solo en 127.0.0.1 en el perfil local | `server.address` en `application-local.yml` | `LocalProfileTest.bindsLoopbackOnly` (intenta conectar por cada interfaz no local) | Fase 2 |
+| Nombres de archivo saneados y rutas confinadas | `SafeFiles` (ingesta, carpeta SFTP de Beta, publicador, constancias) | `UtilitiesTest.safeFileNames`, `IngestTest.uploadApi`, `RoutingAndClientTest.folderBatch` | Fase 2 |
+| Límites de tamaño y de descompresión en la carga de lotes | `VeriagentProperties.Limits`, `spring.servlet.multipart` | `IngestTest.zipLimits` (bomba de descompresión, recorrido de rutas en el ZIP, formato no admitido) | Fase 2 |
 | XML sin DTD ni entidades externas | Kit (`Dom`, `XsdValidator`, `VerificationKit`) | `rejectsDoctype`, `rejectsDoctypeBeforeSchemaValidation`, `KitControllerTest.hostileInputs` | Fase 1 |
-| Validación de esquema antes de procesar | `ContractValidator` (canónico y eventos) | `ContractTest` | Fase 1 (contratos); en la ingesta en la Fase 2 |
+| Validación de esquema antes de procesar | `ContractValidator` en la ingesta, la fachada y cada evento publicado | `ContractTest`, `IngestTest.invalidItemsGoToDlq`, `InvoiceFacadeTest.validatesBeforeProcessing` | Fase 2 |
 
 Búsqueda del patrón en el resto de la base (Fase 0): `grep` de rutas `POST/PUT/DELETE/PATCH`, campos
 `reviewer`, servidores HTTP, configuración de CORS y analizadores XML en el código Python, Java y JavaScript.

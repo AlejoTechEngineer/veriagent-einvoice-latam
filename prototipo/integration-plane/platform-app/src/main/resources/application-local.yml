@@ -1,0 +1,39 @@
+# Perfil local: todo en un proceso, sin Docker. Bus en memoria y H2 en archivo. Solo escucha en 127.0.0.1.
+server:
+  address: 127.0.0.1
+
+spring:
+  datasource:
+    url: jdbc:h2:file:${veriagent.home}/results/runtime/h2/veriagent;MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH
+    username: sa
+    password: ""
+
+veriagent:
+  bus:
+    type: memory
+  security:
+    token-mode: generate
+    allowed-origins: http://127.0.0.1:8080,http://localhost:8080
+  simulation:
+    # Permite reenviar la cabecera X-Sim-Fault a los simuladores (solo demostración y escenarios).
+    allow-fault-headers: true
+  providers:
+    endpoints:
+      alfa:
+        base-url: http://127.0.0.1:8080/sim/alfa
+        sync-format: json-envelope
+        batch-mode: http-zip
+        batch-size: 100
+        batch-window: 500ms
+      beta:
+        base-url: http://127.0.0.1:8080/sim/beta
+        sync-format: text
+        batch-mode: sftp-folder
+        batch-size: 100
+        batch-window: 500ms
+      gamma:
+        base-url: http://127.0.0.1:8080/sim/gamma
+        sync-format: json-envelope
+        batch-mode: http-zip
+        batch-size: 100
+        batch-window: 500ms

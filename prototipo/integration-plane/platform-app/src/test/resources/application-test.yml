@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:platform-${random.uuid};MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+
+veriagent:
+  home: ${veriagent.home:../..}
+  security:
+    tokens-file: ${java.io.tmpdir}/veriagent-test/demo-tokens-${random.uuid}.json
+  providers:
+    sftp-root: ${java.io.tmpdir}/veriagent-test/sftp-${random.uuid}
+  archive:
+    root: ${java.io.tmpdir}/veriagent-test/archive-${random.uuid}
+  ingest:
+    inbox-dir: ${java.io.tmpdir}/veriagent-test/inbox-${random.uuid}
+  responses:
+    poll-delay-ms: 100
+    reconcile-interval: 0s
+  dlq:
+    auto-retry-enabled: false
+  retry:
+    max-attempts: 3
+    initial-interval: 10ms
+    max-interval: 50ms
+
+logging:
+  level:
+    root: warn

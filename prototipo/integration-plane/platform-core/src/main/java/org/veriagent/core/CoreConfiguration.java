@@ -14,6 +14,8 @@ import org.veriagent.core.bus.EventBus;
 import org.veriagent.core.bus.InMemoryEventBus;
 import org.veriagent.core.bus.KafkaEventBus;
 import org.veriagent.core.correlation.CorrelationFilter;
+import org.veriagent.core.dlq.DlqRepository;
+import org.veriagent.core.bus.FlowEvents;
 import org.veriagent.core.ledger.InvoiceLedger;
 import org.veriagent.core.retry.RetryPolicies;
 
@@ -36,6 +38,16 @@ public class CoreConfiguration {
     @Bean
     public RetryPolicies retryPolicies(VeriagentProperties props) {
         return new RetryPolicies(props);
+    }
+
+    @Bean
+    public DlqRepository dlqRepository(JdbcClient jdbc) {
+        return new DlqRepository(jdbc);
+    }
+
+    @Bean
+    public FlowEvents flowEvents(EventBus bus) {
+        return new FlowEvents(bus);
     }
 
     @Bean

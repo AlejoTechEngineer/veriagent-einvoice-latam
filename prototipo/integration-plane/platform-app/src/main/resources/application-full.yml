@@ -1,0 +1,37 @@
+# Perfil full: Redpanda (compatible con Kafka) y PostgreSQL con docker compose. Credenciales solo por variables
+# de entorno (ver .env.example); nada de secretos en el repositorio.
+server:
+  address: 0.0.0.0
+
+spring:
+  datasource:
+    url: ${VERIAGENT_DB_URL:jdbc:postgresql://postgres:5432/veriagent}
+    username: ${VERIAGENT_DB_USER}
+    password: ${VERIAGENT_DB_PASSWORD}
+
+veriagent:
+  bus:
+    type: kafka
+    bootstrap-servers: ${VERIAGENT_KAFKA:redpanda:9092}
+  security:
+    # Un contenedor genera los tokens en el volumen compartido; los demás los cargan.
+    token-mode: ${VERIAGENT_TOKEN_MODE:load}
+    tokens-file: ${VERIAGENT_TOKENS_FILE:/shared/demo-tokens.json}
+    allowed-origins: ${VERIAGENT_ALLOWED_ORIGINS:http://localhost:8080}
+  providers:
+    sftp-root: ${VERIAGENT_SFTP_ROOT:/shared/sftp}
+    endpoints:
+      alfa:
+        base-url: ${VERIAGENT_ALFA_URL:http://simulators:8095/sim/alfa}
+        sync-format: json-envelope
+        batch-mode: http-zip
+      beta:
+        base-url: ${VERIAGENT_BETA_URL:http://simulators:8095/sim/beta}
+        sync-format: text
+        batch-mode: sftp-folder
+      gamma:
+        base-url: ${VERIAGENT_GAMMA_URL:http://simulators:8095/sim/gamma}
+        sync-format: json-envelope
+        batch-mode: http-zip
+  archive:
+    root: ${VERIAGENT_ARCHIVE_ROOT:/shared/archive}

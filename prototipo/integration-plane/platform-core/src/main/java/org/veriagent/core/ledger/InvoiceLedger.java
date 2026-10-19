@@ -38,42 +38,52 @@ public class InvoiceLedger {
 
     /** Cambios opcionales que acompañan una transición. Los campos nulos no se modifican. */
     public record Changes(String provider, Integer mappingVersion, String transformedPayload, String errorCode,
-                          String errorMessage, String authorizationNumber, boolean incrementRetry, String reason) {
+                          String errorMessage, String authorizationNumber, boolean incrementRetry, String reason,
+                          String findings) {
         public static Changes reason(String reason) {
-            return new Changes(null, null, null, null, null, null, false, reason);
+            return new Changes(null, null, null, null, null, null, false, reason, null);
         }
         public Changes withProvider(String p, Integer v) {
-            return new Changes(p, v, transformedPayload, errorCode, errorMessage, authorizationNumber, incrementRetry, reason);
+            return new Changes(p, v, transformedPayload, errorCode, errorMessage, authorizationNumber, incrementRetry, reason, findings);
         }
         public Changes withPayload(String payload) {
-            return new Changes(provider, mappingVersion, payload, errorCode, errorMessage, authorizationNumber, incrementRetry, reason);
+            return new Changes(provider, mappingVersion, payload, errorCode, errorMessage, authorizationNumber, incrementRetry, reason, findings);
         }
         public Changes withError(String code, String message) {
-            return new Changes(provider, mappingVersion, transformedPayload, code, message, authorizationNumber, incrementRetry, reason);
+            return new Changes(provider, mappingVersion, transformedPayload, code, message, authorizationNumber, incrementRetry, reason, findings);
         }
         public Changes withAuthorization(String number) {
-            return new Changes(provider, mappingVersion, transformedPayload, errorCode, errorMessage, number, incrementRetry, reason);
+            return new Changes(provider, mappingVersion, transformedPayload, errorCode, errorMessage, number, incrementRetry, reason, findings);
+        }
+        public Changes withFindings(String json) {
+            return new Changes(provider, mappingVersion, transformedPayload, errorCode, errorMessage, authorizationNumber, incrementRetry, reason, json);
         }
         public Changes retried() {
-            return new Changes(provider, mappingVersion, transformedPayload, errorCode, errorMessage, authorizationNumber, true, reason);
+            return new Changes(provider, mappingVersion, transformedPayload, errorCode, errorMessage, authorizationNumber, true, reason, findings);
         }
     }
 
     /** Registra el comprobante en RECEIVED. Si la clave ya existe, no crea nada y devuelve el existente. */
     @Transactional
     public Registration register(InvoiceRequest inv, Channel channel, String canonicalJson) {
+        return register(inv, channel, canonicalJson, null);
+    }
+
+    /** Igual que {@link #register(InvoiceRequest, Channel, String)}, con el archivo de origen del lote. */
+    @Transactional
+    public Registration register(InvoiceRequest inv, Channel channel, String canonicalJson, String sourceFile) {
         Instant now = Instant.now();
         String key = inv.invoiceKey();
         String actor = CurrentActor.get().subject();
         try {
             jdbc.sql("""
                 INSERT INTO authorization_log (invoice_key, correlation_id, invoice_number, document_type, country,
-                  channel, status, canonical_payload, retry_count, last_actor, received_at, updated_at)
-                VALUES (:key, :corr, :num, :type, :country, :channel, 'RECEIVED', :payload, 0, :actor, :now, :now)""")
+                  channel, status, canonical_payload, retry_count, last_actor, received_at, updated_at, source_file)
+                VALUES (:key, :corr, :num, :type, :country, :channel, 'RECEIVED', :payload, 0, :actor, :now, :now, :src)""")
                 .param("key", key).param("corr", inv.correlationId()).param("num", inv.documentNumber())
                 .param("type", inv.documentType().name()).param("country", inv.country().name())
                 .param("channel", channel.name()).param("payload", canonicalJson).param("actor", actor)
-                .param("now", Timestamp.from(now))
+                .param("now", Timestamp.from(now)).param("src", sourceFile)
                 .update();
         } catch (DuplicateKeyException e) {
             Optional<InvoiceRecord> existing = find(key);
@@ -99,6 +109,7 @@ public class InvoiceLedger {
               error_code = CASE WHEN :to = 'RECEIVED' THEN NULL ELSE COALESCE(:ecode, error_code) END,
               error_message = CASE WHEN :to = 'RECEIVED' THEN NULL ELSE COALESCE(:emsg, error_message) END,
               authorization_number = COALESCE(:auth, authorization_number),
+              findings = CASE WHEN :to = 'RECEIVED' THEN NULL ELSE COALESCE(:findings, findings) END,
               retry_count = retry_count + :inc,
               sent_at = CASE WHEN :to = 'SENT' THEN :now ELSE sent_at END,
               authorized_at = CASE WHEN :to = 'AUTHORIZED' THEN :now ELSE authorized_at END
@@ -108,6 +119,7 @@ public class InvoiceLedger {
             .param("provider", c.provider()).param("mv", c.mappingVersion()).param("payload", c.transformedPayload())
             .param("ecode", c.errorCode()).param("emsg", truncate(c.errorMessage(), 2000))
             .param("auth", c.authorizationNumber()).param("inc", c.incrementRetry() ? 1 : 0)
+            .param("findings", c.findings())
             .update();
         if (rows == 0) {
             InvoiceState actual = find(invoiceKey).map(InvoiceRecord::status).orElse(null);
@@ -192,11 +204,11 @@ public class InvoiceLedger {
     private static final RowMapper<InvoiceRecord> ROW = (rs, i) -> new InvoiceRecord(
         rs.getLong("id"), rs.getString("invoice_key"), rs.getString("correlation_id"), rs.getString("invoice_number"),
         rs.getString("document_type"), rs.getString("country"), rs.getString("channel"), rs.getString("provider"),
-        (Integer) rs.getObject("mapping_version", Integer.class), InvoiceState.valueOf(rs.getString("status")),
+        rs.getObject("mapping_version", Integer.class), InvoiceState.valueOf(rs.getString("status")),
         rs.getString("canonical_payload"), rs.getString("transformed_payload"), rs.getString("error_code"),
         rs.getString("error_message"), rs.getString("authorization_number"), rs.getInt("retry_count"),
         rs.getString("last_actor"), ts(rs, "received_at"), ts(rs, "sent_at"), ts(rs, "authorized_at"),
-        ts(rs, "updated_at"));
+        ts(rs, "updated_at"), rs.getString("findings"), rs.getString("source_file"));
 
     /** Utilidad para pruebas y escenarios: claves de todos los comprobantes en un estado. */
     public List<String> keysIn(InvoiceState status) {

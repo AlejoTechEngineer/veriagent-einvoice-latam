@@ -26,5 +26,7 @@ public record InvoiceRecord(
     Instant receivedAt,
     Instant sentAt,
     Instant authorizedAt,
-    Instant updatedAt) {
+    Instant updatedAt,
+    String findings,
+    String sourceFile) {
 }

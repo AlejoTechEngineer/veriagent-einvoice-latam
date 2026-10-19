@@ -1,0 +1,61 @@
+# Configuración común de la plataforma. Los perfiles "local" y "full" completan lo específico.
+spring:
+  application:
+    name: veriagent-platform
+  main:
+    banner-mode: off
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 21MB
+  threads:
+    virtual:
+      enabled: true
+
+server:
+  port: 8080
+  error:
+    include-message: never
+    include-stacktrace: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      show-details: never
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+veriagent:
+  # Raíz del prototipo (specs/, catalogs/, schemas/, data/, results/). Los scripts la fijan en absoluto.
+  home: ${VERIAGENT_HOME:../..}
+  services:
+    ingest-sftp: true
+    invoice-facade: true
+    invoice-router: true
+    provider-adapter: true
+    provider-connector: true
+    response-processor: true
+    response-publisher: true
+    legal-archive: true
+    invoice-registry: true
+    dlq-handler: true
+  providers:
+    routing-table: data/routing/routing-table.v1.json
+    sftp-root: results/runtime/sftp
+    seed-mappings:
+      "[alfa/CO]": agentic-plane/golden/mapping-alfa-v2.json
+
+logging:
+  pattern:
+    correlation: "[%X{correlationId:-}] "
+  level:
+    root: info
+    org.apache.camel: warn

@@ -1,0 +1,1433 @@
+{
+ "generatedBy": "tfg_agents.mapping (Python) con los mapeos golden",
+ "cases": [
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000001",
+    "documentNumber": "NC-000001",
+    "documentType": "CREDIT_NOTE",
+    "issueDate": "2026-09-02",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-000002",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Ana María Rojas",
+     "taxId": "676049903",
+     "idType": "CC",
+     "email": "cliente1@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Capacitación virtual",
+      "quantity": "7",
+      "unitPrice": "1692.90",
+      "amount": "11850.30",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "11850.30",
+     "taxAmount": "2251.56",
+     "payableAmount": "14101.86"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>NC-000001</ID>\n  <IssueDate>2026-09-02</IssueDate>\n  <InvoiceTypeCode>91</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-000002</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Ana María Rojas</PartyName>\n      <CompanyID schemeName=\"A2\">676049903</CompanyID>\n      <ElectronicMail>cliente1@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>2251.56</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>11850.30</LineExtensionAmount>\n    <PayableAmount>14101.86</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>7</InvoicedQuantity>\n    <LineExtensionAmount>11850.30</LineExtensionAmount>\n    <ItemDescription>Capacitación virtual</ItemDescription>\n    <PriceAmount>1692.90</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|NC-000001|2026-09-02|91|COP|900123456-7|676049903|Ana María Rojas\nDET|1|Capacitación virtual|7|1692.90|11850.30|T01\nTOT|11850.30|2251.56|14101.86\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000002",
+    "documentNumber": "FA-000002",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-16",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Grupo Horizonte",
+     "taxId": "2702604574",
+     "idType": "CC",
+     "email": "cliente2@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Consultoría de integración",
+      "quantity": "9",
+      "unitPrice": "754.86",
+      "amount": "6793.74",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "6793.74",
+     "taxAmount": "1290.81",
+     "payableAmount": "8084.55"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000002</ID>\n  <IssueDate>2026-09-16</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Grupo Horizonte</PartyName>\n      <CompanyID schemeName=\"A2\">2702604574</CompanyID>\n      <ElectronicMail>cliente2@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>1290.81</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>6793.74</LineExtensionAmount>\n    <PayableAmount>8084.55</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>9</InvoicedQuantity>\n    <LineExtensionAmount>6793.74</LineExtensionAmount>\n    <ItemDescription>Consultoría de integración</ItemDescription>\n    <PriceAmount>754.86</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000002|2026-09-16|01|COP|900123456-7|2702604574|Grupo Horizonte\nDET|1|Consultoría de integración|9|754.86|6793.74|T01\nTOT|6793.74|1290.81|8084.55\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000003",
+    "documentNumber": "ND-000003",
+    "documentType": "DEBIT_NOTE",
+    "issueDate": "2026-09-29",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-000001",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Servicios Integrales del Norte",
+     "taxId": "994230806-7",
+     "idType": "NIT",
+     "email": "cliente3@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Consultoría de integración",
+      "quantity": "6",
+      "unitPrice": "4682.73",
+      "amount": "28096.38",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Póliza de servicio",
+      "quantity": "10",
+      "unitPrice": "2078.46",
+      "amount": "20784.60",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 3,
+      "description": "Migración de datos",
+      "quantity": "3",
+      "unitPrice": "1815.45",
+      "amount": "5446.35",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "54327.33",
+     "taxAmount": "10322.19",
+     "payableAmount": "64649.52"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>ND-000003</ID>\n  <IssueDate>2026-09-29</IssueDate>\n  <InvoiceTypeCode>92</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-000001</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Servicios Integrales del Norte</PartyName>\n      <CompanyID schemeName=\"A1\">994230806-7</CompanyID>\n      <ElectronicMail>cliente3@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>10322.19</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>54327.33</LineExtensionAmount>\n    <PayableAmount>64649.52</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>28096.38</LineExtensionAmount>\n    <ItemDescription>Consultoría de integración</ItemDescription>\n    <PriceAmount>4682.73</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>20784.60</LineExtensionAmount>\n    <ItemDescription>Póliza de servicio</ItemDescription>\n    <PriceAmount>2078.46</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>3</ID>\n    <InvoicedQuantity>3</InvoicedQuantity>\n    <LineExtensionAmount>5446.35</LineExtensionAmount>\n    <ItemDescription>Migración de datos</ItemDescription>\n    <PriceAmount>1815.45</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|ND-000003|2026-09-29|92|COP|900123456-7|994230806-7|Servicios Integrales del Norte\nDET|1|Consultoría de integración|6|4682.73|28096.38|T01\nDET|2|Póliza de servicio|10|2078.46|20784.60|T01\nDET|3|Migración de datos|3|1815.45|5446.35|T01\nTOT|54327.33|10322.19|64649.52\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000004",
+    "documentNumber": "FA-000004",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-15",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Ana María Rojas",
+     "taxId": "DV7597441",
+     "idType": "PAS",
+     "email": "cliente4@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Licencia anual de software",
+      "quantity": "8",
+      "unitPrice": "1466.11",
+      "amount": "11728.88",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     },
+     {
+      "number": 2,
+      "description": "Desarrollo a la medida",
+      "quantity": "7",
+      "unitPrice": "3501.31",
+      "amount": "24509.17",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "36238.05",
+     "taxAmount": "1225.46",
+     "payableAmount": "37463.51"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000004</ID>\n  <IssueDate>2026-09-15</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Ana María Rojas</PartyName>\n      <CompanyID schemeName=\"A4\">DV7597441</CompanyID>\n      <ElectronicMail>cliente4@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>1225.46</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>36238.05</LineExtensionAmount>\n    <PayableAmount>37463.51</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>8</InvoicedQuantity>\n    <LineExtensionAmount>11728.88</LineExtensionAmount>\n    <ItemDescription>Licencia anual de software</ItemDescription>\n    <PriceAmount>1466.11</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>7</InvoicedQuantity>\n    <LineExtensionAmount>24509.17</LineExtensionAmount>\n    <ItemDescription>Desarrollo a la medida</ItemDescription>\n    <PriceAmount>3501.31</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000004|2026-09-15|01|COP|900123456-7|DV7597441|Ana María Rojas\nDET|1|Licencia anual de software|8|1466.11|11728.88|T03\nDET|2|Desarrollo a la medida|7|3501.31|24509.17|T02\nTOT|36238.05|1225.46|37463.51\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000005",
+    "documentNumber": "FA-000005",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-28",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Tecnologías del Valle",
+     "taxId": "AZ493867",
+     "idType": "CE",
+     "email": "cliente5@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Mantenimiento preventivo",
+      "quantity": "6",
+      "unitPrice": "3753.99",
+      "amount": "22523.94",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 2,
+      "description": "Servicio de soporte técnico",
+      "quantity": "5",
+      "unitPrice": "4681.71",
+      "amount": "23408.55",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "45932.49",
+     "taxAmount": "5573.82",
+     "payableAmount": "51506.31"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000005</ID>\n  <IssueDate>2026-09-28</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Tecnologías del Valle</PartyName>\n      <CompanyID schemeName=\"A3\">AZ493867</CompanyID>\n      <ElectronicMail>cliente5@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>5573.82</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>45932.49</LineExtensionAmount>\n    <PayableAmount>51506.31</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>22523.94</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>3753.99</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>23408.55</LineExtensionAmount>\n    <ItemDescription>Servicio de soporte técnico</ItemDescription>\n    <PriceAmount>4681.71</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000005|2026-09-28|01|COP|900123456-7|AZ493867|Tecnologías del Valle\nDET|1|Mantenimiento preventivo|6|3753.99|22523.94|T02\nDET|2|Servicio de soporte técnico|5|4681.71|23408.55|T01\nTOT|45932.49|5573.82|51506.31\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000006",
+    "documentNumber": "NC-000006",
+    "documentType": "CREDIT_NOTE",
+    "issueDate": "2026-10-03",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-000001",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Inversiones Cordillera",
+     "taxId": "5251167458",
+     "idType": "CC",
+     "email": "cliente6@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Póliza de servicio",
+      "quantity": "5",
+      "unitPrice": "3694.41",
+      "amount": "18472.05",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 2,
+      "description": "Mantenimiento preventivo",
+      "quantity": "7",
+      "unitPrice": "1855.07",
+      "amount": "12985.49",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "31457.54",
+     "taxAmount": "3390.85",
+     "payableAmount": "34848.39"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>NC-000006</ID>\n  <IssueDate>2026-10-03</IssueDate>\n  <InvoiceTypeCode>91</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-000001</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Inversiones Cordillera</PartyName>\n      <CompanyID schemeName=\"A2\">5251167458</CompanyID>\n      <ElectronicMail>cliente6@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>3390.85</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>31457.54</LineExtensionAmount>\n    <PayableAmount>34848.39</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>18472.05</LineExtensionAmount>\n    <ItemDescription>Póliza de servicio</ItemDescription>\n    <PriceAmount>3694.41</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>7</InvoicedQuantity>\n    <LineExtensionAmount>12985.49</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>1855.07</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|NC-000006|2026-10-03|91|COP|900123456-7|5251167458|Inversiones Cordillera\nDET|1|Póliza de servicio|5|3694.41|18472.05|T02\nDET|2|Mantenimiento preventivo|7|1855.07|12985.49|T01\nTOT|31457.54|3390.85|34848.39\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000007",
+    "documentNumber": "FA-000007",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-21",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Grupo Horizonte",
+     "taxId": "827325648-3",
+     "idType": "NIT",
+     "email": "cliente7@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Consultoría | de integración",
+      "quantity": "1",
+      "unitPrice": "4747.64",
+      "amount": "4747.64",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 2,
+      "description": "Hosting mensual",
+      "quantity": "4",
+      "unitPrice": "1180.51",
+      "amount": "4722.04",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "9469.68",
+     "taxAmount": "1134.57",
+     "payableAmount": "10604.25"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000007</ID>\n  <IssueDate>2026-09-21</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Grupo Horizonte</PartyName>\n      <CompanyID schemeName=\"A1\">827325648-3</CompanyID>\n      <ElectronicMail>cliente7@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>1134.57</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>9469.68</LineExtensionAmount>\n    <PayableAmount>10604.25</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>1</InvoicedQuantity>\n    <LineExtensionAmount>4747.64</LineExtensionAmount>\n    <ItemDescription>Consultoría | de integración</ItemDescription>\n    <PriceAmount>4747.64</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>4</InvoicedQuantity>\n    <LineExtensionAmount>4722.04</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>1180.51</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000007|2026-09-21|01|COP|900123456-7|827325648-3|Grupo Horizonte\nDET|1|Consultoría / de integración|1|4747.64|4747.64|T02\nDET|2|Hosting mensual|4|1180.51|4722.04|T01\nTOT|9469.68|1134.57|10604.25\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000008",
+    "documentNumber": "FA-000008",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-12",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Agrícola La Pradera",
+     "taxId": "XX9802472",
+     "idType": "PAS",
+     "email": "cliente8@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Hosting mensual",
+      "quantity": "5",
+      "unitPrice": "1303.20",
+      "amount": "6516.00",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "6516.00",
+     "taxAmount": "0.00",
+     "payableAmount": "6516.00"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000008</ID>\n  <IssueDate>2026-09-12</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Agrícola La Pradera</PartyName>\n      <CompanyID schemeName=\"A4\">XX9802472</CompanyID>\n      <ElectronicMail>cliente8@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>0.00</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>6516.00</LineExtensionAmount>\n    <PayableAmount>6516.00</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>6516.00</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>1303.20</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000008|2026-09-12|01|COP|900123456-7|XX9802472|Agrícola La Pradera\nDET|1|Hosting mensual|5|1303.20|6516.00|T03\nTOT|6516.00|0.00|6516.00\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000009",
+    "documentNumber": "FA-000009",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-11",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Carlos Pérez",
+     "taxId": "6196040112",
+     "idType": "CC",
+     "email": "cliente9@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Licencia | anual de software",
+      "quantity": "6",
+      "unitPrice": "4327.72",
+      "amount": "25966.32",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Póliza de servicio",
+      "quantity": "3",
+      "unitPrice": "1442.62",
+      "amount": "4327.86",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "30294.18",
+     "taxAmount": "5755.89",
+     "payableAmount": "36050.07"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000009</ID>\n  <IssueDate>2026-09-11</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Carlos Pérez</PartyName>\n      <CompanyID schemeName=\"A2\">6196040112</CompanyID>\n      <ElectronicMail>cliente9@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>5755.89</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>30294.18</LineExtensionAmount>\n    <PayableAmount>36050.07</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>25966.32</LineExtensionAmount>\n    <ItemDescription>Licencia | anual de software</ItemDescription>\n    <PriceAmount>4327.72</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>3</InvoicedQuantity>\n    <LineExtensionAmount>4327.86</LineExtensionAmount>\n    <ItemDescription>Póliza de servicio</ItemDescription>\n    <PriceAmount>1442.62</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000009|2026-09-11|01|COP|900123456-7|6196040112|Carlos Pérez\nDET|1|Licencia / anual de software|6|4327.72|25966.32|T01\nDET|2|Póliza de servicio|3|1442.62|4327.86|T01\nTOT|30294.18|5755.89|36050.07\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000010",
+    "documentNumber": "FA-000010",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-20",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Comercial Andina S.A.S.",
+     "taxId": "8152393609",
+     "idType": "CC",
+     "email": "cliente10@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Póliza de servicio",
+      "quantity": "5",
+      "unitPrice": "2632.14",
+      "amount": "13160.70",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "13160.70",
+     "taxAmount": "658.04",
+     "payableAmount": "13818.74"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000010</ID>\n  <IssueDate>2026-09-20</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Comercial Andina S.A.S.</PartyName>\n      <CompanyID schemeName=\"A2\">8152393609</CompanyID>\n      <ElectronicMail>cliente10@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>658.04</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>13160.70</LineExtensionAmount>\n    <PayableAmount>13818.74</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>13160.70</LineExtensionAmount>\n    <ItemDescription>Póliza de servicio</ItemDescription>\n    <PriceAmount>2632.14</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000010|2026-09-20|01|COP|900123456-7|8152393609|Comercial Andina S.A.S.\nDET|1|Póliza de servicio|5|2632.14|13160.70|T02\nTOT|13160.70|658.04|13818.74\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000011",
+    "documentNumber": "FA-000011",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-26",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Carlos Pérez",
+     "taxId": "FE2494740",
+     "idType": "CE",
+     "email": "cliente11@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Consultoría | de integración",
+      "quantity": "5",
+      "unitPrice": "3997.53",
+      "amount": "19987.65",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 2,
+      "description": "Hosting mensual",
+      "quantity": "8",
+      "unitPrice": "226.93",
+      "amount": "1815.44",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "21803.09",
+     "taxAmount": "999.38",
+     "payableAmount": "22802.47"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000011</ID>\n  <IssueDate>2026-09-26</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Carlos Pérez</PartyName>\n      <CompanyID schemeName=\"A3\">FE2494740</CompanyID>\n      <ElectronicMail>cliente11@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>999.38</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>21803.09</LineExtensionAmount>\n    <PayableAmount>22802.47</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>19987.65</LineExtensionAmount>\n    <ItemDescription>Consultoría | de integración</ItemDescription>\n    <PriceAmount>3997.53</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>8</InvoicedQuantity>\n    <LineExtensionAmount>1815.44</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>226.93</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000011|2026-09-26|01|COP|900123456-7|FE2494740|Carlos Pérez\nDET|1|Consultoría / de integración|5|3997.53|19987.65|T02\nDET|2|Hosting mensual|8|226.93|1815.44|T03\nTOT|21803.09|999.38|22802.47\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000012",
+    "documentNumber": "FA-000012",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-18",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Distribuidora Central",
+     "taxId": "7233541286",
+     "idType": "CC",
+     "email": "cliente12@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Licencia anual de software",
+      "quantity": "6",
+      "unitPrice": "2598.26",
+      "amount": "15589.56",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Mantenimiento preventivo",
+      "quantity": "11",
+      "unitPrice": "4395.04",
+      "amount": "48345.44",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "63935.00",
+     "taxAmount": "2962.02",
+     "payableAmount": "66897.02"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000012</ID>\n  <IssueDate>2026-09-18</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Distribuidora Central</PartyName>\n      <CompanyID schemeName=\"A2\">7233541286</CompanyID>\n      <ElectronicMail>cliente12@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>2962.02</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>63935.00</LineExtensionAmount>\n    <PayableAmount>66897.02</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>15589.56</LineExtensionAmount>\n    <ItemDescription>Licencia anual de software</ItemDescription>\n    <PriceAmount>2598.26</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>11</InvoicedQuantity>\n    <LineExtensionAmount>48345.44</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>4395.04</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000012|2026-09-18|01|COP|900123456-7|7233541286|Distribuidora Central\nDET|1|Licencia anual de software|6|2598.26|15589.56|T01\nDET|2|Mantenimiento preventivo|11|4395.04|48345.44|T03\nTOT|63935.00|2962.02|66897.02\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000013",
+    "documentNumber": "FA-000013",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-09",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Tecnologías del Valle",
+     "taxId": "975343524-1",
+     "idType": "NIT",
+     "email": "cliente13@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Hosting mensual",
+      "quantity": "12",
+      "unitPrice": "743.78",
+      "amount": "8925.36",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "8925.36",
+     "taxAmount": "1695.82",
+     "payableAmount": "10621.18"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000013</ID>\n  <IssueDate>2026-09-09</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Tecnologías del Valle</PartyName>\n      <CompanyID schemeName=\"A1\">975343524-1</CompanyID>\n      <ElectronicMail>cliente13@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>1695.82</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>8925.36</LineExtensionAmount>\n    <PayableAmount>10621.18</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>12</InvoicedQuantity>\n    <LineExtensionAmount>8925.36</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>743.78</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000013|2026-09-09|01|COP|900123456-7|975343524-1|Tecnologías del Valle\nDET|1|Hosting mensual|12|743.78|8925.36|T01\nTOT|8925.36|1695.82|10621.18\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000014",
+    "documentNumber": "FA-000014",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-26",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Inversiones Cordillera",
+     "taxId": "838942548-8",
+     "idType": "NIT",
+     "email": "cliente14@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Migración de datos",
+      "quantity": "10",
+      "unitPrice": "3976.72",
+      "amount": "39767.20",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "39767.20",
+     "taxAmount": "7555.77",
+     "payableAmount": "47322.97"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000014</ID>\n  <IssueDate>2026-09-26</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Inversiones Cordillera</PartyName>\n      <CompanyID schemeName=\"A1\">838942548-8</CompanyID>\n      <ElectronicMail>cliente14@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>7555.77</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>39767.20</LineExtensionAmount>\n    <PayableAmount>47322.97</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>39767.20</LineExtensionAmount>\n    <ItemDescription>Migración de datos</ItemDescription>\n    <PriceAmount>3976.72</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000014|2026-09-26|01|COP|900123456-7|838942548-8|Inversiones Cordillera\nDET|1|Migración de datos|10|3976.72|39767.20|T01\nTOT|39767.20|7555.77|47322.97\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000015",
+    "documentNumber": "NC-000015",
+    "documentType": "CREDIT_NOTE",
+    "issueDate": "2026-09-10",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-000015",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Comercial Andina S.A.S.",
+     "taxId": "853763184-4",
+     "idType": "NIT",
+     "email": "cliente15@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Desarrollo a la medida",
+      "quantity": "11",
+      "unitPrice": "2677.99",
+      "amount": "29457.89",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "29457.89",
+     "taxAmount": "5597.00",
+     "payableAmount": "35054.89"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>NC-000015</ID>\n  <IssueDate>2026-09-10</IssueDate>\n  <InvoiceTypeCode>91</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-000015</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Comercial Andina S.A.S.</PartyName>\n      <CompanyID schemeName=\"A1\">853763184-4</CompanyID>\n      <ElectronicMail>cliente15@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>5597.00</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>29457.89</LineExtensionAmount>\n    <PayableAmount>35054.89</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>11</InvoicedQuantity>\n    <LineExtensionAmount>29457.89</LineExtensionAmount>\n    <ItemDescription>Desarrollo a la medida</ItemDescription>\n    <PriceAmount>2677.99</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|NC-000015|2026-09-10|91|COP|900123456-7|853763184-4|Comercial Andina S.A.S.\nDET|1|Desarrollo a la medida|11|2677.99|29457.89|T01\nTOT|29457.89|5597.00|35054.89\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000016",
+    "documentNumber": "ND-000016",
+    "documentType": "DEBIT_NOTE",
+    "issueDate": "2026-09-12",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-000003",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Grupo Horizonte",
+     "taxId": "969938377-4",
+     "idType": "NIT",
+     "email": "cliente16@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Mantenimiento preventivo",
+      "quantity": "9",
+      "unitPrice": "57.67",
+      "amount": "519.03",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Desarrollo | a la medida",
+      "quantity": "10",
+      "unitPrice": "2475.87",
+      "amount": "24758.70",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 3,
+      "description": "Mantenimiento preventivo",
+      "quantity": "5",
+      "unitPrice": "1423.44",
+      "amount": "7117.20",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 4,
+      "description": "Hosting mensual",
+      "quantity": "6",
+      "unitPrice": "2555.62",
+      "amount": "15333.72",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "47728.65",
+     "taxAmount": "9068.44",
+     "payableAmount": "56797.09"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>ND-000016</ID>\n  <IssueDate>2026-09-12</IssueDate>\n  <InvoiceTypeCode>92</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-000003</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Grupo Horizonte</PartyName>\n      <CompanyID schemeName=\"A1\">969938377-4</CompanyID>\n      <ElectronicMail>cliente16@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>9068.44</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>47728.65</LineExtensionAmount>\n    <PayableAmount>56797.09</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>9</InvoicedQuantity>\n    <LineExtensionAmount>519.03</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>57.67</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>24758.70</LineExtensionAmount>\n    <ItemDescription>Desarrollo | a la medida</ItemDescription>\n    <PriceAmount>2475.87</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>3</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>7117.20</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>1423.44</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>4</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>15333.72</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>2555.62</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|ND-000016|2026-09-12|92|COP|900123456-7|969938377-4|Grupo Horizonte\nDET|1|Mantenimiento preventivo|9|57.67|519.03|T01\nDET|2|Desarrollo / a la medida|10|2475.87|24758.70|T01\nDET|3|Mantenimiento preventivo|5|1423.44|7117.20|T01\nDET|4|Hosting mensual|6|2555.62|15333.72|T01\nTOT|47728.65|9068.44|56797.09\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000017",
+    "documentNumber": "FA-000017",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-25",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Clínica San Rafael",
+     "taxId": "831783323-2",
+     "idType": "NIT",
+     "email": "cliente17@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Migración de datos",
+      "quantity": "1",
+      "unitPrice": "1471.91",
+      "amount": "1471.91",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "1471.91",
+     "taxAmount": "73.60",
+     "payableAmount": "1545.51"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000017</ID>\n  <IssueDate>2026-09-25</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Clínica San Rafael</PartyName>\n      <CompanyID schemeName=\"A1\">831783323-2</CompanyID>\n      <ElectronicMail>cliente17@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>73.60</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>1471.91</LineExtensionAmount>\n    <PayableAmount>1545.51</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>1</InvoicedQuantity>\n    <LineExtensionAmount>1471.91</LineExtensionAmount>\n    <ItemDescription>Migración de datos</ItemDescription>\n    <PriceAmount>1471.91</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000017|2026-09-25|01|COP|900123456-7|831783323-2|Clínica San Rafael\nDET|1|Migración de datos|1|1471.91|1471.91|T02\nTOT|1471.91|73.60|1545.51\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-000018",
+    "documentNumber": "FA-000018",
+    "documentType": "INVOICE",
+    "issueDate": "2026-10-01",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Ana María Rojas",
+     "taxId": "2305071557",
+     "idType": "CC",
+     "email": "cliente18@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Capacitación virtual",
+      "quantity": "2",
+      "unitPrice": "928.93",
+      "amount": "1857.86",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Licencia anual de software",
+      "quantity": "12",
+      "unitPrice": "4273.69",
+      "amount": "51284.28",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "53142.14",
+     "taxAmount": "10097.01",
+     "payableAmount": "63239.15"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-000018</ID>\n  <IssueDate>2026-10-01</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Ana María Rojas</PartyName>\n      <CompanyID schemeName=\"A2\">2305071557</CompanyID>\n      <ElectronicMail>cliente18@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>10097.01</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>53142.14</LineExtensionAmount>\n    <PayableAmount>63239.15</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>2</InvoicedQuantity>\n    <LineExtensionAmount>1857.86</LineExtensionAmount>\n    <ItemDescription>Capacitación virtual</ItemDescription>\n    <PriceAmount>928.93</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>12</InvoicedQuantity>\n    <LineExtensionAmount>51284.28</LineExtensionAmount>\n    <ItemDescription>Licencia anual de software</ItemDescription>\n    <PriceAmount>4273.69</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-000018|2026-10-01|01|COP|900123456-7|2305071557|Ana María Rojas\nDET|1|Capacitación virtual|2|928.93|1857.86|T01\nDET|2|Licencia anual de software|12|4273.69|51284.28|T01\nTOT|53142.14|10097.01|63239.15\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900000",
+    "documentNumber": "FA-900000",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-04",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Logística Pacífico",
+     "taxId": "936213743-3",
+     "idType": "NIT",
+     "email": "cliente900000@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Consultoría de integración",
+      "quantity": "6",
+      "unitPrice": "4979.54",
+      "amount": "29877.24",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Auditoría de seguridad",
+      "quantity": "1",
+      "unitPrice": "389.77",
+      "amount": "389.77",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "30267.01",
+     "taxAmount": "5696.16",
+     "payableAmount": "35963.17"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900000</ID>\n  <IssueDate>2026-09-04</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Logística Pacífico</PartyName>\n      <CompanyID schemeName=\"A1\">936213743-3</CompanyID>\n      <ElectronicMail>cliente900000@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>5696.16</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>30267.01</LineExtensionAmount>\n    <PayableAmount>35963.17</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>29877.24</LineExtensionAmount>\n    <ItemDescription>Consultoría de integración</ItemDescription>\n    <PriceAmount>4979.54</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>1</InvoicedQuantity>\n    <LineExtensionAmount>389.77</LineExtensionAmount>\n    <ItemDescription>Auditoría de seguridad</ItemDescription>\n    <PriceAmount>389.77</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900000|2026-09-04|01|COP|900123456-7|936213743-3|Logística Pacífico\nDET|1|Consultoría de integración|6|4979.54|29877.24|T01\nDET|2|Auditoría de seguridad|1|389.77|389.77|T02\nTOT|30267.01|5696.16|35963.17\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900001",
+    "documentNumber": "FA-900001",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-06",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Distribuidora Central",
+     "taxId": "6661797230",
+     "idType": "CC",
+     "email": "cliente900001@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Póliza de servicio",
+      "quantity": "1",
+      "unitPrice": "460.61",
+      "amount": "460.61",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "460.61",
+     "taxAmount": "0.00",
+     "payableAmount": "460.61"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900001</ID>\n  <IssueDate>2026-09-06</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Distribuidora Central</PartyName>\n      <CompanyID schemeName=\"A2\">6661797230</CompanyID>\n      <ElectronicMail>cliente900001@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>0.00</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>460.61</LineExtensionAmount>\n    <PayableAmount>460.61</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>1</InvoicedQuantity>\n    <LineExtensionAmount>460.61</LineExtensionAmount>\n    <ItemDescription>Póliza de servicio</ItemDescription>\n    <PriceAmount>460.61</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900001|2026-09-06|01|COP|900123456-7|6661797230|Distribuidora Central\nDET|1|Póliza de servicio|1|460.61|460.61|T03\nTOT|460.61|0.00|460.61\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900002",
+    "documentNumber": "FA-900002",
+    "documentType": "INVOICE",
+    "issueDate": "2026-10-11",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Distribuidora Central",
+     "taxId": "WU1137872",
+     "idType": "CE",
+     "email": "cliente900002@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Migración de datos",
+      "quantity": "1",
+      "unitPrice": "4345.08",
+      "amount": "4345.08",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "4345.08",
+     "taxAmount": "825.57",
+     "payableAmount": "5170.65"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900002</ID>\n  <IssueDate>2026-10-11</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Distribuidora Central</PartyName>\n      <CompanyID schemeName=\"A3\">WU1137872</CompanyID>\n      <ElectronicMail>cliente900002@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>825.57</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>4345.08</LineExtensionAmount>\n    <PayableAmount>5170.65</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>1</InvoicedQuantity>\n    <LineExtensionAmount>4345.08</LineExtensionAmount>\n    <ItemDescription>Migración de datos</ItemDescription>\n    <PriceAmount>4345.08</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900002|2026-10-11|01|COP|900123456-7|WU1137872|Distribuidora Central\nDET|1|Migración de datos|1|4345.08|4345.08|T01\nTOT|4345.08|825.57|5170.65\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900003",
+    "documentNumber": "FA-900003",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-27",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Servicios Integrales del Norte",
+     "taxId": "ET2076225",
+     "idType": "PAS",
+     "email": "cliente900003@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Póliza | de servicio",
+      "quantity": "10",
+      "unitPrice": "3079.92",
+      "amount": "30799.20",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 2,
+      "description": "Auditoría de seguridad",
+      "quantity": "4",
+      "unitPrice": "254.22",
+      "amount": "1016.88",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "31816.08",
+     "taxAmount": "1733.17",
+     "payableAmount": "33549.25"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900003</ID>\n  <IssueDate>2026-09-27</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Servicios Integrales del Norte</PartyName>\n      <CompanyID schemeName=\"A4\">ET2076225</CompanyID>\n      <ElectronicMail>cliente900003@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>1733.17</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>31816.08</LineExtensionAmount>\n    <PayableAmount>33549.25</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>30799.20</LineExtensionAmount>\n    <ItemDescription>Póliza | de servicio</ItemDescription>\n    <PriceAmount>3079.92</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>4</InvoicedQuantity>\n    <LineExtensionAmount>1016.88</LineExtensionAmount>\n    <ItemDescription>Auditoría de seguridad</ItemDescription>\n    <PriceAmount>254.22</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900003|2026-09-27|01|COP|900123456-7|ET2076225|Servicios Integrales del Norte\nDET|1|Póliza / de servicio|10|3079.92|30799.20|T02\nDET|2|Auditoría de seguridad|4|254.22|1016.88|T01\nTOT|31816.08|1733.17|33549.25\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900004",
+    "documentNumber": "NC-900004",
+    "documentType": "CREDIT_NOTE",
+    "issueDate": "2026-09-07",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-609852",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Grupo Horizonte",
+     "taxId": "953331510-3",
+     "idType": "NIT",
+     "email": "cliente900004@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Auditoría de seguridad",
+      "quantity": "10",
+      "unitPrice": "1627.33",
+      "amount": "16273.30",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "16273.30",
+     "taxAmount": "3091.93",
+     "payableAmount": "19365.23"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>NC-900004</ID>\n  <IssueDate>2026-09-07</IssueDate>\n  <InvoiceTypeCode>91</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-609852</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Grupo Horizonte</PartyName>\n      <CompanyID schemeName=\"A1\">953331510-3</CompanyID>\n      <ElectronicMail>cliente900004@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>3091.93</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>16273.30</LineExtensionAmount>\n    <PayableAmount>19365.23</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>16273.30</LineExtensionAmount>\n    <ItemDescription>Auditoría de seguridad</ItemDescription>\n    <PriceAmount>1627.33</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|NC-900004|2026-09-07|91|COP|900123456-7|953331510-3|Grupo Horizonte\nDET|1|Auditoría de seguridad|10|1627.33|16273.30|T01\nTOT|16273.30|3091.93|19365.23\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900005",
+    "documentNumber": "NC-900005",
+    "documentType": "CREDIT_NOTE",
+    "issueDate": "2026-10-05",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-448364",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Agrícola La Pradera",
+     "taxId": "LQ9924097",
+     "idType": "PAS",
+     "email": "cliente900005@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Auditoría de seguridad",
+      "quantity": "6",
+      "unitPrice": "520.81",
+      "amount": "3124.86",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     },
+     {
+      "number": 2,
+      "description": "Migración de datos",
+      "quantity": "10",
+      "unitPrice": "322.48",
+      "amount": "3224.80",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "6349.66",
+     "taxAmount": "612.71",
+     "payableAmount": "6962.37"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>NC-900005</ID>\n  <IssueDate>2026-10-05</IssueDate>\n  <InvoiceTypeCode>91</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-448364</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Agrícola La Pradera</PartyName>\n      <CompanyID schemeName=\"A4\">LQ9924097</CompanyID>\n      <ElectronicMail>cliente900005@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>612.71</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>6349.66</LineExtensionAmount>\n    <PayableAmount>6962.37</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>6</InvoicedQuantity>\n    <LineExtensionAmount>3124.86</LineExtensionAmount>\n    <ItemDescription>Auditoría de seguridad</ItemDescription>\n    <PriceAmount>520.81</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>3224.80</LineExtensionAmount>\n    <ItemDescription>Migración de datos</ItemDescription>\n    <PriceAmount>322.48</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|NC-900005|2026-10-05|91|COP|900123456-7|LQ9924097|Agrícola La Pradera\nDET|1|Auditoría de seguridad|6|520.81|3124.86|T03\nDET|2|Migración de datos|10|322.48|3224.80|T01\nTOT|6349.66|612.71|6962.37\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900006",
+    "documentNumber": "ND-900006",
+    "documentType": "DEBIT_NOTE",
+    "issueDate": "2026-09-16",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-085832",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Grupo Horizonte",
+     "taxId": "6762198351",
+     "idType": "CC",
+     "email": "cliente900006@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Capacitación virtual",
+      "quantity": "8",
+      "unitPrice": "1905.73",
+      "amount": "15245.84",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "15245.84",
+     "taxAmount": "762.29",
+     "payableAmount": "16008.13"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>ND-900006</ID>\n  <IssueDate>2026-09-16</IssueDate>\n  <InvoiceTypeCode>92</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-085832</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Grupo Horizonte</PartyName>\n      <CompanyID schemeName=\"A2\">6762198351</CompanyID>\n      <ElectronicMail>cliente900006@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>762.29</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>15245.84</LineExtensionAmount>\n    <PayableAmount>16008.13</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>8</InvoicedQuantity>\n    <LineExtensionAmount>15245.84</LineExtensionAmount>\n    <ItemDescription>Capacitación virtual</ItemDescription>\n    <PriceAmount>1905.73</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|ND-900006|2026-09-16|92|COP|900123456-7|6762198351|Grupo Horizonte\nDET|1|Capacitación virtual|8|1905.73|15245.84|T02\nTOT|15245.84|762.29|16008.13\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900007",
+    "documentNumber": "ND-900007",
+    "documentType": "DEBIT_NOTE",
+    "issueDate": "2026-09-27",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-041112",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Ana María Rojas",
+     "taxId": "XC9462957",
+     "idType": "CE",
+     "email": "cliente900007@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Hosting mensual",
+      "quantity": "9",
+      "unitPrice": "2605.83",
+      "amount": "23452.47",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Licencia anual de software",
+      "quantity": "5",
+      "unitPrice": "3202.69",
+      "amount": "16013.45",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     },
+     {
+      "number": 3,
+      "description": "Hosting mensual",
+      "quantity": "7",
+      "unitPrice": "874.87",
+      "amount": "6124.09",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "45590.01",
+     "taxAmount": "4762.17",
+     "payableAmount": "50352.18"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>ND-900007</ID>\n  <IssueDate>2026-09-27</IssueDate>\n  <InvoiceTypeCode>92</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-041112</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Ana María Rojas</PartyName>\n      <CompanyID schemeName=\"A3\">XC9462957</CompanyID>\n      <ElectronicMail>cliente900007@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>4762.17</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>45590.01</LineExtensionAmount>\n    <PayableAmount>50352.18</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>9</InvoicedQuantity>\n    <LineExtensionAmount>23452.47</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>2605.83</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>5</InvoicedQuantity>\n    <LineExtensionAmount>16013.45</LineExtensionAmount>\n    <ItemDescription>Licencia anual de software</ItemDescription>\n    <PriceAmount>3202.69</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>3</ID>\n    <InvoicedQuantity>7</InvoicedQuantity>\n    <LineExtensionAmount>6124.09</LineExtensionAmount>\n    <ItemDescription>Hosting mensual</ItemDescription>\n    <PriceAmount>874.87</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|ND-900007|2026-09-27|92|COP|900123456-7|XC9462957|Ana María Rojas\nDET|1|Hosting mensual|9|2605.83|23452.47|T01\nDET|2|Licencia anual de software|5|3202.69|16013.45|T03\nDET|3|Hosting mensual|7|874.87|6124.09|T02\nTOT|45590.01|4762.17|50352.18\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900008",
+    "documentNumber": "FA-900008",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-23",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Laboratorio Mirador",
+     "taxId": "959549948-7",
+     "idType": "NIT",
+     "email": "cliente900008@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Hosting | mensual",
+      "quantity": "10",
+      "unitPrice": "4147.12",
+      "amount": "41471.20",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "41471.20",
+     "taxAmount": "7879.53",
+     "payableAmount": "49350.73"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900008</ID>\n  <IssueDate>2026-09-23</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Laboratorio Mirador</PartyName>\n      <CompanyID schemeName=\"A1\">959549948-7</CompanyID>\n      <ElectronicMail>cliente900008@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>7879.53</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>41471.20</LineExtensionAmount>\n    <PayableAmount>49350.73</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>41471.20</LineExtensionAmount>\n    <ItemDescription>Hosting | mensual</ItemDescription>\n    <PriceAmount>4147.12</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900008|2026-09-23|01|COP|900123456-7|959549948-7|Laboratorio Mirador\nDET|1|Hosting / mensual|10|4147.12|41471.20|T01\nTOT|41471.20|7879.53|49350.73\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900009",
+    "documentNumber": "FA-900009",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-18",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Tecnologías | del Valle",
+     "taxId": "2852612026",
+     "idType": "CC",
+     "email": "cliente900009@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Desarrollo a la medida",
+      "quantity": "10",
+      "unitPrice": "4188.00",
+      "amount": "41880.00",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "41880.00",
+     "taxAmount": "7957.20",
+     "payableAmount": "49837.20"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900009</ID>\n  <IssueDate>2026-09-18</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Tecnologías | del Valle</PartyName>\n      <CompanyID schemeName=\"A2\">2852612026</CompanyID>\n      <ElectronicMail>cliente900009@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>7957.20</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>41880.00</LineExtensionAmount>\n    <PayableAmount>49837.20</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>10</InvoicedQuantity>\n    <LineExtensionAmount>41880.00</LineExtensionAmount>\n    <ItemDescription>Desarrollo a la medida</ItemDescription>\n    <PriceAmount>4188.00</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900009|2026-09-18|01|COP|900123456-7|2852612026|Tecnologías / del Valle\nDET|1|Desarrollo a la medida|10|4188.00|41880.00|T01\nTOT|41880.00|7957.20|49837.20\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900010",
+    "documentNumber": "NC-900010",
+    "documentType": "CREDIT_NOTE",
+    "issueDate": "2026-09-25",
+    "currency": "COP",
+    "originalDocumentNumber": "FA-701134",
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Servicios Integrales del Norte",
+     "taxId": "1490476253",
+     "idType": "CC",
+     "email": "cliente900010@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Capacitación | virtual",
+      "quantity": "1",
+      "unitPrice": "3843.38",
+      "amount": "3843.38",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 2,
+      "description": "Desarrollo | a la medida",
+      "quantity": "11",
+      "unitPrice": "3040.10",
+      "amount": "33441.10",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "37284.48",
+     "taxAmount": "1864.22",
+     "payableAmount": "39148.70"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>NC-900010</ID>\n  <IssueDate>2026-09-25</IssueDate>\n  <InvoiceTypeCode>91</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <BillingReference>FA-701134</BillingReference>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Servicios Integrales del Norte</PartyName>\n      <CompanyID schemeName=\"A2\">1490476253</CompanyID>\n      <ElectronicMail>cliente900010@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>1864.22</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>37284.48</LineExtensionAmount>\n    <PayableAmount>39148.70</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>1</InvoicedQuantity>\n    <LineExtensionAmount>3843.38</LineExtensionAmount>\n    <ItemDescription>Capacitación | virtual</ItemDescription>\n    <PriceAmount>3843.38</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>11</InvoicedQuantity>\n    <LineExtensionAmount>33441.10</LineExtensionAmount>\n    <ItemDescription>Desarrollo | a la medida</ItemDescription>\n    <PriceAmount>3040.10</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|NC-900010|2026-09-25|91|COP|900123456-7|1490476253|Servicios Integrales del Norte\nDET|1|Capacitación / virtual|1|3843.38|3843.38|T02\nDET|2|Desarrollo / a la medida|11|3040.10|33441.10|T02\nTOT|37284.48|1864.22|39148.70\n"
+  },
+  {
+   "canonical": {
+    "country": "CO",
+    "correlationId": "corr-900011",
+    "documentNumber": "FA-900011",
+    "documentType": "INVOICE",
+    "issueDate": "2026-09-18",
+    "currency": "COP",
+    "originalDocumentNumber": null,
+    "supplier": {
+     "name": "Comercializadora Sintética S.A.",
+     "taxId": "900123456-7",
+     "idType": "NIT",
+     "email": null
+    },
+    "customer": {
+     "name": "Carlos Pérez",
+     "taxId": "EP9331152",
+     "idType": "PAS",
+     "email": "cliente900011@ejemplo.test"
+    },
+    "lines": [
+     {
+      "number": 1,
+      "description": "Consultoría de integración",
+      "quantity": "8",
+      "unitPrice": "1873.65",
+      "amount": "14989.20",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 2,
+      "description": "Mantenimiento preventivo",
+      "quantity": "8",
+      "unitPrice": "319.09",
+      "amount": "2552.72",
+      "taxCode": "IVA19",
+      "taxRate": "19.00"
+     },
+     {
+      "number": 3,
+      "description": "Mantenimiento preventivo",
+      "quantity": "3",
+      "unitPrice": "3881.15",
+      "amount": "11643.45",
+      "taxCode": "IVA5",
+      "taxRate": "5.00"
+     },
+     {
+      "number": 4,
+      "description": "Consultoría de integración",
+      "quantity": "8",
+      "unitPrice": "432.47",
+      "amount": "3459.76",
+      "taxCode": "EXENTO",
+      "taxRate": "0.00"
+     }
+    ],
+    "totals": {
+     "baseAmount": "32645.13",
+     "taxAmount": "3915.14",
+     "payableAmount": "36560.27"
+    }
+   },
+   "alfa": "<?xml version='1.0' encoding='UTF-8'?>\n<Invoice xmlns=\"urn:tfg:alfa:invoice:2\">\n  <ProfileID>PerfilAlfa-2.1</ProfileID>\n  <ID>FA-900011</ID>\n  <IssueDate>2026-09-18</IssueDate>\n  <InvoiceTypeCode>01</InvoiceTypeCode>\n  <DocumentCurrencyCode>COP</DocumentCurrencyCode>\n  <AccountingSupplierParty>\n    <Party>\n      <PartyName>Comercializadora Sintética S.A.</PartyName>\n      <CompanyID schemeName=\"A1\">900123456-7</CompanyID>\n    </Party>\n  </AccountingSupplierParty>\n  <AccountingCustomerParty>\n    <Party>\n      <PartyName>Carlos Pérez</PartyName>\n      <CompanyID schemeName=\"A4\">EP9331152</CompanyID>\n      <ElectronicMail>cliente900011@ejemplo.test</ElectronicMail>\n    </Party>\n  </AccountingCustomerParty>\n  <TaxTotal>\n    <TaxAmount>3915.14</TaxAmount>\n  </TaxTotal>\n  <LegalMonetaryTotal>\n    <LineExtensionAmount>32645.13</LineExtensionAmount>\n    <PayableAmount>36560.27</PayableAmount>\n  </LegalMonetaryTotal>\n  <InvoiceLine>\n    <ID>1</ID>\n    <InvoicedQuantity>8</InvoicedQuantity>\n    <LineExtensionAmount>14989.20</LineExtensionAmount>\n    <ItemDescription>Consultoría de integración</ItemDescription>\n    <PriceAmount>1873.65</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>2</ID>\n    <InvoicedQuantity>8</InvoicedQuantity>\n    <LineExtensionAmount>2552.72</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>319.09</PriceAmount>\n    <TaxCategory>\n      <ID>T01</ID>\n      <Percent>19.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>3</ID>\n    <InvoicedQuantity>3</InvoicedQuantity>\n    <LineExtensionAmount>11643.45</LineExtensionAmount>\n    <ItemDescription>Mantenimiento preventivo</ItemDescription>\n    <PriceAmount>3881.15</PriceAmount>\n    <TaxCategory>\n      <ID>T02</ID>\n      <Percent>5.00</Percent>\n      <TaxSchemeName>IVA</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n  <InvoiceLine>\n    <ID>4</ID>\n    <InvoicedQuantity>8</InvoicedQuantity>\n    <LineExtensionAmount>3459.76</LineExtensionAmount>\n    <ItemDescription>Consultoría de integración</ItemDescription>\n    <PriceAmount>432.47</PriceAmount>\n    <TaxCategory>\n      <ID>T03</ID>\n      <Percent>0.00</Percent>\n      <TaxSchemeName>EXENTO</TaxSchemeName>\n    </TaxCategory>\n  </InvoiceLine>\n</Invoice>\n",
+   "beta": "ENC|FA-900011|2026-09-18|01|COP|900123456-7|EP9331152|Carlos Pérez\nDET|1|Consultoría de integración|8|1873.65|14989.20|T01\nDET|2|Mantenimiento preventivo|8|319.09|2552.72|T01\nDET|3|Mantenimiento preventivo|3|3881.15|11643.45|T02\nDET|4|Consultoría de integración|8|432.47|3459.76|T03\nTOT|32645.13|3915.14|36560.27\n"
+  }
+ ]
+}

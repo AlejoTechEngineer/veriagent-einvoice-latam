@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "description": "Tabla de enrutamiento sintética: país y tipo de documento -> proveedor. La primera regla que coincide gana.",
+  "rules": [
+    { "id": "R1", "country": "CO", "documentType": "*", "provider": "alfa" },
+    { "id": "R2", "country": "PE", "documentType": "*", "provider": "beta" },
+    { "id": "R3", "country": "XX", "documentType": "*", "provider": "gamma" }
+  ]
+}

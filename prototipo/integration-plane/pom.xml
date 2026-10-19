@@ -23,6 +23,18 @@
     <module>platform-contracts</module>
     <module>platform-core</module>
     <module>kit-adapter</module>
+    <module>provider-common</module>
+    <module>svc-invoice-router</module>
+    <module>svc-ingest-sftp</module>
+    <module>svc-provider-adapter</module>
+    <module>svc-provider-connector</module>
+    <module>svc-invoice-facade</module>
+    <module>svc-response-processor</module>
+    <module>svc-response-publisher</module>
+    <module>svc-legal-archive</module>
+    <module>svc-invoice-registry</module>
+    <module>svc-dlq-handler</module>
+    <module>platform-app</module>
   </modules>
 
   <properties>
@@ -87,6 +99,11 @@
       <dependency>
         <groupId>org.veriagent</groupId>
         <artifactId>kit-adapter</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.veriagent</groupId>
+        <artifactId>provider-common</artifactId>
         <version>${project.version}</version>
       </dependency>
     </dependencies>
