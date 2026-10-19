@@ -1,0 +1,236 @@
+{
+  "profile": "alfa-2.1",
+  "version": "0.1.0-propuesta",
+  "generatedBy": "heuristic-v1",
+  "specSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+  "entries": [
+    {
+      "target": "Invoice/ProfileID",
+      "transform": "literal",
+      "value": "PerfilAlfa-2.1",
+      "evidence": {
+        "section": "§2.1",
+        "score": 1.0
+      }
+    },
+    {
+      "target": "Invoice/ID",
+      "source": "documentNumber",
+      "evidence": {
+        "section": "§6",
+        "score": 0.75
+      }
+    },
+    {
+      "target": "Invoice/IssueDate",
+      "source": "issueDate",
+      "evidence": {
+        "section": "§6",
+        "score": 0.5
+      }
+    },
+    {
+      "target": "Invoice/InvoiceTypeCode",
+      "source": "documentType",
+      "evidence": {
+        "section": "§6",
+        "score": 0.333
+      },
+      "transform": "map",
+      "table": {
+        "INVOICE": "01",
+        "CREDIT_NOTE": "91",
+        "DEBIT_NOTE": "92"
+      }
+    },
+    {
+      "target": "Invoice/DocumentCurrencyCode",
+      "source": "currency",
+      "evidence": {
+        "section": "§6",
+        "score": 1.0
+      }
+    },
+    {
+      "target": "Invoice/BillingReference",
+      "source": "originalDocumentNumber",
+      "evidence": {
+        "section": "§6",
+        "score": 0.5
+      }
+    },
+    {
+      "target": "Invoice/AccountingSupplierParty/Party/PartyName",
+      "source": "supplier.name",
+      "evidence": {
+        "section": "§6",
+        "score": 0.8
+      }
+    },
+    {
+      "target": "Invoice/AccountingSupplierParty/Party/CompanyID",
+      "source": "supplier.taxId",
+      "evidence": {
+        "section": "§6",
+        "score": 0.8
+      }
+    },
+    {
+      "target": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName",
+      "source": "supplier.idType",
+      "evidence": {
+        "section": "§6",
+        "score": 0.75
+      },
+      "transform": "map",
+      "table": {
+        "NIT": "A1",
+        "CC": "A2",
+        "CE": "A3",
+        "PAS": "A4"
+      }
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/PartyName",
+      "source": "customer.name",
+      "evidence": {
+        "section": "§6",
+        "score": 0.75
+      }
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/CompanyID",
+      "source": "customer.taxId",
+      "evidence": {
+        "section": "§6",
+        "score": 0.6
+      }
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+      "source": "customer.idType",
+      "evidence": {
+        "section": "§6",
+        "score": 0.6
+      },
+      "transform": "map",
+      "table": {
+        "NIT": "A1",
+        "CC": "A2",
+        "CE": "A3",
+        "PAS": "A4"
+      }
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/ElectronicMail",
+      "source": "customer.email",
+      "evidence": {
+        "section": "§6",
+        "score": 0.6
+      }
+    },
+    {
+      "target": "Invoice/TaxTotal/TaxAmount",
+      "source": "totals.taxAmount",
+      "evidence": {
+        "section": "§6",
+        "score": 1.0
+      },
+      "transform": "decimal2"
+    },
+    {
+      "target": "Invoice/LegalMonetaryTotal/LineExtensionAmount",
+      "source": "totals.baseAmount",
+      "evidence": {
+        "section": "§6",
+        "score": 0.5
+      },
+      "transform": "decimal2"
+    },
+    {
+      "target": "Invoice/LegalMonetaryTotal/PayableAmount",
+      "source": "totals.payableAmount",
+      "evidence": {
+        "section": "§6",
+        "score": 1.0
+      },
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/ID",
+      "source": "lines[].number",
+      "evidence": {
+        "section": "§6",
+        "score": 1.0
+      }
+    },
+    {
+      "target": "InvoiceLine/InvoicedQuantity",
+      "source": "lines[].quantity",
+      "evidence": {
+        "section": "§6",
+        "score": 0.5
+      },
+      "transform": "decimal"
+    },
+    {
+      "target": "InvoiceLine/LineExtensionAmount",
+      "source": "lines[].amount",
+      "evidence": {
+        "section": "§6",
+        "score": 0.667
+      },
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/ItemDescription",
+      "source": "lines[].description",
+      "evidence": {
+        "section": "§6",
+        "score": 0.5
+      }
+    },
+    {
+      "target": "InvoiceLine/PriceAmount",
+      "source": "lines[].unitPrice",
+      "evidence": {
+        "section": "§6",
+        "score": 0.5
+      },
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/TaxCategory/ID",
+      "source": "lines[].taxCode",
+      "evidence": {
+        "section": "§6",
+        "score": 0.333
+      },
+      "transform": "map",
+      "table": {
+        "IVA19": "T01",
+        "IVA5": "T02",
+        "EXENTO": "T03"
+      }
+    },
+    {
+      "target": "InvoiceLine/TaxCategory/Percent",
+      "source": "lines[].taxRate",
+      "evidence": {
+        "section": "§6",
+        "score": 0.4
+      },
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+      "source": "lines[].number",
+      "evidence": {
+        "section": "§6",
+        "score": 0.2
+      },
+      "transform": "map",
+      "table": {}
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revisión de propuestas de IA · Facturación electrónica</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Revisión de propuestas de mapeo</h1>
+    <p class="topbar-note">Ninguna propuesta llega a producción sin pasar el kit de verificación y una decisión humana.</p>
+  </header>
+
+  <main class="desk">
+    <section class="ledger" aria-labelledby="ledger-title">
+      <h2 id="ledger-title">Propuestas</h2>
+      <ol id="proposal-list" class="ledger-rows" aria-live="polite"></ol>
+      <p id="empty-list" class="empty" hidden>No hay propuestas. Ejecuta el agente de mapeo para generar una.</p>
+    </section>
+
+    <section id="detail" class="sheet" aria-live="polite">
+      <p class="empty">Elige una propuesta para ver su verificación, los cambios y la evidencia.</p>
+    </section>
+  </main>
+
+  <template id="tpl-detail">
+    <article class="sheet-body">
+      <header class="sheet-head">
+        <div>
+          <h2 class="sheet-title"></h2>
+          <dl class="facts">
+            <div><dt>Agente</dt><dd data-f="agent"></dd></div>
+            <div><dt>Creada</dt><dd data-f="created"></dd></div>
+            <div><dt>Documentos verificados</dt><dd data-f="docs"></dd></div>
+            <div><dt>Exactitud frente al mapeo dorado</dt><dd data-f="acc"></dd></div>
+          </dl>
+        </div>
+        <p class="stamp" role="status"></p>
+      </header>
+
+      <section class="block">
+        <h3>Hallazgos del kit</h3>
+        <p class="block-note">Cada hallazgo cita la sección de la especificación y la huella del documento del que sale la regla.</p>
+        <ul class="findings"></ul>
+      </section>
+
+      <section class="block">
+        <h3>Cambios frente al mapeo vigente</h3>
+        <div class="table-wrap">
+          <table class="diff">
+            <thead><tr><th scope="col">Campo destino</th><th scope="col">Vigente</th><th scope="col">Propuesto</th><th scope="col">Evidencia</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <form class="decision" novalidate>
+        <h3>Decisión</h3>
+        <p class="gate-note"></p>
+        <label for="reviewer">Revisor</label>
+        <input id="reviewer" name="reviewer" autocomplete="username" required minlength="3" placeholder="usuario del revisor">
+        <label for="comment">Comentario</label>
+        <textarea id="comment" name="comment" rows="3" placeholder="Qué revisaste y por qué decides así"></textarea>
+        <div class="actions">
+          <button type="submit" name="decision" value="APPROVE" class="btn btn-approve">Aprobar propuesta</button>
+          <button type="submit" name="decision" value="REJECT" class="btn btn-reject">Rechazar propuesta</button>
+        </div>
+        <p class="form-msg" role="alert"></p>
+      </form>
+    </article>
+  </template>
+
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

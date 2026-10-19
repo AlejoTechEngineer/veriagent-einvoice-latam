@@ -21,3 +21,6 @@ CLAUDE.md
 CLAUDE.local.md
 **/.claude/
 **/CLAUDE.md
+# Prototipo: código fuente (las exclusiones están en prototipo/.gitignore)
+!prototipo/
+!prototipo/**

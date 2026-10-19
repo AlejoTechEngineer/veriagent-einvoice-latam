@@ -1,0 +1,29 @@
+{
+  "_nota": "Supuestos del autor para la planificación. Cifras en pesos colombianos (COP) de 2026. Deben validarse con tablas salariales del sector y cotizaciones antes de la Entrega 3.",
+  "semanas_por_mes": 4.33,
+  "trm_cop_por_usd": 4000,
+  "costo_mensual_rol_cop": {
+    "GP": 20000000, "AS": 24000000, "LT": 19000000, "DEV": 13000000,
+    "IA": 18000000, "OPS": 15000000, "QA": 10000000, "TRIB": 14000000
+  },
+  "_costo_rol": "Costo empresa mensual (salario más prestaciones y aportes) por persona de tiempo completo.",
+  "capacidad_equipo_fte": {"GP": 1, "AS": 1, "LT": 1, "DEV": 3, "IA": 1, "OPS": 1, "QA": 1, "TRIB": 1},
+  "dedicacion_continua_fte": {"GP": 0.5, "AS": 0.5, "LT": 1.0, "TRIB": 0.25},
+  "nube_mensual_cop": 18000000,
+  "_nube": "Clúster Kubernetes de tres entornos, Kafka gestionado, base de datos, almacenamiento WORM y observabilidad (≈ USD 4.500/mes).",
+  "licencias_unica_vez_cop": 25000000,
+  "herramientas_mensual_cop": 3000000,
+  "llm": {
+    "precio_usd_por_millon_entrada": 3.0,
+    "precio_usd_por_millon_salida": 15.0,
+    "_precio": "Precio supuesto de un modelo de gama media; se reemplaza por la tarifa vigente al contratar.",
+    "agentes": {
+      "mapeo":   {"ejecuciones": 60,   "tokens_entrada": 60000, "tokens_salida": 8000},
+      "legado":  {"ejecuciones": 250,  "tokens_entrada": 30000, "tokens_salida": 4000},
+      "triaje":  {"ejecuciones": 6000, "tokens_entrada": 6000,  "tokens_salida": 1000},
+      "arnes":   {"ejecuciones": 400,  "tokens_entrada": 60000, "tokens_salida": 8000}
+    }
+  },
+  "iteraciones_monte_carlo": 10000,
+  "semilla": 2026
+}

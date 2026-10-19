@@ -1,0 +1,6 @@
+apiVersion: v2
+name: tfg-poc
+description: Kit de verificación determinista y plano agéntico gobernado (prueba de concepto del TFG)
+type: application
+version: 0.1.0
+appVersion: "0.1.0"

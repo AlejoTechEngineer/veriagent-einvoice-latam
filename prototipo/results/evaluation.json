@@ -1,0 +1,574 @@
+{
+  "config": {
+    "documents": 300,
+    "fixtures": 12,
+    "seed": 2026,
+    "mutants": 22
+  },
+  "verifications": 14688,
+  "kitSeconds": 14.37,
+  "throughputDocsPerSecond": 1022.3,
+  "falsePositives": {
+    "SCHEMA_ONLY": 0,
+    "RUNTIME": 0,
+    "CI": 0
+  },
+  "goldenChecked": {
+    "SCHEMA_ONLY": 600,
+    "RUNTIME": 600,
+    "CI": 24
+  },
+  "byType": {
+    "D1": {
+      "mutants": 7,
+      "schema": 0,
+      "runtime": 6,
+      "ci": 7
+    },
+    "D2": {
+      "mutants": 4,
+      "schema": 0,
+      "runtime": 3,
+      "ci": 4
+    },
+    "D3": {
+      "mutants": 4,
+      "schema": 0,
+      "runtime": 4,
+      "ci": 4
+    },
+    "D4": {
+      "mutants": 3,
+      "schema": 2,
+      "runtime": 3,
+      "ci": 3
+    },
+    "D5": {
+      "mutants": 2,
+      "schema": 2,
+      "runtime": 2,
+      "ci": 2
+    },
+    "D6": {
+      "mutants": 2,
+      "schema": 1,
+      "runtime": 1,
+      "ci": 2
+    }
+  },
+  "total": {
+    "mutants": 22,
+    "schema": 5,
+    "runtime": 19,
+    "ci": 22
+  },
+  "mutants": [
+    {
+      "id": "D1-a",
+      "type": "D1",
+      "format": "xml",
+      "description": "Factura codificada como nota débito (92), código válido pero equivocado",
+      "affectedDocs": 214,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 7,
+      "exampleFinding": {
+        "ruleId": "R-D1-04",
+        "type": "D1",
+        "location": "Invoice/InvoiceTypeCode",
+        "message": "El tipo 92 exige BillingReference y no la trae: el código de tipo parece incorrecto",
+        "source": "perfil-alfa-v2.1.md §3.4",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D1-b",
+      "type": "D1",
+      "format": "xml",
+      "description": "Notas crédito codificadas como factura (01)",
+      "affectedDocs": 56,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 3,
+      "exampleFinding": {
+        "ruleId": "R-D1-04",
+        "type": "D1",
+        "location": "Invoice/BillingReference",
+        "message": "Una factura (01) no debe llevar BillingReference: el código de tipo parece incorrecto",
+        "source": "perfil-alfa-v2.1.md §3.4",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D1-c",
+      "type": "D1",
+      "format": "xml",
+      "description": "Código de tipo de documento inexistente (07) tomado de una nota verbal",
+      "affectedDocs": 214,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 7,
+      "exampleFinding": {
+        "ruleId": "R-D1-01",
+        "type": "D1",
+        "location": "Invoice/InvoiceTypeCode",
+        "message": "Código '07' no existe en TipoDocumento v2",
+        "source": "perfil-alfa-v2.1.md §3.2",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D1-d",
+      "type": "D1",
+      "format": "xml",
+      "description": "Documento nacional (CC) codificado como empresa (A1)",
+      "affectedDocs": 107,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 4,
+      "exampleFinding": {
+        "ruleId": "R-D1-02",
+        "type": "D1",
+        "location": "Invoice/AccountingCustomerParty/Party/CompanyID",
+        "message": "El valor no cumple el formato del tipo A1 (Identificación tributaria de empresa)",
+        "source": "perfil-alfa-v2.1.md §4.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D1-e",
+      "type": "D1",
+      "format": "xml",
+      "description": "Pasaporte codificado como documento de extranjero (A3); formatos idénticos",
+      "affectedDocs": 35,
+      "killedSchema": false,
+      "killedRuntime": false,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 0.0,
+      "classificationAccuracy": null,
+      "fixturesFailed": 3,
+      "exampleFinding": {
+        "ruleId": "CI-FX-01",
+        "type": "E0",
+        "location": "posición 10",
+        "message": "Difiere del fixture validado. Esperado: Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName=A4 | Obtenido: Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName=A3",
+        "source": "perfil-alfa-v2.1.md fixture validado",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D1-f",
+      "type": "D1",
+      "format": "xml",
+      "description": "IVA general (IVA19) codificado como IVA reducido (T02)",
+      "affectedDocs": 272,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 9,
+      "exampleFinding": {
+        "ruleId": "R-D1-03",
+        "type": "D1",
+        "location": "InvoiceLine[2]/TaxCategory",
+        "message": "La tarifa 19.00 no corresponde al código T02 (5.00)",
+        "source": "perfil-alfa-v2.1.md §5.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D1-g",
+      "type": "D1",
+      "format": "seg",
+      "description": "Beta: nota débito con código inexistente (93)",
+      "affectedDocs": 30,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 2,
+      "exampleFinding": {
+        "ruleId": "R-D1-01",
+        "type": "D1",
+        "location": "ENC/tipo",
+        "message": "Código de tipo inexistente: 93",
+        "source": "perfil-alfa-v2.1.md §3.2",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D2-a",
+      "type": "D2",
+      "format": "xml",
+      "description": "Cantidad y precio unitario intercambiados (producto idéntico)",
+      "affectedDocs": 300,
+      "killedSchema": false,
+      "killedRuntime": false,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 0.0,
+      "classificationAccuracy": null,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "CI-FX-01",
+        "type": "E0",
+        "location": "posición 17",
+        "message": "Difiere del fixture validado. Esperado: Invoice/InvoiceLine/InvoicedQuantity=6 | Obtenido: Invoice/InvoiceLine/InvoicedQuantity=4979.54",
+        "source": "perfil-alfa-v2.1.md fixture validado",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D2-b",
+      "type": "D2",
+      "format": "xml",
+      "description": "Precio unitario y valor de línea intercambiados",
+      "affectedDocs": 295,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 10,
+      "exampleFinding": {
+        "ruleId": "R-D2-01",
+        "type": "D2",
+        "location": "InvoiceLine[1]",
+        "message": "Cantidad × precio (326836.00) ≠ valor de línea (3268.36)",
+        "source": "perfil-alfa-v2.1.md §5.3",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D2-c",
+      "type": "D2",
+      "format": "xml",
+      "description": "Total a pagar tomado del subtotal",
+      "affectedDocs": 290,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 11,
+      "exampleFinding": {
+        "ruleId": "R-D2-02",
+        "type": "D2",
+        "location": "LegalMonetaryTotal/PayableAmount",
+        "message": "Total a pagar (32683.60) ≠ base + impuesto (34317.78)",
+        "source": "perfil-alfa-v2.1.md §5.4",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D2-d",
+      "type": "D2",
+      "format": "xml",
+      "description": "Impuesto total tomado del subtotal",
+      "affectedDocs": 300,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "R-D2-02",
+        "type": "D2",
+        "location": "LegalMonetaryTotal/LineExtensionAmount",
+        "message": "La base (1634.18) no es la suma de las líneas (32683.60)",
+        "source": "perfil-alfa-v2.1.md §5.4",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D3-a",
+      "type": "D3",
+      "format": "xml",
+      "description": "Identificador de perfil en minúsculas",
+      "affectedDocs": 300,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "R-D3-01",
+        "type": "D3",
+        "location": "Invoice/ProfileID",
+        "message": "Se esperaba exactamente 'PerfilAlfa-2.1' y llegó 'perfilalfa-2.1'",
+        "source": "perfil-alfa-v2.1.md §2.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D3-b",
+      "type": "D3",
+      "format": "xml",
+      "description": "Nombre del esquema tributario con espacio final",
+      "affectedDocs": 272,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 9,
+      "exampleFinding": {
+        "ruleId": "R-D3-02",
+        "type": "D3",
+        "location": "InvoiceLine[2]/TaxCategory/TaxSchemeName",
+        "message": "Se esperaba exactamente 'IVA' y llegó 'IVA '",
+        "source": "perfil-alfa-v2.1.md §5.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D3-c",
+      "type": "D3",
+      "format": "xml",
+      "description": "Nombre del esquema tributario en mayúscula inicial",
+      "affectedDocs": 290,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 11,
+      "exampleFinding": {
+        "ruleId": "R-D3-02",
+        "type": "D3",
+        "location": "InvoiceLine[1]/TaxCategory/TaxSchemeName",
+        "message": "Se esperaba exactamente 'IVA' y llegó 'Iva'",
+        "source": "perfil-alfa-v2.1.md §5.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D3-d",
+      "type": "D3",
+      "format": "xml",
+      "description": "Moneda en minúsculas",
+      "affectedDocs": 300,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "R-D3-03",
+        "type": "D3",
+        "location": "Invoice/DocumentCurrencyCode",
+        "message": "Moneda fuera de la lista cerrada o mal escrita: 'cop'",
+        "source": "perfil-alfa-v2.1.md §2.3",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D4-a",
+      "type": "D4",
+      "format": "xml",
+      "description": "Correo del adquirente sin mapear (el canónico antiguo no lo traía)",
+      "affectedDocs": 300,
+      "killedSchema": true,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 1.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "XSD-01",
+        "type": "D4",
+        "location": "línea 18",
+        "message": "cvc-complex-type.2.4.b: The content of element 'Party' is not complete. One of '{\"urn:tfg:alfa:invoice:2\":ElectronicMail}' is expected.",
+        "source": "perfil-alfa-v2.1.md §6 (XSD)",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D4-b",
+      "type": "D4",
+      "format": "xml",
+      "description": "Correo del adquirente mapeado a un literal vacío",
+      "affectedDocs": 300,
+      "killedSchema": false,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 0.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "R-D4-01",
+        "type": "D4",
+        "location": "Invoice/AccountingCustomerParty/Party/ElectronicMail",
+        "message": "Campo obligatorio ausente o vacío",
+        "source": "perfil-alfa-v2.1.md §4.3",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D4-c",
+      "type": "D4",
+      "format": "xml",
+      "description": "Fecha de emisión sin mapear",
+      "affectedDocs": 300,
+      "killedSchema": true,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 1.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "XSD-01",
+        "type": "D4",
+        "location": "línea 5",
+        "message": "cvc-complex-type.2.4.a: Invalid content was found starting with element '{\"urn:tfg:alfa:invoice:2\":InvoiceTypeCode}'. One of '{\"urn:tfg:alfa:invoice:2\":IssueDate}' is expected.",
+        "source": "perfil-alfa-v2.1.md §6 (XSD)",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D5-a",
+      "type": "D5",
+      "format": "xml",
+      "description": "Se envía LegacyOrderReference, retirado en v2",
+      "affectedDocs": 300,
+      "killedSchema": true,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 1.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "XSD-01",
+        "type": "D4",
+        "location": "línea 5",
+        "message": "cvc-complex-type.2.4.a: Invalid content was found starting with element '{\"urn:tfg:alfa:invoice:2\":LegacyOrderReference}'. One of '{\"urn:tfg:alfa:invoice:2\":IssueDate}' is expected.",
+        "source": "perfil-alfa-v2.1.md §6 (XSD)",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D5-b",
+      "type": "D5",
+      "format": "xml",
+      "description": "Se envía TaxExchangeRateLegacy, retirado en v2",
+      "affectedDocs": 300,
+      "killedSchema": true,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 1.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 12,
+      "exampleFinding": {
+        "ruleId": "XSD-01",
+        "type": "D4",
+        "location": "línea 8",
+        "message": "cvc-complex-type.2.4.a: Invalid content was found starting with element '{\"urn:tfg:alfa:invoice:2\":TaxExchangeRateLegacy}'. One of '{\"urn:tfg:alfa:invoice:2\":BillingReference, \"urn:tfg:alfa:invoice:2\":AccountingSupplierParty}' is expected.",
+        "source": "perfil-alfa-v2.1.md §6 (XSD)",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D6-a",
+      "type": "D6",
+      "format": "seg",
+      "description": "Descripción sin sanear el separador reservado",
+      "affectedDocs": 42,
+      "killedSchema": true,
+      "killedRuntime": true,
+      "killedCI": true,
+      "docDetectionSchema": 1.0,
+      "docDetectionRuntime": 1.0,
+      "classificationAccuracy": 1.0,
+      "fixturesFailed": 3,
+      "exampleFinding": {
+        "ruleId": "R-D6-01",
+        "type": "D6",
+        "location": "segmento 3 (DET)",
+        "message": "Se esperaban 7 campos y hay 8: probable separador reservado sin sanear",
+        "source": "perfil-alfa-v2.1.md §B.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    },
+    {
+      "id": "D6-b",
+      "type": "D6",
+      "format": "seg",
+      "description": "Nombre del adquirente sin sanear el separador reservado",
+      "affectedDocs": 0,
+      "killedSchema": false,
+      "killedRuntime": false,
+      "killedCI": true,
+      "docDetectionSchema": null,
+      "docDetectionRuntime": null,
+      "classificationAccuracy": null,
+      "fixturesFailed": 1,
+      "exampleFinding": {
+        "ruleId": "R-D6-01",
+        "type": "D6",
+        "location": "segmento 1 (ENC)",
+        "message": "Se esperaban 8 campos y hay 9: probable separador reservado sin sanear",
+        "source": "perfil-alfa-v2.1.md §B.1",
+        "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+        "ruleVersion": "2.1.0"
+      }
+    }
+  ],
+  "elapsedSeconds": 17.52
+}

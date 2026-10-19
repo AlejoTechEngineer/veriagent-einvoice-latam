@@ -1,0 +1,18 @@
+# fuente=perfil-alfa-v2.1.md
+catalogo,version,codigo,etiqueta,extra,seccion
+TipoDocumento,2,01,Factura de venta,,§3.2
+TipoDocumento,2,91,Nota crédito,,§3.2
+TipoDocumento,2,92,Nota débito,,§3.2
+TipoIdentificacion,2,A1,Identificación tributaria de empresa,^\d{9}-\d$,§4.1
+TipoIdentificacion,2,A2,Documento nacional de persona,^\d{6;10}$,§4.1
+TipoIdentificacion,2,A3,Documento de extranjero,^[A-Z0-9]{6;12}$,§4.1
+TipoIdentificacion,2,A4,Pasaporte,^[A-Z0-9]{6;12}$,§4.1
+Tributo,2,T01,IVA general,19.00;IVA,§5.1
+Tributo,2,T02,IVA reducido,5.00;IVA,§5.1
+Tributo,2,T03,Exento,0.00;EXENTO,§5.1
+Moneda,2,COP,Peso,,§2.3
+Moneda,2,USD,Dólar,,§2.3
+Moneda,2,PEN,Sol,,§2.3
+Moneda,2,MXN,Peso mexicano,,§2.3
+Retirado,2,Invoice/LegacyOrderReference,Retirado en v2,,§7
+Retirado,2,Invoice/TaxExchangeRateLegacy,Retirado en v2,,§7

@@ -1,0 +1,20 @@
+# Levanta Jenkins listo para usar: docker compose -f ci/jenkins/docker-compose.yml up -d --build
+# Luego abre http://localhost:8080 y entra con admin / $JENKINS_ADMIN_PASSWORD.
+services:
+  jenkins:
+    build: .
+    ports: ["8080:8080"]
+    environment:
+      JENKINS_ADMIN_PASSWORD: ${JENKINS_ADMIN_PASSWORD:?define JENKINS_ADMIN_PASSWORD}
+      JENKINS_REVIEWER_PASSWORD: ${JENKINS_REVIEWER_PASSWORD:?define JENKINS_REVIEWER_PASSWORD}
+      REGISTRY_URL: ${REGISTRY_URL:-localhost:5000}
+      REPO_URL: file:///repo
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - ../..:/repo:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+  registry:
+    image: registry:2
+    ports: ["5000:5000"]
+volumes:
+  jenkins_home:

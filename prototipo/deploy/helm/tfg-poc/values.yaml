@@ -1,0 +1,13 @@
+image:
+  registry: localhost:5000
+  tag: latest
+  pullPolicy: IfNotPresent
+kit:
+  replicas: 2
+  resources: { requests: { cpu: 250m, memory: 384Mi }, limits: { cpu: "1", memory: 768Mi } }
+  autoscaling: { enabled: true, minReplicas: 2, maxReplicas: 6, targetCPU: 70 }
+agentic:
+  replicas: 1
+  resources: { requests: { cpu: 250m, memory: 512Mi }, limits: { cpu: "1", memory: 1Gi } }
+  llmSecretName: ""      # Secret con ANTHROPIC_API_KEY; vacío = agente heurístico
+  storage: 1Gi

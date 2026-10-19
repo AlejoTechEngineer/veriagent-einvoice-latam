@@ -1,0 +1,654 @@
+{
+ "deterministico": {
+  "semanas": 40.2,
+  "meses": 9.3,
+  "costo_cop": 1211136032,
+  "mano_obra_cop": 989838337,
+  "fijos_cop": 219803695,
+  "ruta_critica": [
+   "1.1",
+   "4.1",
+   "4.2",
+   "4.3",
+   "4.4",
+   "3.3",
+   "5.5",
+   "6.1",
+   "7.2",
+   "6.2",
+   "7.3"
+  ]
+ },
+ "monte_carlo": {
+  "iteraciones": 10000,
+  "semanas": {
+   "P10": 37.3,
+   "P50": 40.2,
+   "P80": 42.2,
+   "P90": 43.3
+  },
+  "costo_cop": {
+   "P10": 1131321185,
+   "P50": 1210812649,
+   "P80": 1266468459,
+   "P90": 1297476796
+  },
+  "prob_12_meses": 1.0
+ },
+ "reserva_contingencia": {
+  "semanas": 2.0,
+  "cop": 55655809
+ },
+ "criticidad": {
+  "1.1": 1.0,
+  "1.3": 0.0,
+  "2.1": 0.138,
+  "2.2": 0.138,
+  "2.3": 0.0,
+  "4.1": 0.862,
+  "4.2": 0.862,
+  "4.3": 0.862,
+  "4.4": 0.862,
+  "3.1": 0.107,
+  "3.2": 0.032,
+  "3.3": 0.893,
+  "3.4": 0.107,
+  "3.5": 0.0,
+  "6.1": 0.997,
+  "5.5": 0.893,
+  "5.1": 0.0,
+  "5.2": 0.003,
+  "5.3": 0.0,
+  "5.4": 0.0,
+  "7.1": 0.0,
+  "7.2": 0.997,
+  "6.2": 1.0,
+  "7.3": 1.0
+ },
+ "llm": {
+  "mapeo": {
+   "usd": 18.0,
+   "cop": 72000
+  },
+  "legado": {
+   "usd": 37.5,
+   "cop": 150000
+  },
+  "triaje": {
+   "usd": 198.0,
+   "cop": 792000
+  },
+  "arnes": {
+   "usd": 120.0,
+   "cop": 480000
+  },
+  "total": {
+   "usd": 373.5,
+   "cop": 1494000
+  }
+ },
+ "carga_pico_fte": {
+  "GP": 1.0,
+  "AS": 1.0,
+  "LT": 1.0,
+  "DEV": 3.0,
+  "IA": 1.0,
+  "OPS": 1.0,
+  "QA": 1.0,
+  "TRIB": 0.75
+ },
+ "sobreasignacion": {},
+ "punto_equilibrio": {
+  "e_m_pw": 27.7,
+  "e_a_pw": 20.8,
+  "ahorro_por_pais_pw": 6.9,
+  "E0_agentes_pw": 20.2,
+  "n_agentes": 2.91,
+  "E0_con_kit_pw": 37.2,
+  "n_con_kit": 5.36
+ },
+ "dependencias_recurso": [
+  {
+   "de": "2.1",
+   "a": "1.3"
+  },
+  {
+   "de": "3.3",
+   "a": "5.5"
+  },
+  {
+   "de": "5.5",
+   "a": "6.1"
+  },
+  {
+   "de": "6.1",
+   "a": "7.2"
+  },
+  {
+   "de": "5.2",
+   "a": "5.3"
+  },
+  {
+   "de": "1.3",
+   "a": "2.3"
+  }
+ ],
+ "tareas": [
+  {
+   "id": "1.1",
+   "nombre": "Planificación y línea base",
+   "fase": "F1",
+   "o": 2,
+   "m": 3,
+   "p": 4,
+   "te": 3.0,
+   "inicio": 0.0,
+   "fin": 3.0,
+   "holgura": 0.0,
+   "esfuerzo_pw": 3.0,
+   "roles": {
+    "GP": 0.5,
+    "AS": 0.5
+   },
+   "deps": [],
+   "deps_recurso": []
+  },
+  {
+   "id": "1.3",
+   "nombre": "Accesos, credenciales y llaves",
+   "fase": "F1",
+   "o": 4,
+   "m": 6,
+   "p": 12,
+   "te": 6.67,
+   "inicio": 7.17,
+   "fin": 13.83,
+   "holgura": 6.83,
+   "esfuerzo_pw": 2.0,
+   "roles": {
+    "OPS": 0.3
+   },
+   "deps": [
+    "1.1"
+   ],
+   "deps_recurso": [
+    "2.1"
+   ]
+  },
+  {
+   "id": "2.1",
+   "nombre": "Kubernetes, Helm y CI/CD",
+   "fase": "F1",
+   "o": 3,
+   "m": 4,
+   "p": 6,
+   "te": 4.17,
+   "inicio": 3.0,
+   "fin": 7.17,
+   "holgura": 2.0,
+   "esfuerzo_pw": 4.2,
+   "roles": {
+    "OPS": 1.0
+   },
+   "deps": [
+    "1.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "2.2",
+   "nombre": "Kafka y Schema Registry",
+   "fase": "F1",
+   "o": 2,
+   "m": 3,
+   "p": 5,
+   "te": 3.17,
+   "inicio": 7.17,
+   "fin": 10.33,
+   "holgura": 2.0,
+   "esfuerzo_pw": 4.8,
+   "roles": {
+    "OPS": 0.5,
+    "DEV": 1.0
+   },
+   "deps": [
+    "2.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "2.3",
+   "nombre": "Observabilidad, secretos e identidad",
+   "fase": "F1",
+   "o": 2,
+   "m": 3,
+   "p": 4,
+   "te": 3.0,
+   "inicio": 13.83,
+   "fin": 16.83,
+   "holgura": 23.33,
+   "esfuerzo_pw": 1.5,
+   "roles": {
+    "OPS": 0.5
+   },
+   "deps": [
+    "2.1"
+   ],
+   "deps_recurso": [
+    "1.3"
+   ]
+  },
+  {
+   "id": "4.1",
+   "nombre": "Validación XSD/UBL por país",
+   "fase": "F2",
+   "o": 1,
+   "m": 2,
+   "p": 3,
+   "te": 2.0,
+   "inicio": 3.0,
+   "fin": 5.0,
+   "holgura": 0.0,
+   "esfuerzo_pw": 2.0,
+   "roles": {
+    "DEV": 1.0
+   },
+   "deps": [
+    "1.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "4.2",
+   "nombre": "Catálogos oficiales versionados",
+   "fase": "F2",
+   "o": 2,
+   "m": 3,
+   "p": 4,
+   "te": 3.0,
+   "inicio": 5.0,
+   "fin": 8.0,
+   "holgura": 0.0,
+   "esfuerzo_pw": 2.2,
+   "roles": {
+    "DEV": 0.5,
+    "TRIB": 0.25
+   },
+   "deps": [
+    "4.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "4.3",
+   "nombre": "Reglas D1 a D6 con procedencia",
+   "fase": "F2",
+   "o": 3,
+   "m": 4,
+   "p": 7,
+   "te": 4.33,
+   "inicio": 8.0,
+   "fin": 12.33,
+   "holgura": 0.0,
+   "esfuerzo_pw": 7.6,
+   "roles": {
+    "DEV": 1.0,
+    "QA": 0.5,
+    "TRIB": 0.25
+   },
+   "deps": [
+    "4.2"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "4.4",
+   "nombre": "Gate del kit en CI",
+   "fase": "F2",
+   "o": 1,
+   "m": 2,
+   "p": 3,
+   "te": 2.0,
+   "inicio": 12.33,
+   "fin": 14.33,
+   "holgura": 0.0,
+   "esfuerzo_pw": 2.0,
+   "roles": {
+    "OPS": 0.5,
+    "QA": 0.5
+   },
+   "deps": [
+    "4.3",
+    "2.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "3.1",
+   "nombre": "Ingesta y fachada síncrona",
+   "fase": "F3",
+   "o": 3,
+   "m": 4,
+   "p": 6,
+   "te": 4.17,
+   "inicio": 10.33,
+   "fin": 14.5,
+   "holgura": 2.0,
+   "esfuerzo_pw": 5.4,
+   "roles": {
+    "DEV": 1.0,
+    "QA": 0.3
+   },
+   "deps": [
+    "2.2"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "3.2",
+   "nombre": "Enrutador y tabla de enrutamiento",
+   "fase": "F3",
+   "o": 1,
+   "m": 2,
+   "p": 3,
+   "te": 2.0,
+   "inicio": 10.33,
+   "fin": 12.33,
+   "holgura": 2.0,
+   "esfuerzo_pw": 2.0,
+   "roles": {
+    "DEV": 1.0
+   },
+   "deps": [
+    "2.2"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "3.3",
+   "nombre": "Arquetipo de adaptador",
+   "fase": "F3",
+   "o": 2,
+   "m": 3,
+   "p": 5,
+   "te": 3.17,
+   "inicio": 14.33,
+   "fin": 17.5,
+   "holgura": 0.0,
+   "esfuerzo_pw": 3.2,
+   "roles": {
+    "DEV": 1.0
+   },
+   "deps": [
+    "3.2",
+    "4.4"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "3.4",
+   "nombre": "Respuestas y archivo legal",
+   "fase": "F3",
+   "o": 3,
+   "m": 4,
+   "p": 6,
+   "te": 4.17,
+   "inicio": 14.5,
+   "fin": 18.67,
+   "holgura": 2.0,
+   "esfuerzo_pw": 5.4,
+   "roles": {
+    "DEV": 1.0,
+    "QA": 0.3
+   },
+   "deps": [
+    "3.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "3.5",
+   "nombre": "Registro, DLQ y reintentos",
+   "fase": "F3",
+   "o": 2,
+   "m": 3,
+   "p": 4,
+   "te": 3.0,
+   "inicio": 14.5,
+   "fin": 17.5,
+   "holgura": 19.5,
+   "esfuerzo_pw": 1.5,
+   "roles": {
+    "DEV": 0.5
+   },
+   "deps": [
+    "3.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "6.1",
+   "nombre": "Primer país sin agentes",
+   "fase": "F3",
+   "o": 6,
+   "m": 8,
+   "p": 14,
+   "te": 8.67,
+   "inicio": 20.67,
+   "fin": 29.33,
+   "holgura": 0.0,
+   "esfuerzo_pw": 27.7,
+   "roles": {
+    "DEV": 2.0,
+    "QA": 0.7,
+    "TRIB": 0.5
+   },
+   "deps": [
+    "3.3",
+    "3.4",
+    "1.3"
+   ],
+   "deps_recurso": [
+    "5.5"
+   ]
+  },
+  {
+   "id": "5.5",
+   "nombre": "Arnés de evaluación y conjunto dorado",
+   "fase": "F4",
+   "o": 2,
+   "m": 3,
+   "p": 5,
+   "te": 3.17,
+   "inicio": 17.5,
+   "fin": 20.67,
+   "holgura": 0.0,
+   "esfuerzo_pw": 3.2,
+   "roles": {
+    "IA": 0.5,
+    "QA": 0.5
+   },
+   "deps": [
+    "4.3"
+   ],
+   "deps_recurso": [
+    "3.3"
+   ]
+  },
+  {
+   "id": "5.1",
+   "nombre": "Servidores MCP",
+   "fase": "F4",
+   "o": 2,
+   "m": 3,
+   "p": 5,
+   "te": 3.17,
+   "inicio": 14.33,
+   "fin": 17.5,
+   "holgura": 7.5,
+   "esfuerzo_pw": 3.2,
+   "roles": {
+    "IA": 1.0
+   },
+   "deps": [
+    "4.4"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "5.2",
+   "nombre": "Agente de mapeo",
+   "fase": "F4",
+   "o": 4,
+   "m": 6,
+   "p": 10,
+   "te": 6.33,
+   "inicio": 20.67,
+   "fin": 27.0,
+   "holgura": 4.33,
+   "esfuerzo_pw": 6.3,
+   "roles": {
+    "IA": 1.0
+   },
+   "deps": [
+    "5.1",
+    "5.5"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "5.3",
+   "nombre": "Agente de extracción de legado",
+   "fase": "F4",
+   "o": 3,
+   "m": 4,
+   "p": 7,
+   "te": 4.33,
+   "inicio": 27.0,
+   "fin": 31.33,
+   "holgura": 8.83,
+   "esfuerzo_pw": 4.3,
+   "roles": {
+    "IA": 0.5,
+    "DEV": 0.5
+   },
+   "deps": [
+    "5.1"
+   ],
+   "deps_recurso": [
+    "5.2"
+   ]
+  },
+  {
+   "id": "5.4",
+   "nombre": "Agente de triaje de DLQ",
+   "fase": "F4",
+   "o": 2,
+   "m": 3,
+   "p": 5,
+   "te": 3.17,
+   "inicio": 17.5,
+   "fin": 20.67,
+   "holgura": 19.5,
+   "esfuerzo_pw": 1.6,
+   "roles": {
+    "IA": 0.5
+   },
+   "deps": [
+    "5.1",
+    "3.5"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "7.1",
+   "nombre": "Línea base del proceso manual",
+   "fase": "F6",
+   "o": 1,
+   "m": 2,
+   "p": 3,
+   "te": 2.0,
+   "inicio": 29.33,
+   "fin": 31.33,
+   "holgura": 6.5,
+   "esfuerzo_pw": 1.0,
+   "roles": {
+    "QA": 0.5
+   },
+   "deps": [
+    "6.1"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "7.2",
+   "nombre": "Banco de defectos por inyección",
+   "fase": "F6",
+   "o": 1,
+   "m": 2,
+   "p": 3,
+   "te": 2.0,
+   "inicio": 29.33,
+   "fin": 31.33,
+   "holgura": 0.0,
+   "esfuerzo_pw": 1.6,
+   "roles": {
+    "QA": 0.5,
+    "IA": 0.3
+   },
+   "deps": [
+    "5.5"
+   ],
+   "deps_recurso": [
+    "6.1"
+   ]
+  },
+  {
+   "id": "6.2",
+   "nombre": "Segundo país asistido por agentes",
+   "fase": "F5",
+   "o": 4,
+   "m": 6,
+   "p": 11,
+   "te": 6.5,
+   "inicio": 31.33,
+   "fin": 37.83,
+   "holgura": 0.0,
+   "esfuerzo_pw": 20.8,
+   "roles": {
+    "DEV": 1.5,
+    "IA": 0.5,
+    "QA": 0.7,
+    "TRIB": 0.5
+   },
+   "deps": [
+    "6.1",
+    "5.2",
+    "7.2"
+   ],
+   "deps_recurso": []
+  },
+  {
+   "id": "7.3",
+   "nombre": "Informe de resultados y cierre",
+   "fase": "F6",
+   "o": 2,
+   "m": 2,
+   "p": 4,
+   "te": 2.33,
+   "inicio": 37.83,
+   "fin": 40.17,
+   "holgura": 0.0,
+   "esfuerzo_pw": 2.3,
+   "roles": {
+    "GP": 0.5,
+    "AS": 0.5
+   },
+   "deps": [
+    "6.2",
+    "7.1"
+   ],
+   "deps_recurso": []
+  }
+ ]
+}

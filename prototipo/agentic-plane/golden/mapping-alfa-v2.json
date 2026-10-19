@@ -1,0 +1,143 @@
+{
+  "profile": "alfa-2.1",
+  "version": "1.0.0",
+  "approvedBy": "revisión humana (línea base manual)",
+  "entries": [
+    {
+      "target": "Invoice/ProfileID",
+      "transform": "literal",
+      "value": "PerfilAlfa-2.1"
+    },
+    {
+      "target": "Invoice/ID",
+      "source": "documentNumber"
+    },
+    {
+      "target": "Invoice/IssueDate",
+      "source": "issueDate"
+    },
+    {
+      "target": "Invoice/InvoiceTypeCode",
+      "source": "documentType",
+      "transform": "map",
+      "table": {
+        "INVOICE": "01",
+        "CREDIT_NOTE": "91",
+        "DEBIT_NOTE": "92"
+      }
+    },
+    {
+      "target": "Invoice/DocumentCurrencyCode",
+      "source": "currency"
+    },
+    {
+      "target": "Invoice/BillingReference",
+      "source": "originalDocumentNumber"
+    },
+    {
+      "target": "Invoice/AccountingSupplierParty/Party/PartyName",
+      "source": "supplier.name"
+    },
+    {
+      "target": "Invoice/AccountingSupplierParty/Party/CompanyID",
+      "source": "supplier.taxId"
+    },
+    {
+      "target": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName",
+      "source": "supplier.idType",
+      "transform": "map",
+      "table": {
+        "NIT": "A1",
+        "CC": "A2",
+        "CE": "A3",
+        "PAS": "A4"
+      }
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/PartyName",
+      "source": "customer.name"
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/CompanyID",
+      "source": "customer.taxId"
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+      "source": "customer.idType",
+      "transform": "map",
+      "table": {
+        "NIT": "A1",
+        "CC": "A2",
+        "CE": "A3",
+        "PAS": "A4"
+      }
+    },
+    {
+      "target": "Invoice/AccountingCustomerParty/Party/ElectronicMail",
+      "source": "customer.email"
+    },
+    {
+      "target": "Invoice/TaxTotal/TaxAmount",
+      "source": "totals.taxAmount",
+      "transform": "decimal2"
+    },
+    {
+      "target": "Invoice/LegalMonetaryTotal/LineExtensionAmount",
+      "source": "totals.baseAmount",
+      "transform": "decimal2"
+    },
+    {
+      "target": "Invoice/LegalMonetaryTotal/PayableAmount",
+      "source": "totals.payableAmount",
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/ID",
+      "source": "lines[].number"
+    },
+    {
+      "target": "InvoiceLine/InvoicedQuantity",
+      "source": "lines[].quantity",
+      "transform": "decimal"
+    },
+    {
+      "target": "InvoiceLine/LineExtensionAmount",
+      "source": "lines[].amount",
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/ItemDescription",
+      "source": "lines[].description"
+    },
+    {
+      "target": "InvoiceLine/PriceAmount",
+      "source": "lines[].unitPrice",
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/TaxCategory/ID",
+      "source": "lines[].taxCode",
+      "transform": "map",
+      "table": {
+        "IVA19": "T01",
+        "IVA5": "T02",
+        "EXENTO": "T03"
+      }
+    },
+    {
+      "target": "InvoiceLine/TaxCategory/Percent",
+      "source": "lines[].taxRate",
+      "transform": "decimal2"
+    },
+    {
+      "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+      "source": "lines[].taxCode",
+      "transform": "map",
+      "table": {
+        "IVA19": "IVA",
+        "IVA5": "IVA",
+        "EXENTO": "EXENTO"
+      }
+    }
+  ]
+}

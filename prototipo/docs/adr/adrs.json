@@ -1,0 +1,220 @@
+[
+ {
+  "n": "01",
+  "t": "Topics de Kafka por país y proveedor",
+  "ctx": "Cada país tiene volúmenes, ventanas de cierre y proveedores distintos. Un fallo del proveedor de un país no puede detener la emisión de los demás.",
+  "opts": [
+   [
+    "Cola única con filtrado por cabecera",
+    "Simple de operar; un consumidor lento o un mensaje envenenado afecta a todos los países."
+   ],
+   [
+    "Topic por país y proveedor (elegida)",
+    "Aislamiento de fallos, escalado y retención por país; más topics que gobernar."
+   ],
+   [
+    "Colas por tipo de documento",
+    "Aísla por tipo, no por país; no resuelve el aislamiento de proveedores."
+   ]
+  ],
+  "dec": "Se usan topics con la convención invoice.<país>.<proveedor>.<evento>, con particionado por número de documento para conservar el orden por comprobante.",
+  "cons": "Positivas: un incidente queda contenido en su país; la retención y las réplicas se ajustan por volumen. Negativas: más topics y ACL que administrar, mitigado con plantillas de infraestructura como código.",
+  "qa": "Fiabilidad: un proveedor caído durante 2 horas no degrada la emisión de los otros países (0 mensajes perdidos, latencia del resto sin cambio).",
+  "poc": "Fuera del alcance de la PoC (no incluye Kafka); se valida en la fase F1 del proyecto planificado."
+ },
+ {
+  "n": "02",
+  "t": "Adaptador por proveedor generado con arquetipo",
+  "ctx": "Los formatos de los proveedores son heterogéneos (JSON, texto por segmentos, XML/UBL). Un transformador genérico configurable tiende a convertirse en un motor de reglas opaco.",
+  "opts": [
+   [
+    "Transformador genérico configurable",
+    "Un solo componente; la configuración crece hasta ser un lenguaje propio difícil de probar."
+   ],
+   [
+    "Adaptador por proveedor desde arquetipo (elegida)",
+    "Código explícito y probable por proveedor; el arquetipo fija estructura, pruebas y verificación."
+   ],
+   [
+    "iPaaS con mapeo visual",
+    "Rápido al inicio; dependencia del fabricante y mapeo manual en cada país."
+   ]
+  ],
+  "dec": "Cada proveedor tiene su adaptador generado con un arquetipo Maven que incluye el kit de verificación embebido y las pruebas de contrato.",
+  "cons": "Positivas: cada adaptador es pequeño, probable y desplegable por separado. Negativas: duplicación controlada entre adaptadores, que se reduce moviendo lo común al kit y a librerías compartidas.",
+  "qa": "Mantenibilidad: incorporar un proveedor nuevo parte de un esqueleto que ya compila, pasa el kit y tiene su pipeline.",
+  "poc": "El transformador de la PoC separa el mapeo (datos) del motor de renderizado: el arquetipo empaqueta ambos."
+ },
+ {
+  "n": "03",
+  "t": "Python para el plano agéntico",
+  "ctx": "El plano de integración es Java. Los agentes necesitan el ecosistema de LLM, MCP y orquestación de agentes, donde Python es la referencia.",
+  "opts": [
+   [
+    "Spring AI en Java",
+    "Un solo lenguaje; ecosistema de agentes y MCP menos maduro."
+   ],
+   [
+    "Python con LangGraph y SDK de MCP (elegida)",
+    "Ecosistema más maduro y documentado; dos lenguajes en el equipo."
+   ],
+   [
+    "TypeScript",
+    "Buen SDK de MCP; menor afinidad con el equipo de datos e IA."
+   ]
+  ],
+  "dec": "El plano agéntico se implementa en Python 3.12. La frontera con Java es el kit de verificación, expuesto por HTTP y por CLI.",
+  "cons": "Positivas: acceso directo al ecosistema de IA. Negativas: dos cadenas de herramientas; el contrato del kit debe ser estable y versionado.",
+  "qa": "Mantenibilidad: el plano agéntico puede cambiar de proveedor de LLM sin tocar el plano de integración.",
+  "poc": "La PoC implementa el agente, el servidor MCP y la API en Python, e invoca el kit Java por CLI y HTTP."
+ },
+ {
+  "n": "04",
+  "t": "Los agentes solo proponen mediante pull request",
+  "ctx": "Un LLM puede producir salidas plausibles e incorrectas. En facturación, una salida incorrecta es un documento rechazado o una contingencia fiscal.",
+  "opts": [
+   [
+    "Agentes con permiso de despliegue",
+    "Máxima velocidad; responsabilidad difusa y riesgo inaceptable en un dominio regulado."
+   ],
+   [
+    "Agentes que proponen por pull request (elegida)",
+    "Toda salida pasa por revisión y por el pipeline; añade latencia humana."
+   ],
+   [
+    "Sin agentes",
+    "Elimina el riesgo de IA; no reduce el costo de incorporar países."
+   ]
+  ],
+  "dec": "Los agentes solo crean ramas y pull requests. No tienen permiso de merge ni acceso a producción. Cada propuesta queda registrada en agent_proposal con su verificación, revisor y decisión.",
+  "cons": "Positivas: responsabilidad clara y trazabilidad completa. Negativas: la revisión humana es un cuello de botella, mitigado porque el kit filtra antes lo que no puede aprobarse.",
+  "qa": "Seguridad (responsabilidad): cualquier cambio en producción se puede rastrear hasta su propuesta, su verificación y la persona que la aprobó.",
+  "poc": "La API de revisión impide aprobar una propuesta bloqueada por el kit (HTTP 409), comprobado en las pruebas automatizadas."
+ },
+ {
+  "n": "05",
+  "t": "Verificación determinista como gate en ejecución y en CI",
+  "ctx": "La revisión humana por sí sola no detecta de forma fiable códigos válidos pero equivocados ni intercambios de campos. Se necesita un verificador que no dependa del juicio del modelo.",
+  "opts": [
+   [
+    "Revisión humana como único control",
+    "Sin inversión inicial; detección irregular y no medible."
+   ],
+   [
+    "Solo validación XSD",
+    "Barata; en la PoC detecta el 23 % de los mutantes."
+   ],
+   [
+    "Kit en ejecución + fixtures en CI (elegida)",
+    "En la PoC detecta el 86 % en ejecución y el 100 % con CI, sin falsos positivos."
+   ]
+  ],
+  "dec": "El kit se embebe en cada adaptador (verificación en ejecución) y se ejecuta como gate obligatorio en el pipeline con fixtures validados por personas.",
+  "cons": "Positivas: control objetivo, medible y trazable a la norma. Negativas: hay que mantener reglas y fixtures por versión normativa; se asume como parte del costo de cada país.",
+  "qa": "Adecuación funcional: el 100 % de los comprobantes pasa XSD y reglas antes de salir; ninguna propuesta que falle el kit puede aprobarse.",
+  "poc": "Banco de 22 mutantes: esquema 23 %, kit en ejecución 86 %, kit + CI 100 %; 0 falsos positivos en 1.224 verificaciones correctas."
+ },
+ {
+  "n": "06",
+  "t": "Respuesta con fuente primaria y respaldo",
+  "ctx": "La respuesta del proveedor puede perderse o llegar incompleta. La constancia oficial de la autoridad también es recuperable.",
+  "opts": [
+   [
+    "Solo la respuesta del proveedor",
+    "Simple; un fallo del proveedor deja comprobantes sin estado."
+   ],
+   [
+    "Fuente primaria y respaldo (elegida)",
+    "Más resiliente; requiere correlación y reconciliación."
+   ],
+   [
+    "Consulta directa a la autoridad",
+    "No siempre disponible y depende de cada país."
+   ]
+  ],
+  "dec": "La respuesta del proveedor es la fuente primaria; la constancia oficial en UBL 2.1 es el respaldo. Ambas se correlacionan por correlationId y número de documento.",
+  "cons": "Positivas: menos comprobantes en estado incierto. Negativas: lógica de reconciliación y pruebas adicionales.",
+  "qa": "Fiabilidad: ningún comprobante autorizado queda sin estado final tras la reconciliación diaria.",
+  "poc": "Fuera del alcance de la PoC; se valida en la fase F3."
+ },
+ {
+  "n": "07",
+  "t": "Archivo legal asíncrono de mejor esfuerzo con reintento",
+  "ctx": "El archivo legal (PDF, XML y constancia) es obligatorio, pero no debe bloquear la actualización del estado del comprobante.",
+  "opts": [
+   [
+    "Archivo síncrono bloqueante",
+    "Consistencia inmediata; un fallo del almacenamiento detiene la emisión."
+   ],
+   [
+    "Archivo asíncrono con reintento y alerta (elegida)",
+    "Disponibilidad del flujo principal; consistencia eventual controlada."
+   ]
+  ],
+  "dec": "El archivado ocurre de forma asíncrona, con reintentos, cuarentena en DLQ y alerta si se supera el umbral. El almacenamiento es inmutable (WORM) con retención por país.",
+  "cons": "Positivas: el flujo principal no depende del almacenamiento. Negativas: ventana corta de consistencia eventual que debe monitorearse.",
+  "qa": "Disponibilidad: una caída del almacenamiento de 30 minutos no detiene la emisión y se recupera sin pérdida.",
+  "poc": "Fuera del alcance de la PoC; se valida en la fase F3."
+ },
+ {
+  "n": "08",
+  "t": "Schema Registry con compatibilidad BACKWARD",
+  "ctx": "El modelo canónico evolucionará (por ejemplo, el correo del adquirente pasó a ser obligatorio). Los consumidores no se despliegan todos a la vez.",
+  "opts": [
+   [
+    "Contratos sin registro",
+    "Libertad total; roturas silenciosas entre servicios."
+   ],
+   [
+    "Registro con compatibilidad BACKWARD (elegida)",
+    "Evolución segura; disciplina en los cambios de esquema."
+   ]
+  ],
+  "dec": "El modelo canónico InvoiceRequest se registra en Schema Registry con compatibilidad BACKWARD; los campos nuevos nacen opcionales con valor por defecto.",
+  "cons": "Positivas: los consumidores antiguos siguen funcionando. Negativas: un campo obligatorio requiere un proceso de dos versiones.",
+  "qa": "Mantenibilidad: un cambio del canónico no rompe a ningún consumidor desplegado.",
+  "poc": "El defecto D4 de la PoC reproduce justamente un campo obligatorio que el canónico antiguo no traía."
+ },
+ {
+  "n": "09",
+  "t": "Migraciones de base de datos con Flyway",
+  "ctx": "Cada adaptador persiste estado y auditoría. Los entornos SIT, UAT y PROD deben tener el mismo esquema.",
+  "opts": [
+   [
+    "Scripts manuales",
+    "Sin herramienta; deriva entre entornos y errores de orden."
+   ],
+   [
+    "Flyway versionado en el repositorio (elegida)",
+    "Reproducible y auditable; disciplina de versiones."
+   ]
+  ],
+  "dec": "Cada servicio versiona sus migraciones con Flyway; el pipeline las aplica antes del despliegue.",
+  "cons": "Positivas: entornos reproducibles. Negativas: las migraciones destructivas exigen un procedimiento de dos pasos.",
+  "qa": "Mantenibilidad: cualquier entorno se reconstruye desde cero con el mismo esquema.",
+  "poc": "La PoC usa SQLite con esquema declarado en código para agent_proposal; en el proyecto se migra con Flyway."
+ },
+ {
+  "n": "10",
+  "t": "RAG con procedencia para leer especificaciones",
+  "ctx": "Las especificaciones son largas y cambian por versión. El agente necesita citar exactamente de dónde sale cada decisión.",
+  "opts": [
+   [
+    "Especificación completa en el prompt",
+    "Simple; costoso, sin trazas y sin control de versión."
+   ],
+   [
+    "RAG con procedencia (elegida)",
+    "Cada fragmento lleva sección y hash del documento; costo menor por consulta."
+   ],
+   [
+    "Ajuste fino del modelo",
+    "Costoso y rígido ante cambios normativos."
+   ]
+  ],
+  "dec": "El lector de especificaciones devuelve fragmentos con su sección y el SHA-256 del documento. Toda regla y toda propuesta guardan esa procedencia.",
+  "cons": "Positivas: trazabilidad regla → norma y auditoría de cambios normativos. Negativas: hay que reindexar cada versión de la norma.",
+  "qa": "Seguridad (responsabilidad): cada regla y propuesta se rastrea hasta la sección y la versión exacta del documento que la origina.",
+  "poc": "El servidor MCP devuelve sección y huella; cada hallazgo del kit incluye fuente, sección, hash y versión de la regla."
+ }
+]

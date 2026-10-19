@@ -1,0 +1,12 @@
+# El kit solo acepta tráfico del plano agéntico y del propio namespace (pipeline y adaptadores).
+# El plano agéntico no puede alcanzar sistemas de producción: solo el kit y el proveedor del LLM (HTTPS).
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata: { name: {{ .Release.Name }}-agentic-egress }
+spec:
+  podSelector: { matchLabels: { app.kubernetes.io/name: agentic-plane } }
+  policyTypes: [Egress]
+  egress:
+    - to: [{ podSelector: { matchLabels: { app.kubernetes.io/name: verification-kit } } }]
+      ports: [{ port: 8085 }]
+    - ports: [{ port: 443 }, { port: 53, protocol: UDP }]

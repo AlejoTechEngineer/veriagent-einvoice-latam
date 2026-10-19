@@ -1,0 +1,36 @@
+# Jenkins configurado como código (JCasC): usuarios, permisos, credenciales y el job del pipeline.
+jenkins:
+  systemMessage: "CI del TFG · kit de verificación y plano agéntico"
+  numExecutors: 2
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+        - id: "admin"
+          password: "${JENKINS_ADMIN_PASSWORD}"
+        - id: "lider-tecnico"
+          password: "${JENKINS_REVIEWER_PASSWORD}"
+  authorizationStrategy:
+    globalMatrix:
+      entries:
+        - user: { name: "admin", permissions: ["Overall/Administer"] }
+        - user: { name: "lider-tecnico", permissions: ["Overall/Read", "Job/Read", "Job/Build"] }
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - string:
+              id: "registry-url"
+              secret: "${REGISTRY_URL}"
+jobs:
+  - script: >
+      pipelineJob('tfg-poc') {
+        description('Pipeline del TFG: compilar, probar, gates de verificación, imágenes y despliegue')
+        definition {
+          cpsScm {
+            scm { git { remote { url(System.getenv('REPO_URL') ?: 'file:///repo') }; branch('*/main') } }
+            scriptPath('Jenkinsfile')
+          }
+        }
+        triggers { scm('H/5 * * * *') }
+      }

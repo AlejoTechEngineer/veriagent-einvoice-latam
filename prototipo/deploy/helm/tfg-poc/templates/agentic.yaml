@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-agentic
+  labels: {{- include "tfg.labels" . | nindent 4 }}
+    app.kubernetes.io/name: agentic-plane
+spec:
+  replicas: {{ .Values.agentic.replicas }}
+  selector: { matchLabels: { app.kubernetes.io/name: agentic-plane } }
+  template:
+    metadata:
+      labels: {{- include "tfg.labels" . | nindent 8 }}
+        app.kubernetes.io/name: agentic-plane
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: agentic
+          image: "{{ .Values.image.registry }}/tfg/agentic-plane:{{ .Values.image.tag }}"
+          ports: [{ containerPort: 8090, name: http }]
+          env:
+            - { name: TFG_KIT_URL, value: "http://{{ .Release.Name }}-kit:8085" }
+            {{- if .Values.agentic.llmSecretName }}
+            - name: ANTHROPIC_API_KEY
+              valueFrom: { secretKeyRef: { name: {{ .Values.agentic.llmSecretName }}, key: ANTHROPIC_API_KEY } }
+            {{- end }}
+          {{- include "tfg.securityContext" . | nindent 10 }}
+          readinessProbe: { httpGet: { path: /api/health, port: http }, periodSeconds: 5 }
+          resources: {{- toYaml .Values.agentic.resources | nindent 12 }}
+          volumeMounts: [{ name: data, mountPath: /data }, { name: tmp, mountPath: /tmp }]
+      volumes:
+        - name: data
+          persistentVolumeClaim: { claimName: {{ .Release.Name }}-proposals }
+        - { name: tmp, emptyDir: {} }
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: { name: {{ .Release.Name }}-proposals }
+spec:
+  accessModes: [ReadWriteOnce]
+  resources: { requests: { storage: {{ .Values.agentic.storage }} } }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-agentic
+  labels: {{- include "tfg.labels" . | nindent 4 }}
+spec:
+  selector: { app.kubernetes.io/name: agentic-plane }
+  ports: [{ port: 8090, targetPort: http, name: http }]

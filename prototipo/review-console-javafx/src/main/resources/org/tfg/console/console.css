@@ -1,0 +1,54 @@
+/* Consola JavaFX · misma identidad visual que la consola web: papel, tinta pizarra, verde contable y sello. */
+.root {
+    -ink: #1D2B36;
+    -paper: #F5F8F7;
+    -ledger: #2F6B5A;
+    -ledger-soft: #E3EFEA;
+    -stamp: #B3261E;
+    -stamp-soft: #FBEAE8;
+    -muted: #5E6E78;
+    -rule: #D5E0DC;
+    -fx-font-family: "Public Sans", "Segoe UI", "DejaVu Sans", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: -paper;
+    -fx-text-fill: -ink;
+}
+.label { -fx-text-fill: -ink; }
+.topbar { -fx-background-color: white; -fx-padding: 20 32 16 32; -fx-border-color: transparent transparent -ink transparent; -fx-border-width: 0 0 2 0; }
+.app-title { -fx-font-size: 24px; -fx-font-weight: bold; }
+.h2 { -fx-font-size: 19px; -fx-font-weight: bold; }
+.h3 { -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 12 0 0 0; }
+.muted, .muted .label { -fx-text-fill: -muted; -fx-font-size: 13px; }
+.blocked { -fx-text-fill: -stamp; -fx-font-weight: bold; }
+.fact-value { -fx-font-weight: bold; }
+
+.ledger { -fx-background-color: transparent; -fx-border-color: -rule transparent transparent transparent; }
+.ledger .list-cell { -fx-background-color: transparent; -fx-padding: 12 10; -fx-border-color: transparent transparent -rule transparent; }
+.ledger .list-cell:empty { -fx-border-color: transparent; }
+.ledger .list-cell:hover { -fx-background-color: -ledger-soft; }
+.ledger .list-cell:selected { -fx-background-color: white; -fx-border-color: transparent transparent -rule -ink; -fx-border-width: 0 0 1 4; }
+.row-id { -fx-font-weight: bold; }
+.row-status { -fx-font-size: 13px; -fx-font-weight: bold; }
+.s-BLOCKED_BY_GATE, .s-REJECTED { -fx-text-fill: -stamp; }
+.s-APPROVED { -fx-text-fill: -ledger; }
+
+.sheet-scroll { -fx-background-color: transparent; -fx-background: transparent; }
+.sheet { -fx-background-color: white; -fx-border-color: -rule; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 28 32 32 32; }
+
+.stamp { -fx-font-size: 15px; -fx-font-weight: bold; -fx-padding: 8 14; -fx-border-width: 3; -fx-border-style: solid; -fx-border-radius: 4; -fx-background-radius: 4; }
+.stamp.s-BLOCKED_BY_GATE, .stamp.s-REJECTED { -fx-text-fill: -stamp; -fx-border-color: -stamp; -fx-background-color: -stamp-soft; }
+.stamp.s-PENDING_REVIEW { -fx-text-fill: -ink; -fx-border-color: -ink; -fx-background-color: -paper; }
+.stamp.s-APPROVED { -fx-text-fill: -ledger; -fx-border-color: -ledger; -fx-background-color: -ledger-soft; }
+
+.finding { -fx-background-color: -paper; -fx-padding: 8 12; -fx-border-color: transparent transparent transparent -stamp; -fx-border-width: 0 0 0 3; }
+.finding-ok { -fx-border-color: transparent transparent transparent -ledger; }
+.finding-rule { -fx-font-weight: bold; }
+
+.decision { -fx-padding: 18 0 0 0; -fx-border-color: -ink transparent transparent transparent; -fx-border-width: 2 0 0 0; }
+.text-field, .text-area { -fx-background-color: white; -fx-border-color: -muted; -fx-border-radius: 4; -fx-background-radius: 4; }
+.button { -fx-font-weight: bold; -fx-padding: 9 16; -fx-background-radius: 4; -fx-border-radius: 4; -fx-cursor: hand; }
+.btn-approve { -fx-background-color: -ledger; -fx-text-fill: white; }
+.btn-reject { -fx-background-color: transparent; -fx-text-fill: -stamp; -fx-border-color: -stamp; -fx-border-width: 2; }
+.button:disabled { -fx-opacity: 1; -fx-background-color: -rule; -fx-text-fill: -muted; -fx-border-color: -rule; }
+.button:focused { -fx-border-color: #1F5FBF; -fx-border-width: 3; }
+.form-msg.error { -fx-text-fill: -stamp; -fx-font-weight: bold; }

@@ -1,0 +1,10 @@
+[project]
+name = "tfg-agentic-plane"
+version = "0.1.0"
+description = "Plano agéntico de la PoC del TFG: agentes de mapeo, servidor MCP, banco de defectos y API de revisión"
+requires-python = ">=3.12"
+dependencies = ["pydantic>=2", "lxml>=5", "fastapi>=0.110", "uvicorn>=0.29", "httpx>=0.27", "mcp>=2", "anthropic>=0.40"]
+[project.optional-dependencies]
+test = ["pytest>=8", "hypothesis>=6"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]

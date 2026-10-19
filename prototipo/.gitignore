@@ -1,0 +1,52 @@
+# Artefactos de compilación
+target/
+build/
+dist/
+out/
+*.jar
+*.class
+
+# Entornos y cachés de Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.hypothesis/
+
+# Dependencias de Node
+node_modules/
+
+# Datos y resultados generados en ejecución
+*.db
+*.sqlite
+*.mv.db
+*.trace.db
+*.log
+data/generated/
+results/runtime/
+build-reports/
+
+# Secretos y configuración local (solo se publica .env.example)
+.env
+*.env
+!.env.example
+
+# Editores
+.idea/
+.vscode/
+*.iml
+
+# Archivos temporales
+*.tmp
+*.temp
+*.swp
+*.bak
+*~
+.DS_Store
+Thumbs.db
+
+# Nunca publicar configuración ni archivos de asistentes de IA
+.claude/
+CLAUDE.md
+CLAUDE.local.md

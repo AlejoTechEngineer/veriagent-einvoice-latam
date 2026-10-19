@@ -1,0 +1,41 @@
+{
+  "documents": 62,
+  "failedDocuments": 62,
+  "gatePassed": false,
+  "findingsByRule": {
+    "R-D3-02": 144,
+    "CI-FX-01": 21
+  },
+  "findingsByType": {
+    "D3": 144,
+    "E0": 21
+  },
+  "examples": [
+    {
+      "ruleId": "R-D3-02",
+      "type": "D3",
+      "location": "InvoiceLine[1]/TaxCategory/TaxSchemeName",
+      "message": "Se esperaba exactamente 'IVA' y llegó '?1'",
+      "source": "perfil-alfa-v2.1.md §5.1",
+      "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+      "ruleVersion": "2.1.0"
+    },
+    {
+      "ruleId": "CI-FX-01",
+      "type": "E0",
+      "location": "posición 23",
+      "message": "Difiere del fixture validado. Esperado: Invoice/InvoiceLine/TaxCategory/TaxSchemeName=IVA | Obtenido: Invoice/InvoiceLine/TaxCategory/TaxSchemeName=?1",
+      "source": "perfil-alfa-v2.1.md fixture validado",
+      "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+      "ruleVersion": "2.1.0"
+    }
+  ],
+  "fieldAccuracy": {
+    "fields": 24,
+    "correct": 23,
+    "accuracy": 0.9583,
+    "wrongTargets": [
+      "InvoiceLine/TaxCategory/TaxSchemeName"
+    ]
+  }
+}

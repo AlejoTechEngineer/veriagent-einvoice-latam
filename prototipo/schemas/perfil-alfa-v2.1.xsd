@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Esquema sintético del Perfil Alfa v2.1 (inspirado en UBL 2.1). Como en UBL, los códigos son
+     xs:string: las listas cerradas y la coherencia las imponen las reglas de negocio, no el XSD. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:tfg:alfa:invoice:2" xmlns="urn:tfg:alfa:invoice:2"
+           elementFormDefault="qualified">
+  <xs:simpleType name="Importe"><xs:restriction base="xs:decimal"><xs:fractionDigits value="2"/></xs:restriction></xs:simpleType>
+  <xs:complexType name="IdConEsquema"><xs:simpleContent><xs:extension base="xs:string">
+    <xs:attribute name="schemeName" type="xs:string" use="required"/></xs:extension></xs:simpleContent></xs:complexType>
+  <xs:complexType name="Parte"><xs:sequence>
+    <xs:element name="PartyName" type="xs:string"/>
+    <xs:element name="CompanyID" type="IdConEsquema"/>
+  </xs:sequence></xs:complexType>
+  <xs:complexType name="ParteCliente"><xs:sequence>
+    <xs:element name="PartyName" type="xs:string"/>
+    <xs:element name="CompanyID" type="IdConEsquema"/>
+    <xs:element name="ElectronicMail" type="xs:string"/>
+  </xs:sequence></xs:complexType>
+  <xs:element name="Invoice"><xs:complexType><xs:sequence>
+    <xs:element name="ProfileID" type="xs:string"/>
+    <xs:element name="ID" type="xs:string"/>
+    <xs:element name="IssueDate" type="xs:date"/>
+    <xs:element name="InvoiceTypeCode" type="xs:string"/>
+    <xs:element name="DocumentCurrencyCode" type="xs:string"/>
+    <xs:element name="BillingReference" type="xs:string" minOccurs="0"/>
+    <xs:element name="AccountingSupplierParty"><xs:complexType><xs:sequence>
+      <xs:element name="Party" type="Parte"/></xs:sequence></xs:complexType></xs:element>
+    <xs:element name="AccountingCustomerParty"><xs:complexType><xs:sequence>
+      <xs:element name="Party" type="ParteCliente"/></xs:sequence></xs:complexType></xs:element>
+    <xs:element name="TaxTotal"><xs:complexType><xs:sequence>
+      <xs:element name="TaxAmount" type="Importe"/></xs:sequence></xs:complexType></xs:element>
+    <xs:element name="LegalMonetaryTotal"><xs:complexType><xs:sequence>
+      <xs:element name="LineExtensionAmount" type="Importe"/>
+      <xs:element name="PayableAmount" type="Importe"/></xs:sequence></xs:complexType></xs:element>
+    <xs:element name="InvoiceLine" maxOccurs="unbounded"><xs:complexType><xs:sequence>
+      <xs:element name="ID" type="xs:positiveInteger"/>
+      <xs:element name="InvoicedQuantity" type="xs:decimal"/>
+      <xs:element name="LineExtensionAmount" type="Importe"/>
+      <xs:element name="ItemDescription" type="xs:string"/>
+      <xs:element name="PriceAmount" type="Importe"/>
+      <xs:element name="TaxCategory"><xs:complexType><xs:sequence>
+        <xs:element name="ID" type="xs:string"/>
+        <xs:element name="Percent" type="xs:decimal"/>
+        <xs:element name="TaxSchemeName" type="xs:string"/>
+      </xs:sequence></xs:complexType></xs:element>
+    </xs:sequence></xs:complexType></xs:element>
+  </xs:sequence></xs:complexType></xs:element>
+</xs:schema>

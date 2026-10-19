@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:tfg:alfa:invoice:2">
+  <ProfileID>PerfilAlfa-2.1</ProfileID>
+  <ID>FA-000001</ID>
+  <IssueDate>2026-10-01</IssueDate>
+  <InvoiceTypeCode>01</InvoiceTypeCode>
+  <DocumentCurrencyCode>COP</DocumentCurrencyCode>
+  <AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.</PartyName><CompanyID schemeName="A1">900123456-7</CompanyID></Party></AccountingSupplierParty>
+  <AccountingCustomerParty><Party><PartyName>Cliente de Prueba</PartyName><CompanyID schemeName="A2">10203040</CompanyID><ElectronicMail>cliente@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty>
+  <TaxTotal><TaxAmount>57.00</TaxAmount></TaxTotal>
+  <LegalMonetaryTotal><LineExtensionAmount>300.00</LineExtensionAmount><PayableAmount>357.00</PayableAmount></LegalMonetaryTotal>
+  <InvoiceLine><ID>1</ID><InvoicedQuantity>2</InvoicedQuantity><LineExtensionAmount>200.00</LineExtensionAmount><ItemDescription>Servicio de soporte</ItemDescription><PriceAmount>100.00</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine>
+  <InvoiceLine><ID>2</ID><InvoicedQuantity>1</InvoicedQuantity><LineExtensionAmount>100.00</LineExtensionAmount><ItemDescription>Licencia anual</ItemDescription><PriceAmount>100.00</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine>
+</Invoice>

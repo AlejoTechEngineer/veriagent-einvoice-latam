@@ -1,0 +1,17 @@
+# Entorno local completo: kit (8085) y API + consola de revisión (8090).
+# Antes: ci/run-pipeline.sh build package   (genera dist/verification-kit-0.1.0.jar)
+services:
+  kit:
+    build: { context: ., dockerfile: deploy/docker/kit.Dockerfile }
+    ports: ["8085:8085"]
+    read_only: true
+  agentic:
+    build: { context: ., dockerfile: deploy/docker/agentic.Dockerfile }
+    ports: ["8090:8090"]
+    environment:
+      TFG_KIT_URL: http://kit:8085
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    volumes: ["proposals:/data"]
+    depends_on: [kit]
+volumes:
+  proposals:

@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-kit
+  labels: {{- include "tfg.labels" . | nindent 4 }}
+    app.kubernetes.io/name: verification-kit
+spec:
+  replicas: {{ .Values.kit.replicas }}
+  selector: { matchLabels: { app.kubernetes.io/name: verification-kit } }
+  template:
+    metadata:
+      labels: {{- include "tfg.labels" . | nindent 8 }}
+        app.kubernetes.io/name: verification-kit
+    spec:
+      containers:
+        - name: kit
+          image: "{{ .Values.image.registry }}/tfg/verification-kit:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports: [{ containerPort: 8085, name: http }]
+          {{- include "tfg.securityContext" . | nindent 10 }}
+          readinessProbe: { httpGet: { path: /health, port: http }, periodSeconds: 5 }
+          livenessProbe: { httpGet: { path: /health, port: http }, periodSeconds: 15, failureThreshold: 4 }
+          resources: {{- toYaml .Values.kit.resources | nindent 12 }}
+          volumeMounts: [{ name: tmp, mountPath: /tmp }]
+      volumes: [{ name: tmp, emptyDir: {} }]
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-kit
+  labels: {{- include "tfg.labels" . | nindent 4 }}
+spec:
+  selector: { app.kubernetes.io/name: verification-kit }
+  ports: [{ port: 8085, targetPort: http, name: http }]
+{{- if .Values.kit.autoscaling.enabled }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Release.Name }}-kit
+spec:
+  scaleTargetRef: { apiVersion: apps/v1, kind: Deployment, name: {{ .Release.Name }}-kit }
+  minReplicas: {{ .Values.kit.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.kit.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource: { name: cpu, target: { type: Utilization, averageUtilization: {{ .Values.kit.autoscaling.targetCPU }} } }
+{{- end }}

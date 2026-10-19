@@ -1,0 +1,16 @@
+{
+  "profile": "beta-segmentos",
+  "version": "1.0.0",
+  "docTypeTable": {
+    "INVOICE": "01",
+    "CREDIT_NOTE": "91",
+    "DEBIT_NOTE": "92"
+  },
+  "taxTable": {
+    "IVA19": "T01",
+    "IVA5": "T02",
+    "EXENTO": "T03"
+  },
+  "sanitizeDescription": true,
+  "sanitizeCustomerName": true
+}

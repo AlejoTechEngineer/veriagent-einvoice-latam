@@ -1,0 +1,77 @@
+// Pipeline declarativo del TFG. Cada etapa llama a ci/run-pipeline.sh: lo que corre en Jenkins es
+// exactamente lo que corre en local. Los gates detienen el pipeline si el kit o el banco fallan.
+pipeline {
+  agent any
+  options {
+    timestamps()
+    timeout(time: 30, unit: 'MINUTES')
+    buildDiscarder(logRotator(numToKeepStr: '20'))
+    disableConcurrentBuilds()
+  }
+  parameters {
+    choice(name: 'TARGET_ENV', choices: ['sit', 'uat', 'prod'], description: 'Ambiente destino del despliegue')
+    string(name: 'MIN_RUNTIME_DETECTION', defaultValue: '0.80', description: 'Umbral del gate de detección en ejecución')
+  }
+  environment {
+    REGISTRY = credentials('registry-url')      // URL del registro de imágenes (credencial de tipo texto)
+    MIN_RUNTIME_DETECTION = "${params.MIN_RUNTIME_DETECTION}"
+  }
+  stages {
+    stage('Compilar') { steps { sh 'ci/run-pipeline.sh build' } }
+    stage('Pruebas') {
+      parallel {
+        stage('Java · JUnit 5') { steps { sh 'ci/run-pipeline.sh test-java' } }
+        stage('Python · pytest') { steps { sh 'ci/run-pipeline.sh test-python' } }
+      }
+      post { always { junit allowEmptyResults: false, testResults: 'build-reports/junit-java/*.xml, build-reports/junit-python.xml' } }
+    }
+    stage('Gate · banco de defectos') {
+      steps { sh 'ci/run-pipeline.sh gate-bank' }
+      post { always { archiveArtifacts artifacts: 'build-reports/defect-bank/*', fingerprint: true } }
+    }
+    stage('Gate · mapeo vigente') { steps { sh 'ci/run-pipeline.sh gate-mapping' } }
+    stage('Seguridad') {
+      steps {
+        sh 'trivy fs --exit-code 1 --severity HIGH,CRITICAL --scanners vuln,secret,misconfig .'
+      }
+    }
+    stage('Empaquetar') {
+      steps {
+        sh 'ci/run-pipeline.sh package smoke'
+        archiveArtifacts artifacts: 'dist/*', fingerprint: true
+      }
+    }
+    stage('Imágenes') {
+      steps {
+        sh '''
+          docker build -f deploy/docker/kit.Dockerfile -t $REGISTRY/tfg/verification-kit:$BUILD_NUMBER .
+          docker build -f deploy/docker/agentic.Dockerfile -t $REGISTRY/tfg/agentic-plane:$BUILD_NUMBER .
+          trivy image --exit-code 1 --severity CRITICAL $REGISTRY/tfg/verification-kit:$BUILD_NUMBER
+          docker push $REGISTRY/tfg/verification-kit:$BUILD_NUMBER
+          docker push $REGISTRY/tfg/agentic-plane:$BUILD_NUMBER
+        '''
+      }
+    }
+    stage('Desplegar SIT') {
+      steps {
+        sh '''helm upgrade --install tfg-poc deploy/helm/tfg-poc -n tfg-sit --create-namespace \
+              -f deploy/helm/tfg-poc/values.yaml --set image.registry=$REGISTRY --set image.tag=$BUILD_NUMBER --wait'''
+        sh 'kubectl -n tfg-sit run smoke-$BUILD_NUMBER --rm -i --restart=Never --image=curlimages/curl -- -sf http://tfg-poc-kit:8085/health'
+      }
+    }
+    stage('Aprobación para UAT/PROD') {
+      when { expression { params.TARGET_ENV != 'sit' } }
+      steps { input message: "¿Promover el build ${env.BUILD_NUMBER} a ${params.TARGET_ENV}?", submitter: 'lider-tecnico,gerente-proyecto' }
+    }
+    stage('Desplegar UAT/PROD') {
+      when { expression { params.TARGET_ENV != 'sit' } }
+      steps {
+        sh '''helm upgrade --install tfg-poc deploy/helm/tfg-poc -n tfg-$TARGET_ENV --create-namespace \
+              -f deploy/helm/tfg-poc/values-$TARGET_ENV.yaml --set image.registry=$REGISTRY --set image.tag=$BUILD_NUMBER --wait --atomic'''
+      }
+    }
+  }
+  post {
+    failure { echo 'Pipeline detenido: revisa el gate que falló en los reportes archivados.' }
+  }
+}
