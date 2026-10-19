@@ -64,6 +64,16 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.veriagent</groupId>
+      <artifactId>svc-mapping-registry</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.veriagent</groupId>
+      <artifactId>provider-simulators</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-registry-prometheus</artifactId>
     </dependency>

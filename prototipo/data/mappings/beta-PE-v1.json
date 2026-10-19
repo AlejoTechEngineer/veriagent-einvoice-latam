@@ -1,0 +1,16 @@
+{
+  "profile": "beta-pe-segmentos",
+  "version": "1.0.0",
+  "approvedBy": "revisión humana (línea base manual)",
+  "docTypeTable": {
+    "INVOICE": "01",
+    "CREDIT_NOTE": "07",
+    "DEBIT_NOTE": "08"
+  },
+  "taxTable": {
+    "IGV18": "1000",
+    "EXONERADO": "9997"
+  },
+  "sanitizeDescription": true,
+  "sanitizeCustomerName": true
+}

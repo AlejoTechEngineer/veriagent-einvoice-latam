@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:simulators-${random.uuid};MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  main:
+    banner-mode: off
+
+veriagent:
+  home: ${veriagent.home:../..}
+  services:
+    provider-simulators: true
+  bus:
+    type: memory
+  security:
+    tokens-file: ${java.io.tmpdir}/veriagent-test/demo-tokens-${random.uuid}.json
+    simulator-public-paths: /sim/*/api/v1/**
+  simulators:
+    slow-delay: 1500ms
+    poll-delay: 100ms
+  providers:
+    routing-table: data/routing/routing-table.v1.json
+    sftp-root: ${java.io.tmpdir}/veriagent-test/sftp-${random.uuid}
+    seed-mappings:
+      "[alfa/CO]": agentic-plane/golden/mapping-alfa-v2.json
+      "[beta/PE]": data/mappings/beta-PE-v1.json
+
+logging:
+  level:
+    root: warn

@@ -47,11 +47,17 @@ veriagent:
     legal-archive: true
     invoice-registry: true
     dlq-handler: true
+    # Los simuladores de proveedores solo se activan en el perfil local (o en su propio contenedor en full).
+    provider-simulators: false
+  mappings:
+    # registry: los mapeos vigentes salen del registro de versiones (svc-mapping-registry).
+    source: registry
   providers:
     routing-table: data/routing/routing-table.v1.json
     sftp-root: results/runtime/sftp
     seed-mappings:
       "[alfa/CO]": agentic-plane/golden/mapping-alfa-v2.json
+      "[beta/PE]": data/mappings/beta-PE-v1.json
 
 logging:
   pattern:

@@ -9,11 +9,15 @@ spring:
     password: ""
 
 veriagent:
+  services:
+    provider-simulators: true
   bus:
     type: memory
   security:
     token-mode: generate
     allowed-origins: http://127.0.0.1:8080,http://localhost:8080
+    # Los simuladores representan proveedores externos: su API de recepción no usa los tokens de la plataforma.
+    simulator-public-paths: /sim/*/api/v1/**
   simulation:
     # Permite reenviar la cabecera X-Sim-Fault a los simuladores (solo demostración y escenarios).
     allow-fault-headers: true

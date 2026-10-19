@@ -1,0 +1,4 @@
+pais,prefijo,desde,hasta,vigencia_desde,vigencia_hasta,fuente
+CO,SETP,990000001,995000000,2026-01-01,2027-12-31,"Estructura de autorización de numeración (prefijo y rango con vigencia) de la Resolución DIAN 000165 de 2023; valores sintéticos"
+PE,F001,1,99999999,2026-01-01,2099-12-31,"Serie de cuatro caracteres y correlativo de hasta ocho dígitos del sistema de emisión electrónica (Resolución de Superintendencia 188-2010/SUNAT); valores sintéticos"
+XX,XXF,1,9999999,2026-01-01,2099-12-31,"País sintético del prototipo (escenario S5); sin fuente normativa"

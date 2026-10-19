@@ -94,6 +94,6 @@ class KitControllerTest {
         mvc.perform(post("/api/kit/verify").content(valid)).andExpect(status().isUnauthorized());
         mvc.perform(get("/api/kit/profiles")).andExpect(status().isUnauthorized());
         mvc.perform(get("/api/kit/profiles").header("Authorization", tokens.agent()))
-            .andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(2));
+            .andExpect(status().isOk()).andExpect(jsonPath("$.length()").value(4));
     }
 }

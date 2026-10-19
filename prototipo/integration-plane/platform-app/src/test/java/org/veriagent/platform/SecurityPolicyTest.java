@@ -35,6 +35,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class SecurityPolicyTest {
     /** Operaciones POST que no cambian estado: verificar un documento y previsualizar una ruta. */
     static final Set<String> READ_ONLY_POSTS = Set.of("KitController.verify", "RouterController.preview");
+    /**
+     * Recepción de los proveedores simulados (/sim/): representan sistemas externos. Sin token solo si el perfil
+     * lo declara en simulator-public-paths (perfil local); en el resto exigen token como cualquier ruta.
+     */
+    static final Set<String> SIMULATED_PROVIDER_RECEIVERS = Set.of("SimulatorController.document", "SimulatorController.batch");
 
     @Autowired @Qualifier("requestMappingHandlerMapping") RequestMappingHandlerMapping mapping;
     @Autowired MockMvc mvc;
@@ -60,11 +65,12 @@ class SecurityPolicyTest {
             checked.add(name);
             boolean rule = AnnotatedElementUtils.hasAnnotation(h.getMethod(), PreAuthorize.class)
                 || AnnotatedElementUtils.hasAnnotation(h.getBeanType(), PreAuthorize.class);
-            if (!rule && !READ_ONLY_POSTS.contains(name)) missing.add(name + " " + info);
+            if (!rule && !READ_ONLY_POSTS.contains(name) && !SIMULATED_PROVIDER_RECEIVERS.contains(name)) missing.add(name + " " + info);
         });
         assertEquals(List.of(), missing);
         assertTrue(checked.containsAll(Set.of("InvoiceFacadeController.issue", "DlqController.reprocess", "DlqController.discard",
-            "IngestController.upload")), checked::toString);
+            "IngestController.upload", "MappingRegistryController.approve", "MappingRegistryController.activate",
+            "SimulatorController.setFault")), checked::toString);
     }
 
     @Test

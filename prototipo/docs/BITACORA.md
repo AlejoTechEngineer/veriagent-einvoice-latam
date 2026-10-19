@@ -127,3 +127,37 @@ Comando: `mvn install` en `integration-plane` (JDK 21) → `BUILD SUCCESS`, 5 m�
   (`CREATE_NEW`). Ahora se reutiliza el objeto si su huella coincide y se rechaza si es distinto.
 - Adaptador: carrera en las pruebas entre el vaciado periódico y la espera del bus. Se añade el contador de envíos en
   curso y `awaitIdle()`, que transfiere la propiedad del envío del vaciado al envío.
+
+## Fase 3. Simuladores, generador de datos y registro de mapeos (2026-10-19)
+
+### Módulos nuevos o ampliados
+| Módulo | Responsabilidad | Pruebas |
+|:---|:---|:---|
+| `data-generator` | Comprobantes canónicos válidos con semilla, NIT, RUC y TIN sintéticos con dígito verificador válido, numeración por país (`data/numeracion/numeracion.csv`), defectos de datos D1 a D4, ejemplos validados; línea de órdenes (`generate`, `--mix`, `.jsonl`, `fixtures`, `defects`) | 4 de 4 |
+| `kit-adapter` | Perfiles nuevos: `beta-pe` (catálogos SUNAT públicos en `catalogs/catalogos-beta-pe-v1.csv`) y `gamma` (esquema JSON y reglas G-D1 a G-D6 con procedencia, desde `specs/proveedor-gamma-v1.md`) | 5 de 5 |
+| `provider-common` | Renderizador de Gamma, variante de Beta para PE, ejemplos validados (`data/fixtures/`), fuente de mapeos configurable (`veriagent.mappings.source`) | 8 de 8 |
+| `svc-mapping-registry` | Versiones de mapeo (migración V3), control del kit (ejecución sobre 50 comprobantes sintéticos + integración continua sobre ejemplos validados), proponer, aprobar (409 si no pasó el kit), rechazar, activar con recarga en caliente por `platform.mapping.activated.v1`, revertir | 2 de 2 |
+| `provider-simulators` | Alfa (sobre JSON y ZIP por HTTP), Beta (texto y carpeta SFTP con manifiesto) y Gamma (sobre JSON y ZIP); decisión determinista; constancias oficiales; fallos `unavailable`, `slow`, `duplicate`, `reject-catalog` y `lost-response` por API (OPERATOR) o cabecera | 5 de 5 |
+| `platform-app` | Registro de mapeos como fuente (línea base alfa/CO y beta/PE), simuladores activos en el perfil local | 4 de 4 |
+| `scripts/` | `run-local.ps1` (`-Build`, `-Clean`, `-Background`), `stop-local.ps1`, `lib/Veriagent.psm1`, `escenarios/S1.ps1`, `escenarios/S2.ps1` | ejecutados abajo |
+
+### Resultados
+- `mvn install` del reactor completo (19 módulos): **131 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker).
+  El kit corre dos veces (configuración regional es y en): 23 + 23.
+- Arranque real: `scriptsun-local.ps1 -Clean -Background` (perfil local, 127.0.0.1:8080).
+- **S1** (`scripts\escenarios\S1.ps1`): comprobante de CO emitido por `POST /api/invoices` con el token de operador:
+  HTTP 200, AUTHORIZED con número de autorización, reenvío idempotente (mismo número, `duplicate=true`), respuesta
+  publicada, archivo legal con huella, balance de conservación correcto. Latencia de la llamada: 353 ms (primera
+  emisión tras el arranque).
+- **S2** (`scripts\escenarios\S2.ps1`): lote `.jsonl` de 1.000 comprobantes válidos (600 CO, 400 PE, semilla 202)
+  cargado por `POST /api/ingest/batches`: 1.000 aceptados, 0 duplicados, 0 rechazados; 1.000 AUTHORIZED en 5 s
+  (200 por segundo). Alfa recibió 7 lotes ZIP y Beta 4 lotes por carpeta SFTP.
+- Conteo por estado al terminar S1 y S2: RECEIVED 0, PENDING_BATCH 0, SENT 0, AUTHORIZED 1.001, FAILED 0, DLQ 0.
+  Por país y proveedor: CO/alfa 601, PE/beta 400. Conservación: registrados 1.001 = autorizados 1.001 + fallidos 0 +
+  DLQ 0 + en curso 0. Cadena del archivo legal verificada: 1.001 entradas, válida.
+
+### Defectos encontrados y corregidos durante la fase
+- Registro de mapeos: la recarga en caliente se publicaba dentro de la transacción; un consumidor podía leer la
+  versión anterior y dejarla en caché, y la reversión parecía no surtir efecto. Ahora la recarga y el evento se
+  emiten después del commit.
+- `run-local.ps1`: `Start-Process` no entrecomilla argumentos y la ruta del JAR tiene espacios. Se entrecomillan.

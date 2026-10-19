@@ -16,8 +16,13 @@ public class KitConfiguration {
         return new VerificationKit(Path.of(props.getHome()).toAbsolutePath().normalize());
     }
 
+    /** Perfiles: alfa y beta (base, sin cambios), beta-pe (catálogos de SUNAT) y gamma (JSON, país XX). */
     @Bean
-    public KitVerifier kitVerifier(VerificationKit kit) {
-        return new KitVerifier(kit);
+    public KitVerifier kitVerifier(VerificationKit kit, VeriagentProperties props) throws Exception {
+        Path home = Path.of(props.getHome()).toAbsolutePath().normalize();
+        KitVerifier v = new KitVerifier(kit);
+        v.register(new BetaPeProfile(home));
+        v.register(new GammaProfile(home));
+        return v;
     }
 }

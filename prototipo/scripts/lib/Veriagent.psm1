@@ -1,0 +1,139 @@
+﻿# Funciones comunes de los scripts del prototipo (PowerShell 5.1 o superior).
+# Sin secretos: los tokens de demostración se leen del archivo local generado al arrancar (ignorado por git).
+
+Set-StrictMode -Version Latest
+
+function Get-VeriagentHome {
+    return (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
+}
+
+function Get-VeriagentBaseUrl {
+    if ($env:VERIAGENT_URL) { return $env:VERIAGENT_URL.TrimEnd('/') }
+    return 'http://127.0.0.1:8080'
+}
+
+# Localiza un JDK 21: JAVA_HOME, luego un JDK portable en %USERPROFILE%\tools, luego el java del PATH.
+function Initialize-Java {
+    if ($env:JAVA_HOME -and (Test-Path (Join-Path $env:JAVA_HOME 'bin\java.exe'))) { return (Join-Path $env:JAVA_HOME 'bin\java.exe') }
+    $portable = Get-ChildItem -Path (Join-Path $env:USERPROFILE 'tools') -Directory -Filter 'jdk-21*' -ErrorAction SilentlyContinue |
+        Sort-Object Name -Descending | Select-Object -First 1
+    if ($portable) {
+        $env:JAVA_HOME = $portable.FullName
+        $env:Path = (Join-Path $portable.FullName 'bin') + ';' + $env:Path
+        return (Join-Path $portable.FullName 'bin\java.exe')
+    }
+    $cmd = Get-Command java -ErrorAction SilentlyContinue
+    if ($cmd) { return $cmd.Source }
+    throw 'No se encontró Java 21. Define JAVA_HOME o instala un JDK 21.'
+}
+
+function Get-PlatformJar {
+    $jar = Join-Path (Get-VeriagentHome) 'integration-plane\platform-app\target\platform-app-0.1.0.jar'
+    if (-not (Test-Path $jar)) { throw "No existe $jar. Ejecuta antes scripts\run-local.ps1 -Build o scripts\test-all.ps1." }
+    return $jar
+}
+
+# Token de demostración de un rol (REVIEWER, AGENT, OPERATOR, SYSTEM), leído del archivo local.
+function Get-DemoToken {
+    param([Parameter(Mandatory)][ValidateSet('REVIEWER', 'AGENT', 'OPERATOR', 'SYSTEM')][string]$Role, [string]$Subject)
+    $file = Join-Path (Get-VeriagentHome) 'results\runtime\demo-tokens.json'
+    if (-not (Test-Path $file)) { throw "No existe ${file}: arranca la plataforma con scripts\run-local.ps1." }
+    $doc = Get-Content -Raw -Encoding UTF8 $file | ConvertFrom-Json
+    $t = $doc.tokens | Where-Object { $_.role -eq $Role -and (-not $Subject -or $_.subject -eq $Subject) } | Select-Object -First 1
+    if (-not $t) { throw "No hay token para el rol $Role." }
+    return $t.token
+}
+
+function Invoke-VeriagentApi {
+    param(
+        [Parameter(Mandatory)][string]$Path,
+        [string]$Method = 'GET',
+        [string]$Role,
+        $Body,
+        [hashtable]$Headers = @{}
+    )
+    $h = @{} + $Headers
+    if ($Role) { $h['Authorization'] = 'Bearer ' + (Get-DemoToken -Role $Role) }
+    $params = @{ Uri = (Get-VeriagentBaseUrl) + $Path; Method = $Method; Headers = $h; UseBasicParsing = $true }
+    if ($null -ne $Body) {
+        $params['ContentType'] = 'application/json; charset=utf-8'
+        $json = if ($Body -is [string]) { $Body } else { $Body | ConvertTo-Json -Depth 20 -Compress }
+        $params['Body'] = [System.Text.Encoding]::UTF8.GetBytes($json)
+    }
+    try {
+        $r = Invoke-WebRequest @params
+        $content = [System.Text.Encoding]::UTF8.GetString($r.RawContentStream.ToArray())
+        return [pscustomobject]@{ Status = [int]$r.StatusCode; Body = $(if ($content) { $content | ConvertFrom-Json } else { $null }) }
+    } catch [System.Net.WebException] {
+        $resp = $_.Exception.Response
+        if (-not $resp) { throw }
+        $reader = New-Object System.IO.StreamReader($resp.GetResponseStream(), [System.Text.Encoding]::UTF8)
+        $content = $reader.ReadToEnd()
+        $parsed = $null
+        try { $parsed = $content | ConvertFrom-Json } catch { $parsed = $content }
+        return [pscustomobject]@{ Status = [int]$resp.StatusCode; Body = $parsed }
+    }
+}
+
+# Sube un archivo como multipart/form-data (PowerShell 5.1 no tiene -Form).
+function Send-VeriagentFile {
+    param([Parameter(Mandatory)][string]$Path, [Parameter(Mandatory)][string]$File, [Parameter(Mandatory)][string]$Role)
+    Add-Type -AssemblyName System.Net.Http
+    $client = New-Object System.Net.Http.HttpClient
+    $client.Timeout = [TimeSpan]::FromMinutes(10)
+    $client.DefaultRequestHeaders.Add('Authorization', 'Bearer ' + (Get-DemoToken -Role $Role))
+    $form = New-Object System.Net.Http.MultipartFormDataContent
+    $bytes = [System.IO.File]::ReadAllBytes($File)
+    $part = New-Object System.Net.Http.ByteArrayContent(, $bytes)
+    $form.Add($part, 'file', [System.IO.Path]::GetFileName($File))
+    $r = $client.PostAsync((Get-VeriagentBaseUrl) + $Path, $form).Result
+    $content = $r.Content.ReadAsStringAsync().Result
+    $client.Dispose()
+    return [pscustomobject]@{ Status = [int]$r.StatusCode; Body = $(if ($content) { $content | ConvertFrom-Json } else { $null }) }
+}
+
+function Wait-VeriagentHealth {
+    param([int]$TimeoutSeconds = 120)
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    while ((Get-Date) -lt $deadline) {
+        try {
+            $r = Invoke-WebRequest -Uri ((Get-VeriagentBaseUrl) + '/actuator/health') -UseBasicParsing -TimeoutSec 3
+            if ($r.StatusCode -eq 200) { return $true }
+        } catch { }
+        Start-Sleep -Milliseconds 500
+    }
+    return $false
+}
+
+# Espera a que no queden comprobantes en tránsito (RECEIVED, PENDING_BATCH, SENT) y devuelve los indicadores.
+function Wait-VeriagentQuiet {
+    param([int]$TimeoutSeconds = 300, [long]$ExpectedRegistered = -1)
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+    do {
+        $s = (Invoke-VeriagentApi -Path '/api/invoices/stats' -Role OPERATOR).Body
+        $c = $s.conservation
+        if ($c.inFlight -eq 0 -and ($ExpectedRegistered -lt 0 -or $c.registered -ge $ExpectedRegistered)) { return $s }
+        Start-Sleep -Milliseconds 500
+    } while ((Get-Date) -lt $deadline)
+    return $s
+}
+
+# Ejecuta el generador de datos (incluido en el JAR de la plataforma).
+function Invoke-DataGenerator {
+    param([Parameter(Mandatory)][string[]]$Arguments)
+    $java = Initialize-Java
+    $jar = Get-PlatformJar
+    & $java "-Dloader.main=org.veriagent.datagen.GeneratorCli" -cp $jar org.springframework.boot.loader.launch.PropertiesLauncher @Arguments --home (Get-VeriagentHome)
+    if ($LASTEXITCODE -ne 0) { throw "El generador de datos terminó con código $LASTEXITCODE" }
+}
+
+function Write-ScenarioResult {
+    param([Parameter(Mandatory)][string]$Id, [Parameter(Mandatory)]$Result)
+    $dir = Join-Path (Get-VeriagentHome) 'results\runtime\escenarios'
+    New-Item -ItemType Directory -Force -Path $dir | Out-Null
+    $file = Join-Path $dir "$Id.json"
+    $Result | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 $file
+    return $file
+}
+
+Export-ModuleMember -Function *

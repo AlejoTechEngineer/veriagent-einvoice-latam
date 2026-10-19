@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mappingregistry-${random.uuid};MODE=PostgreSQL;DATABASE_TO_LOWER=TRUE;DEFAULT_NULL_ORDERING=HIGH;DB_CLOSE_DELAY=-1
+    username: sa
+    password: ""
+  main:
+    banner-mode: off
+
+veriagent:
+  mappings:
+    source: registry
+  providers:
+    routing-table: data/routing/routing-table.v1.json
+    seed-mappings:
+      "[alfa/CO]": agentic-plane/golden/mapping-alfa-v2.json
+      "[beta/PE]": data/mappings/beta-PE-v1.json
+  home: ${veriagent.home:../..}
+  bus:
+    type: memory
+  security:
+    tokens-file: ${java.io.tmpdir}/veriagent-test/demo-tokens-${random.uuid}.json
+  retry:
+    max-attempts: 3
+    initial-interval: 10ms
+    multiplier: 2.0
+    max-interval: 50ms
+
+logging:
+  level:
+    root: warn

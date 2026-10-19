@@ -1,0 +1,13 @@
+# fuente=formato-beta-pe-v1.md (códigos de los catálogos 01, 05 y 06 de SUNAT)
+catalogo,version,codigo,etiqueta,extra,seccion
+TipoDocumento,1,01,Factura,,§3.2
+TipoDocumento,1,07,Nota de crédito,,§3.2
+TipoDocumento,1,08,Nota de débito,,§3.2
+TipoIdentificacion,1,6,RUC,^\d{11}$,§4.1
+TipoIdentificacion,1,1,DNI,^\d{8}$,§4.1
+TipoIdentificacion,1,4,Carné de extranjería,^[A-Z0-9]{9;12}$,§4.1
+TipoIdentificacion,1,7,Pasaporte,^[A-Z0-9]{6;12}$,§4.1
+Tributo,1,1000,IGV,18.00;IGV,§5.1
+Tributo,1,9997,Exonerado,0.00;EXO,§5.1
+Moneda,1,PEN,Sol,,§B.2
+Moneda,1,USD,Dólar,,§B.2

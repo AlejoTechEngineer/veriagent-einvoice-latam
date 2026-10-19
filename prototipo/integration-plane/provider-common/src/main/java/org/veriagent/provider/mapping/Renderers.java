@@ -11,6 +11,8 @@ public class Renderers {
     public Renderers() {
         register(new AlfaXmlRenderer());
         register(new BetaSegmentRenderer());
+        register(new BetaSegmentRenderer("beta-pe-segmentos", "beta-pe"));
+        register(new GammaJsonRenderer());
     }
 
     public final void register(Renderer r) {

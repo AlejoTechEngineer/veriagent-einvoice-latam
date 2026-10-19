@@ -1,0 +1,245 @@
+{
+  "provider" : "gamma",
+  "country" : "XX",
+  "kitProfile" : "gamma",
+  "note" : "Ejemplos validados por persona: referencia del control de integración continua (ADR-05).",
+  "fixtures" : [ {
+    "canonical" : {
+      "country" : "XX",
+      "correlationId" : "corr-xx-XXF900001",
+      "documentNumber" : "XXF900001",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-29",
+      "currency" : "USD",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Synthetic Trading Co.",
+        "taxId" : "1234567897",
+        "idType" : "TIN",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Carlos Pérez",
+        "taxId" : "4567358447",
+        "idType" : "TIN",
+        "email" : "cliente900000@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Mantenimiento preventivo",
+        "quantity" : 5,
+        "unitPrice" : 3078.53,
+        "amount" : 15392.65,
+        "taxCode" : "VAT12",
+        "taxRate" : 12.00
+      }, {
+        "number" : 2,
+        "description" : "Licencia anual de software",
+        "quantity" : 10,
+        "unitPrice" : 560.51,
+        "amount" : 5605.10,
+        "taxCode" : "ZERO",
+        "taxRate" : 0.00
+      } ],
+      "totals" : {
+        "baseAmount" : 20997.75,
+        "taxAmount" : 1847.12,
+        "payableAmount" : 22844.87
+      }
+    },
+    "expected" : "{\r\n  \"header\" : {\r\n    \"specVersion\" : \"GAMMA-1\",\r\n    \"number\" : \"XXF900001\",\r\n    \"issueDate\" : \"2026-09-29\",\r\n    \"documentType\" : \"FAC\",\r\n    \"currency\" : \"USD\"\r\n  },\r\n  \"parties\" : {\r\n    \"seller\" : {\r\n      \"name\" : \"Synthetic Trading Co.\",\r\n      \"taxId\" : \"1234567897\",\r\n      \"idScheme\" : \"TX\"\r\n    },\r\n    \"buyer\" : {\r\n      \"name\" : \"Carlos Pérez\",\r\n      \"taxId\" : \"4567358447\",\r\n      \"idScheme\" : \"TX\",\r\n      \"email\" : \"cliente900000@ejemplo.test\"\r\n    }\r\n  },\r\n  \"lines\" : [ {\r\n    \"lineNo\" : 1,\r\n    \"description\" : \"Mantenimiento preventivo\",\r\n    \"qty\" : \"5\",\r\n    \"unitPrice\" : \"3078.53\",\r\n    \"net\" : \"15392.65\",\r\n    \"taxCode\" : \"V12\",\r\n    \"taxRate\" : \"12.00\"\r\n  }, {\r\n    \"lineNo\" : 2,\r\n    \"description\" : \"Licencia anual de software\",\r\n    \"qty\" : \"10\",\r\n    \"unitPrice\" : \"560.51\",\r\n    \"net\" : \"5605.10\",\r\n    \"taxCode\" : \"V00\",\r\n    \"taxRate\" : \"0.00\"\r\n  } ],\r\n  \"totals\" : {\r\n    \"net\" : \"20997.75\",\r\n    \"tax\" : \"1847.12\",\r\n    \"gross\" : \"22844.87\"\r\n  }\r\n}"
+  }, {
+    "canonical" : {
+      "country" : "XX",
+      "correlationId" : "corr-xx-XXF900002",
+      "documentNumber" : "XXF900002",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-28",
+      "currency" : "USD",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Synthetic Trading Co.",
+        "taxId" : "1234567897",
+        "idType" : "TIN",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Tecnologías del Valle",
+        "taxId" : "DZ592833",
+        "idType" : "PAS",
+        "email" : "cliente900001@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Migración de datos",
+        "quantity" : 11,
+        "unitPrice" : 4122.68,
+        "amount" : 45349.48,
+        "taxCode" : "VAT12",
+        "taxRate" : 12.00
+      } ],
+      "totals" : {
+        "baseAmount" : 45349.48,
+        "taxAmount" : 5441.94,
+        "payableAmount" : 50791.42
+      }
+    },
+    "expected" : "{\r\n  \"header\" : {\r\n    \"specVersion\" : \"GAMMA-1\",\r\n    \"number\" : \"XXF900002\",\r\n    \"issueDate\" : \"2026-09-28\",\r\n    \"documentType\" : \"FAC\",\r\n    \"currency\" : \"USD\"\r\n  },\r\n  \"parties\" : {\r\n    \"seller\" : {\r\n      \"name\" : \"Synthetic Trading Co.\",\r\n      \"taxId\" : \"1234567897\",\r\n      \"idScheme\" : \"TX\"\r\n    },\r\n    \"buyer\" : {\r\n      \"name\" : \"Tecnologías del Valle\",\r\n      \"taxId\" : \"DZ592833\",\r\n      \"idScheme\" : \"PP\",\r\n      \"email\" : \"cliente900001@ejemplo.test\"\r\n    }\r\n  },\r\n  \"lines\" : [ {\r\n    \"lineNo\" : 1,\r\n    \"description\" : \"Migración de datos\",\r\n    \"qty\" : \"11\",\r\n    \"unitPrice\" : \"4122.68\",\r\n    \"net\" : \"45349.48\",\r\n    \"taxCode\" : \"V12\",\r\n    \"taxRate\" : \"12.00\"\r\n  } ],\r\n  \"totals\" : {\r\n    \"net\" : \"45349.48\",\r\n    \"tax\" : \"5441.94\",\r\n    \"gross\" : \"50791.42\"\r\n  }\r\n}"
+  }, {
+    "canonical" : {
+      "country" : "XX",
+      "correlationId" : "corr-xx-XXF900003",
+      "documentNumber" : "XXF900003",
+      "documentType" : "CREDIT_NOTE",
+      "issueDate" : "2026-09-16",
+      "currency" : "USD",
+      "originalDocumentNumber" : "XXF899958",
+      "supplier" : {
+        "name" : "Synthetic Trading Co.",
+        "taxId" : "1234567897",
+        "idType" : "TIN",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Distribuidora Central",
+        "taxId" : "7735969698",
+        "idType" : "TIN",
+        "email" : "cliente900002@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Consultoría de integración",
+        "quantity" : 10,
+        "unitPrice" : 2244.74,
+        "amount" : 22447.40,
+        "taxCode" : "VAT12",
+        "taxRate" : 12.00
+      } ],
+      "totals" : {
+        "baseAmount" : 22447.40,
+        "taxAmount" : 2693.69,
+        "payableAmount" : 25141.09
+      }
+    },
+    "expected" : "{\r\n  \"header\" : {\r\n    \"specVersion\" : \"GAMMA-1\",\r\n    \"number\" : \"XXF900003\",\r\n    \"issueDate\" : \"2026-09-16\",\r\n    \"documentType\" : \"NCR\",\r\n    \"currency\" : \"USD\",\r\n    \"originalNumber\" : \"XXF899958\"\r\n  },\r\n  \"parties\" : {\r\n    \"seller\" : {\r\n      \"name\" : \"Synthetic Trading Co.\",\r\n      \"taxId\" : \"1234567897\",\r\n      \"idScheme\" : \"TX\"\r\n    },\r\n    \"buyer\" : {\r\n      \"name\" : \"Distribuidora Central\",\r\n      \"taxId\" : \"7735969698\",\r\n      \"idScheme\" : \"TX\",\r\n      \"email\" : \"cliente900002@ejemplo.test\"\r\n    }\r\n  },\r\n  \"lines\" : [ {\r\n    \"lineNo\" : 1,\r\n    \"description\" : \"Consultoría de integración\",\r\n    \"qty\" : \"10\",\r\n    \"unitPrice\" : \"2244.74\",\r\n    \"net\" : \"22447.40\",\r\n    \"taxCode\" : \"V12\",\r\n    \"taxRate\" : \"12.00\"\r\n  } ],\r\n  \"totals\" : {\r\n    \"net\" : \"22447.40\",\r\n    \"tax\" : \"2693.69\",\r\n    \"gross\" : \"25141.09\"\r\n  }\r\n}"
+  }, {
+    "canonical" : {
+      "country" : "XX",
+      "correlationId" : "corr-xx-XXF900004",
+      "documentNumber" : "XXF900004",
+      "documentType" : "DEBIT_NOTE",
+      "issueDate" : "2026-09-16",
+      "currency" : "USD",
+      "originalDocumentNumber" : "XXF899961",
+      "supplier" : {
+        "name" : "Synthetic Trading Co.",
+        "taxId" : "1234567897",
+        "idType" : "TIN",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Ana María Rojas",
+        "taxId" : "VW76200",
+        "idType" : "PAS",
+        "email" : "cliente900003@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Migración | de datos",
+        "quantity" : 6,
+        "unitPrice" : 2079.12,
+        "amount" : 12474.72,
+        "taxCode" : "ZERO",
+        "taxRate" : 0.00
+      } ],
+      "totals" : {
+        "baseAmount" : 12474.72,
+        "taxAmount" : 0.00,
+        "payableAmount" : 12474.72
+      }
+    },
+    "expected" : "{\r\n  \"header\" : {\r\n    \"specVersion\" : \"GAMMA-1\",\r\n    \"number\" : \"XXF900004\",\r\n    \"issueDate\" : \"2026-09-16\",\r\n    \"documentType\" : \"NDB\",\r\n    \"currency\" : \"USD\",\r\n    \"originalNumber\" : \"XXF899961\"\r\n  },\r\n  \"parties\" : {\r\n    \"seller\" : {\r\n      \"name\" : \"Synthetic Trading Co.\",\r\n      \"taxId\" : \"1234567897\",\r\n      \"idScheme\" : \"TX\"\r\n    },\r\n    \"buyer\" : {\r\n      \"name\" : \"Ana María Rojas\",\r\n      \"taxId\" : \"VW76200\",\r\n      \"idScheme\" : \"PP\",\r\n      \"email\" : \"cliente900003@ejemplo.test\"\r\n    }\r\n  },\r\n  \"lines\" : [ {\r\n    \"lineNo\" : 1,\r\n    \"description\" : \"Migración / de datos\",\r\n    \"qty\" : \"6\",\r\n    \"unitPrice\" : \"2079.12\",\r\n    \"net\" : \"12474.72\",\r\n    \"taxCode\" : \"V00\",\r\n    \"taxRate\" : \"0.00\"\r\n  } ],\r\n  \"totals\" : {\r\n    \"net\" : \"12474.72\",\r\n    \"tax\" : \"0.00\",\r\n    \"gross\" : \"12474.72\"\r\n  }\r\n}"
+  }, {
+    "canonical" : {
+      "country" : "XX",
+      "correlationId" : "corr-xx-XXF900005",
+      "documentNumber" : "XXF900005",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-06",
+      "currency" : "USD",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Synthetic Trading Co.",
+        "taxId" : "1234567897",
+        "idType" : "TIN",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Comercial Andina S.A.S.",
+        "taxId" : "8527698628",
+        "idType" : "TIN",
+        "email" : "cliente900004@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Hosting | mensual",
+        "quantity" : 11,
+        "unitPrice" : 3805.21,
+        "amount" : 41857.31,
+        "taxCode" : "VAT12",
+        "taxRate" : 12.00
+      } ],
+      "totals" : {
+        "baseAmount" : 41857.31,
+        "taxAmount" : 5022.88,
+        "payableAmount" : 46880.19
+      }
+    },
+    "expected" : "{\r\n  \"header\" : {\r\n    \"specVersion\" : \"GAMMA-1\",\r\n    \"number\" : \"XXF900005\",\r\n    \"issueDate\" : \"2026-09-06\",\r\n    \"documentType\" : \"FAC\",\r\n    \"currency\" : \"USD\"\r\n  },\r\n  \"parties\" : {\r\n    \"seller\" : {\r\n      \"name\" : \"Synthetic Trading Co.\",\r\n      \"taxId\" : \"1234567897\",\r\n      \"idScheme\" : \"TX\"\r\n    },\r\n    \"buyer\" : {\r\n      \"name\" : \"Comercial Andina S.A.S.\",\r\n      \"taxId\" : \"8527698628\",\r\n      \"idScheme\" : \"TX\",\r\n      \"email\" : \"cliente900004@ejemplo.test\"\r\n    }\r\n  },\r\n  \"lines\" : [ {\r\n    \"lineNo\" : 1,\r\n    \"description\" : \"Hosting / mensual\",\r\n    \"qty\" : \"11\",\r\n    \"unitPrice\" : \"3805.21\",\r\n    \"net\" : \"41857.31\",\r\n    \"taxCode\" : \"V12\",\r\n    \"taxRate\" : \"12.00\"\r\n  } ],\r\n  \"totals\" : {\r\n    \"net\" : \"41857.31\",\r\n    \"tax\" : \"5022.88\",\r\n    \"gross\" : \"46880.19\"\r\n  }\r\n}"
+  }, {
+    "canonical" : {
+      "country" : "XX",
+      "correlationId" : "corr-xx-XXF900006",
+      "documentNumber" : "XXF900006",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-25",
+      "currency" : "USD",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Synthetic Trading Co.",
+        "taxId" : "1234567897",
+        "idType" : "TIN",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Clínica | San Rafael",
+        "taxId" : "4620309841",
+        "idType" : "TIN",
+        "email" : "cliente900005@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Migración de datos",
+        "quantity" : 11,
+        "unitPrice" : 172.91,
+        "amount" : 1902.01,
+        "taxCode" : "ZERO",
+        "taxRate" : 0.00
+      }, {
+        "number" : 2,
+        "description" : "Mantenimiento preventivo",
+        "quantity" : 11,
+        "unitPrice" : 595.06,
+        "amount" : 6545.66,
+        "taxCode" : "VAT12",
+        "taxRate" : 12.00
+      } ],
+      "totals" : {
+        "baseAmount" : 8447.67,
+        "taxAmount" : 785.48,
+        "payableAmount" : 9233.15
+      }
+    },
+    "expected" : "{\r\n  \"header\" : {\r\n    \"specVersion\" : \"GAMMA-1\",\r\n    \"number\" : \"XXF900006\",\r\n    \"issueDate\" : \"2026-09-25\",\r\n    \"documentType\" : \"FAC\",\r\n    \"currency\" : \"USD\"\r\n  },\r\n  \"parties\" : {\r\n    \"seller\" : {\r\n      \"name\" : \"Synthetic Trading Co.\",\r\n      \"taxId\" : \"1234567897\",\r\n      \"idScheme\" : \"TX\"\r\n    },\r\n    \"buyer\" : {\r\n      \"name\" : \"Clínica / San Rafael\",\r\n      \"taxId\" : \"4620309841\",\r\n      \"idScheme\" : \"TX\",\r\n      \"email\" : \"cliente900005@ejemplo.test\"\r\n    }\r\n  },\r\n  \"lines\" : [ {\r\n    \"lineNo\" : 1,\r\n    \"description\" : \"Migración de datos\",\r\n    \"qty\" : \"11\",\r\n    \"unitPrice\" : \"172.91\",\r\n    \"net\" : \"1902.01\",\r\n    \"taxCode\" : \"V00\",\r\n    \"taxRate\" : \"0.00\"\r\n  }, {\r\n    \"lineNo\" : 2,\r\n    \"description\" : \"Mantenimiento preventivo\",\r\n    \"qty\" : \"11\",\r\n    \"unitPrice\" : \"595.06\",\r\n    \"net\" : \"6545.66\",\r\n    \"taxCode\" : \"V12\",\r\n    \"taxRate\" : \"12.00\"\r\n  } ],\r\n  \"totals\" : {\r\n    \"net\" : \"8447.67\",\r\n    \"tax\" : \"785.48\",\r\n    \"gross\" : \"9233.15\"\r\n  }\r\n}"
+  } ]
+}

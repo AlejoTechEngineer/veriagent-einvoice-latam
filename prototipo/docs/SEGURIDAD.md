@@ -32,6 +32,10 @@ suplantación 403, identidad del token en `dlq_entry.resolved_by` y en `audit_lo
 | Límites de tamaño y de descompresión en la carga de lotes | `VeriagentProperties.Limits`, `spring.servlet.multipart` | `IngestTest.zipLimits` (bomba de descompresión, recorrido de rutas en el ZIP, formato no admitido) | Fase 2 |
 | XML sin DTD ni entidades externas | Kit (`Dom`, `XsdValidator`, `VerificationKit`) | `rejectsDoctype`, `rejectsDoctypeBeforeSchemaValidation`, `KitControllerTest.hostileInputs` | Fase 1 |
 | Validación de esquema antes de procesar | `ContractValidator` en la ingesta, la fachada y cada evento publicado | `ContractTest`, `IngestTest.invalidItemsGoToDlq`, `InvoiceFacadeTest.validatesBeforeProcessing` | Fase 2 |
+| Registro de mapeos: proponer AGENT, REVIEWER o SYSTEM; aprobar, rechazar, activar y revertir solo REVIEWER; bloqueada por el kit → 409; identidad del token | `svc-mapping-registry` | `MappingRegistryTest.lifecycle` (401, 403 del agente, 403 por suplantación, 409, `approvedBy` y `activatedBy` del token) | Fase 3 |
+| Fallos de los simuladores: solo OPERATOR | `provider-simulators` | `ProviderSimulatorTest.adminFaults` (401, 403 de agente y revisor) | Fase 3 |
+| Rutas sin token solo para la recepción de los proveedores simulados (`/sim/*/api/v1/**`), declaradas explícitamente en el perfil local; la propiedad rechaza cualquier ruta que no empiece por `/sim/` | `VeriagentProperties.Security.simulatorPublicPaths` | `SecurityPolicyTest` (toda otra mutación declara rol) | Fase 3 |
+| Lotes ZIP de los simuladores: límite de tamaño, de descompresión y de documentos; nombres de entrada sin rutas | `SimulatorController.unzip` | `ProviderSimulatorTest.zipTraversal` | Fase 3 |
 
 Búsqueda del patrón en el resto de la base (Fase 0): `grep` de rutas `POST/PUT/DELETE/PATCH`, campos
 `reviewer`, servidores HTTP, configuración de CORS y analizadores XML en el código Python, Java y JavaScript.

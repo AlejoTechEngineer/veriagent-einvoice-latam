@@ -49,8 +49,21 @@ public class VeriagentProperties {
         public void setTokensFile(String tokensFile) { this.tokensFile = tokensFile; }
         public String getTokenMode() { return tokenMode; }
         public void setTokenMode(String tokenMode) { this.tokenMode = tokenMode; }
+        /**
+         * Rutas adicionales sin token. Solo para los simuladores de proveedores, que representan sistemas externos
+         * con su propio control de acceso; nunca rutas de la plataforma.
+         */
+        private List<String> simulatorPublicPaths = List.of();
+
         public List<String> getAllowedOrigins() { return allowedOrigins; }
         public void setAllowedOrigins(List<String> allowedOrigins) { this.allowedOrigins = allowedOrigins; }
+        public List<String> getSimulatorPublicPaths() { return simulatorPublicPaths; }
+        public void setSimulatorPublicPaths(List<String> paths) {
+            for (String p : paths) {
+                if (!p.startsWith("/sim/")) throw new IllegalArgumentException("Solo se permiten rutas /sim/ sin token: " + p);
+            }
+            this.simulatorPublicPaths = List.copyOf(paths);
+        }
     }
 
     public static class Retry {

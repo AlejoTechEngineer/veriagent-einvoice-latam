@@ -45,7 +45,8 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, DemoTokenStore tokens) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, DemoTokenStore tokens, VeriagentProperties props) throws Exception {
+        String[] simulatorPaths = props.getSecurity().getSimulatorPublicPaths().toArray(String[]::new);
         http
             .csrf(c -> c.disable())
             .httpBasic(b -> b.disable())
@@ -56,9 +57,11 @@ public class SecurityConfiguration {
             .headers(h -> h.contentSecurityPolicy(csp -> csp.policyDirectives(
                 "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; "
                     + "frame-ancestors 'none'; base-uri 'self'; form-action 'self'")))
-            .authorizeHttpRequests(a -> a
-                .requestMatchers(PUBLIC_PATHS).permitAll()
-                .anyRequest().authenticated())
+            .authorizeHttpRequests(a -> {
+                a.requestMatchers(PUBLIC_PATHS).permitAll();
+                if (simulatorPaths.length > 0) a.requestMatchers(simulatorPaths).permitAll();
+                a.anyRequest().authenticated();
+            })
             .exceptionHandling(e -> e
                 .authenticationEntryPoint((req, res, ex) ->
                     SecurityResponses.write(res, 401, "UNAUTHENTICATED", "Falta el token de acceso"))

@@ -39,6 +39,9 @@ final class MappingValues {
                 BigDecimal d = decimal(value).stripTrailingZeros();
                 yield d.scale() < 0 ? d.setScale(0).toPlainString() : d.toPlainString();
             }
+            // Texto libre saneado: el separador reservado "|" se sustituye por "/" (§G.6 de Gamma, §B.1 de Beta).
+            case "sanitize" -> asString(value).replace("|", "/");
+            case "integer" -> String.valueOf(decimal(value).intValueExact());
             default -> asString(value);
         };
     }

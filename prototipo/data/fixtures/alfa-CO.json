@@ -1,0 +1,319 @@
+{
+  "provider" : "alfa",
+  "country" : "CO",
+  "kitProfile" : "alfa",
+  "note" : "Ejemplos validados por persona: referencia del control de integración continua (ADR-05).",
+  "fixtures" : [ {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900001",
+      "documentNumber" : "SETP990900001",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-29",
+      "currency" : "COP",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Carlos Pérez",
+        "taxId" : "956735845-1",
+        "idType" : "NIT",
+        "email" : "cliente900000@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Mantenimiento preventivo",
+        "quantity" : 5,
+        "unitPrice" : 3078.53,
+        "amount" : 15392.65,
+        "taxCode" : "IVA19",
+        "taxRate" : 19.00
+      }, {
+        "number" : 2,
+        "description" : "Licencia anual de software",
+        "quantity" : 10,
+        "unitPrice" : 560.51,
+        "amount" : 5605.10,
+        "taxCode" : "IVA5",
+        "taxRate" : 5.00
+      } ],
+      "totals" : {
+        "baseAmount" : 20997.75,
+        "taxAmount" : 3204.86,
+        "payableAmount" : 24202.61
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900001</ID><IssueDate>2026-09-29</IssueDate><InvoiceTypeCode>01</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Carlos Pérez</PartyName><CompanyID schemeName=\"A1\">956735845-1</CompanyID><ElectronicMail>cliente900000@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>3204.86</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>20997.75</LineExtensionAmount><PayableAmount>24202.61</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>5</InvoicedQuantity><LineExtensionAmount>15392.65</LineExtensionAmount><ItemDescription>Mantenimiento preventivo</ItemDescription><PriceAmount>3078.53</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine><InvoiceLine><ID>2</ID><InvoicedQuantity>10</InvoicedQuantity><LineExtensionAmount>5605.10</LineExtensionAmount><ItemDescription>Licencia anual de software</ItemDescription><PriceAmount>560.51</PriceAmount><TaxCategory><ID>T02</ID><Percent>5.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900002",
+      "documentNumber" : "SETP990900002",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-10-10",
+      "currency" : "COP",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Tecnologías del Valle",
+        "taxId" : "1056740299",
+        "idType" : "CC",
+        "email" : "cliente900001@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Migración de datos",
+        "quantity" : 11,
+        "unitPrice" : 4122.68,
+        "amount" : 45349.48,
+        "taxCode" : "EXENTO",
+        "taxRate" : 0.00
+      } ],
+      "totals" : {
+        "baseAmount" : 45349.48,
+        "taxAmount" : 0.00,
+        "payableAmount" : 45349.48
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900002</ID><IssueDate>2026-10-10</IssueDate><InvoiceTypeCode>01</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Tecnologías del Valle</PartyName><CompanyID schemeName=\"A2\">1056740299</CompanyID><ElectronicMail>cliente900001@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>0.00</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>45349.48</LineExtensionAmount><PayableAmount>45349.48</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>11</InvoicedQuantity><LineExtensionAmount>45349.48</LineExtensionAmount><ItemDescription>Migración de datos</ItemDescription><PriceAmount>4122.68</PriceAmount><TaxCategory><ID>T03</ID><Percent>0.00</Percent><TaxSchemeName>EXENTO</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900003",
+      "documentNumber" : "SETP990900003",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-15",
+      "currency" : "COP",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Carlos Pérez",
+        "taxId" : "MD1727594513",
+        "idType" : "CE",
+        "email" : "cliente900002@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Migración de datos",
+        "quantity" : 12,
+        "unitPrice" : 4614.79,
+        "amount" : 55377.48,
+        "taxCode" : "IVA19",
+        "taxRate" : 19.00
+      } ],
+      "totals" : {
+        "baseAmount" : 55377.48,
+        "taxAmount" : 10521.72,
+        "payableAmount" : 65899.20
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900003</ID><IssueDate>2026-09-15</IssueDate><InvoiceTypeCode>01</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Carlos Pérez</PartyName><CompanyID schemeName=\"A3\">MD1727594513</CompanyID><ElectronicMail>cliente900002@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>10521.72</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>55377.48</LineExtensionAmount><PayableAmount>65899.20</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>12</InvoicedQuantity><LineExtensionAmount>55377.48</LineExtensionAmount><ItemDescription>Migración de datos</ItemDescription><PriceAmount>4614.79</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900004",
+      "documentNumber" : "SETP990900004",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-03",
+      "currency" : "COP",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Servicios Integrales del Norte",
+        "taxId" : "YD2556104",
+        "idType" : "PAS",
+        "email" : "cliente900003@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Póliza de servicio",
+        "quantity" : 1,
+        "unitPrice" : 2264.67,
+        "amount" : 2264.67,
+        "taxCode" : "IVA5",
+        "taxRate" : 5.00
+      }, {
+        "number" : 2,
+        "description" : "Póliza de servicio",
+        "quantity" : 9,
+        "unitPrice" : 2461.23,
+        "amount" : 22151.07,
+        "taxCode" : "IVA19",
+        "taxRate" : 19.00
+      } ],
+      "totals" : {
+        "baseAmount" : 24415.74,
+        "taxAmount" : 4321.94,
+        "payableAmount" : 28737.68
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900004</ID><IssueDate>2026-09-03</IssueDate><InvoiceTypeCode>01</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Servicios Integrales del Norte</PartyName><CompanyID schemeName=\"A4\">YD2556104</CompanyID><ElectronicMail>cliente900003@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>4321.94</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>24415.74</LineExtensionAmount><PayableAmount>28737.68</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>1</InvoicedQuantity><LineExtensionAmount>2264.67</LineExtensionAmount><ItemDescription>Póliza de servicio</ItemDescription><PriceAmount>2264.67</PriceAmount><TaxCategory><ID>T02</ID><Percent>5.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine><InvoiceLine><ID>2</ID><InvoicedQuantity>9</InvoicedQuantity><LineExtensionAmount>22151.07</LineExtensionAmount><ItemDescription>Póliza de servicio</ItemDescription><PriceAmount>2461.23</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900005",
+      "documentNumber" : "SETP990900005",
+      "documentType" : "CREDIT_NOTE",
+      "issueDate" : "2026-10-14",
+      "currency" : "COP",
+      "originalDocumentNumber" : "SETP990900003",
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Logística Pacífico",
+        "taxId" : "886151935-3",
+        "idType" : "NIT",
+        "email" : "cliente900004@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Capacitación virtual",
+        "quantity" : 2,
+        "unitPrice" : 3825.30,
+        "amount" : 7650.60,
+        "taxCode" : "IVA19",
+        "taxRate" : 19.00
+      } ],
+      "totals" : {
+        "baseAmount" : 7650.60,
+        "taxAmount" : 1453.61,
+        "payableAmount" : 9104.21
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900005</ID><IssueDate>2026-10-14</IssueDate><InvoiceTypeCode>91</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><BillingReference>SETP990900003</BillingReference><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Logística Pacífico</PartyName><CompanyID schemeName=\"A1\">886151935-3</CompanyID><ElectronicMail>cliente900004@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>1453.61</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>7650.60</LineExtensionAmount><PayableAmount>9104.21</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>2</InvoicedQuantity><LineExtensionAmount>7650.60</LineExtensionAmount><ItemDescription>Capacitación virtual</ItemDescription><PriceAmount>3825.30</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900006",
+      "documentNumber" : "SETP990900006",
+      "documentType" : "DEBIT_NOTE",
+      "issueDate" : "2026-10-11",
+      "currency" : "COP",
+      "originalDocumentNumber" : "SETP990899998",
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Tecnologías del Valle",
+        "taxId" : "443352105",
+        "idType" : "CC",
+        "email" : "cliente900005@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Licencia anual de software",
+        "quantity" : 10,
+        "unitPrice" : 2620.07,
+        "amount" : 26200.70,
+        "taxCode" : "IVA5",
+        "taxRate" : 5.00
+      } ],
+      "totals" : {
+        "baseAmount" : 26200.70,
+        "taxAmount" : 1310.04,
+        "payableAmount" : 27510.74
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900006</ID><IssueDate>2026-10-11</IssueDate><InvoiceTypeCode>92</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><BillingReference>SETP990899998</BillingReference><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Tecnologías del Valle</PartyName><CompanyID schemeName=\"A2\">443352105</CompanyID><ElectronicMail>cliente900005@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>1310.04</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>26200.70</LineExtensionAmount><PayableAmount>27510.74</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>10</InvoicedQuantity><LineExtensionAmount>26200.70</LineExtensionAmount><ItemDescription>Licencia anual de software</ItemDescription><PriceAmount>2620.07</PriceAmount><TaxCategory><ID>T02</ID><Percent>5.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900007",
+      "documentNumber" : "SETP990900007",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-20",
+      "currency" : "COP",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Distribuidora Central",
+        "taxId" : "859324995-0",
+        "idType" : "NIT",
+        "email" : "cliente900006@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Capacitación | virtual",
+        "quantity" : 6,
+        "unitPrice" : 4723.62,
+        "amount" : 28341.72,
+        "taxCode" : "IVA19",
+        "taxRate" : 19.00
+      } ],
+      "totals" : {
+        "baseAmount" : 28341.72,
+        "taxAmount" : 5384.93,
+        "payableAmount" : 33726.65
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900007</ID><IssueDate>2026-09-20</IssueDate><InvoiceTypeCode>01</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Distribuidora Central</PartyName><CompanyID schemeName=\"A1\">859324995-0</CompanyID><ElectronicMail>cliente900006@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>5384.93</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>28341.72</LineExtensionAmount><PayableAmount>33726.65</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>6</InvoicedQuantity><LineExtensionAmount>28341.72</LineExtensionAmount><ItemDescription>Capacitación | virtual</ItemDescription><PriceAmount>4723.62</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  }, {
+    "canonical" : {
+      "country" : "CO",
+      "correlationId" : "corr-co-SETP990900008",
+      "documentNumber" : "SETP990900008",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-24",
+      "currency" : "COP",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Comercializadora Sintética S.A.S.",
+        "taxId" : "900123456-8",
+        "idType" : "NIT",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Carlos | Pérez",
+        "taxId" : "27148061",
+        "idType" : "CC",
+        "email" : "cliente900007@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Servicio | de soporte técnico",
+        "quantity" : 11,
+        "unitPrice" : 2295.04,
+        "amount" : 25245.44,
+        "taxCode" : "IVA19",
+        "taxRate" : 19.00
+      } ],
+      "totals" : {
+        "baseAmount" : 25245.44,
+        "taxAmount" : 4796.63,
+        "payableAmount" : 30042.07
+      }
+    },
+    "expected" : "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?><Invoice xmlns=\"urn:tfg:alfa:invoice:2\"><ProfileID>PerfilAlfa-2.1</ProfileID><ID>SETP990900008</ID><IssueDate>2026-09-24</IssueDate><InvoiceTypeCode>01</InvoiceTypeCode><DocumentCurrencyCode>COP</DocumentCurrencyCode><AccountingSupplierParty><Party><PartyName>Comercializadora Sintética S.A.S.</PartyName><CompanyID schemeName=\"A1\">900123456-8</CompanyID></Party></AccountingSupplierParty><AccountingCustomerParty><Party><PartyName>Carlos | Pérez</PartyName><CompanyID schemeName=\"A2\">27148061</CompanyID><ElectronicMail>cliente900007@ejemplo.test</ElectronicMail></Party></AccountingCustomerParty><TaxTotal><TaxAmount>4796.63</TaxAmount></TaxTotal><LegalMonetaryTotal><LineExtensionAmount>25245.44</LineExtensionAmount><PayableAmount>30042.07</PayableAmount></LegalMonetaryTotal><InvoiceLine><ID>1</ID><InvoicedQuantity>11</InvoicedQuantity><LineExtensionAmount>25245.44</LineExtensionAmount><ItemDescription>Servicio | de soporte técnico</ItemDescription><PriceAmount>2295.04</PriceAmount><TaxCategory><ID>T01</ID><Percent>19.00</Percent><TaxSchemeName>IVA</TaxSchemeName></TaxCategory></InvoiceLine></Invoice>"
+  } ]
+}

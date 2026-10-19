@@ -6,6 +6,8 @@ spring:
 
 veriagent:
   home: ${veriagent.home:../..}
+  services:
+    provider-simulators: true
   security:
     tokens-file: ${java.io.tmpdir}/veriagent-test/demo-tokens-${random.uuid}.json
   providers:

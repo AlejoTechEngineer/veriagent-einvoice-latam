@@ -1,0 +1,30 @@
+{
+  "profile": "gamma-json-1",
+  "version": "referencia",
+  "note": "Mapeo de referencia con el que una persona validó los ejemplos de data/fixtures/gamma-XX.json. Solo para pruebas; no se activa: el mapeo de Gamma lo propone el agente en el escenario S5.",
+  "entries": [
+    { "target": "/header/specVersion", "transform": "literal", "value": "GAMMA-1" },
+    { "target": "/header/number", "source": "documentNumber" },
+    { "target": "/header/issueDate", "source": "issueDate" },
+    { "target": "/header/documentType", "source": "documentType", "transform": "map", "table": { "INVOICE": "FAC", "CREDIT_NOTE": "NCR", "DEBIT_NOTE": "NDB" } },
+    { "target": "/header/currency", "source": "currency" },
+    { "target": "/header/originalNumber", "source": "originalDocumentNumber" },
+    { "target": "/parties/seller/name", "source": "supplier.name", "transform": "sanitize" },
+    { "target": "/parties/seller/taxId", "source": "supplier.taxId" },
+    { "target": "/parties/seller/idScheme", "source": "supplier.idType", "transform": "map", "table": { "TIN": "TX", "PAS": "PP" } },
+    { "target": "/parties/buyer/name", "source": "customer.name", "transform": "sanitize" },
+    { "target": "/parties/buyer/taxId", "source": "customer.taxId" },
+    { "target": "/parties/buyer/idScheme", "source": "customer.idType", "transform": "map", "table": { "TIN": "TX", "PAS": "PP" } },
+    { "target": "/parties/buyer/email", "source": "customer.email" },
+    { "target": "/lines[]/lineNo", "source": "lines[].number", "transform": "integer" },
+    { "target": "/lines[]/description", "source": "lines[].description", "transform": "sanitize" },
+    { "target": "/lines[]/qty", "source": "lines[].quantity", "transform": "decimal" },
+    { "target": "/lines[]/unitPrice", "source": "lines[].unitPrice", "transform": "decimal2" },
+    { "target": "/lines[]/net", "source": "lines[].amount", "transform": "decimal2" },
+    { "target": "/lines[]/taxCode", "source": "lines[].taxCode", "transform": "map", "table": { "VAT12": "V12", "ZERO": "V00" } },
+    { "target": "/lines[]/taxRate", "source": "lines[].taxRate", "transform": "decimal2" },
+    { "target": "/totals/net", "source": "totals.baseAmount", "transform": "decimal2" },
+    { "target": "/totals/tax", "source": "totals.taxAmount", "transform": "decimal2" },
+    { "target": "/totals/gross", "source": "totals.payableAmount", "transform": "decimal2" }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "provider" : "beta",
+  "country" : "PE",
+  "kitProfile" : "beta-pe",
+  "note" : "Ejemplos validados por persona: referencia del control de integración continua (ADR-05).",
+  "fixtures" : [ {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900001",
+      "documentNumber" : "F001-00900001",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-12",
+      "currency" : "PEN",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Logística Pacífico",
+        "taxId" : "20270001077",
+        "idType" : "RUC",
+        "email" : "cliente900000@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Mantenimiento preventivo",
+        "quantity" : 5,
+        "unitPrice" : 3078.53,
+        "amount" : 15392.65,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      } ],
+      "totals" : {
+        "baseAmount" : 15392.65,
+        "taxAmount" : 2770.68,
+        "payableAmount" : 18163.33
+      }
+    },
+    "expected" : "ENC|F001-00900001|2026-09-12|01|PEN|20123456786|20270001077|Logística Pacífico\nDET|1|Mantenimiento preventivo|5|3078.53|15392.65|1000\nTOT|15392.65|2770.68|18163.33\n"
+  }, {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900002",
+      "documentNumber" : "F001-00900002",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-10-10",
+      "currency" : "PEN",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Tecnologías del Valle",
+        "taxId" : "85767501",
+        "idType" : "DNI",
+        "email" : "cliente900001@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Capacitación virtual",
+        "quantity" : 10,
+        "unitPrice" : 2489.12,
+        "amount" : 24891.20,
+        "taxCode" : "EXONERADO",
+        "taxRate" : 0.00
+      }, {
+        "number" : 2,
+        "description" : "Migración de datos",
+        "quantity" : 11,
+        "unitPrice" : 4122.68,
+        "amount" : 45349.48,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      } ],
+      "totals" : {
+        "baseAmount" : 70240.68,
+        "taxAmount" : 8162.91,
+        "payableAmount" : 78403.59
+      }
+    },
+    "expected" : "ENC|F001-00900002|2026-10-10|01|PEN|20123456786|85767501|Tecnologías del Valle\nDET|1|Capacitación virtual|10|2489.12|24891.20|9997\nDET|2|Migración de datos|11|4122.68|45349.48|1000\nTOT|70240.68|8162.91|78403.59\n"
+  }, {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900003",
+      "documentNumber" : "F001-00900003",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-15",
+      "currency" : "PEN",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Carlos Pérez",
+        "taxId" : "MD1727594513",
+        "idType" : "CE",
+        "email" : "cliente900002@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Migración de datos",
+        "quantity" : 12,
+        "unitPrice" : 4614.79,
+        "amount" : 55377.48,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      } ],
+      "totals" : {
+        "baseAmount" : 55377.48,
+        "taxAmount" : 9967.95,
+        "payableAmount" : 65345.43
+      }
+    },
+    "expected" : "ENC|F001-00900003|2026-09-15|01|PEN|20123456786|MD1727594513|Carlos Pérez\nDET|1|Migración de datos|12|4614.79|55377.48|1000\nTOT|55377.48|9967.95|65345.43\n"
+  }, {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900004",
+      "documentNumber" : "F001-00900004",
+      "documentType" : "CREDIT_NOTE",
+      "issueDate" : "2026-10-07",
+      "currency" : "PEN",
+      "originalDocumentNumber" : "F001-00899988",
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Carlos Pérez",
+        "taxId" : "NN002525",
+        "idType" : "PAS",
+        "email" : "cliente900003@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Póliza de servicio",
+        "quantity" : 1,
+        "unitPrice" : 2264.67,
+        "amount" : 2264.67,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      } ],
+      "totals" : {
+        "baseAmount" : 2264.67,
+        "taxAmount" : 407.64,
+        "payableAmount" : 2672.31
+      }
+    },
+    "expected" : "ENC|F001-00900004|2026-10-07|07|PEN|20123456786|NN002525|Carlos Pérez\nDET|1|Póliza de servicio|1|2264.67|2264.67|1000\nTOT|2264.67|407.64|2672.31\n"
+  }, {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900005",
+      "documentNumber" : "F001-00900005",
+      "documentType" : "DEBIT_NOTE",
+      "issueDate" : "2026-09-14",
+      "currency" : "PEN",
+      "originalDocumentNumber" : "F001-00899970",
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Tecnologías del Valle",
+        "taxId" : "20557666495",
+        "idType" : "RUC",
+        "email" : "cliente900004@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Capacitación virtual",
+        "quantity" : 10,
+        "unitPrice" : 4307.61,
+        "amount" : 43076.10,
+        "taxCode" : "EXONERADO",
+        "taxRate" : 0.00
+      } ],
+      "totals" : {
+        "baseAmount" : 43076.10,
+        "taxAmount" : 0.00,
+        "payableAmount" : 43076.10
+      }
+    },
+    "expected" : "ENC|F001-00900005|2026-09-14|08|PEN|20123456786|20557666495|Tecnologías del Valle\nDET|1|Capacitación virtual|10|4307.61|43076.10|9997\nTOT|43076.10|0.00|43076.10\n"
+  }, {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900006",
+      "documentNumber" : "F001-00900006",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-09",
+      "currency" : "PEN",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Ana María Rojas",
+        "taxId" : "41755510",
+        "idType" : "DNI",
+        "email" : "cliente900005@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Licencia | anual de software",
+        "quantity" : 10,
+        "unitPrice" : 3267.54,
+        "amount" : 32675.40,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      } ],
+      "totals" : {
+        "baseAmount" : 32675.40,
+        "taxAmount" : 5881.57,
+        "payableAmount" : 38556.97
+      }
+    },
+    "expected" : "ENC|F001-00900006|2026-09-09|01|PEN|20123456786|41755510|Ana María Rojas\nDET|1|Licencia / anual de software|10|3267.54|32675.40|1000\nTOT|32675.40|5881.57|38556.97\n"
+  }, {
+    "canonical" : {
+      "country" : "PE",
+      "correlationId" : "corr-pe-F001-00900007",
+      "documentNumber" : "F001-00900007",
+      "documentType" : "INVOICE",
+      "issueDate" : "2026-09-23",
+      "currency" : "PEN",
+      "originalDocumentNumber" : null,
+      "supplier" : {
+        "name" : "Servicios Sintéticos del Pacífico S.A.C.",
+        "taxId" : "20123456786",
+        "idType" : "RUC",
+        "email" : null
+      },
+      "customer" : {
+        "name" : "Grupo | Horizonte",
+        "taxId" : "20336235716",
+        "idType" : "RUC",
+        "email" : "cliente900006@ejemplo.test"
+      },
+      "lines" : [ {
+        "number" : 1,
+        "description" : "Desarrollo a la medida",
+        "quantity" : 6,
+        "unitPrice" : 1938.09,
+        "amount" : 11628.54,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      }, {
+        "number" : 2,
+        "description" : "Desarrollo a la medida",
+        "quantity" : 10,
+        "unitPrice" : 2882.42,
+        "amount" : 28824.20,
+        "taxCode" : "IGV18",
+        "taxRate" : 18.00
+      } ],
+      "totals" : {
+        "baseAmount" : 40452.74,
+        "taxAmount" : 7281.49,
+        "payableAmount" : 47734.23
+      }
+    },
+    "expected" : "ENC|F001-00900007|2026-09-23|01|PEN|20123456786|20336235716|Grupo / Horizonte\nDET|1|Desarrollo a la medida|6|1938.09|11628.54|1000\nDET|2|Desarrollo a la medida|10|2882.42|28824.20|1000\nTOT|40452.74|7281.49|47734.23\n"
+  } ]
+}

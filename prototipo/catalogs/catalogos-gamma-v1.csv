@@ -1,0 +1,11 @@
+# fuente=proveedor-gamma-v1.md (sintético)
+catalogo,version,codigo,etiqueta,extra,seccion
+TipoDocumento,1,FAC,Factura,,§G.2.1
+TipoDocumento,1,NCR,Nota de crédito,,§G.2.1
+TipoDocumento,1,NDB,Nota de débito,,§G.2.1
+Moneda,1,USD,Dólar,,§G.2.2
+TipoIdentificacion,1,TX,Identificación tributaria,^\d{10}$,§G.3.1
+TipoIdentificacion,1,PP,Pasaporte,^[A-Z0-9]{6;12}$,§G.3.1
+Impuesto,1,V12,IVA general,12.00,§G.4.1
+Impuesto,1,V00,Tasa cero,0.00,§G.4.1
+Retirado,1,/header/legacyRef,Retirado en v1,,§G.7

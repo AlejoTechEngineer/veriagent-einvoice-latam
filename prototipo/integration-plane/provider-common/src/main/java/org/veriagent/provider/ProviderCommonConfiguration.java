@@ -2,7 +2,7 @@ package org.veriagent.provider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,9 +44,12 @@ public class ProviderCommonConfiguration {
         return t;
     }
 
-    /** Mapeos sembrados desde los archivos aprobados; el registro de mapeos lo sustituye en la Fase 3. */
+    /**
+     * Mapeos sembrados en memoria desde los archivos aprobados ({@code veriagent.mappings.source=seed}, valor por
+     * defecto en las pruebas de cada servicio). Con {@code registry} lo sustituye el registro de mapeos persistente.
+     */
     @Bean
-    @ConditionalOnMissingBean(MappingProvider.class)
+    @ConditionalOnProperty(name = "veriagent.mappings.source", havingValue = "seed", matchIfMissing = true)
     public MappingProvider seededMappingProvider(VeriagentProperties props, ProvidersProperties providers) {
         InMemoryMappingProvider p = new InMemoryMappingProvider();
         providers.getSeedMappings().forEach((key, file) -> {
