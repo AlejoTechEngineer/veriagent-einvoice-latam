@@ -144,7 +144,8 @@ Comando: `mvn install` en `integration-plane` (JDK 21) → `BUILD SUCCESS`, 5 m�
 ### Resultados
 - `mvn install` del reactor completo (19 módulos): **131 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker).
   El kit corre dos veces (configuración regional es y en): 23 + 23.
-- Arranque real: `scriptsun-local.ps1 -Clean -Background` (perfil local, 127.0.0.1:8080).
+- Arranque real: `scripts
+un-local.ps1 -Clean -Background` (perfil local, 127.0.0.1:8080).
 - **S1** (`scripts\escenarios\S1.ps1`): comprobante de CO emitido por `POST /api/invoices` con el token de operador:
   HTTP 200, AUTHORIZED con número de autorización, reenvío idempotente (mismo número, `duplicate=true`), respuesta
   publicada, archivo legal con huella, balance de conservación correcto. Latencia de la llamada: 353 ms (primera
@@ -161,3 +162,18 @@ Comando: `mvn install` en `integration-plane` (JDK 21) → `BUILD SUCCESS`, 5 m�
   versión anterior y dejarla en caché, y la reversión parecía no surtir efecto. Ahora la recarga y el evento se
   emiten después del commit.
 - `run-local.ps1`: `Start-Process` no entrecomilla argumentos y la ruta del JAR tiene espacios. Se entrecomillan.
+
+## Fase 3, correcciones posteriores (2026-10-19)
+- H-05: quien propone una versión de mapeo no puede aprobarla (409). `MappingRegistryTest`: 3 de 3.
+- RR-01: las rutas `/sim/` sin token solo valen con los simuladores habilitados explícitamente; `SimulatorExposureTest`
+  comprueba que, desactivados, no hay rutas `/sim/` y responden 401. `platform-app`: 5 de 5.
+
+## Fase 4a. Corrección H-01 y H-02 (2026-10-19)
+- `agentic-plane/tfg_agents/security.py`: roles y tokens leídos del mismo archivo que genera la plataforma Java
+  (`VERIAGENT_TOKENS_FILE` o `results/runtime/demo-tokens.json`), comparación por huella SHA-256 en tiempo constante.
+- `review_api.py`: token obligatorio en todas las rutas de datos, decisión solo con rol REVIEWER, revisor tomado del
+  token, `reviewer` del cuerpo solo si coincide (si no, 403), nueva ruta `GET /api/me`.
+- Consolas web y JavaFX: token de acceso en lugar del campo "Revisor"; la consola JavaFX compila con OpenJFX 21.
+- pytest (`.venv/Scripts/python -m pytest -q`, con Java 21 en el PATH para el kit): **20 de 20**.
+- Comprobación con uvicorn real en 127.0.0.1: sin token 401; token de agente 403; suplantación en el cuerpo 403;
+  revisor A 200 con `reviewer = reviewer-a`.

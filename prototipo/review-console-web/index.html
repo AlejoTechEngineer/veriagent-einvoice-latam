@@ -10,6 +10,13 @@
   <header class="topbar">
     <h1>Revisión de propuestas de mapeo</h1>
     <p class="topbar-note">Ninguna propuesta llega a producción sin pasar el kit de verificación y una decisión humana.</p>
+    <form id="session" class="session" novalidate>
+      <label for="token">Token de acceso</label>
+      <input id="token" name="token" type="password" autocomplete="off" required placeholder="token de demostración del revisor">
+      <button type="submit" class="btn">Entrar</button>
+      <button type="button" id="logout" class="btn" hidden>Salir</button>
+      <p id="whoami" class="session-who" role="status"></p>
+    </form>
   </header>
 
   <main class="desk">
@@ -58,8 +65,7 @@
       <form class="decision" novalidate>
         <h3>Decisión</h3>
         <p class="gate-note"></p>
-        <label for="reviewer">Revisor</label>
-        <input id="reviewer" name="reviewer" autocomplete="username" required minlength="3" placeholder="usuario del revisor">
+        <p class="decider"></p>
         <label for="comment">Comentario</label>
         <textarea id="comment" name="comment" rows="3" placeholder="Qué revisaste y por qué decides así"></textarea>
         <div class="actions">

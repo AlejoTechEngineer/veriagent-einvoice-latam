@@ -23,6 +23,8 @@ public final class ReviewConsoleApp extends Application {
         "APPROVED", "Aprobada", "REJECTED", "Rechazada");
 
     private ReviewApi api;
+    private Map<String, Object> me = Map.of();
+    private final Label whoami = new Label();
     private final ListView<Map<String, Object>> list = new ListView<>();
     private final VBox detail = new VBox(16);
 
@@ -34,7 +36,23 @@ public final class ReviewConsoleApp extends Application {
         title.getStyleClass().add("app-title");
         Label note = new Label("Ninguna propuesta llega a producción sin pasar el kit de verificación y una decisión humana.");
         note.getStyleClass().add("muted");
-        VBox top = new VBox(4, title, note);
+        // El token se escribe en la consola (no en la línea de órdenes, donde lo verían otros procesos).
+        PasswordField tokenField = new PasswordField();
+        tokenField.setPromptText("token de demostración del revisor");
+        Button enter = new Button("Entrar");
+        enter.setDefaultButton(true);
+        enter.setOnAction(e -> {
+            api.token(tokenField.getText());
+            tokenField.clear();
+            run(api::me, m -> {
+                me = m;
+                whoami.setText("Sesión: " + m.get("subject") + " (" + m.get("role") + ")");
+                refresh(null);
+            });
+        });
+        HBox session = new HBox(8, new Label("Token de acceso"), tokenField, enter, whoami);
+        session.setAlignment(Pos.CENTER_LEFT);
+        VBox top = new VBox(4, title, note, session);
         top.getStyleClass().add("topbar");
 
         list.getStyleClass().add("ledger");
@@ -73,7 +91,7 @@ public final class ReviewConsoleApp extends Application {
         stage.setTitle("Revisión de propuestas de IA · Facturación electrónica");
         stage.setScene(scene);
         stage.show();
-        refresh(null);
+        detail.getChildren().setAll(muted("Escribe tu token de acceso para ver las propuestas."));
     }
 
     private void refresh(String select) {
@@ -118,8 +136,6 @@ public final class ReviewConsoleApp extends Application {
         if (ex.isEmpty()) findings.getChildren().add(finding(null));
         ex.forEach(f -> findings.getChildren().add(finding(MiniJson.obj(f))));
 
-        TextField reviewer = new TextField();
-        reviewer.setPromptText("usuario del revisor");
         TextArea comment = new TextArea();
         comment.setPromptText("Qué revisaste y por qué decides así");
         comment.setPrefRowCount(3);
@@ -134,10 +150,14 @@ public final class ReviewConsoleApp extends Application {
         gateNote.getStyleClass().add(gate ? "muted" : "blocked");
         approve.setDisable(!gate);
         boolean decided = status.equals("APPROVED") || status.equals("REJECTED");
-        if (decided) { approve.setDisable(true); reject.setDisable(true); reviewer.setDisable(true); comment.setDisable(true); }
-        approve.setOnAction(e -> decide(p, "APPROVE", reviewer, comment, msg));
-        reject.setOnAction(e -> decide(p, "REJECT", reviewer, comment, msg));
-        VBox form = new VBox(6, h3("Decisión"), gateNote, new Label("Revisor"), reviewer, new Label("Comentario"), comment,
+        boolean canDecide = "REVIEWER".equals(me.get("role"));
+        Label decider = muted(decided ? "Decidida por " + p.get("reviewer") + "." : canDecide
+            ? "Decidirás como " + me.get("subject") + ": la identidad la toma la API de tu token."
+            : "Solo una persona con rol de revisor puede decidir.");
+        if (decided || !canDecide) { approve.setDisable(true); reject.setDisable(true); comment.setDisable(true); }
+        approve.setOnAction(e -> decide(p, "APPROVE", comment, msg));
+        reject.setOnAction(e -> decide(p, "REJECT", comment, msg));
+        VBox form = new VBox(6, h3("Decisión"), gateNote, decider, new Label("Comentario"), comment,
             new HBox(12, approve, reject), msg);
         form.getStyleClass().add("decision");
 
@@ -146,9 +166,9 @@ public final class ReviewConsoleApp extends Application {
             findings, form);
     }
 
-    private void decide(Map<String, Object> p, String d, TextField reviewer, TextArea comment, Label msg) {
+    private void decide(Map<String, Object> p, String d, TextArea comment, Label msg) {
         String id = String.valueOf(p.get("id"));
-        run(() -> api.decide(id, d, reviewer.getText().trim(), comment.getText().trim()), err -> {
+        run(() -> api.decide(id, d, comment.getText().trim()), err -> {
             if (err == null) refresh(id);
             else { msg.setText(err); msg.getStyleClass().setAll("form-msg", "error"); }
         });

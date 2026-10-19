@@ -33,7 +33,7 @@ JUNIT_JAR=/ruta/junit-platform-console-standalone.jar ci/run-pipeline.sh test-ja
 cd agentic-plane
 python3 -m tfg_agents.evaluation            # banco de defectos -> results/evaluation.{json,md}
 python3 -m tfg_agents.demo_seed             # dos propuestas de ejemplo (una bloqueada, una pendiente)
-uvicorn tfg_agents.review_api:app --port 8090   # API + consola web en http://localhost:8090
+uvicorn tfg_agents.review_api:app --host 127.0.0.1 --port 8090   # API + consola web; exige token (ver docs/SEGURIDAD.md)
 python3 -m tfg_agents.mcp_server            # servidor MCP por stdio
 ANTHROPIC_API_KEY=... python3 -m tfg_agents.orchestrator   # agente con LLM real
 

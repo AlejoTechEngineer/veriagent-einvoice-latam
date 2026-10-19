@@ -14,12 +14,54 @@ const show = (v) => {
   return Object.entries(rest).map(([k, x]) => `<div><span class="k">${esc(k)}</span> <code>${esc(typeof x === "object" ? JSON.stringify(x) : x)}</code></div>`).join("");
 };
 
-async function api(path, opts) {
-  const r = await fetch(path, { headers: { "Content-Type": "application/json" }, ...opts });
+// El token solo vive en la pestaña (sessionStorage). La identidad de quien decide la fija la API a partir de él.
+const TOKEN_KEY = "revision.token";
+const readToken = () => { try { return sessionStorage.getItem(TOKEN_KEY) || ""; } catch { return ""; } };
+const writeToken = (t) => { try { t ? sessionStorage.setItem(TOKEN_KEY, t) : sessionStorage.removeItem(TOKEN_KEY); } catch { /* sin almacenamiento */ } };
+let token = readToken();
+let me = null;
+
+async function api(path, opts = {}) {
+  const headers = { "Content-Type": "application/json" };
+  if (token) headers.Authorization = `Bearer ${token}`;
+  const r = await fetch(path, { ...opts, headers });
   const body = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(typeof body.detail === "string" ? body.detail : "Revisa el revisor y el comentario.");
+  if (r.status === 401) throw new Error("Falta un token válido: escríbelo arriba para entrar.");
+  if (r.status === 403) throw new Error(typeof body.detail === "string" ? body.detail : "Tu rol no permite esta operación.");
+  if (!r.ok) throw new Error(typeof body.detail === "string" ? body.detail : "Revisa el comentario.");
   return body;
 }
+
+async function startSession() {
+  const who = $("#whoami");
+  try {
+    me = await api("/api/me");
+    who.textContent = `Sesión: ${me.subject} (${me.role === "REVIEWER" ? "revisor" : me.role})`;
+    $("#logout").hidden = false;
+    await loadList();
+  } catch (e) {
+    me = null;
+    who.textContent = e.message;
+    $("#proposal-list").innerHTML = "";
+  }
+}
+
+$("#session").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  token = ev.target.token.value.trim();
+  ev.target.token.value = "";
+  writeToken(token);
+  startSession();
+});
+$("#logout").addEventListener("click", () => {
+  token = "";
+  me = null;
+  writeToken("");
+  $("#logout").hidden = true;
+  $("#whoami").textContent = "";
+  $("#proposal-list").innerHTML = "";
+  $("#detail").innerHTML = '<p class="empty">Escribe tu token para ver las propuestas.</p>';
+});
 
 async function loadList(selectId) {
   const list = await api("/api/proposals");
@@ -73,7 +115,11 @@ async function loadDetail(id, animate = true) {
   } else {
     note.textContent = decided ? `Decidida por ${p.reviewer}.` : "Pasó el kit. Revisa los cambios y decide.";
   }
-  if (decided) form.querySelectorAll("button, input, textarea").forEach((e) => (e.disabled = true));
+  const canDecide = me?.role === "REVIEWER";
+  $(".decider", form).textContent = decided ? "" : canDecide
+    ? `Decidirás como ${me.subject}: la identidad la toma la API de tu token.`
+    : "Solo una persona con rol de revisor puede decidir.";
+  if (decided || !canDecide) form.querySelectorAll("button, input, textarea").forEach((e) => (e.disabled = true));
   form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
     const msg = $(".form-msg", form);
@@ -81,7 +127,7 @@ async function loadDetail(id, animate = true) {
     try {
       await api(`/api/proposals/${encodeURIComponent(p.id)}/decision`, {
         method: "POST",
-        body: JSON.stringify({ decision, reviewer: form.reviewer.value.trim(), comment: form.comment.value.trim() }),
+        body: JSON.stringify({ decision, comment: form.comment.value.trim() }),
       });
       await loadList(p.id);
     } catch (e) {
@@ -92,4 +138,4 @@ async function loadDetail(id, animate = true) {
   $("#detail").replaceChildren(node);
 }
 
-loadList();
+if (token) startSession();

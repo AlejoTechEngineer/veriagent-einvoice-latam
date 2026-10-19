@@ -179,3 +179,9 @@ h3 { font-size: var(--step-0); font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   .stamp.landing { animation: none; }
 }
+
+/* Sesión por token (la identidad de quien decide la fija la API) */
+.session { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.session input { min-width: 16rem; }
+.session-who { flex-basis: 100%; margin: 0; }
+.decider { margin: 0 0 8px; }
