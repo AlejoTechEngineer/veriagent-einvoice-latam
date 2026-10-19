@@ -117,6 +117,10 @@ public class MappingRegistry implements MappingProvider {
         Version v = find(norm(provider), country, version);
         if (!v.gatePassed()) throw new ConflictException("No se puede aprobar: la versión " + version + " no pasó el kit de verificación");
         if (v.status() != Status.CANDIDATE) throw new ConflictException("La versión " + version + " está en estado " + v.status());
+        // Separación de funciones: quien propone una versión no puede aprobarla.
+        if (CurrentActor.get().subject().equals(v.createdBy())) {
+            throw new ConflictException("Quien propuso la versión " + version + " no puede aprobarla: debe hacerlo otra persona revisora");
+        }
         decide(v, Status.APPROVED, "approved_by", "approved_at", note);
         audit.record("MAPPING_APPROVED", "mapeo:" + v.provider() + "/" + v.country() + "/v" + version, note);
         return find(v.provider(), v.country(), version);

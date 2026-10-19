@@ -42,6 +42,20 @@ class MappingRegistryTest {
     }
 
     @Test
+    @DisplayName("Separación de funciones: un revisor no puede aprobar la versión que él mismo propuso (409)")
+    void proposerCannotApprove() throws Exception {
+        String rev = tokens.bearer("revisor.autor", Role.REVIEWER);
+        String body = mvc.perform(post("/api/mappings/alfa/CO/candidates").header("Authorization", rev)
+                .contentType(MediaType.APPLICATION_JSON).content(proposal(false)))
+            .andExpect(status().isCreated()).andReturn().getResponse().getContentAsString();
+        int v = ContractJson.mapper().readTree(body).get("version").asInt();
+        mvc.perform(post("/api/mappings/alfa/CO/versions/" + v + "/approve").header("Authorization", rev))
+            .andExpect(status().isConflict());
+        mvc.perform(post("/api/mappings/alfa/CO/versions/" + v + "/approve").header("Authorization", tokens.bearer("revisora.otra", Role.REVIEWER)))
+            .andExpect(status().isOk()).andExpect(jsonPath("$.approvedBy").value("revisora.otra"));
+    }
+
+    @Test
     @DisplayName("Línea base sembrada y vigente para alfa/CO y beta/PE")
     void seeded() {
         assertTrue(registry.current("alfa", "CO").isPresent());
