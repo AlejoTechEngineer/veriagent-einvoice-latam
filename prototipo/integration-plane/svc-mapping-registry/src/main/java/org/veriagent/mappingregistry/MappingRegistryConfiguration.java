@@ -1,6 +1,7 @@
 package org.veriagent.mappingregistry;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -40,6 +41,13 @@ public class MappingRegistryConfiguration {
     @Bean
     public MappingRegistry mappingRegistry(JdbcClient jdbc, MappingGate gate, EventBus bus, AuditService audit) {
         return new MappingRegistry(jdbc, gate, bus, audit);
+    }
+
+    @Bean
+    public ReviewAudit reviewAudit(JdbcClient jdbc, AuditService audit,
+                                   @Value("${veriagent.review-audit.rate:0.10}") double rate,
+                                   @Value("${veriagent.review-audit.seed:}") String seed) {
+        return new ReviewAudit(jdbc, audit, rate, seed == null || seed.isBlank() ? null : Long.valueOf(seed.trim()));
     }
 
     @Bean

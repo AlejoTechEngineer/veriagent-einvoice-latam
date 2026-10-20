@@ -414,3 +414,26 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   comprueba que toda regla tiene destino con selector de pods, sin bloques de IP ni puerto 443.
 - No ejecutado: `helm template`, `helm lint` y la aplicación de la política en un cluster (sin helm, sin cluster y
   sin Docker). Que el plugin de red del cluster aplique la política tampoco se comprobó.
+
+### T3. Auditoría por muestreo contra el sesgo de automatización (A-10)
+- `svc-mapping-registry`: `ReviewAudit`, `ReviewAuditController` y migración `V4__review_audit.sql`.
+  `POST /api/review-audits/sample` (OPERATOR o SYSTEM; cuerpo opcional `rate` y `seed`) sortea, entre las versiones
+  de mapeo aprobadas por una persona que aún no se auditaron, las que pasan a la cola de segunda revisión: la
+  población se ordena por id y cada decisión recibe un valor de `java.util.Random(seed)`; entra si es menor que la
+  tasa. Tasa, semilla (configurada, pedida o aleatoria), valor sorteado, quién muestreó y cuándo quedan en
+  `review_audit`, y el muestreo en `audit_log`. `GET /api/review-audits?status=` (REVIEWER, OPERATOR o SYSTEM).
+  `POST /api/review-audits/{id}/decision` (solo REVIEWER, `CONFIRMED` o `DISPUTED`): 409 si quien revisa es quien
+  aprobó o si ya tiene segunda revisión; la identidad sale del token (403 si el cuerpo declara a otra persona).
+  Registro en `audit_log`, no en `authorization_log` (S-36, como S-12).
+- Configuración: `veriagent.review-audit.rate` (10 % por defecto) y `veriagent.review-audit.seed`
+  (`VERIAGENT_REVIEW_AUDIT_RATE`, `VERIAGENT_REVIEW_AUDIT_SEED`).
+- Ejecutado: `ReviewAuditTest` 3 de 3 (`selectionIsReproducible`: misma semilla y población en otro orden, misma
+  muestra; otra semilla, otra muestra; tasa 10 % sobre 10.000 entre 900 y 1.100; tasa 1 selecciona todo. `roles`:
+  sin token 401; agente y revisor no muestrean, 403; el agente no consulta ni revisa, 403; tasa 1,5 rechazada, 400.
+  `sampleAndSecondReview`: semilla 4242 registrada en la respuesta, en cada fila y en `audit_log`; la línea base no
+  entra; lo ya muestreado no vuelve a entrar; quien aprobó recibe 409; suplantación 403; otra persona revisora
+  registra DISPUTED con su identidad; una segunda decisión recibe 409). `SecurityPolicyTest` incluye los dos
+  endpoints nuevos. Reactor Java completo (`mvn -B verify`): 141 pruebas, 0 fallos, 0 errores, 1 omitida
+  (`KafkaEventBusIT`, sin Docker).
+- No incluido: pantalla del front para la cola (el front mínimo acordado tiene siete pantallas, D-09); la cola se
+  usa por la API.

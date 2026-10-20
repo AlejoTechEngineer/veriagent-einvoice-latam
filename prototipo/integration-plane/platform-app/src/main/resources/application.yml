@@ -53,6 +53,10 @@ veriagent:
   gateway:
     # API de revisión de propuestas de IA (plano agéntico, Python).
     agents-url: ${VERIAGENT_AGENTS_URL:http://127.0.0.1:8090}
+  review-audit:
+    # Auditoría por muestreo de decisiones aprobadas (A-10): tasa por defecto y semilla (vacía = aleatoria, se registra).
+    rate: ${VERIAGENT_REVIEW_AUDIT_RATE:0.10}
+    seed: ${VERIAGENT_REVIEW_AUDIT_SEED:}
   mappings:
     # registry: los mapeos vigentes salen del registro de versiones (svc-mapping-registry).
     source: registry
