@@ -34,16 +34,16 @@
       "rejected": 0
     },
     "antes": {
+      "authorized": 1102,
       "authorizedFromReceipts": 0,
       "duplicates": 0,
-      "rejected": 0,
-      "authorized": 1102
+      "rejected": 0
     },
     "despues": {
+      "authorized": 1122,
       "authorizedFromReceipts": 0,
       "duplicates": 20,
-      "rejected": 0,
-      "authorized": 1122
+      "rejected": 0
     }
   },
   "registradosNuevos": 121,
@@ -56,5 +56,5 @@
     "Balance de conservación": true
   },
   "aprobado": true,
-  "fecha": "2026-10-20T04:04:23"
+  "fecha": "2026-10-20T04:55:41"
 }

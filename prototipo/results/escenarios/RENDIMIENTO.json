@@ -4,27 +4,27 @@
   "verificacionKit": {
     "documentos": 400,
     "aprobados": 400,
-    "p50ms": 0.89,
-    "p95ms": 1.4,
+    "p50ms": 0.66,
+    "p95ms": 1.72,
     "http": {
-      "p50ms": 20.09,
-      "p95ms": 42.41
+      "p50ms": 31.1,
+      "p95ms": 45.68
     }
   },
   "emisionSincrona": {
     "comprobantes": 200,
     "autorizados": 200,
-    "p50ms": 30.51,
-    "p95ms": 52.82,
-    "maxMs": 106.5,
-    "media": 35.0
+    "p50ms": 42.87,
+    "p95ms": 54.28,
+    "maxMs": 93.9,
+    "media": 40.2
   },
   "lote": {
     "comprobantes": 10000,
-    "segundosAceptacion": 4.1,
-    "segundosTotales": 30.8,
-    "porSegundo": 325.2,
-    "proyeccionPorDia": 28094652,
+    "segundosAceptacion": 3.5,
+    "segundosTotales": 22.9,
+    "porSegundo": 436.6,
+    "proyeccionPorDia": 37725098,
     "ingesta": {
       "file": "rendimiento-lote.jsonl",
       "sha256": "dca179ed0e59f9c37ed802d74d21391de60ffa5eafd2e93630a4b172dbb65446",
@@ -56,5 +56,5 @@
     "Capacidad proyectada >= 200.000 comprobantes por día": true
   },
   "aprobado": true,
-  "fecha": "2026-10-20T04:09:43"
+  "fecha": "2026-10-20T05:01:29"
 }

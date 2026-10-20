@@ -11,3 +11,9 @@ agentic:
   resources: { requests: { cpu: 250m, memory: 512Mi }, limits: { cpu: "1", memory: 1Gi } }
   llmSecretName: ""      # Secret con ANTHROPIC_API_KEY; vacío = agente heurístico
   storage: 1Gi
+platform:
+  replicas: 1          # un solo pod: los tokens de demostración y la carpeta SFTP simulada viven en /shared
+  resources: { requests: { cpu: 500m, memory: 768Mi }, limits: { cpu: "2", memory: 1536Mi } }
+  dbUrl: jdbc:postgresql://postgres:5432/veriagent
+  dbSecretName: veriagent-db     # Secret con las claves username y password (se crea fuera del chart)
+  kafkaBootstrap: redpanda:9092

@@ -20,20 +20,21 @@ Cada escenario deja su resultado en `results/escenarios/`: `S1.json` a `S8.json`
 `falsos_positivos.json` y `banco_ampliado.json`. S1 y S2 son scripts PowerShell; S3 a S8 y el resto están en
 `agentic-plane/tfg_agents/scenarios.py` y hablan con la plataforma solo por HTTP, con el token de cada rol.
 
-Corrida de referencia: `todos.ps1` completo desde una plataforma limpia, 6,9 minutos, código de salida 0
-(2026-10-20). Todas las cifras de este documento salen de esa misma corrida.
+Corrida de referencia: `todos.ps1` completo desde una plataforma limpia, 7,1 minutos, código de salida 0
+(2026-10-20, después de fijar LF en la normativa, Fase 7). Todas las cifras de este documento salen de esa misma
+corrida.
 
 ## Escenarios S1 a S8
 
 | ID | Escenario | Comprobaciones | Resultado |
 |:---|:---|:---:|:---|
-| S1 | Emisión síncrona correcta | 7 de 7 | AUTHORIZED en 292 ms (primera emisión tras el arranque) con número de autorización, respuesta publicada, archivo legal con huella; reenvío idempotente |
-| S2 | Lote asíncrono de 1.000 comprobantes válidos | 5 de 5 | 1.000 AUTHORIZED en 5,4 s; 600 de CO por ZIP a Alfa y 400 de PE por carpeta SFTP a Beta; entradas = salidas + DLQ |
+| S1 | Emisión síncrona correcta | 7 de 7 | AUTHORIZED en 265 ms (primera emisión tras el arranque) con número de autorización, respuesta publicada, archivo legal con huella; reenvío idempotente |
+| S2 | Lote asíncrono de 1.000 comprobantes válidos | 5 de 5 | 1.000 AUTHORIZED en 4,7 s; 600 de CO por ZIP a Alfa y 400 de PE por carpeta SFTP a Beta; entradas = salidas + DLQ |
 | S3 | Defectos D1 a D6 inyectados | 9 de 9 | D1 y D4: 422 KIT_BLOCKED con regla, tipo, fuente normativa y huella; D2 y D3: 400 en la entrada; D5 y D6 (mapeo): versión bloqueada y aprobación 409; ningún documento defectuoso llegó al proveedor |
 | S4 | Rechazo del proveedor, DLQ, triaje, aprobación y reproceso | 7 de 7 | CAT-01 → DLQ → triaje RECHAZO_CATALOGO_PROVEEDOR → el agente no puede reprocesar (403) → la operadora reprocesa → AUTHORIZED |
 | S5 | Incorporación del país XX con el proveedor Gamma | 10 de 10 | Sin mapeo el comprobante va a DLQ; el agente propone desde la especificación, el kit lo deja pasar y se abre una solicitud de cambio sin merge; el agente no puede aprobar ni activar (403); reviewer-a aprueba, reviewer-b activa; los comprobantes de XX se autorizan con el mapeo nuevo y el de la DLQ se reprocesa |
 | S6 | Idempotencia ante envío duplicado | 6 de 6 | Reenvío síncrono: misma autorización; reenvío del lote: 0 aceptados y 100 duplicados; respuesta duplicada del proveedor ignorada; 121 registrados nuevos exactos |
-| S7 | Proveedor caído | 7 de 7 | Con Alfa no disponible, los 50 de CO pasan a DLQ (recuperable) en 4,8 s y los 30 de PE se autorizan; sin pérdidas; triaje PROVEEDOR_NO_DISPONIBLE; tras la recuperación los 50 se reprocesan y se autorizan |
+| S7 | Proveedor caído | 7 de 7 | Con Alfa no disponible, los 50 de CO pasan a DLQ (recuperable) en 4,4 s y los 30 de PE se autorizan; sin pérdidas; triaje PROVEEDOR_NO_DISPONIBLE; tras la recuperación los 50 se reprocesan y se autorizan |
 | S8 | Reversión de un mapeo | 8 de 8 | El agente de legado propone una versión de Beta PE; reviewer-a aprueba, reviewer-b activa; el agente no puede revertir (403); reviewer-a revierte; el comprobante siguiente usa la versión anterior; reversión auditada |
 
 ## Banco original de 22 defectos (el del documento)
@@ -123,11 +124,11 @@ Resultado en `results/escenarios/falsos_positivos.json`, con la fuente de cada c
 
 | Medida | Resultado | Umbral |
 |:---|:---|:---|
-| Verificación del kit por documento (400) | p50 0,89 ms, p95 1,40 ms; por HTTP con token p50 20,1 ms, p95 42,4 ms | — |
-| Emisión síncrona (200, incluye el simulador) | p50 30,5 ms, p95 52,8 ms, máximo 106,5 ms | p95 < 3 s: cumple |
-| Lote de 10.000 (6.000 CO y 4.000 PE) | 30,8 s de extremo a extremo (325 por segundo), aceptación de la carga 4,1 s, 10.000 AUTHORIZED, sin pérdidas | 200.000 en el día pico: la tasa medida los procesa en unos 10 minutos |
+| Verificación del kit por documento (400) | p50 0,66 ms, p95 1,72 ms; por HTTP con token p50 31,1 ms, p95 45,7 ms | — |
+| Emisión síncrona (200, incluye el simulador) | p50 42,9 ms, p95 54,3 ms, máximo 93,9 ms | p95 < 3 s: cumple |
+| Lote de 10.000 (6.000 CO y 4.000 PE) | 22,9 s de extremo a extremo (437 por segundo), aceptación de la carga 3,5 s, 10.000 AUTHORIZED, sin pérdidas | 200.000 en el día pico: la tasa medida los procesa en unos 8 minutos |
 
 La capacidad diaria es una extrapolación lineal de una corrida corta en un solo proceso con simuladores locales;
 no sustituye una prueba de carga sostenida ni mide Kafka ni PostgreSQL. Las cifras de la corrida de referencia
-están en `RENDIMIENTO.json`. Entre corridas el lote de S2 (1.000) osciló entre 102 y 206 comprobantes por segundo
-(187 en la de referencia) y el de 10.000 entre 290 y 345.
+están en `RENDIMIENTO.json`. Entre corridas el lote de S2 (1.000) osciló entre 102 y 213 comprobantes por segundo
+(213 en la de referencia) y el de 10.000 entre 290 y 437.

@@ -1,10 +1,11 @@
-// Pipeline declarativo del TFG. Cada etapa llama a ci/run-pipeline.sh: lo que corre en Jenkins es
-// exactamente lo que corre en local. Los gates detienen el pipeline si el kit o el banco fallan.
+// Pipeline declarativo del prototipo. Cada etapa llama a ci/run-pipeline.sh: lo que corre en Jenkins es exactamente
+// lo que corre en local. Los gates detienen el pipeline: secretos, dependencias, huellas de la normativa, banco de
+// defectos, mapeo vigente y escaneo de vulnerabilidades.
 pipeline {
   agent any
   options {
     timestamps()
-    timeout(time: 30, unit: 'MINUTES')
+    timeout(time: 45, unit: 'MINUTES')
     buildDiscarder(logRotator(numToKeepStr: '20'))
     disableConcurrentBuilds()
   }
@@ -15,48 +16,66 @@ pipeline {
   environment {
     REGISTRY = credentials('registry-url')      // URL del registro de imágenes (credencial de tipo texto)
     MIN_RUNTIME_DETECTION = "${params.MIN_RUNTIME_DETECTION}"
+    PYTHON = "${WORKSPACE}/prototipo/agentic-plane/.venv/bin/python"
   }
   stages {
-    stage('Compilar') { steps { sh 'ci/run-pipeline.sh build' } }
+    stage('Entorno') {
+      steps {
+        dir('prototipo/agentic-plane') {
+          sh 'python3.12 -m venv .venv && .venv/bin/pip install -q -e ".[test]" packaging'
+        }
+      }
+    }
+    stage('Compilar') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh build' } } }
+    stage('Gates previos') {
+      parallel {
+        stage('Gate · secretos') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-secrets' } } }
+        stage('Gate · huellas de normativa') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-normative' } } }
+        stage('Gate · dependencias') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-deps' } } }
+      }
+    }
     stage('Pruebas') {
       parallel {
-        stage('Java · JUnit 5') { steps { sh 'ci/run-pipeline.sh test-java' } }
-        stage('Python · pytest') { steps { sh 'ci/run-pipeline.sh test-python' } }
+        stage('Java · JUnit 5') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh test-java' } } }
+        stage('Python · pytest') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh test-python' } } }
       }
-      post { always { junit allowEmptyResults: false, testResults: 'build-reports/junit-java/*.xml, build-reports/junit-python.xml' } }
+      post { always { junit allowEmptyResults: false, testResults: 'prototipo/build-reports/junit-java/*.xml, prototipo/build-reports/junit-python.xml' } }
     }
     stage('Gate · banco de defectos') {
-      steps { sh 'ci/run-pipeline.sh gate-bank' }
-      post { always { archiveArtifacts artifacts: 'build-reports/defect-bank/*', fingerprint: true } }
+      steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-bank' } }
+      post { always { archiveArtifacts artifacts: 'prototipo/build-reports/defect-bank/*', fingerprint: true } }
     }
-    stage('Gate · mapeo vigente') { steps { sh 'ci/run-pipeline.sh gate-mapping' } }
-    stage('Seguridad') {
-      steps {
-        sh 'trivy fs --exit-code 1 --severity HIGH,CRITICAL --scanners vuln,secret,misconfig .'
-      }
+    stage('Gate · mapeo vigente') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-mapping' } } }
+    stage('Gate · vulnerabilidades y configuración') {
+      steps { dir('prototipo') { sh 'trivy fs --exit-code 1 --severity HIGH,CRITICAL --scanners vuln,secret,misconfig .' } }
     }
-    stage('Empaquetar') {
+    stage('Empaquetar y humo') {
       steps {
-        sh 'ci/run-pipeline.sh package smoke'
-        archiveArtifacts artifacts: 'dist/*', fingerprint: true
+        dir('prototipo') { sh 'ci/run-pipeline.sh package smoke' }
+        archiveArtifacts artifacts: 'prototipo/dist/*', fingerprint: true
       }
     }
     stage('Imágenes') {
       steps {
-        sh '''
-          docker build -f deploy/docker/kit.Dockerfile -t $REGISTRY/tfg/verification-kit:$BUILD_NUMBER .
-          docker build -f deploy/docker/agentic.Dockerfile -t $REGISTRY/tfg/agentic-plane:$BUILD_NUMBER .
-          trivy image --exit-code 1 --severity CRITICAL $REGISTRY/tfg/verification-kit:$BUILD_NUMBER
-          docker push $REGISTRY/tfg/verification-kit:$BUILD_NUMBER
-          docker push $REGISTRY/tfg/agentic-plane:$BUILD_NUMBER
-        '''
+        dir('prototipo') {
+          sh '''
+            docker build -f deploy/docker/platform.Dockerfile -t $REGISTRY/veriagent/platform:$BUILD_NUMBER .
+            docker build -f deploy/docker/agentic.Dockerfile -t $REGISTRY/veriagent/agentic-plane:$BUILD_NUMBER .
+            trivy image --exit-code 1 --severity CRITICAL $REGISTRY/veriagent/platform:$BUILD_NUMBER
+            trivy image --exit-code 1 --severity CRITICAL $REGISTRY/veriagent/agentic-plane:$BUILD_NUMBER
+            docker push $REGISTRY/veriagent/platform:$BUILD_NUMBER
+            docker push $REGISTRY/veriagent/agentic-plane:$BUILD_NUMBER
+          '''
+        }
       }
     }
     stage('Desplegar SIT') {
       steps {
-        sh '''helm upgrade --install tfg-poc deploy/helm/tfg-poc -n tfg-sit --create-namespace \
-              -f deploy/helm/tfg-poc/values.yaml --set image.registry=$REGISTRY --set image.tag=$BUILD_NUMBER --wait'''
-        sh 'kubectl -n tfg-sit run smoke-$BUILD_NUMBER --rm -i --restart=Never --image=curlimages/curl -- -sf http://tfg-poc-kit:8085/health'
+        dir('prototipo') {
+          sh '''helm upgrade --install veriagent deploy/helm/tfg-poc -n veriagent-sit --create-namespace \
+                -f deploy/helm/tfg-poc/values.yaml --set image.registry=$REGISTRY --set image.tag=$BUILD_NUMBER --wait'''
+          sh 'kubectl -n veriagent-sit run smoke-$BUILD_NUMBER --rm -i --restart=Never --image=curlimages/curl -- -sf http://veriagent-platform:8080/actuator/health'
+        }
       }
     }
     stage('Aprobación para UAT/PROD') {
@@ -66,8 +85,10 @@ pipeline {
     stage('Desplegar UAT/PROD') {
       when { expression { params.TARGET_ENV != 'sit' } }
       steps {
-        sh '''helm upgrade --install tfg-poc deploy/helm/tfg-poc -n tfg-$TARGET_ENV --create-namespace \
-              -f deploy/helm/tfg-poc/values-$TARGET_ENV.yaml --set image.registry=$REGISTRY --set image.tag=$BUILD_NUMBER --wait --atomic'''
+        dir('prototipo') {
+          sh '''helm upgrade --install veriagent deploy/helm/tfg-poc -n veriagent-$TARGET_ENV --create-namespace \
+                -f deploy/helm/tfg-poc/values-$TARGET_ENV.yaml --set image.registry=$REGISTRY --set image.tag=$BUILD_NUMBER --wait --atomic'''
+        }
       }
     }
   }

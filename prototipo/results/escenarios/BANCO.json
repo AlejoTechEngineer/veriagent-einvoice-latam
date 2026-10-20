@@ -94,7 +94,7 @@
         "E0": 6
       },
       "aprobacion": 409,
-      "segundos": 0.14
+      "segundos": 0.1
     },
     {
       "id": "D1-b",
@@ -111,7 +111,7 @@
         "E0": 1
       },
       "aprobacion": 409,
-      "segundos": 0.2
+      "segundos": 0.12
     },
     {
       "id": "D1-c",
@@ -128,7 +128,7 @@
         "E0": 6
       },
       "aprobacion": 409,
-      "segundos": 0.14
+      "segundos": 0.1
     },
     {
       "id": "D1-d",
@@ -145,7 +145,7 @@
         "E0": 3
       },
       "aprobacion": 409,
-      "segundos": 0.11
+      "segundos": 0.1
     },
     {
       "id": "D1-e",
@@ -178,7 +178,7 @@
         "E0": 6
       },
       "aprobacion": 409,
-      "segundos": 0.13
+      "segundos": 0.12
     },
     {
       "id": "D1-g",
@@ -211,7 +211,7 @@
         "E0": 20
       },
       "aprobacion": 409,
-      "segundos": 0.16
+      "segundos": 0.1
     },
     {
       "id": "D2-b",
@@ -228,7 +228,7 @@
         "E0": 18
       },
       "aprobacion": 409,
-      "segundos": 0.13
+      "segundos": 0.12
     },
     {
       "id": "D2-c",
@@ -245,7 +245,7 @@
         "E0": 7
       },
       "aprobacion": 409,
-      "segundos": 0.16
+      "segundos": 0.1
     },
     {
       "id": "D2-d",
@@ -262,7 +262,7 @@
         "E0": 16
       },
       "aprobacion": 409,
-      "segundos": 0.14
+      "segundos": 0.1
     },
     {
       "id": "D3-a",
@@ -279,7 +279,7 @@
         "E0": 8
       },
       "aprobacion": 409,
-      "segundos": 0.16
+      "segundos": 0.11
     },
     {
       "id": "D3-b",
@@ -296,7 +296,7 @@
         "E0": 6
       },
       "aprobacion": 409,
-      "segundos": 0.13
+      "segundos": 0.1
     },
     {
       "id": "D3-c",
@@ -313,7 +313,7 @@
         "E0": 9
       },
       "aprobacion": 409,
-      "segundos": 0.11
+      "segundos": 0.13
     },
     {
       "id": "D3-d",
@@ -330,7 +330,7 @@
         "E0": 8
       },
       "aprobacion": 409,
-      "segundos": 0.09
+      "segundos": 0.1
     },
     {
       "id": "D4-a",
@@ -347,7 +347,7 @@
         "E0": 40
       },
       "aprobacion": 409,
-      "segundos": 0.17
+      "segundos": 0.12
     },
     {
       "id": "D4-b",
@@ -364,7 +364,7 @@
         "E0": 8
       },
       "aprobacion": 409,
-      "segundos": 0.17
+      "segundos": 0.15
     },
     {
       "id": "D4-c",
@@ -381,7 +381,7 @@
         "E0": 40
       },
       "aprobacion": 409,
-      "segundos": 0.13
+      "segundos": 0.14
     },
     {
       "id": "D5-a",
@@ -398,7 +398,7 @@
         "E0": 40
       },
       "aprobacion": 409,
-      "segundos": 0.17
+      "segundos": 0.11
     },
     {
       "id": "D5-b",
@@ -415,7 +415,7 @@
         "E0": 40
       },
       "aprobacion": 409,
-      "segundos": 0.14
+      "segundos": 0.1
     },
     {
       "id": "D6-a",
@@ -459,5 +459,5 @@
     "Cero falsos positivos (líneas base aceptadas)": true
   },
   "aprobado": true,
-  "fecha": "2026-10-20T04:04:53"
+  "fecha": "2026-10-20T04:56:07"
 }

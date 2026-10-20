@@ -15,10 +15,11 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: agentic
-          image: "{{ .Values.image.registry }}/tfg/agentic-plane:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.registry }}/veriagent/agentic-plane:{{ .Values.image.tag }}"
           ports: [{ containerPort: 8090, name: http }]
           env:
             - { name: TFG_KIT_URL, value: "http://{{ .Release.Name }}-kit:8085" }
+            - { name: VERIAGENT_URL, value: "http://{{ .Release.Name }}-platform:8080" }
             {{- if .Values.agentic.llmSecretName }}
             - name: ANTHROPIC_API_KEY
               valueFrom: { secretKeyRef: { name: {{ .Values.agentic.llmSecretName }}, key: ANTHROPIC_API_KEY } }

@@ -35,3 +35,5 @@ veriagent:
         batch-mode: http-zip
   archive:
     root: ${VERIAGENT_ARCHIVE_ROOT:/shared/archive}
+  ingest:
+    inbox-dir: ${VERIAGENT_INBOX_DIR:/shared/sftp/inbox}

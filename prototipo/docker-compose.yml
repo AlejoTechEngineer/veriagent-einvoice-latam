@@ -1,17 +1,52 @@
-# Entorno local completo: kit (8085) y API + consola de revisión (8090).
-# Antes: ci/run-pipeline.sh build package   (genera dist/verification-kit-0.1.0.jar)
+# Perfil full del prototipo: Redpanda (compatible con Kafka), PostgreSQL, la plataforma (perfil full, con los
+# simuladores de proveedores habilitados) y la API de revisión de propuestas.
+# Antes: cp .env.example .env (y cambia los valores); ci/run-pipeline.sh build package (genera dist/).
+# Uso:   docker compose up -d --build      Front: http://127.0.0.1:8080
+# Los puertos se publican solo en 127.0.0.1. Ningún secreto vive en este archivo: todo sale de .env.
 services:
-  kit:
-    build: { context: ., dockerfile: deploy/docker/kit.Dockerfile }
-    ports: ["8085:8085"]
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v26.2.5
+    command: ["redpanda", "start", "--mode", "dev-container", "--smp", "1", "--overprovisioned",
+              "--kafka-addr", "PLAINTEXT://0.0.0.0:9092", "--advertise-kafka-addr", "PLAINTEXT://redpanda:9092"]
+    healthcheck: { test: ["CMD", "rpk", "cluster", "health", "--exit-when-healthy"], interval: 10s, retries: 12 }
+  postgres:
+    image: postgres:18-alpine
+    environment:
+      POSTGRES_DB: veriagent
+      POSTGRES_USER: ${VERIAGENT_DB_USER:?define VERIAGENT_DB_USER en .env}
+      POSTGRES_PASSWORD: ${VERIAGENT_DB_PASSWORD:?define VERIAGENT_DB_PASSWORD en .env}
+    volumes: ["pgdata:/var/lib/postgresql"]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d veriagent"], interval: 5s, retries: 20 }
+  platform:
+    build: { context: ., dockerfile: deploy/docker/platform.Dockerfile }
+    depends_on:
+      redpanda: { condition: service_healthy }
+      postgres: { condition: service_healthy }
+    environment:
+      VERIAGENT_DB_USER: ${VERIAGENT_DB_USER}
+      VERIAGENT_DB_PASSWORD: ${VERIAGENT_DB_PASSWORD}
+      VERIAGENT_TOKEN_MODE: generate
+      VERIAGENT_TOKENS_FILE: /shared/demo-tokens.json
+      VERIAGENT_ALLOWED_ORIGINS: http://127.0.0.1:8080
+      VERIAGENT_AGENTS_URL: http://agentic:8090
+      VERIAGENT_ALFA_URL: http://localhost:8080/sim/alfa
+      VERIAGENT_BETA_URL: http://localhost:8080/sim/beta
+      VERIAGENT_GAMMA_URL: http://localhost:8080/sim/gamma
+      VERIAGENT_SERVICES_PROVIDERSIMULATORS: "true"
+      VERIAGENT_SECURITY_SIMULATORPUBLICPATHS: /sim/*/api/v1/**
+    ports: ["127.0.0.1:8080:8080"]
+    volumes: ["shared:/shared"]
     read_only: true
+    tmpfs: ["/tmp"]
   agentic:
     build: { context: ., dockerfile: deploy/docker/agentic.Dockerfile }
-    ports: ["8090:8090"]
+    depends_on: [platform]
     environment:
-      TFG_KIT_URL: http://kit:8085
+      VERIAGENT_URL: http://platform:8080
+      VERIAGENT_TOKENS_FILE: /shared/demo-tokens.json
       ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-    volumes: ["proposals:/data"]
-    depends_on: [kit]
+    volumes: ["shared:/shared:ro", "agentdata:/data"]
 volumes:
-  proposals:
+  pgdata:
+  shared:
+  agentdata:

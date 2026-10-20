@@ -11,7 +11,7 @@
   "versionKit": "0.2.0",
   "especificaciones": {
     "perfil-alfa-v2.1": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
-    "formato-beta-pe-v1": "c9711de0757a1acdab64572923a39a3570125275f554542cca69fafded817c30"
+    "formato-beta-pe-v1": "d7edd239933b108686fd2443b565ba37c2c58c1112824421d50dfa80dfb70f09"
   },
   "criterioEquivalencia": [
     "E1: mapeo mutado idéntico a la línea base",
@@ -3330,5 +3330,5 @@
     "Ningún mutante bloqueado se puede aprobar (409)": true
   },
   "aprobado": true,
-  "fecha": "2026-10-20T04:10:06"
+  "fecha": "2026-10-20T05:01:49"
 }

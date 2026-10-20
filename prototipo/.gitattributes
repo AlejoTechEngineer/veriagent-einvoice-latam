@@ -7,5 +7,10 @@ Dockerfile text eol=lf
 *.yaml text eol=lf
 *.yml text eol=lf
 *.ps1 text eol=crlf
+# Normativa y datos de referencia: siempre LF, para que la huella SHA-256 sea la misma en Windows y en Linux.
+specs/** text eol=lf
+catalogs/** text eol=lf
+schemas/** text eol=lf
+data/** text eol=lf
 *.png binary
 *.jar binary

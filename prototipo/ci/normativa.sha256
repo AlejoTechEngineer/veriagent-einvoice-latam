@@ -1,0 +1,11 @@
+# Huellas SHA-256 de la normativa sintética (especificaciones, catálogos y esquemas), con finales de línea LF
+# (.gitattributes). El gate gate-normative falla si cambian sin actualizar este manifiesto.
+# Regenerar: ci/run-pipeline.sh normative-manifest
+d7edd239933b108686fd2443b565ba37c2c58c1112824421d50dfa80dfb70f09  specs/formato-beta-pe-v1.md
+ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a  specs/perfil-alfa-v2.1.md
+1c29b52046e013aef54c9b466c05d7ae3e46a6e59714e6ba289ae4c7cf038cd2  specs/proveedor-gamma-v1.md
+53a1837dc65824747d762b0b0bab742cc145cede4921e7efeae55684234773bd  catalogs/catalogos-alfa-v2.csv
+2f2605aa89e903d2dbb68836acbf727cd0ccc8816da3c924351931d792d447de  catalogs/catalogos-beta-pe-v1.csv
+fcd642b2811263e28fd61ac8bb6478c9bd114c811639a9eec76475bd5728223c  catalogs/catalogos-gamma-v1.csv
+0cf7de29b508536d3824b1f6b6350aca9bb2517f080c53388df6c78671153225  schemas/gamma-v1.schema.json
+14575981faa839cfa2eb9b2bb8e496e6a9a9f0fb640f5176d81a3125c7d8e492  schemas/perfil-alfa-v2.1.xsd

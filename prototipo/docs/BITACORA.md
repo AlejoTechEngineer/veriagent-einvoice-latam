@@ -301,3 +301,50 @@ locales; no sustituye una prueba de carga sostenida ni mide Kafka ni PostgreSQL 
 - `mvn install` del reactor (21 módulos): **138 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker). En
   una corrida falló de forma intermitente `ResponseProcessorTest.reconcilesWithReceipt` (gracia de 0 s frente a la
   precisión de la marca de tiempo guardada); la prueba reintenta ahora la conciliación durante 2 s como máximo.
+
+## Fase 7. CI/CD y despliegue (2026-10-20)
+
+### Cambios
+- `ci/run-pipeline.sh`: etapas sobre Maven (`build`, `test-java`, `test-python`, `package`, `smoke`) y gates
+  `gate-secrets` (claves, tokens, llaves privadas, tokens de demostración, correos no reservados, archivos de
+  credenciales rastreados), `gate-deps` (sin SNAPSHOT ni rangos en los pom; dependencias de Python instaladas y
+  conformes con `pyproject.toml`; trivy si está instalado), `gate-normative` (manifiesto `ci/normativa.sha256`
+  de 8 documentos), `gate-bank` (banco de 22 sobre el kit, umbral de detección en ejecución) y `gate-mapping`.
+  La prueba de humo arranca el JAR, comprueba 401 sin token y 200 con token, emite un comprobante (AUTHORIZED) y
+  compara las huellas de las especificaciones que reporta el kit en ejecución con el manifiesto.
+- `Jenkinsfile`: entorno de Python, compilación, gates previos en paralelo (secretos, huellas, dependencias),
+  pruebas Java y Python, banco, mapeo, trivy (vulnerabilidades, secretos y configuración), empaquetado y humo,
+  imágenes (plataforma y plano agéntico, con trivy de imagen), despliegue en SIT con Helm y aprobación manual para
+  UAT y PROD.
+- `deploy/docker/platform.Dockerfile` (nueva), `agentic.Dockerfile` (instala el paquete con `pyproject.toml`),
+  `docker-compose.yml` del perfil full (Redpanda, PostgreSQL, plataforma con simuladores, API de revisión; puertos
+  solo en 127.0.0.1; credenciales desde `.env`), `.env.example` con marcadores.
+- Helm (ajuste mínimo): plantilla `platform.yaml`, imagen del plano agéntico renombrada, `VERIAGENT_URL` para los
+  agentes, regla de red del plano agéntico hacia la plataforma y valores de la plataforma.
+
+### Defecto encontrado y corregido: huella de la normativa distinta en Windows y en Linux
+Git convertía a CRLF en la copia de trabajo de Windows tres especificaciones y dos catálogos creados en la Fase 3
+(en el repositorio están en LF). La huella SHA-256 que el kit pone en cada hallazgo habría sido distinta en Linux.
+`.gitattributes` fija ahora LF para `specs/`, `catalogs/`, `schemas/` y `data/`, y las copias locales se
+convirtieron. Huellas que cambian en Windows: `proveedor-gamma-v1.md` (`41655837...` → `1c29b520...`),
+`formato-beta-pe-v1.md`, los catálogos de Beta PE y Gamma y el esquema de Gamma. Los resultados de la Fase 6b se
+regeneraron después de la corrección.
+
+### Ejecutado
+- `ci/run-pipeline.sh` con todas las etapas, en Git Bash sobre Windows: **todo en verde en 5 minutos**. JUnit del
+  reactor completo, pytest 42 de 42, gate de secretos OK, dependencias OK, normativa 8 de 8, banco 22 mutantes
+  (ejecución 19, 86 %; CI 22; 0 falsos positivos), mapeo vigente 112 documentos sin hallazgos, empaquetado, humo
+  OK (emisión AUTHORIZED; huellas de alfa, beta, beta-pe y gamma iguales al manifiesto).
+- `docker compose config` del perfil full: sintaxis válida (con un `.env` de prueba).
+
+### No ejecutado, y por qué
+- Jenkins: no hay servidor Jenkins en la máquina de trabajo; el Jenkinsfile no se ejecutó (sus etapas sí, por
+  `run-pipeline.sh`).
+- trivy (vulnerabilidades, secretos y configuración, en sistema de archivos y en imagen): no está instalado.
+- Imágenes de contenedor y perfil full (`docker compose up`): el daemon de Docker no está disponible (S-09).
+- Helm: ni `helm` ni un cluster disponibles; el chart no se validó con `helm lint` ni `helm template`.
+- Consola JavaFX en el pipeline: OpenJFX no está en la ruta por defecto del script (`FX_LIB`); se compiló aparte.
+- Tras la corrección de LF se repitió `todos.ps1` completo desde limpio: todo en verde en 7,1 minutos, con los
+  mismos conteos (S1 a S8, banco 19 y 22 de 22, falsos positivos 0 de 11.402, banco ampliado 121 y 129 de 129 con
+  la misma huella del conjunto). Es la corrida de referencia de `ESCENARIOS.md`; `banco_ampliado.json` registra ya la
+  huella LF de `formato-beta-pe-v1.md`.

@@ -14,9 +14,9 @@
                     "duplicates":  0,
                     "rejected":  0
                 },
-    "segundosAceptacion":  1.84,
-    "segundosTotales":  5.36,
-    "rendimientoPorSeg":  186.7,
+    "segundosAceptacion":  1.28,
+    "segundosTotales":  4.71,
+    "rendimientoPorSeg":  212.5,
     "conteoPorEstado":  {
                             "RECEIVED":  0,
                             "PENDING_BATCH":  0,

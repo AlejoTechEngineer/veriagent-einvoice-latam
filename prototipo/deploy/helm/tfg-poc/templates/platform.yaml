@@ -1,0 +1,49 @@
+# Plataforma de integración (aplicación Boot única, perfil full). Ajuste mínimo de la Fase 7: no validado en cluster.
+# Kafka y PostgreSQL son externos al chart; las credenciales salen de un Secret (nunca de values.yaml).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-platform
+  labels: {{- include "tfg.labels" . | nindent 4 }}
+    app.kubernetes.io/name: platform
+spec:
+  replicas: {{ .Values.platform.replicas }}
+  selector: { matchLabels: { app.kubernetes.io/name: platform } }
+  template:
+    metadata:
+      labels: {{- include "tfg.labels" . | nindent 8 }}
+        app.kubernetes.io/name: platform
+    spec:
+      automountServiceAccountToken: false
+      containers:
+        - name: platform
+          image: "{{ .Values.image.registry }}/veriagent/platform:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports: [{ containerPort: 8080, name: http }]
+          env:
+            - { name: SPRING_PROFILES_ACTIVE, value: full }
+            - { name: VERIAGENT_DB_URL, value: {{ .Values.platform.dbUrl | quote }} }
+            - name: VERIAGENT_DB_USER
+              valueFrom: { secretKeyRef: { name: {{ .Values.platform.dbSecretName }}, key: username } }
+            - name: VERIAGENT_DB_PASSWORD
+              valueFrom: { secretKeyRef: { name: {{ .Values.platform.dbSecretName }}, key: password } }
+            - { name: VERIAGENT_KAFKA, value: {{ .Values.platform.kafkaBootstrap | quote }} }
+            - { name: VERIAGENT_TOKEN_MODE, value: generate }
+            - { name: VERIAGENT_AGENTS_URL, value: "http://{{ .Release.Name }}-agentic:8090" }
+          {{- include "tfg.securityContext" . | nindent 10 }}
+          readinessProbe: { httpGet: { path: /actuator/health, port: http }, periodSeconds: 5 }
+          livenessProbe: { httpGet: { path: /actuator/health, port: http }, periodSeconds: 15, failureThreshold: 4 }
+          resources: {{- toYaml .Values.platform.resources | nindent 12 }}
+          volumeMounts: [{ name: shared, mountPath: /shared }, { name: tmp, mountPath: /tmp }]
+      volumes:
+        - { name: shared, emptyDir: {} }
+        - { name: tmp, emptyDir: {} }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-platform
+  labels: {{- include "tfg.labels" . | nindent 4 }}
+spec:
+  selector: { app.kubernetes.io/name: platform }
+  ports: [{ port: 8080, targetPort: http, name: http }]
