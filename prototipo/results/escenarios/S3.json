@@ -1,6 +1,16 @@
 {
   "escenario": "S3",
   "descripcion": "Defectos D1 a D6 bloqueados antes del envío, con regla y norma",
+  "clavesDefectuosas": [
+    "CO:900123456-8:INVOICE:SETP990313001",
+    "CO:900123456-8:INVOICE:SETP990313002",
+    "CO:900123456-8:INVOICE:SETP990313003",
+    "CO:900123456-8:INVOICE:SETP990313004",
+    "CO:900123456-8:INVOICE:SETP990303001",
+    "CO:900123456-8:INVOICE:SETP990303002",
+    "CO:900123456-8:INVOICE:SETP990303003",
+    "CO:900123456-8:INVOICE:SETP990303004"
+  ],
   "sincrono": {
     "D1": {
       "http": 422,
@@ -101,5 +111,5 @@
     "Balance de conservación": true
   },
   "aprobado": true,
-  "fecha": "2026-10-19T23:27:09"
+  "fecha": "2026-10-20T04:03:52"
 }

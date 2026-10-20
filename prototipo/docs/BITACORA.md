@@ -255,3 +255,25 @@ su resultado en `results\escenarios\<id>.json`. Los escenarios S3 a S8, el banco
 
 La proyección diaria es una extrapolación lineal de una corrida de 29 s en un solo proceso con simuladores
 locales; no sustituye una prueba de carga sostenida ni mide Kafka ni PostgreSQL (perfil full no ejecutado).
+
+## Fase 6b. Falsos positivos con n y banco ampliado (2026-10-20)
+
+- `scenarios.py`: `falsos_positivos` (conteo por fuente con la cota superior del 95 %) y `banco_ampliado`
+  (genera con `mutation_bank.py`, semilla 2026, hasta 30 por tipo, y verifica cada mutante por el registro).
+  Scripts `scripts\escenarios\falsos_positivos.ps1` y `banco_ampliado.ps1`, incluidos en `todos.ps1`.
+- Corrida de referencia: `todos.ps1` desde limpio, **todo en verde en 6,9 minutos**.
+- Falsos positivos: **0 de 11.402** comprobantes correctos (S1 1, S2 1.000, S6 121, S7 80, latencia 200, lote
+  10.000); cota superior del 95 %: 3/n = 0,026 %. Los 4 bloqueos del kit en el registro son los defectos
+  intencionales de S3. 400 verificaciones directas del kit: 0 rechazos.
+- Banco ampliado: espacio de 195 mutantes, 21 equivalentes excluidos (15 E2, 5 E1, 1 E3), 129 verificados.
+  Kit en ejecución: 121 de 129 (93,8 %, IC Wilson 95 % 88,2 % a 96,8 %). Kit + ejemplos validados: 129 de 129
+  (100 %, IC 97,1 % a 100 %). Por tipo, en `ESCENARIOS.md`. Huella del conjunto `37aa01b0...0534a`.
+- Banco original de 22 en la misma corrida: sin cambios (19 de 22 en ejecución, 22 de 22 con ejemplos validados).
+
+### Defectos encontrados y corregidos durante la fase
+- En una primera corrida el escenario escribía `FALSOS_POSITIVOS.json` y luego lo "renombraba" a
+  `falsos_positivos.json`; en Windows son el mismo archivo y el resultado se borraba. Ahora se escribe con el
+  nombre final.
+- En esa misma corrida la medición del lote salió en 285 s porque el conteo de estados (10.000 consultas) quedaba
+  dentro del tiempo medido. Se movió fuera y se repitió la corrida completa; las cifras publicadas son de la
+  corrida corregida (30,8 s).

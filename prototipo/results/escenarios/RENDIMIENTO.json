@@ -3,26 +3,28 @@
   "descripcion": "Latencia de verificación y emisión, y rendimiento del lote",
   "verificacionKit": {
     "documentos": 400,
-    "p50ms": 0.85,
-    "p95ms": 1.38,
+    "aprobados": 400,
+    "p50ms": 0.89,
+    "p95ms": 1.4,
     "http": {
-      "p50ms": 19.54,
-      "p95ms": 39.11
+      "p50ms": 20.09,
+      "p95ms": 42.41
     }
   },
   "emisionSincrona": {
     "comprobantes": 200,
-    "p50ms": 30.37,
-    "p95ms": 52.36,
-    "maxMs": 100.7,
-    "media": 34.5
+    "autorizados": 200,
+    "p50ms": 30.51,
+    "p95ms": 52.82,
+    "maxMs": 106.5,
+    "media": 35.0
   },
   "lote": {
     "comprobantes": 10000,
     "segundosAceptacion": 4.1,
-    "segundosTotales": 29.0,
-    "porSegundo": 345.2,
-    "proyeccionPorDia": 29823396,
+    "segundosTotales": 30.8,
+    "porSegundo": 325.2,
+    "proyeccionPorDia": 28094652,
     "ingesta": {
       "file": "rendimiento-lote.jsonl",
       "sha256": "dca179ed0e59f9c37ed802d74d21391de60ffa5eafd2e93630a4b172dbb65446",
@@ -30,6 +32,9 @@
       "accepted": 10000,
       "duplicates": 0,
       "rejected": 0
+    },
+    "estados": {
+      "AUTHORIZED": 10000
     },
     "conservacion": {
       "registered": 11413,
@@ -51,5 +56,5 @@
     "Capacidad proyectada >= 200.000 comprobantes por día": true
   },
   "aprobado": true,
-  "fecha": "2026-10-19T23:29:12"
+  "fecha": "2026-10-20T04:09:43"
 }

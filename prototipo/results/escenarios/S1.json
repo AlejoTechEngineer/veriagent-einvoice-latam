@@ -4,7 +4,7 @@
     "comprobante":  "CO:900123456-8:INVOICE:SETP990100102",
     "estado":  "AUTHORIZED",
     "autorizacion":  "ALFA-21C8BC6DAEA3",
-    "latenciaMs":  354,
+    "latenciaMs":  292,
     "historial":  [
                       {
                           "from":  null,
@@ -12,7 +12,7 @@
                           "reason":  "Recibido por el canal SYNC",
                           "actor":  "operador.demo",
                           "correlationId":  "corr-co-SETP990100102",
-                          "occurredAt":  "2026-10-20T04:26:54.310512Z"
+                          "occurredAt":  "2026-10-20T09:03:36.310964Z"
                       },
                       {
                           "from":  "RECEIVED",
@@ -20,7 +20,7 @@
                           "reason":  "Verificado por el kit y enviado al proveedor alfa",
                           "actor":  "operador.demo",
                           "correlationId":  "corr-co-SETP990100102",
-                          "occurredAt":  "2026-10-20T04:26:54.326653Z"
+                          "occurredAt":  "2026-10-20T09:03:36.323985Z"
                       },
                       {
                           "from":  "SENT",
@@ -28,7 +28,7 @@
                           "reason":  "Autorizado por alfa",
                           "actor":  "operador.demo",
                           "correlationId":  "corr-co-SETP990100102",
-                          "occurredAt":  "2026-10-20T04:26:54.455519Z"
+                          "occurredAt":  "2026-10-20T09:03:36.437100Z"
                       }
                   ],
     "respuesta":  [
@@ -38,7 +38,7 @@
                           "status":  "AUTHORIZED",
                           "channel":  "SYNC",
                           "target":  "respuesta HTTP de la fachada",
-                          "delivered_at":  "2026-10-19T23:26:54.48359-05:00"
+                          "delivered_at":  "2026-10-20T04:03:36.45894-05:00"
                       }
                   ],
     "archivoLegal":  [

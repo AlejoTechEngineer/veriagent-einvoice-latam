@@ -9,7 +9,7 @@
     "duplicates": 0,
     "rejected": 0
   },
-  "segundosHastaCuarentena": 5.4,
+  "segundosHastaCuarentena": 4.8,
   "durante": {
     "registered": 1211,
     "authorized": 1157,
@@ -38,7 +38,7 @@
       "evidence": [
         "etapa=PROVIDER",
         "categoria=RECOVERABLE",
-        "error=Lote alfa-co-1792470464742-17 no entregado: Proveedor alfa no disponible: HTTP 503"
+        "error=Lote alfa-co-1792487068753-17 no entregado: Proveedor alfa no disponible: HTTP 503"
       ]
     },
     {
@@ -51,7 +51,7 @@
       "evidence": [
         "etapa=PROVIDER",
         "categoria=RECOVERABLE",
-        "error=Lote alfa-co-1792470464742-17 no entregado: Proveedor alfa no disponible: HTTP 503"
+        "error=Lote alfa-co-1792487068753-17 no entregado: Proveedor alfa no disponible: HTTP 503"
       ]
     },
     {
@@ -64,7 +64,7 @@
       "evidence": [
         "etapa=PROVIDER",
         "categoria=RECOVERABLE",
-        "error=Lote alfa-co-1792470464742-17 no entregado: Proveedor alfa no disponible: HTTP 503"
+        "error=Lote alfa-co-1792487068753-17 no entregado: Proveedor alfa no disponible: HTTP 503"
       ]
     }
   ],
@@ -88,5 +88,5 @@
     "Balance de conservación final": true
   },
   "aprobado": true,
-  "fecha": "2026-10-19T23:27:57"
+  "fecha": "2026-10-20T04:04:39"
 }

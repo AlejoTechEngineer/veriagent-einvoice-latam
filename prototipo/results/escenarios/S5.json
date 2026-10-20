@@ -7,12 +7,12 @@
     "estado": "DLQ"
   },
   "ciclo": {
-    "proposalId": "prop-88b1d39d",
+    "proposalId": "prop-703269cb",
     "status": "PENDING_REVIEW",
     "agent": "spec-heuristic-v1",
     "attempts": 1,
-    "pullRequest": "PR-0006",
-    "branch": "mapeo-gamma-XX-20261020042721",
+    "pullRequest": "PR-0010",
+    "branch": "mapeo-gamma-XX-20261020090402",
     "registry": {
       "provider": "gamma",
       "country": "XX",
@@ -76,5 +76,5 @@
     "Balance de conservación": true
   },
   "aprobado": true,
-  "fecha": "2026-10-19T23:27:24"
+  "fecha": "2026-10-20T04:04:06"
 }

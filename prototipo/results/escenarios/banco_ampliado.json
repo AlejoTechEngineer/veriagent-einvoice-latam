@@ -1,0 +1,3334 @@
+{
+  "escenario": "BANCO_AMPLIADO",
+  "descripcion": "Banco ampliado generado con los operadores de D1 a D6, por el sistema real",
+  "bancoOriginal": "BANCO.json (22 mutantes del documento; no se modifica)",
+  "semilla": 2026,
+  "maximoPorTipo": 30,
+  "huellaDelConjunto": "37aa01b0567298c686d985698272b0b055ec109078b2f19dba8841881fb0534a",
+  "generador": "agentic-plane/tfg_agents/mutation_bank.py",
+  "ejecutor": "agentic-plane/tfg_agents/scenarios.py (banco_ampliado)",
+  "script": "scripts/escenarios/banco_ampliado.ps1",
+  "versionKit": "0.2.0",
+  "especificaciones": {
+    "perfil-alfa-v2.1": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a",
+    "formato-beta-pe-v1": "c9711de0757a1acdab64572923a39a3570125275f554542cca69fafded817c30"
+  },
+  "criterioEquivalencia": [
+    "E1: mapeo mutado idéntico a la línea base",
+    "E2: cambio limitado a claves o fuentes fuera del dominio del país de destino",
+    "E3: literal mutado igual al valor que la línea base produce en todo el dominio",
+    "Un mutante no detectado no se reclasifica como equivalente"
+  ],
+  "porTipo": {
+    "D1": {
+      "mutantes": 30,
+      "ejecucion": 24,
+      "ejecucionPct": 80.0,
+      "ejecucionWilson95": [
+        0.6269,
+        0.9049
+      ],
+      "conEjemplosValidados": 30,
+      "conEjemplosValidadosPct": 100.0,
+      "conEjemplosValidadosWilson95": [
+        0.8865,
+        1.0
+      ],
+      "espacio": 85,
+      "equivalentesExcluidos": {
+        "E1": 0,
+        "E2": 15,
+        "E3": 0
+      },
+      "noEquivalentes": 70,
+      "seleccionados": 30,
+      "admiteTreinta": true,
+      "noDetectados": [],
+      "escapanEnEjecucion": [
+        "D1-x03",
+        "D1-x07",
+        "D1-x14",
+        "D1-x17",
+        "D1-x19",
+        "D1-x26"
+      ]
+    },
+    "D2": {
+      "mutantes": 27,
+      "ejecucion": 26,
+      "ejecucionPct": 96.3,
+      "ejecucionWilson95": [
+        0.8172,
+        0.9934
+      ],
+      "conEjemplosValidados": 27,
+      "conEjemplosValidadosPct": 100.0,
+      "conEjemplosValidadosWilson95": [
+        0.8754,
+        1.0
+      ],
+      "espacio": 27,
+      "equivalentesExcluidos": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0
+      },
+      "noEquivalentes": 27,
+      "seleccionados": 27,
+      "admiteTreinta": false,
+      "noDetectados": [],
+      "escapanEnEjecucion": [
+        "D2-x01"
+      ]
+    },
+    "D3": {
+      "mutantes": 29,
+      "ejecucion": 29,
+      "ejecucionPct": 100.0,
+      "ejecucionWilson95": [
+        0.883,
+        1.0
+      ],
+      "conEjemplosValidados": 29,
+      "conEjemplosValidadosPct": 100.0,
+      "conEjemplosValidadosWilson95": [
+        0.883,
+        1.0
+      ],
+      "espacio": 35,
+      "equivalentesExcluidos": {
+        "E1": 5,
+        "E2": 0,
+        "E3": 1
+      },
+      "noEquivalentes": 29,
+      "seleccionados": 29,
+      "admiteTreinta": false,
+      "noDetectados": [],
+      "escapanEnEjecucion": []
+    },
+    "D4": {
+      "mutantes": 30,
+      "ejecucion": 30,
+      "ejecucionPct": 100.0,
+      "ejecucionWilson95": [
+        0.8865,
+        1.0
+      ],
+      "conEjemplosValidados": 30,
+      "conEjemplosValidadosPct": 100.0,
+      "conEjemplosValidadosWilson95": [
+        0.8865,
+        1.0
+      ],
+      "espacio": 35,
+      "equivalentesExcluidos": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0
+      },
+      "noEquivalentes": 35,
+      "seleccionados": 30,
+      "admiteTreinta": true,
+      "noDetectados": [],
+      "escapanEnEjecucion": []
+    },
+    "D5": {
+      "mutantes": 10,
+      "ejecucion": 10,
+      "ejecucionPct": 100.0,
+      "ejecucionWilson95": [
+        0.7225,
+        1.0
+      ],
+      "conEjemplosValidados": 10,
+      "conEjemplosValidadosPct": 100.0,
+      "conEjemplosValidadosWilson95": [
+        0.7225,
+        1.0
+      ],
+      "espacio": 10,
+      "equivalentesExcluidos": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0
+      },
+      "noEquivalentes": 10,
+      "seleccionados": 10,
+      "admiteTreinta": false,
+      "noDetectados": [],
+      "escapanEnEjecucion": []
+    },
+    "D6": {
+      "mutantes": 3,
+      "ejecucion": 2,
+      "ejecucionPct": 66.7,
+      "ejecucionWilson95": [
+        0.2077,
+        0.9385
+      ],
+      "conEjemplosValidados": 3,
+      "conEjemplosValidadosPct": 100.0,
+      "conEjemplosValidadosWilson95": [
+        0.4385,
+        1.0
+      ],
+      "espacio": 3,
+      "equivalentesExcluidos": {
+        "E1": 0,
+        "E2": 0,
+        "E3": 0
+      },
+      "noEquivalentes": 3,
+      "seleccionados": 3,
+      "admiteTreinta": false,
+      "noDetectados": [],
+      "escapanEnEjecucion": [
+        "D6-x02"
+      ]
+    }
+  },
+  "total": {
+    "mutantes": 129,
+    "ejecucion": 121,
+    "ejecucionPct": 93.8,
+    "ejecucionWilson95": [
+      0.8824,
+      0.9682
+    ],
+    "conEjemplosValidados": 129,
+    "conEjemplosValidadosPct": 100.0,
+    "conEjemplosValidadosWilson95": [
+      0.9711,
+      1.0
+    ],
+    "equivalentesExcluidos": 21
+  },
+  "mutantes": [
+    {
+      "id": "D1-x01",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+        "key": "NIT",
+        "value": "A2"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName: NIT codificado como A2",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "26/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D1": 29,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x02",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID",
+        "key": "IVA19",
+        "value": "T02"
+      },
+      "description": "InvoiceLine/TaxCategory/ID: IVA19 codificado como T02",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "45/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D1": 96,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x03",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "taxTable",
+        "key": "IGV18",
+        "value": "9997"
+      },
+      "description": "Beta PE taxTable: IGV18 codificado como 9997",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "6/7",
+      "tiposDetectados": {
+        "E0": 7
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x04",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "taxTable",
+        "key": "IGV18",
+        "value": "2000"
+      },
+      "description": "Beta PE taxTable: IGV18 codificado como 2000",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "47/50",
+      "ejemplosCi": "6/7",
+      "tiposDetectados": {
+        "D1": 117,
+        "E0": 7
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x05",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "DEBIT_NOTE",
+        "value": "93"
+      },
+      "description": "Invoice/InvoiceTypeCode: DEBIT_NOTE codificado como 93",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "9/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 10,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x06",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+        "key": "CE",
+        "value": "A5"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName: CE codificado como A5",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "3/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 4,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x07",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "docTypeTable",
+        "key": "INVOICE",
+        "value": "08"
+      },
+      "description": "Beta PE docTypeTable: INVOICE codificado como 08",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "5/7",
+      "tiposDetectados": {
+        "E0": 5
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x08",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID",
+        "key": "EXENTO",
+        "value": "T04"
+      },
+      "description": "InvoiceLine/TaxCategory/ID: EXENTO codificado como T04",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x09",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName",
+        "key": "NIT",
+        "value": "A3"
+      },
+      "description": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName: NIT codificado como A3",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x10",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName",
+        "key": "NIT",
+        "value": "A2"
+      },
+      "description": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName: NIT codificado como A2",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x11",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "docTypeTable",
+        "key": "DEBIT_NOTE",
+        "value": "03"
+      },
+      "description": "Beta PE docTypeTable: DEBIT_NOTE codificado como 03",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "5/50",
+      "ejemplosCi": "1/7",
+      "tiposDetectados": {
+        "D1": 6,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x12",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID",
+        "key": "IVA5",
+        "value": "T04"
+      },
+      "description": "InvoiceLine/TaxCategory/ID: IVA5 codificado como T04",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "24/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D1": 31,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x13",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID",
+        "key": "EXENTO",
+        "value": "T02"
+      },
+      "description": "InvoiceLine/TaxCategory/ID: EXENTO codificado como T02",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 12,
+        "D3": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x14",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "docTypeTable",
+        "key": "CREDIT_NOTE",
+        "value": "08"
+      },
+      "description": "Beta PE docTypeTable: CREDIT_NOTE codificado como 08",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "1/7",
+      "tiposDetectados": {
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x15",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+        "key": "PAS",
+        "value": "A2"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName: PAS codificado como A2",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "5/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 6,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x16",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID",
+        "key": "EXENTO",
+        "value": "T01"
+      },
+      "description": "InvoiceLine/TaxCategory/ID: EXENTO codificado como T01",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 12,
+        "D3": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x17",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "docTypeTable",
+        "key": "CREDIT_NOTE",
+        "value": "01"
+      },
+      "description": "Beta PE docTypeTable: CREDIT_NOTE codificado como 01",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "1/7",
+      "tiposDetectados": {
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x18",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName",
+        "key": "NIT",
+        "value": "A4"
+      },
+      "description": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName: NIT codificado como A4",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x19",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "taxTable",
+        "key": "EXONERADO",
+        "value": "1000"
+      },
+      "description": "Beta PE taxTable: EXONERADO codificado como 1000",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "2/7",
+      "tiposDetectados": {
+        "E0": 2
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x20",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "taxTable",
+        "key": "EXONERADO",
+        "value": "9998"
+      },
+      "description": "Beta PE taxTable: EXONERADO codificado como 9998",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "14/50",
+      "ejemplosCi": "2/7",
+      "tiposDetectados": {
+        "D1": 19,
+        "E0": 2
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x21",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "INVOICE",
+        "value": "91"
+      },
+      "description": "Invoice/InvoiceTypeCode: INVOICE codificado como 91",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "38/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x22",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName",
+        "key": "NIT",
+        "value": "31"
+      },
+      "description": "Invoice/AccountingSupplierParty/Party/CompanyID/@schemeName: NIT codificado como 31",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x23",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "CREDIT_NOTE",
+        "value": "01"
+      },
+      "description": "Invoice/InvoiceTypeCode: CREDIT_NOTE codificado como 01",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "3/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 4,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x24",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "CREDIT_NOTE",
+        "value": "07"
+      },
+      "description": "Invoice/InvoiceTypeCode: CREDIT_NOTE codificado como 07",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "3/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 4,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x25",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+        "key": "NIT",
+        "value": "A5"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName: NIT codificado como A5",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "26/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D1": 29,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x26",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "CREDIT_NOTE",
+        "value": "92"
+      },
+      "description": "Invoice/InvoiceTypeCode: CREDIT_NOTE codificado como 92",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x27",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID",
+        "key": "EXENTO",
+        "value": "01"
+      },
+      "description": "InvoiceLine/TaxCategory/ID: EXENTO codificado como 01",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x28",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "docTypeTable",
+        "key": "CREDIT_NOTE",
+        "value": "03"
+      },
+      "description": "Beta PE docTypeTable: CREDIT_NOTE codificado como 03",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "6/50",
+      "ejemplosCi": "1/7",
+      "tiposDetectados": {
+        "D1": 7,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x29",
+      "type": "D1",
+      "format": "seg",
+      "operator": "_beta_table",
+      "params": {
+        "table": "docTypeTable",
+        "key": "INVOICE",
+        "value": "03"
+      },
+      "description": "Beta PE docTypeTable: INVOICE codificado como 03",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "39/50",
+      "ejemplosCi": "5/7",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 5
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D1-x30",
+      "type": "D1",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName",
+        "key": "CC",
+        "value": "A1"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName: CC codificado como A1",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "16/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D1": 19,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x01",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "InvoiceLine/InvoicedQuantity",
+        "t2": "InvoiceLine/PriceAmount"
+      },
+      "description": "InvoiceLine/InvoicedQuantity y InvoiceLine/PriceAmount intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "E0": 20
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x02",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "InvoiceLine/InvoicedQuantity",
+        "t2": "InvoiceLine/LineExtensionAmount"
+      },
+      "description": "InvoiceLine/InvoicedQuantity y InvoiceLine/LineExtensionAmount intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 251,
+        "E0": 20
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x03",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "InvoiceLine/InvoicedQuantity",
+        "t2": "InvoiceLine/TaxCategory/Percent"
+      },
+      "description": "InvoiceLine/InvoicedQuantity y InvoiceLine/TaxCategory/Percent intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 138,
+        "D2": 208,
+        "E0": 20
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x04",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "InvoiceLine/PriceAmount",
+        "t2": "InvoiceLine/LineExtensionAmount"
+      },
+      "description": "InvoiceLine/PriceAmount y InvoiceLine/LineExtensionAmount intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 240,
+        "E0": 18
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x05",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "InvoiceLine/PriceAmount",
+        "t2": "InvoiceLine/TaxCategory/Percent"
+      },
+      "description": "InvoiceLine/PriceAmount y InvoiceLine/TaxCategory/Percent intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 139,
+        "D2": 197,
+        "E0": 20
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x06",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "InvoiceLine/LineExtensionAmount",
+        "t2": "InvoiceLine/TaxCategory/Percent"
+      },
+      "description": "InvoiceLine/LineExtensionAmount y InvoiceLine/TaxCategory/Percent intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 139,
+        "D2": 197,
+        "E0": 20
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x07",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/InvoicedQuantity",
+        "source": "lines[].unitPrice"
+      },
+      "description": "InvoiceLine/InvoicedQuantity tomado de lines[].unitPrice",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 139,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x08",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/InvoicedQuantity",
+        "source": "lines[].amount"
+      },
+      "description": "InvoiceLine/InvoicedQuantity tomado de lines[].amount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 139,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x09",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/InvoicedQuantity",
+        "source": "lines[].taxRate"
+      },
+      "description": "InvoiceLine/InvoicedQuantity tomado de lines[].taxRate",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 150,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x10",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/PriceAmount",
+        "source": "lines[].quantity"
+      },
+      "description": "InvoiceLine/PriceAmount tomado de lines[].quantity",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 139,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x11",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/PriceAmount",
+        "source": "lines[].amount"
+      },
+      "description": "InvoiceLine/PriceAmount tomado de lines[].amount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 128,
+        "E0": 9
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x12",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/PriceAmount",
+        "source": "lines[].taxRate"
+      },
+      "description": "InvoiceLine/PriceAmount tomado de lines[].taxRate",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 139,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x13",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/LineExtensionAmount",
+        "source": "lines[].quantity"
+      },
+      "description": "InvoiceLine/LineExtensionAmount tomado de lines[].quantity",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 251,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x14",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/LineExtensionAmount",
+        "source": "lines[].unitPrice"
+      },
+      "description": "InvoiceLine/LineExtensionAmount tomado de lines[].unitPrice",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 240,
+        "E0": 9
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x15",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/LineExtensionAmount",
+        "source": "lines[].taxRate"
+      },
+      "description": "InvoiceLine/LineExtensionAmount tomado de lines[].taxRate",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 251,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x16",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/Percent",
+        "source": "lines[].quantity"
+      },
+      "description": "InvoiceLine/TaxCategory/Percent tomado de lines[].quantity",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 138,
+        "D2": 58,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x17",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/Percent",
+        "source": "lines[].unitPrice"
+      },
+      "description": "InvoiceLine/TaxCategory/Percent tomado de lines[].unitPrice",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 139,
+        "D2": 58,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x18",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/Percent",
+        "source": "lines[].amount"
+      },
+      "description": "InvoiceLine/TaxCategory/Percent tomado de lines[].amount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 139,
+        "D2": 58,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x19",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "Invoice/TaxTotal/TaxAmount",
+        "t2": "Invoice/LegalMonetaryTotal/LineExtensionAmount"
+      },
+      "description": "Invoice/TaxTotal/TaxAmount y Invoice/LegalMonetaryTotal/LineExtensionAmount intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 116,
+        "E0": 16
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x20",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "Invoice/TaxTotal/TaxAmount",
+        "t2": "Invoice/LegalMonetaryTotal/PayableAmount"
+      },
+      "description": "Invoice/TaxTotal/TaxAmount y Invoice/LegalMonetaryTotal/PayableAmount intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 116,
+        "E0": 16
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x21",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_swap",
+      "params": {
+        "t1": "Invoice/LegalMonetaryTotal/LineExtensionAmount",
+        "t2": "Invoice/LegalMonetaryTotal/PayableAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/LineExtensionAmount y Invoice/LegalMonetaryTotal/PayableAmount intercambiados",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "47/50",
+      "ejemplosCi": "7/8",
+      "tiposDetectados": {
+        "D2": 108,
+        "E0": 14
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x22",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "Invoice/TaxTotal/TaxAmount",
+        "source": "totals.baseAmount"
+      },
+      "description": "Invoice/TaxTotal/TaxAmount tomado de totals.baseAmount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 116,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x23",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "Invoice/TaxTotal/TaxAmount",
+        "source": "totals.payableAmount"
+      },
+      "description": "Invoice/TaxTotal/TaxAmount tomado de totals.payableAmount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 116,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x24",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "Invoice/LegalMonetaryTotal/LineExtensionAmount",
+        "source": "totals.taxAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/LineExtensionAmount tomado de totals.taxAmount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 116,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x25",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "Invoice/LegalMonetaryTotal/LineExtensionAmount",
+        "source": "totals.payableAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/LineExtensionAmount tomado de totals.payableAmount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "47/50",
+      "ejemplosCi": "7/8",
+      "tiposDetectados": {
+        "D2": 108,
+        "E0": 7
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x26",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "Invoice/LegalMonetaryTotal/PayableAmount",
+        "source": "totals.taxAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/PayableAmount tomado de totals.taxAmount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D2": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D2-x27",
+      "type": "D2",
+      "format": "xml",
+      "operator": "_with(source)",
+      "params": {
+        "target": "Invoice/LegalMonetaryTotal/PayableAmount",
+        "source": "totals.baseAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/PayableAmount tomado de totals.baseAmount",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "47/50",
+      "ejemplosCi": "7/8",
+      "tiposDetectados": {
+        "D2": 54,
+        "E0": 7
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x01",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(value)",
+      "params": {
+        "target": "Invoice/ProfileID",
+        "value": "perfilalfa-2.1"
+      },
+      "description": "Identificador de perfil 'perfilalfa-2.1'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x02",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(value)",
+      "params": {
+        "target": "Invoice/ProfileID",
+        "value": "PERFILALFA-2.1"
+      },
+      "description": "Identificador de perfil 'PERFILALFA-2.1'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x03",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(value)",
+      "params": {
+        "target": "Invoice/ProfileID",
+        "value": "Perfilalfa-2.1"
+      },
+      "description": "Identificador de perfil 'Perfilalfa-2.1'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x04",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(value)",
+      "params": {
+        "target": "Invoice/ProfileID",
+        "value": "PerfilAlfa-2.1 "
+      },
+      "description": "Identificador de perfil 'PerfilAlfa-2.1 '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x05",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(value)",
+      "params": {
+        "target": "Invoice/ProfileID",
+        "value": " PerfilAlfa-2.1"
+      },
+      "description": "Identificador de perfil ' PerfilAlfa-2.1'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x06",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(value)",
+      "params": {
+        "target": "Invoice/ProfileID",
+        "value": "PerfilAlfa 2.1"
+      },
+      "description": "Identificador de perfil 'PerfilAlfa 2.1'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x07",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA19",
+        "value": "iva"
+      },
+      "description": "Nombre del esquema tributario de IVA19 como 'iva'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "45/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D3": 96,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x08",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA19",
+        "value": "Iva"
+      },
+      "description": "Nombre del esquema tributario de IVA19 como 'Iva'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "45/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D3": 96,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x09",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA19",
+        "value": "IVA "
+      },
+      "description": "Nombre del esquema tributario de IVA19 como 'IVA '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "45/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D3": 96,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x10",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA19",
+        "value": " IVA"
+      },
+      "description": "Nombre del esquema tributario de IVA19 como ' IVA'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "45/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D3": 96,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x11",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA5",
+        "value": "iva"
+      },
+      "description": "Nombre del esquema tributario de IVA5 como 'iva'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "24/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D3": 31,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x12",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA5",
+        "value": "Iva"
+      },
+      "description": "Nombre del esquema tributario de IVA5 como 'Iva'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "24/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D3": 31,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x13",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA5",
+        "value": "IVA "
+      },
+      "description": "Nombre del esquema tributario de IVA5 como 'IVA '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "24/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D3": 31,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x14",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "IVA5",
+        "value": " IVA"
+      },
+      "description": "Nombre del esquema tributario de IVA5 como ' IVA'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "24/50",
+      "ejemplosCi": "3/8",
+      "tiposDetectados": {
+        "D3": 31,
+        "E0": 3
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x15",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "EXENTO",
+        "value": "exento"
+      },
+      "description": "Nombre del esquema tributario de EXENTO como 'exento'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D3": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x16",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "EXENTO",
+        "value": "Exento"
+      },
+      "description": "Nombre del esquema tributario de EXENTO como 'Exento'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D3": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x17",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "EXENTO",
+        "value": "EXENTO "
+      },
+      "description": "Nombre del esquema tributario de EXENTO como 'EXENTO '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D3": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x18",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(table)",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName",
+        "key": "EXENTO",
+        "value": " EXENTO"
+      },
+      "description": "Nombre del esquema tributario de EXENTO como ' EXENTO'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "10/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D3": 12,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x19",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(literal)",
+      "params": {
+        "target": "Invoice/DocumentCurrencyCode",
+        "value": "cop"
+      },
+      "description": "Moneda literal 'cop'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x20",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(literal)",
+      "params": {
+        "target": "Invoice/DocumentCurrencyCode",
+        "value": "Cop"
+      },
+      "description": "Moneda literal 'Cop'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x21",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(literal)",
+      "params": {
+        "target": "Invoice/DocumentCurrencyCode",
+        "value": "COP "
+      },
+      "description": "Moneda literal 'COP '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x22",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_with(literal)",
+      "params": {
+        "target": "Invoice/DocumentCurrencyCode",
+        "value": " COP"
+      },
+      "description": "Moneda literal ' COP'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x23",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "INVOICE",
+        "value": " 01"
+      },
+      "description": "Tipo de documento INVOICE con formato ' 01'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "38/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x24",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "INVOICE",
+        "value": "01 "
+      },
+      "description": "Tipo de documento INVOICE con formato '01 '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "38/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x25",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "INVOICE",
+        "value": "1"
+      },
+      "description": "Tipo de documento INVOICE con formato '1'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "38/50",
+      "ejemplosCi": "6/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 6
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x26",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "CREDIT_NOTE",
+        "value": " 91"
+      },
+      "description": "Tipo de documento CREDIT_NOTE con formato ' 91'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "3/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 4,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x27",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "CREDIT_NOTE",
+        "value": "91 "
+      },
+      "description": "Tipo de documento CREDIT_NOTE con formato '91 '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "3/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 4,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x28",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "DEBIT_NOTE",
+        "value": " 92"
+      },
+      "description": "Tipo de documento DEBIT_NOTE con formato ' 92'",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "9/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 10,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D3-x29",
+      "type": "D3",
+      "format": "xml",
+      "operator": "_table",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode",
+        "key": "DEBIT_NOTE",
+        "value": "92 "
+      },
+      "description": "Tipo de documento DEBIT_NOTE con formato '92 '",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "9/50",
+      "ejemplosCi": "1/8",
+      "tiposDetectados": {
+        "D1": 10,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x01",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/TaxTotal/TaxAmount"
+      },
+      "description": "Invoice/TaxTotal/TaxAmount sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x02",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/IssueDate"
+      },
+      "description": "Invoice/IssueDate como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "E0": 124,
+        "D4": 58
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x03",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/ID"
+      },
+      "description": "InvoiceLine/ID sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x04",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/Percent"
+      },
+      "description": "InvoiceLine/TaxCategory/Percent sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "D2": 54,
+        "E0": 22
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x05",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/AccountingSupplierParty/Party/CompanyID"
+      },
+      "description": "Invoice/AccountingSupplierParty/Party/CompanyID como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x06",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID/@schemeName sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "E0": 98
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x07",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "InvoiceLine/ID"
+      },
+      "description": "InvoiceLine/ID como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "E0": 288
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x08",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/ElectronicMail"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/ElectronicMail sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x09",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/TaxSchemeName"
+      },
+      "description": "InvoiceLine/TaxCategory/TaxSchemeName sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "E0": 16
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x10",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/ElectronicMail"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/ElectronicMail como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x11",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/PriceAmount"
+      },
+      "description": "InvoiceLine/PriceAmount sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "E0": 34
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x12",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/IssueDate"
+      },
+      "description": "Invoice/IssueDate sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x13",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x14",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/DocumentCurrencyCode"
+      },
+      "description": "Invoice/DocumentCurrencyCode como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x15",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/InvoicedQuantity"
+      },
+      "description": "InvoiceLine/InvoicedQuantity sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x16",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/ID"
+      },
+      "description": "Invoice/ID como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x17",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/PartyName"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/PartyName sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x18",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/LineExtensionAmount"
+      },
+      "description": "InvoiceLine/LineExtensionAmount sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "D2": 112,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x19",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/LegalMonetaryTotal/LineExtensionAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/LineExtensionAmount sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x20",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/DocumentCurrencyCode"
+      },
+      "description": "Invoice/DocumentCurrencyCode sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x21",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/AccountingSupplierParty/Party/PartyName"
+      },
+      "description": "Invoice/AccountingSupplierParty/Party/PartyName como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x22",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/CompanyID"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/CompanyID como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x23",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/AccountingCustomerParty/Party/PartyName"
+      },
+      "description": "Invoice/AccountingCustomerParty/Party/PartyName como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 8
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x24",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_with(literal vacío)",
+      "params": {
+        "target": "Invoice/BillingReference"
+      },
+      "description": "Invoice/BillingReference como literal vacío",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "38/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 32
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x25",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/ItemDescription"
+      },
+      "description": "InvoiceLine/ItemDescription sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x26",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/LegalMonetaryTotal/PayableAmount"
+      },
+      "description": "Invoice/LegalMonetaryTotal/PayableAmount sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x27",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/ProfileID"
+      },
+      "description": "Invoice/ProfileID sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x28",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/BillingReference"
+      },
+      "description": "Invoice/BillingReference sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "12/50",
+      "ejemplosCi": "2/8",
+      "tiposDetectados": {
+        "D1": 14,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x29",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "InvoiceLine/TaxCategory/ID"
+      },
+      "description": "InvoiceLine/TaxCategory/ID sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 139,
+        "E0": 28
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D4-x30",
+      "type": "D4",
+      "format": "xml",
+      "operator": "_drop",
+      "params": {
+        "target": "Invoice/InvoiceTypeCode"
+      },
+      "description": "Invoice/InvoiceTypeCode sin mapear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x01",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/LegacyOrderReference",
+        "source": "documentNumber"
+      },
+      "description": "Se envía Invoice/LegacyOrderReference (source documentNumber)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x02",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/LegacyOrderReference",
+        "source": "originalDocumentNumber"
+      },
+      "description": "Se envía Invoice/LegacyOrderReference (source originalDocumentNumber)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "12/50",
+      "ejemplosCi": "2/8",
+      "tiposDetectados": {
+        "D5": 28,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x03",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/LegacyOrderReference",
+        "source": "currency"
+      },
+      "description": "Se envía Invoice/LegacyOrderReference (source currency)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x04",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/LegacyOrderReference",
+        "literal": "1.00"
+      },
+      "description": "Se envía Invoice/LegacyOrderReference (literal 1.00)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x05",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/LegacyOrderReference",
+        "literal": "REF-0001"
+      },
+      "description": "Se envía Invoice/LegacyOrderReference (literal REF-0001)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x06",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/TaxExchangeRateLegacy",
+        "source": "documentNumber"
+      },
+      "description": "Se envía Invoice/TaxExchangeRateLegacy (source documentNumber)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x07",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/TaxExchangeRateLegacy",
+        "source": "originalDocumentNumber"
+      },
+      "description": "Se envía Invoice/TaxExchangeRateLegacy (source originalDocumentNumber)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "12/50",
+      "ejemplosCi": "2/8",
+      "tiposDetectados": {
+        "D5": 28,
+        "E0": 10
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x08",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/TaxExchangeRateLegacy",
+        "source": "currency"
+      },
+      "description": "Se envía Invoice/TaxExchangeRateLegacy (source currency)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x09",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/TaxExchangeRateLegacy",
+        "literal": "1.00"
+      },
+      "description": "Se envía Invoice/TaxExchangeRateLegacy (literal 1.00)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D5-x10",
+      "type": "D5",
+      "format": "xml",
+      "operator": "_add",
+      "params": {
+        "target": "Invoice/TaxExchangeRateLegacy",
+        "literal": "REF-0001"
+      },
+      "description": "Se envía Invoice/TaxExchangeRateLegacy (literal REF-0001)",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "50/50",
+      "ejemplosCi": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D6-x01",
+      "type": "D6",
+      "format": "seg",
+      "operator": "_beta",
+      "params": {
+        "key": "sanitizeDescription",
+        "value": false
+      },
+      "description": "Descripción sin sanear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "4/50",
+      "ejemplosCi": "1/7",
+      "tiposDetectados": {
+        "D6": 5,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D6-x02",
+      "type": "D6",
+      "format": "seg",
+      "operator": "_beta",
+      "params": {
+        "key": "sanitizeCustomerName",
+        "value": false
+      },
+      "description": "Nombre del adquirente sin sanear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "0/50",
+      "ejemplosCi": "1/7",
+      "tiposDetectados": {
+        "D6": 1,
+        "E0": 1
+      },
+      "aprobacion": 409
+    },
+    {
+      "id": "D6-x03",
+      "type": "D6",
+      "format": "seg",
+      "operator": "_beta(ambos)",
+      "params": {
+        "keys": [
+          "sanitizeDescription",
+          "sanitizeCustomerName"
+        ],
+        "value": false
+      },
+      "description": "Descripción y nombre sin sanear",
+      "groundTruth": "defectuoso",
+      "equivalent": false,
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "sistema": true,
+      "docsEjecucion": "4/50",
+      "ejemplosCi": "2/7",
+      "tiposDetectados": {
+        "D6": 6,
+        "E0": 2
+      },
+      "aprobacion": 409
+    }
+  ],
+  "comprobaciones": {
+    "Cada mutante se verificó por el registro de mapeos": true,
+    "Ningún mutante bloqueado se puede aprobar (409)": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-20T04:10:06"
+}

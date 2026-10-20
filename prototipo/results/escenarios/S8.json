@@ -4,12 +4,12 @@
   "versionAnterior": 1,
   "versionNueva": 3,
   "ciclo": {
-    "proposalId": "prop-07a63791",
+    "proposalId": "prop-1e89ee5b",
     "status": "PENDING_REVIEW",
     "agent": "legacy-extraction-v1",
     "attempts": 1,
-    "pullRequest": "PR-0007",
-    "branch": "mapeo-beta-PE-20261020042801",
+    "pullRequest": "PR-0011",
+    "branch": "mapeo-beta-PE-20261020090444",
     "registry": {
       "provider": "beta",
       "country": "PE",
@@ -47,8 +47,8 @@
     "action": "MAPPING_ROLLBACK",
     "target": "mapeo:beta/PE/v1",
     "details": "S8: reversión",
-    "correlationId": "97cccb9a-593a-4baa-892d-8501e9ef3802",
-    "occurredAt": "2026-10-20T04:28:03.829477Z"
+    "correlationId": "59abf79c-702c-4e93-b96b-3f6868e570ef",
+    "occurredAt": "2026-10-20T09:04:46.482896Z"
   },
   "comprobaciones": {
     "El agente de legado propone una versión que pasa el kit": true,
@@ -61,5 +61,5 @@
     "Balance de conservación": true
   },
   "aprobado": true,
-  "fecha": "2026-10-19T23:28:04"
+  "fecha": "2026-10-20T04:04:47"
 }

@@ -118,11 +118,11 @@ def dlq_open() -> list[dict]:
     return api("GET", "/api/dlq?status=OPEN&limit=500", OPERATOR)[1]
 
 
-def write(sid: str, result: dict) -> dict:
+def write(sid: str, result: dict, file: str | None = None) -> dict:
     RESULTS.mkdir(parents=True, exist_ok=True)
     result["aprobado"] = all(result["comprobaciones"].values())
     result["fecha"] = time.strftime("%Y-%m-%dT%H:%M:%S")
-    (RESULTS / f"{sid}.json").write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
+    (RESULTS / (file or f"{sid}.json")).write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"\n{sid}: {result['descripcion']}")
     for k, v in result["comprobaciones"].items():
         print(f"  {k:<60} {'OK' if v else 'FALLA'}")
@@ -191,7 +191,9 @@ def s3() -> dict:
         "Ningún documento defectuoso llegó al proveedor": after_alfa == before_alfa,
         "Balance de conservación": st["conservation"]["balanced"],
     }
+    intentional = [_key(i) for i in batch_inv] + [_key(i) for i in generate("defects", "--seed", "303", "--offset", "303000")]
     return write("S3", {"escenario": "S3", "descripcion": "Defectos D1 a D6 bloqueados antes del envío, con regla y norma",
+                        "clavesDefectuosas": intentional,
                         "sincrono": sync, "lote": {"ingesta": up, "estados": batch}, "mapeo": mapping,
                         "recibidosPorAlfa": {"antes": before_alfa, "despues": after_alfa}, "comprobaciones": c})
 
@@ -455,13 +457,14 @@ def rendimiento(sync_n: int = 200, verify_n: int = 400, batch_co: int = 6000, ba
             d = api("GET", "/api/invoices/" + x["invoiceKey"], OPERATOR)[1]
             if d.get("transformed"):
                 docs.append((prof, d["transformed"]))
-    http_ms, kit_ms = [], []
+    http_ms, kit_ms, kit_passed = [], [], 0
     for prof, content in docs:
         t0 = time.perf_counter()
         s, r = api("POST", f"/api/kit/verify?profile={prof}", OPERATOR, content=content.encode("utf-8"),
                    headers={"Content-Type": "text/plain; charset=utf-8"})
         http_ms.append((time.perf_counter() - t0) * 1000)
         kit_ms.append(r["durationMicros"] / 1000)
+        kit_passed += bool(r.get("passed"))
     lote = generate("generate", "--mix", f"CO:{batch_co},PE:{batch_pe}", "--seed", "919", "--offset", "919000")
     r0 = stats()["conservation"]["registered"]
     t0 = time.time()
@@ -469,15 +472,20 @@ def rendimiento(sync_n: int = 200, verify_n: int = 400, batch_co: int = 6000, ba
     accepted_s = time.time() - t0
     st = quiet(timeout=1800, min_registered=r0 + batch_co + batch_pe)
     total_s = time.time() - t0
+    # Estado final de cada comprobante del lote (fuera del tiempo medido).
+    lote_states = {}
+    for i in lote:
+        x = status_of(_key(i))
+        lote_states[x] = lote_states.get(x, 0) + 1
     n = batch_co + batch_pe
     per_s = n / total_s
     res = {
-        "verificacionKit": {"documentos": len(kit_ms), "p50ms": pct(kit_ms, .5), "p95ms": pct(kit_ms, .95),
+        "verificacionKit": {"documentos": len(kit_ms), "aprobados": kit_passed, "p50ms": pct(kit_ms, .5), "p95ms": pct(kit_ms, .95),
                             "http": {"p50ms": pct(http_ms, .5), "p95ms": pct(http_ms, .95)}},
-        "emisionSincrona": {"comprobantes": sync_n, "p50ms": pct(sync_ms, .5), "p95ms": pct(sync_ms, .95),
+        "emisionSincrona": {"comprobantes": sync_n, "autorizados": sync_n, "p50ms": pct(sync_ms, .5), "p95ms": pct(sync_ms, .95),
                             "maxMs": round(max(sync_ms), 1), "media": round(statistics.mean(sync_ms), 1)},
         "lote": {"comprobantes": n, "segundosAceptacion": round(accepted_s, 1), "segundosTotales": round(total_s, 1),
-                 "porSegundo": round(per_s, 1), "proyeccionPorDia": int(per_s * 86400), "ingesta": up,
+                 "porSegundo": round(per_s, 1), "proyeccionPorDia": int(per_s * 86400), "ingesta": up, "estados": lote_states,
                  "conservacion": st["conservation"]},
         "umbrales": {"emisionSincronaP95ms": 3000, "diaPico": 200000},
     }
@@ -491,7 +499,131 @@ def rendimiento(sync_n: int = 200, verify_n: int = 400, batch_co: int = 6000, ba
                                  **res, "comprobaciones": c})
 
 
-SCENARIOS = {"s3": s3, "s4": s4, "s5": s5, "s6": s6, "s7": s7, "s8": s8, "banco": banco, "rendimiento": rendimiento}
+# --- Fase 6b: falsos positivos con n explícito ------------------------------------------------------------
+def _load(sid: str) -> dict:
+    return json.loads((RESULTS / f"{sid}.json").read_text(encoding="utf-8-sig"))  # los de PowerShell llevan BOM
+
+
+def falsos_positivos() -> dict:
+    """Comprobantes correctos que pasaron por el kit y cuántos bloqueó por error, con la fuente de cada conteo.
+
+    Se cuentan comprobantes únicos (los reenvíos duplicados no suman). Un falso positivo es un comprobante
+    correcto que termina FAILED con KIT_BLOCKED; los únicos bloqueos esperados son los defectos intencionales de S3.
+    """
+    s1, s2, s6, s7, rd, s3 = (_load(x) for x in ("S1", "S2", "S6", "S7", "RENDIMIENTO", "S3"))
+    failed = []
+    offset = 0
+    while True:
+        page = api("GET", f"/api/invoices?status=FAILED&limit=500&offset={offset}", OPERATOR)[1]
+        failed += page
+        if len(page) < 500:
+            break
+        offset += 500
+    kit_blocked = [f["invoiceKey"] for f in failed if (api("GET", "/api/invoices/" + f["invoiceKey"], OPERATOR)[1].get("errorCode") == "KIT_BLOCKED")]
+    intentional = set(s3["clavesDefectuosas"])
+    false_pos = [k for k in kit_blocked if k not in intentional]
+    sources = [
+        {"fuente": "S1 (emisión síncrona)", "archivo": "S1.json", "correctos": 1,
+         "bloqueadosPorError": 0 if s1["estado"] == "AUTHORIZED" else 1},
+        {"fuente": "S2 (lote de 1.000)", "archivo": "S2.json", "correctos": s2["comprobantes"],
+         "bloqueadosPorError": 0 if s2["comprobaciones"][f"Autorizados {s2['comprobantes']}"] else None},
+        {"fuente": "S6 (idempotencia, sin contar reenvíos)", "archivo": "S6.json", "correctos": s6["registradosNuevos"],
+         "bloqueadosPorError": 0 if s6["comprobaciones"]["Todos autorizados una sola vez"] else None},
+        {"fuente": "S7 (proveedor caído; reprocesados cuentan una vez)", "archivo": "S7.json", "correctos": 80,
+         "bloqueadosPorError": 0 if s7["comprobaciones"]["Tras la recuperación los 50 terminan autorizados"]
+         and s7["estados"]["PE"] == ["AUTHORIZED"] else None},
+        {"fuente": "Medición de latencia síncrona", "archivo": "RENDIMIENTO.json", "correctos": rd["emisionSincrona"]["comprobantes"],
+         "bloqueadosPorError": rd["emisionSincrona"]["comprobantes"] - rd["emisionSincrona"]["autorizados"]},
+        {"fuente": "Medición del lote de 10.000", "archivo": "RENDIMIENTO.json", "correctos": rd["lote"]["comprobantes"],
+         "bloqueadosPorError": rd["lote"]["comprobantes"] - rd["lote"]["estados"].get("AUTHORIZED", 0)},
+    ]
+    n = sum(x["correctos"] for x in sources)
+    fp = sum(x["bloqueadosPorError"] or 0 for x in sources)
+    direct = {"fuente": "Verificación directa del kit en la medición de latencia (documentos ya autorizados; no suman comprobantes nuevos)",
+              "archivo": "RENDIMIENTO.json", "verificaciones": rd["verificacionKit"]["documentos"],
+              "rechazadasPorError": rd["verificacionKit"]["documentos"] - rd["verificacionKit"]["aprobados"]}
+    result = {"escenario": "FALSOS_POSITIVOS", "descripcion": "Falsos positivos del kit con n explícito",
+              "fuentes": sources, "n": n, "falsosPositivos": fp,
+              "bloqueosKitEnElRegistro": len(kit_blocked), "bloqueosIntencionalesS3": len(intentional & set(kit_blocked)),
+              "falsosPositivosEnElRegistro": false_pos,
+              "cotaSuperior95ReglaDeTres": round(3 / n, 6), "cotaSuperior95Exacta": round(1 - 0.05 ** (1 / n), 6),
+              "verificacionesDirectas": direct,
+              "comprobaciones": {"Todas las fuentes tienen conteo": all(x["bloqueadosPorError"] is not None for x in sources),
+                                 f"0 falsos positivos en {n} comprobantes correctos": fp == 0,
+                                 "Los únicos bloqueos del kit son los defectos intencionales de S3": not false_pos,
+                                 "Verificaciones directas sin rechazos": direct["rechazadasPorError"] == 0}}
+    return write("FALSOS_POSITIVOS", result, "falsos_positivos.json")
+
+
+# --- Fase 6b: banco ampliado ----------------------------------------------------------------------------------
+def wilson(k: int, n: int, z: float = 1.959964) -> list[float]:
+    if n == 0:
+        return [0.0, 0.0]
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * ((p * (1 - p) / n + z * z / (4 * n * n)) ** 0.5) / d
+    return [round(max(0.0, c - h), 4), round(min(1.0, c + h), 4)]
+
+
+def banco_ampliado() -> dict:
+    from . import mutation_bank
+    bank = mutation_bank.build()
+    rows = []
+    for m in bank["mutants"]:
+        prov, ctry, mapping = mutation_bank.mapping_for(m)
+        s, v = api("POST", f"/api/mappings/{prov}/{ctry}/candidates", AGENT,
+                   json={"mapping": mapping, "source": "banco-ampliado", "proposalRef": m["id"]})
+        ver = v["verification"]
+        if v["gatePassed"]:
+            approve = None
+            api("POST", f"/api/mappings/{prov}/{ctry}/versions/{v['version']}/reject", REV_A, json={"note": "Mutante no detectado"})
+        else:
+            approve = api("POST", f"/api/mappings/{prov}/{ctry}/versions/{v['version']}/approve", REV_A, json={"note": "banco ampliado"})[0]
+        rows.append({k: m[k] for k in ("id", "type", "format", "operator", "params", "description", "groundTruth", "equivalent")}
+                    | {"destino": f"{prov}/{ctry}", "ejecucion": ver["runtimeFailed"] > 0, "ci": ver["ciFailed"] > 0,
+                       "sistema": not v["gatePassed"], "docsEjecucion": f"{ver['runtimeFailed']}/{ver['runtimeDocuments']}",
+                       "ejemplosCi": f"{ver['ciFailed']}/{ver['ciDocuments']}", "tiposDetectados": ver["findingsByType"],
+                       "aprobacion": approve})
+    by_type = {}
+    for t in ("D1", "D2", "D3", "D4", "D5", "D6"):
+        r = [x for x in rows if x["type"] == t]
+        n, ke, ks = len(r), sum(x["ejecucion"] for x in r), sum(x["sistema"] for x in r)
+        by_type[t] = {"mutantes": n, "ejecucion": ke, "ejecucionPct": round(100 * ke / n, 1) if n else None, "ejecucionWilson95": wilson(ke, n),
+                      "conEjemplosValidados": ks, "conEjemplosValidadosPct": round(100 * ks / n, 1) if n else None,
+                      "conEjemplosValidadosWilson95": wilson(ks, n), **bank["summary"][t],
+                      "noDetectados": [x["id"] for x in r if not x["sistema"]],
+                      "escapanEnEjecucion": [x["id"] for x in r if not x["ejecucion"]]}
+    n = len(rows)
+    ke, ks = sum(x["ejecucion"] for x in rows), sum(x["sistema"] for x in rows)
+    kit_pom = (POC_HOME / "verification-kit" / "pom.xml").read_text(encoding="utf-8")
+    import re as _re
+    kit_version = _re.search(r"<artifactId>verification-kit</artifactId>\s*<version>([^<]+)</version>", kit_pom).group(1)
+    from .specs import spec as _spec
+    result = {
+        "escenario": "BANCO_AMPLIADO", "descripcion": "Banco ampliado generado con los operadores de D1 a D6, por el sistema real",
+        "bancoOriginal": "BANCO.json (22 mutantes del documento; no se modifica)",
+        "semilla": bank["seed"], "maximoPorTipo": bank["perType"], "huellaDelConjunto": bank["sha256"],
+        "generador": "agentic-plane/tfg_agents/mutation_bank.py", "ejecutor": "agentic-plane/tfg_agents/scenarios.py (banco_ampliado)",
+        "script": "scripts/escenarios/banco_ampliado.ps1", "versionKit": kit_version,
+        "especificaciones": {n_: _spec(n_).sha256 for n_ in ("perfil-alfa-v2.1", "formato-beta-pe-v1")},
+        "criterioEquivalencia": ["E1: mapeo mutado idéntico a la línea base",
+                                 "E2: cambio limitado a claves o fuentes fuera del dominio del país de destino",
+                                 "E3: literal mutado igual al valor que la línea base produce en todo el dominio",
+                                 "Un mutante no detectado no se reclasifica como equivalente"],
+        "porTipo": by_type,
+        "total": {"mutantes": n, "ejecucion": ke, "ejecucionPct": round(100 * ke / n, 1), "ejecucionWilson95": wilson(ke, n),
+                  "conEjemplosValidados": ks, "conEjemplosValidadosPct": round(100 * ks / n, 1), "conEjemplosValidadosWilson95": wilson(ks, n),
+                  "equivalentesExcluidos": sum(sum(v["equivalentesExcluidos"].values()) for v in bank["summary"].values())},
+        "mutantes": rows,
+        "comprobaciones": {"Cada mutante se verificó por el registro de mapeos": len(rows) == len(bank["mutants"]),
+                           "Ningún mutante bloqueado se puede aprobar (409)": all(x["aprobacion"] == 409 for x in rows if x["sistema"])},
+    }
+    return write("BANCO_AMPLIADO", result, "banco_ampliado.json")
+
+
+SCENARIOS = {"s3": s3, "s4": s4, "s5": s5, "s6": s6, "s7": s7, "s8": s8, "banco": banco, "rendimiento": rendimiento,
+             "falsos_positivos": falsos_positivos, "banco_ampliado": banco_ampliado}
 
 
 def main(argv: list[str]) -> int:

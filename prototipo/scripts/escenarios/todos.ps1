@@ -1,9 +1,9 @@
 ﻿<#
 .SYNOPSIS
-  Ejecuta S1 a S8, el banco de 22 defectos y las mediciones sobre una plataforma local limpia.
+  Ejecuta S1 a S8, el banco de 22 defectos, las mediciones, los falsos positivos y el banco ampliado sobre una plataforma local limpia.
 .DESCRIPTION
   Arranca la plataforma con estado limpio, ejecuta los escenarios en orden y la detiene al final. Con
-  -SinRendimiento omite la medición del lote de 10.000 comprobantes.
+  -SinRendimiento omite la medición del lote de 10.000 comprobantes y el conteo de falsos positivos, que depende de ella.
 #>
 param([switch]$SinRendimiento)
 $ErrorActionPreference = 'Stop'
@@ -16,7 +16,8 @@ try {
         if ($LASTEXITCODE -ne 0) { $fallos += $s }
     }
     $names = @('s3', 's4', 's5', 's6', 's7', 's8', 'banco')
-    if (-not $SinRendimiento) { $names += 'rendimiento' }
+    if (-not $SinRendimiento) { $names += 'rendimiento', 'falsos_positivos' }
+    $names += 'banco_ampliado'
     foreach ($n in $names) {
         if ((Invoke-AgenticScenario -Name $n) -ne 0) { $fallos += $n.ToUpper() }
     }
