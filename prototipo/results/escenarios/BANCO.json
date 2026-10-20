@@ -1,0 +1,463 @@
+{
+  "escenario": "BANCO",
+  "descripcion": "Banco de 22 defectos por el sistema real",
+  "documento": {
+    "soloEsquema": "23 %",
+    "kitEnEjecucion": "86 %",
+    "kitMasCi": "100 %",
+    "falsosPositivos": 0
+  },
+  "porTipo": {
+    "D1": {
+      "mutantes": 7,
+      "ejecucion": 6,
+      "sistema": 7
+    },
+    "D2": {
+      "mutantes": 4,
+      "ejecucion": 3,
+      "sistema": 4
+    },
+    "D3": {
+      "mutantes": 4,
+      "ejecucion": 4,
+      "sistema": 4
+    },
+    "D4": {
+      "mutantes": 3,
+      "ejecucion": 3,
+      "sistema": 3
+    },
+    "D5": {
+      "mutantes": 2,
+      "ejecucion": 2,
+      "sistema": 2
+    },
+    "D6": {
+      "mutantes": 2,
+      "ejecucion": 1,
+      "sistema": 2
+    }
+  },
+  "total": {
+    "mutantes": 22,
+    "ejecucion": 19,
+    "sistema": 22
+  },
+  "ejecucionPct": 86,
+  "sistemaPct": 100,
+  "lineasBase": {
+    "alfa/CO": {
+      "bloqueada": false,
+      "verificacion": {
+        "passed": true,
+        "kitProfile": "alfa",
+        "runtimeDocuments": 50,
+        "runtimeFailed": 0,
+        "ciDocuments": 8,
+        "ciFailed": 0,
+        "findingsByRule": {},
+        "findingsByType": {},
+        "examples": [],
+        "problem": null
+      }
+    },
+    "beta/PE": {
+      "bloqueada": false,
+      "verificacion": {
+        "passed": true,
+        "kitProfile": "beta-pe",
+        "runtimeDocuments": 50,
+        "runtimeFailed": 0,
+        "ciDocuments": 7,
+        "ciFailed": 0,
+        "findingsByRule": {},
+        "findingsByType": {},
+        "examples": [],
+        "problem": null
+      }
+    }
+  },
+  "mutantes": [
+    {
+      "id": "D1-a",
+      "tipo": "D1",
+      "descripcion": "Factura codificada como nota débito (92), código válido pero equivocado",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "38/50",
+      "ejemplosCiConHallazgos": "6/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 6
+      },
+      "aprobacion": 409,
+      "segundos": 0.12
+    },
+    {
+      "id": "D1-b",
+      "tipo": "D1",
+      "descripcion": "Notas crédito codificadas como factura (01)",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "3/50",
+      "ejemplosCiConHallazgos": "1/8",
+      "tiposDetectados": {
+        "D1": 4,
+        "E0": 1
+      },
+      "aprobacion": 409,
+      "segundos": 0.18
+    },
+    {
+      "id": "D1-c",
+      "tipo": "D1",
+      "descripcion": "Código de tipo de documento inexistente (07) tomado de una nota verbal",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "38/50",
+      "ejemplosCiConHallazgos": "6/8",
+      "tiposDetectados": {
+        "D1": 44,
+        "E0": 6
+      },
+      "aprobacion": 409,
+      "segundos": 0.14
+    },
+    {
+      "id": "D1-d",
+      "tipo": "D1",
+      "descripcion": "Documento nacional (CC) codificado como empresa (A1)",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "16/50",
+      "ejemplosCiConHallazgos": "3/8",
+      "tiposDetectados": {
+        "D1": 19,
+        "E0": 3
+      },
+      "aprobacion": 409,
+      "segundos": 0.13
+    },
+    {
+      "id": "D1-e",
+      "tipo": "D1",
+      "descripcion": "Pasaporte codificado como documento de extranjero (A3); formatos idénticos",
+      "destino": "alfa/CO",
+      "ejecucion": false,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "0/50",
+      "ejemplosCiConHallazgos": "1/8",
+      "tiposDetectados": {
+        "E0": 1
+      },
+      "aprobacion": 409,
+      "segundos": 0.15
+    },
+    {
+      "id": "D1-f",
+      "tipo": "D1",
+      "descripcion": "IVA general (IVA19) codificado como IVA reducido (T02)",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "45/50",
+      "ejemplosCiConHallazgos": "6/8",
+      "tiposDetectados": {
+        "D1": 96,
+        "E0": 6
+      },
+      "aprobacion": 409,
+      "segundos": 0.12
+    },
+    {
+      "id": "D1-g",
+      "tipo": "D1",
+      "descripcion": "Beta: nota débito con código inexistente (93)",
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "5/50",
+      "ejemplosCiConHallazgos": "1/7",
+      "tiposDetectados": {
+        "D1": 6,
+        "E0": 1
+      },
+      "aprobacion": 409,
+      "segundos": 0.02
+    },
+    {
+      "id": "D2-a",
+      "tipo": "D2",
+      "descripcion": "Cantidad y precio unitario intercambiados (producto idéntico)",
+      "destino": "alfa/CO",
+      "ejecucion": false,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "0/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "E0": 20
+      },
+      "aprobacion": 409,
+      "segundos": 0.13
+    },
+    {
+      "id": "D2-b",
+      "tipo": "D2",
+      "descripcion": "Precio unitario y valor de línea intercambiados",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D2": 240,
+        "E0": 18
+      },
+      "aprobacion": 409,
+      "segundos": 0.14
+    },
+    {
+      "id": "D2-c",
+      "tipo": "D2",
+      "descripcion": "Total a pagar tomado del subtotal",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "47/50",
+      "ejemplosCiConHallazgos": "7/8",
+      "tiposDetectados": {
+        "D2": 54,
+        "E0": 7
+      },
+      "aprobacion": 409,
+      "segundos": 0.15
+    },
+    {
+      "id": "D2-d",
+      "tipo": "D2",
+      "descripcion": "Impuesto total tomado del subtotal",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D2": 116,
+        "E0": 16
+      },
+      "aprobacion": 409,
+      "segundos": 0.11
+    },
+    {
+      "id": "D3-a",
+      "tipo": "D3",
+      "descripcion": "Identificador de perfil en minúsculas",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409,
+      "segundos": 0.13
+    },
+    {
+      "id": "D3-b",
+      "tipo": "D3",
+      "descripcion": "Nombre del esquema tributario con espacio final",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "45/50",
+      "ejemplosCiConHallazgos": "6/8",
+      "tiposDetectados": {
+        "D3": 96,
+        "E0": 6
+      },
+      "aprobacion": 409,
+      "segundos": 0.12
+    },
+    {
+      "id": "D3-c",
+      "tipo": "D3",
+      "descripcion": "Nombre del esquema tributario en mayúscula inicial",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "47/50",
+      "ejemplosCiConHallazgos": "7/8",
+      "tiposDetectados": {
+        "D3": 127,
+        "E0": 9
+      },
+      "aprobacion": 409,
+      "segundos": 0.11
+    },
+    {
+      "id": "D3-d",
+      "tipo": "D3",
+      "descripcion": "Moneda en minúsculas",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D3": 58,
+        "E0": 8
+      },
+      "aprobacion": 409,
+      "segundos": 0.15
+    },
+    {
+      "id": "D4-a",
+      "tipo": "D4",
+      "descripcion": "Correo del adquirente sin mapear (el canónico antiguo no lo traía)",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D4": 116,
+        "E0": 40
+      },
+      "aprobacion": 409,
+      "segundos": 0.15
+    },
+    {
+      "id": "D4-b",
+      "tipo": "D4",
+      "descripcion": "Correo del adquirente mapeado a un literal vacío",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D4": 58,
+        "E0": 8
+      },
+      "aprobacion": 409,
+      "segundos": 0.16
+    },
+    {
+      "id": "D4-c",
+      "tipo": "D4",
+      "descripcion": "Fecha de emisión sin mapear",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D4": 116,
+        "E0": 40
+      },
+      "aprobacion": 409,
+      "segundos": 0.19
+    },
+    {
+      "id": "D5-a",
+      "tipo": "D5",
+      "descripcion": "Se envía LegacyOrderReference, retirado en v2",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409,
+      "segundos": 0.14
+    },
+    {
+      "id": "D5-b",
+      "tipo": "D5",
+      "descripcion": "Se envía TaxExchangeRateLegacy, retirado en v2",
+      "destino": "alfa/CO",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "50/50",
+      "ejemplosCiConHallazgos": "8/8",
+      "tiposDetectados": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409,
+      "segundos": 0.19
+    },
+    {
+      "id": "D6-a",
+      "tipo": "D6",
+      "descripcion": "Descripción sin sanear el separador reservado",
+      "destino": "beta/PE",
+      "ejecucion": true,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "4/50",
+      "ejemplosCiConHallazgos": "1/7",
+      "tiposDetectados": {
+        "D6": 5,
+        "E0": 1
+      },
+      "aprobacion": 409,
+      "segundos": 0.02
+    },
+    {
+      "id": "D6-b",
+      "tipo": "D6",
+      "descripcion": "Nombre del adquirente sin sanear el separador reservado",
+      "destino": "beta/PE",
+      "ejecucion": false,
+      "ci": true,
+      "bloqueada": true,
+      "docsEjecucionConHallazgos": "0/50",
+      "ejemplosCiConHallazgos": "1/7",
+      "tiposDetectados": {
+        "D6": 1,
+        "E0": 1
+      },
+      "aprobacion": 409,
+      "segundos": 0.04
+    }
+  ],
+  "comprobaciones": {
+    "Los 22 mutantes se evalúan por el registro de mapeos": true,
+    "Kit + CI en el sistema: 100 % bloqueados": true,
+    "Ningún mutante bloqueado se puede aprobar (409)": true,
+    "Cero falsos positivos (líneas base aceptadas)": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-19T23:28:11"
+}

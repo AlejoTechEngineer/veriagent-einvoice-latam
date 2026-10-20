@@ -1,0 +1,92 @@
+{
+  "escenario": "S7",
+  "descripcion": "Proveedor caído: reintentos y DLQ, sin pérdida de comprobantes",
+  "ingesta": {
+    "file": "S7-lote.jsonl",
+    "sha256": "af63913f4a74898e89a2b0d2beb6664a9334f4c25a79d67c7812649feee68013",
+    "received": 80,
+    "accepted": 80,
+    "duplicates": 0,
+    "rejected": 0
+  },
+  "segundosHastaCuarentena": 5.4,
+  "durante": {
+    "registered": 1211,
+    "authorized": 1157,
+    "failed": 4,
+    "dlq": 50,
+    "inFlight": 0,
+    "balanced": true,
+    "invalidInputsInDlq": 2
+  },
+  "estados": {
+    "CO": [
+      "DLQ"
+    ],
+    "PE": [
+      "AUTHORIZED"
+    ]
+  },
+  "triaje": [
+    {
+      "id": 54,
+      "invoiceKey": "CO:900123456-8:INVOICE:SETP990707050",
+      "classification": "PROVEEDOR_NO_DISPONIBLE",
+      "defectType": null,
+      "recommendation": "REPROCESAR_CUANDO_SE_RECUPERE",
+      "rationale": "Fallo transitorio del proveedor (no disponible, lento o sin respuesta); el comprobante es válido.",
+      "evidence": [
+        "etapa=PROVIDER",
+        "categoria=RECOVERABLE",
+        "error=Lote alfa-co-1792470464742-17 no entregado: Proveedor alfa no disponible: HTTP 503"
+      ]
+    },
+    {
+      "id": 53,
+      "invoiceKey": "CO:900123456-8:INVOICE:SETP990707049",
+      "classification": "PROVEEDOR_NO_DISPONIBLE",
+      "defectType": null,
+      "recommendation": "REPROCESAR_CUANDO_SE_RECUPERE",
+      "rationale": "Fallo transitorio del proveedor (no disponible, lento o sin respuesta); el comprobante es válido.",
+      "evidence": [
+        "etapa=PROVIDER",
+        "categoria=RECOVERABLE",
+        "error=Lote alfa-co-1792470464742-17 no entregado: Proveedor alfa no disponible: HTTP 503"
+      ]
+    },
+    {
+      "id": 52,
+      "invoiceKey": "CO:900123456-8:INVOICE:SETP990707048",
+      "classification": "PROVEEDOR_NO_DISPONIBLE",
+      "defectType": null,
+      "recommendation": "REPROCESAR_CUANDO_SE_RECUPERE",
+      "rationale": "Fallo transitorio del proveedor (no disponible, lento o sin respuesta); el comprobante es válido.",
+      "evidence": [
+        "etapa=PROVIDER",
+        "categoria=RECOVERABLE",
+        "error=Lote alfa-co-1792470464742-17 no entregado: Proveedor alfa no disponible: HTTP 503"
+      ]
+    }
+  ],
+  "reprocesos": 50,
+  "final": {
+    "registered": 1211,
+    "authorized": 1207,
+    "failed": 4,
+    "dlq": 0,
+    "inFlight": 0,
+    "balanced": true,
+    "invalidInputsInDlq": 2
+  },
+  "comprobaciones": {
+    "Con Alfa caído, los 50 de CO quedan en DLQ (recuperable)": true,
+    "Los 30 de PE (Beta) se autorizan: el fallo no se propaga": true,
+    "Sin pérdidas durante la caída: entradas = salidas + DLQ": true,
+    "Triaje: PROVEEDOR_NO_DISPONIBLE": true,
+    "Reproceso de las 50 entradas por la operadora": true,
+    "Tras la recuperación los 50 terminan autorizados": true,
+    "Balance de conservación final": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-19T23:27:57"
+}

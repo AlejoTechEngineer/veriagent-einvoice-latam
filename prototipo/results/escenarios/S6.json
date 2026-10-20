@@ -1,0 +1,60 @@
+{
+  "escenario": "S6",
+  "descripcion": "Idempotencia ante envío duplicado",
+  "sincrono": {
+    "primera": "ALFA-D48E9BD0ADB7",
+    "segunda": "ALFA-D48E9BD0ADB7",
+    "duplicate": true
+  },
+  "lote": {
+    "primera": {
+      "file": "S6-lote.jsonl",
+      "sha256": "512836f17077c22230727ff87898c518acd1dff4d8b3f7a64904845c1f78120f",
+      "received": 100,
+      "accepted": 100,
+      "duplicates": 0,
+      "rejected": 0
+    },
+    "reenvio": {
+      "file": "S6-lote-reenvio.jsonl",
+      "sha256": "512836f17077c22230727ff87898c518acd1dff4d8b3f7a64904845c1f78120f",
+      "received": 100,
+      "accepted": 0,
+      "duplicates": 100,
+      "rejected": 0
+    }
+  },
+  "respuestaDuplicada": {
+    "ingesta": {
+      "file": "S6-respuesta-duplicada.jsonl",
+      "sha256": "2347bf0daa654dc3f3f49f084e6ff244247107b324e09fcaf09d119d269600b8",
+      "received": 20,
+      "accepted": 20,
+      "duplicates": 0,
+      "rejected": 0
+    },
+    "antes": {
+      "authorizedFromReceipts": 0,
+      "authorized": 1102,
+      "rejected": 0,
+      "duplicates": 0
+    },
+    "despues": {
+      "authorizedFromReceipts": 0,
+      "authorized": 1122,
+      "rejected": 0,
+      "duplicates": 20
+    }
+  },
+  "registradosNuevos": 121,
+  "comprobaciones": {
+    "Reenvío síncrono: misma autorización y duplicate=true": true,
+    "Reenvío del lote: 0 aceptados y 100 duplicados": true,
+    "Respuesta duplicada del proveedor ignorada": true,
+    "Registrados exactamente 121 nuevos (cero duplicados)": true,
+    "Todos autorizados una sola vez": true,
+    "Balance de conservación": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-19T23:27:39"
+}

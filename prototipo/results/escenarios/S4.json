@@ -1,0 +1,54 @@
+{
+  "escenario": "S4",
+  "descripcion": "Rechazo del proveedor, DLQ, triaje del agente, aprobación y reproceso",
+  "comprobante": "CO:900123456-8:CREDIT_NOTE:SETP990404001",
+  "emision": {
+    "http": 422,
+    "codigo": "PROVIDER_REJECTED",
+    "motivo": "Catálogo del proveedor actualizado: un código del documento ya no está vigente"
+  },
+  "dlq": {
+    "id": 3,
+    "stage": "PROVIDER",
+    "category": "NON_RECOVERABLE",
+    "lastError": "Rechazo del proveedor alfa (CAT-01): Catálogo del proveedor actualizado: un código del documento ya no está vigente"
+  },
+  "triaje": [
+    {
+      "id": 3,
+      "invoiceKey": "CO:900123456-8:CREDIT_NOTE:SETP990404001",
+      "classification": "RECHAZO_CATALOGO_PROVEEDOR",
+      "defectType": null,
+      "recommendation": "REPROCESAR_TRAS_CORRECCION",
+      "rationale": "El proveedor rechazó por su catálogo. Cuando el proveedor o el mapeo se corrijan, una persona operadora puede reprocesar.",
+      "evidence": [
+        "etapa=PROVIDER",
+        "categoria=NON_RECOVERABLE",
+        "regla=CAT-01",
+        "error=Rechazo del proveedor alfa (CAT-01): Catálogo del proveedor actualizado: un código del documento ya no está vigente"
+      ]
+    }
+  ],
+  "reproceso": {
+    "agente": 403,
+    "operadora": 200,
+    "respuesta": {
+      "entryId": 3,
+      "invoiceKey": "CO:900123456-8:CREDIT_NOTE:SETP990404001",
+      "reprocessedBy": "operador.demo",
+      "status": "RECEIVED"
+    }
+  },
+  "estadoFinal": "AUTHORIZED",
+  "comprobaciones": {
+    "Rechazo del proveedor: 422 PROVIDER_REJECTED (CAT-01)": true,
+    "El comprobante queda en la DLQ": true,
+    "Triaje: RECHAZO_CATALOGO_PROVEEDOR con recomendación": true,
+    "El agente no puede reprocesar (403)": true,
+    "La operadora aprueba el reproceso (200)": true,
+    "Reproceso exitoso: AUTHORIZED": true,
+    "Balance de conservación": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-19T23:27:16"
+}

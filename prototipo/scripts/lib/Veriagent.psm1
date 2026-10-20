@@ -127,9 +127,29 @@ function Invoke-DataGenerator {
     if ($LASTEXITCODE -ne 0) { throw "El generador de datos terminó con código $LASTEXITCODE" }
 }
 
+# Python del plano agéntico (entorno virtual del proyecto).
+function Get-AgenticPython {
+    $py = Join-Path (Get-VeriagentHome) 'agentic-plane\.venv\Scripts\python.exe'
+    if (-not (Test-Path $py)) { throw "No existe $py. Crea el entorno: cd agentic-plane; uv venv --python 3.12; uv pip install -e "".[test]""" }
+    return $py
+}
+
+# Ejecuta escenarios del plano agéntico (S3 a S8, banco y rendimiento) contra la plataforma en marcha.
+function Invoke-AgenticScenario {
+    param([Parameter(Mandatory)][string[]]$Name)
+    Initialize-Java | Out-Null
+    $py = Get-AgenticPython
+    Push-Location (Join-Path (Get-VeriagentHome) 'agentic-plane')
+    try {
+        & $py -m tfg_agents.scenarios @Name | Out-Host
+        return $LASTEXITCODE
+    } finally { Pop-Location }
+}
+
+# Los resultados de los escenarios se publican en results\escenarios (rastreado); las entradas generadas, en runtime.
 function Write-ScenarioResult {
     param([Parameter(Mandatory)][string]$Id, [Parameter(Mandatory)]$Result)
-    $dir = Join-Path (Get-VeriagentHome) 'results\runtime\escenarios'
+    $dir = Join-Path (Get-VeriagentHome) 'results\escenarios'
     New-Item -ItemType Directory -Force -Path $dir | Out-Null
     $file = Join-Path $dir "$Id.json"
     $Result | ConvertTo-Json -Depth 20 | Out-File -Encoding utf8 $file

@@ -1,0 +1,55 @@
+{
+  "escenario": "RENDIMIENTO",
+  "descripcion": "Latencia de verificación y emisión, y rendimiento del lote",
+  "verificacionKit": {
+    "documentos": 400,
+    "p50ms": 0.85,
+    "p95ms": 1.38,
+    "http": {
+      "p50ms": 19.54,
+      "p95ms": 39.11
+    }
+  },
+  "emisionSincrona": {
+    "comprobantes": 200,
+    "p50ms": 30.37,
+    "p95ms": 52.36,
+    "maxMs": 100.7,
+    "media": 34.5
+  },
+  "lote": {
+    "comprobantes": 10000,
+    "segundosAceptacion": 4.1,
+    "segundosTotales": 29.0,
+    "porSegundo": 345.2,
+    "proyeccionPorDia": 29823396,
+    "ingesta": {
+      "file": "rendimiento-lote.jsonl",
+      "sha256": "dca179ed0e59f9c37ed802d74d21391de60ffa5eafd2e93630a4b172dbb65446",
+      "received": 10000,
+      "accepted": 10000,
+      "duplicates": 0,
+      "rejected": 0
+    },
+    "conservacion": {
+      "registered": 11413,
+      "authorized": 11409,
+      "failed": 4,
+      "dlq": 0,
+      "inFlight": 0,
+      "balanced": true,
+      "invalidInputsInDlq": 2
+    }
+  },
+  "umbrales": {
+    "emisionSincronaP95ms": 3000,
+    "diaPico": 200000
+  },
+  "comprobaciones": {
+    "p95 de la emisión síncrona < 3 s (incluye el simulador)": true,
+    "Lote completo sin pérdidas": true,
+    "Capacidad proyectada >= 200.000 comprobantes por día": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-19T23:29:12"
+}

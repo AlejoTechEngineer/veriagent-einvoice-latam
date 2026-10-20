@@ -15,7 +15,7 @@ import java.util.List;
  *   generate --home DIR --country CO --count 1000 --seed 2026 [--offset 0] --out lote.json
  *   generate --home DIR --mix CO:600,PE:400 --seed 2026 --out lote.jsonl     (varios países; .jsonl: un comprobante por línea)
  *   fixtures --home DIR --country CO --out fixtures.json
- *   defects  --home DIR --seed 2026 --out defectos.json      (D1, D4, D2 y D3 de datos, uno de cada)
+ *   defects  --home DIR --seed 2026 [--offset 500000] --out defectos.json   (D1, D4, D2 y D3 de datos, uno de cada)
  * </pre>
  */
 public final class GeneratorCli {
@@ -43,7 +43,7 @@ public final class GeneratorCli {
             case "fixtures" -> InvoiceGenerator.fixtures(numbering, Country.valueOf(arg(args, "--country", "CO")))
                 .forEach(i -> arr.add(ContractJson.mapper().valueToTree(i)));
             case "defects" -> {
-                var g = new InvoiceGenerator(numbering, Long.parseLong(arg(args, "--seed", "2026")), 500_000);
+                var g = new InvoiceGenerator(numbering, Long.parseLong(arg(args, "--seed", "2026")), Long.parseLong(arg(args, "--offset", "500000")));
                 for (InvoiceGenerator.DataDefect d : InvoiceGenerator.DataDefect.values()) arr.add(g.defective(d));
             }
             default -> {

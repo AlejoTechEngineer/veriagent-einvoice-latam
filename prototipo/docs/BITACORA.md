@@ -205,3 +205,53 @@ un-local.ps1 -Clean -Background` (perfil local, 127.0.0.1:8080).
   5. Dos comprobantes de XX después de activar: AUTHORIZED por gamma con el mapeo v1 (recarga en caliente).
   6. El agente de triaje clasifica la entrada de DLQ como `SIN_MAPEO_VIGENTE` → `ACTIVAR_MAPEO_Y_REPROCESAR`;
      el agente intenta reprocesar: **403**; la operadora reprocesa: 200. Conservación: 3 registrados = 3 autorizados.
+
+## Fase 6. Escenarios, banco de defectos y mediciones (2026-10-20)
+
+Orden de fases acordado con el autor: la Fase 6 se ejecuta antes que la 5. Comando único:
+`scripts\escenarios\todos.ps1` (arranca la plataforma limpia, ejecuta S1 a S8, el banco y las mediciones y la
+detiene): **todo en verde en 2,7 minutos**. Cada escenario tiene su propio script en `scripts\escenarios\` y deja
+su resultado en `results\escenarios\<id>.json`. Los escenarios S3 a S8, el banco y el rendimiento están en
+`agentic-plane/tfg_agents/scenarios.py` y hablan con la plataforma solo por HTTP, con los tokens de cada rol.
+
+| Escenario | Comprobaciones | Resultado |
+|:---|:---:|:---|
+| S1 emisión síncrona | 7 de 7 | AUTHORIZED en 354 ms (primera emisión tras el arranque) |
+| S2 lote de 1.000 | 5 de 5 | 1.000 AUTHORIZED en 5,7 s (174 por segundo); 600 CO por ZIP y 400 PE por carpeta SFTP |
+| S3 defectos D1 a D6 | 9 de 9 | D1 y D4: 422 KIT_BLOCKED con regla, tipo, fuente y huella; D2 y D3: 400 en la entrada; D5 y D6: versión bloqueada y aprobación 409; 0 documentos defectuosos al proveedor |
+| S4 rechazo del proveedor | 7 de 7 | CAT-01 → DLQ → triaje RECHAZO_CATALOGO_PROVEEDOR → agente 403 → operadora reprocesa → AUTHORIZED |
+| S5 país XX y Gamma | 10 de 10 | agente propone desde la especificación, kit OK, PR abierta, agente 403 al aprobar y activar, reviewer-a aprueba, reviewer-b activa, XX autorizados con el mapeo nuevo |
+| S6 idempotencia | 6 de 6 | reenvío síncrono con la misma autorización; reenvío del lote: 0 aceptados y 100 duplicados; respuesta duplicada del proveedor ignorada; 121 registrados nuevos exactos |
+| S7 proveedor caído | 7 de 7 | Alfa no disponible: 50 CO en DLQ en 5,4 s, 30 PE autorizados; sin pérdidas; triaje PROVEEDOR_NO_DISPONIBLE; 50 reprocesos → AUTHORIZED |
+| S8 reversión | 8 de 8 | versión del legado aprobada y activada, comprobante con la versión nueva, agente 403 al revertir, reviewer-a revierte, comprobante siguiente con la versión anterior, auditado |
+
+**Banco de 22 defectos por el sistema real** (cada mutante propuesto al registro de mapeos con el token del agente):
+
+| Tipo | Mutantes | Kit en ejecución (sistema) | Kit + CI (sistema) | Documento: ejecución / kit + CI |
+|:---|:---:|:---:|:---:|:---:|
+| D1 | 7 | 6 (86 %) | 7 (100 %) | 86 % / 100 % |
+| D2 | 4 | 3 (75 %) | 4 (100 %) | 75 % / 100 % |
+| D3 | 4 | 4 (100 %) | 4 (100 %) | 100 % / 100 % |
+| D4 | 3 | 3 (100 %) | 3 (100 %) | 100 % / 100 % |
+| D5 | 2 | 2 (100 %) | 2 (100 %) | 100 % / 100 % |
+| D6 | 2 | 1 (50 %) | 2 (100 %) | 50 % / 100 % |
+| **Total** | **22** | **19 (86 %)** | **22 (100 %)** | **86 % / 100 %** |
+
+- Escapan al kit en ejecución los mismos tres mutantes que en el documento: D1-e (pasaporte como documento de
+  extranjero, formatos idénticos), D2-a (cantidad y precio intercambiados, producto idéntico) y D6-b (nombre sin
+  sanear: ninguno de los 50 comprobantes de la muestra trae el separador en el nombre). Los tres los detectan los
+  ejemplos validados (CI).
+- Falsos positivos: 0 (las líneas base de alfa/CO y beta/PE pasan el control: 50 de 50 en ejecución y 8 y 7
+  ejemplos en CI). Los 22 mutantes bloqueados devuelven **409** al intentar aprobarlos.
+- "Solo esquema" (23 % en el documento) no se mide por el sistema: ver D-06.
+
+**Mediciones** (perfil local, un proceso, H2 en archivo, simuladores en el mismo proceso):
+
+| Medida | Resultado | Umbral del documento (tabla 9) |
+|:---|:---|:---|
+| Verificación del kit por documento (400 documentos de Alfa y Beta) | p50 0,85 ms, p95 1,38 ms; por HTTP con token p50 19,5 ms, p95 39,1 ms | — |
+| Emisión síncrona (200 comprobantes, incluye el simulador) | p50 30,4 ms, p95 52,4 ms, máximo 100,7 ms | p95 < 3 s sin contar el proveedor: **cumple** |
+| Lote de 10.000 (6.000 CO y 4.000 PE) | 29,0 s de extremo a extremo (345 por segundo); aceptación de la carga 4,1 s; sin pérdidas | Día pico de 200.000: la tasa medida equivale a 200.000 en unos 10 minutos |
+
+La proyección diaria es una extrapolación lineal de una corrida de 29 s en un solo proceso con simuladores
+locales; no sustituye una prueba de carga sostenida ni mide Kafka ni PostgreSQL (perfil full no ejecutado).
