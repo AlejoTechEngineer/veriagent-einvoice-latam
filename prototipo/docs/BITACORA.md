@@ -361,3 +361,20 @@ regeneraron después de la corrección.
 - `.gitattributes`: LF también para `ci/normativa.sha256`, para que el gate de huellas funcione en una copia de
   Windows.
 - El README de la raíz del repositorio no se modificó: el bloque propuesto se presenta al autor para su aprobación.
+
+## Fase 9. Tareas de cierre T1 a T6 (2026-10-20)
+
+Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS_PARA_DOCUMENTO.md`.
+
+### T4. Fase del paquete 7.2 en la EDT
+- `planning/wbs.json`: el paquete 7.2 (Banco de defectos por inyección) pasa de F6 a F5, como en la tabla de la EDT
+  de la Entrega 3.
+- Antes del cambio se ejecutó `planning/model.py` (Python 3.14.3, NumPy 2.4.2) en sus cuatro configuraciones (base,
+  `scen-alto`, `scen-bajo` y `whatif-qa2` con `TFG_CAP_OVERRIDE={"QA":2}`): las cuatro reproducen exactamente los
+  `results.json` versionados.
+- Después del cambio, en las cuatro configuraciones: el único campo de `results.json` que cambia es la fase de 7.2
+  en la lista `tareas`. Plazo, costo, percentiles, reserva, criticidad, ruta crítica y carga por rol son idénticos;
+  `load.json` y las muestras Monte Carlo (`mc_total.npy`, `mc_cost.npy`, 10.000 iteraciones) son idénticos byte a
+  byte. Base: 40,2 semanas, COP 1.013.168.365 determinístico, P80 42,2 semanas y COP 1.059.219.670. El modelo no usa
+  la fase en ningún cálculo; solo la copia a la salida.
+- Se regeneraron los cuatro `results.json` (solo cambia esa línea).

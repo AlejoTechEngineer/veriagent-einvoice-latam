@@ -22,7 +22,7 @@ prototipo/
   specs/                       Especificaciones sintéticas (Perfil Alfa v2.1, formato Beta, país XX)
   catalogs/                    Catálogos versionados (heredados y ampliados por país)
   schemas/                     XSD del perfil Alfa (heredado)
-  planning/                    EDT, supuestos y modelo PERT/Monte Carlo (heredado, sin cambios)
+  planning/                    EDT, supuestos y modelo PERT/Monte Carlo (heredado; Fase 9: 7.2 en F5)
   ci/                          run-pipeline.sh y Jenkins como código (heredado y actualizado en la Fase 7)
   deploy/                      Dockerfiles y chart de Helm (heredado y ampliado en la Fase 7)
   verification-kit/            Kit de verificación Java 21 sin dependencias (heredado; se corrige y se

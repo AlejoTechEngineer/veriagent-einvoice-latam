@@ -20,7 +20,7 @@
  {"id":"5.3","nombre":"Agente de extracción de legado","fase":"F4","o":3,"m":4,"p":7,"deps":["5.1"],"roles":{"IA":0.5,"DEV":0.5}},
  {"id":"5.4","nombre":"Agente de triaje de DLQ","fase":"F4","o":2,"m":3,"p":5,"deps":["5.1","3.5"],"roles":{"IA":0.5}},
  {"id":"7.1","nombre":"Línea base del proceso manual","fase":"F6","o":1,"m":2,"p":3,"deps":["6.1"],"roles":{"QA":0.5}},
- {"id":"7.2","nombre":"Banco de defectos por inyección","fase":"F6","o":1,"m":2,"p":3,"deps":["5.5"],"roles":{"QA":0.5,"IA":0.3}},
+ {"id":"7.2","nombre":"Banco de defectos por inyección","fase":"F5","o":1,"m":2,"p":3,"deps":["5.5"],"roles":{"QA":0.5,"IA":0.3}},
  {"id":"6.2","nombre":"Segundo país asistido por agentes","fase":"F5","o":4,"m":6,"p":11,"deps":["6.1","5.2","7.2"],"roles":{"DEV":1.5,"IA":0.5,"QA":0.7,"TRIB":0.5}},
  {"id":"7.3","nombre":"Informe de resultados y cierre","fase":"F6","o":2,"m":2,"p":4,"deps":["6.2","7.1"],"roles":{"GP":0.5,"AS":0.5}}
 ]
