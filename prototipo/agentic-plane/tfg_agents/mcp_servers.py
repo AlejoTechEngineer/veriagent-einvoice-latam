@@ -125,6 +125,8 @@ def validar_documento(perfil: str, contenido: str) -> str:
 def verificar_mapeo(proveedor: str, pais: str, mapeo: dict) -> str:
     try:
         return _json(_platform().check_mapping(proveedor, pais, mapeo))
+    except ValueError as e:
+        return _json({"error": str(e)})
     except PlatformError as e:
         return _json({"error": str(e), "status": e.status})
 

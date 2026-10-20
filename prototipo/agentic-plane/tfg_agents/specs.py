@@ -114,13 +114,14 @@ SPEC_BY_TARGET = {
 
 @lru_cache(maxsize=None)
 def spec(name: str) -> SpecDoc:
-    if "/" in name or "\\" in name or ".." in name:
+    """Solo se aceptan nombres de archivos que existen en ``specs/`` (lista blanca), nunca rutas."""
+    if not re.fullmatch(r"[A-Za-z0-9._-]{1,80}", name or ""):
         raise ValueError(f"Nombre de especificación no válido: {name}")
     file = name if name.endswith(".md") else name + ".md"
-    path = SPECS_DIR / file
-    if not path.is_file():
+    known = {p.name: p for p in SPECS_DIR.glob("*.md")}
+    if file not in known:
         raise KeyError(f"Especificación desconocida: {name}")
-    return SpecDoc(path.stem, path)
+    return SpecDoc(known[file].stem, known[file])
 
 
 def spec_for(provider: str, country: str) -> SpecDoc:

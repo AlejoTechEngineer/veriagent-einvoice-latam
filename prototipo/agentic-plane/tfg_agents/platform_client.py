@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from typing import Any
 
 import httpx
@@ -20,6 +21,14 @@ class PlatformError(Exception):
         super().__init__(f"HTTP {status}: {body}")
         self.status = status
         self.body = body
+
+
+def _target(provider: str, country: str) -> tuple[str, str]:
+    """Proveedor y país validados: nunca se interpolan textos arbitrarios en una ruta de la API."""
+    p, c = str(provider).lower(), str(country).upper()
+    if not re.fullmatch(r"[a-z]{2,20}", p) or not re.fullmatch(r"[A-Z]{2}", c):
+        raise ValueError(f"Proveedor o país no válido: {provider!r}/{country!r}")
+    return p, c
 
 
 def base_url() -> str:
@@ -57,14 +66,17 @@ class PlatformClient:
 
     # Registro de mapeos
     def check_mapping(self, provider: str, country: str, mapping: dict) -> dict:
-        return self._call("POST", f"/api/mappings/{provider}/{country}/check", json={"mapping": mapping})
+        p, c = _target(provider, country)
+        return self._call("POST", f"/api/mappings/{p}/{c}/check", json={"mapping": mapping})
 
     def propose_mapping(self, provider: str, country: str, mapping: dict, source: str, ref: str | None) -> dict:
-        return self._call("POST", f"/api/mappings/{provider}/{country}/candidates",
+        p, c = _target(provider, country)
+        return self._call("POST", f"/api/mappings/{p}/{c}/candidates",
                           json={"mapping": mapping, "source": source, "proposalRef": ref})
 
     def mapping_versions(self, provider: str, country: str) -> list[dict]:
-        return self._call("GET", f"/api/mappings/{provider}/{country}/versions")
+        p, c = _target(provider, country)
+        return self._call("GET", f"/api/mappings/{p}/{c}/versions")
 
     # Kit
     def verify_document(self, profile: str, content: str, mode: str = "RUNTIME") -> dict:
@@ -80,7 +92,7 @@ class PlatformClient:
         return self._call("GET", f"/api/dlq?status=OPEN&limit={limit}")
 
     def save_triage(self, entry_id: int, triage: dict) -> dict:
-        return self._call("POST", f"/api/dlq/{entry_id}/triage", json=triage)
+        return self._call("POST", f"/api/dlq/{int(entry_id)}/triage", json=triage)
 
 
 class ReviewerForwarder:
@@ -90,7 +102,9 @@ class ReviewerForwarder:
         self.client = PlatformClient(token=bearer_token, url=url)
 
     def approve(self, provider: str, country: str, version: int, note: str) -> dict:
-        return self.client._call("POST", f"/api/mappings/{provider}/{country}/versions/{version}/approve", json={"note": note})
+        p, c = _target(provider, country)
+        return self.client._call("POST", f"/api/mappings/{p}/{c}/versions/{int(version)}/approve", json={"note": note})
 
     def reject(self, provider: str, country: str, version: int, note: str) -> dict:
-        return self.client._call("POST", f"/api/mappings/{provider}/{country}/versions/{version}/reject", json={"note": note})
+        p, c = _target(provider, country)
+        return self.client._call("POST", f"/api/mappings/{p}/{c}/versions/{int(version)}/reject", json={"note": note})

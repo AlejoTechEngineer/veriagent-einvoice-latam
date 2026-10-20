@@ -155,3 +155,16 @@ def test_registry_conflict_blocks_the_local_approval(temp_db, tokens, monkeypatc
                                         headers={"Authorization": f"Bearer {tokens['reviewer-a']}"})
     assert r.status_code == 409 and "kit" in r.json()["detail"]
     assert proposals.get(pid)["status"] == "PENDING_REVIEW"
+
+
+@pytest.mark.parametrize("name", ["C:secretos", "../README", "..\\README", "perfil-alfa-v2.1.md/..", ""])
+def test_spec_names_are_a_whitelist(name):
+    with pytest.raises((KeyError, ValueError)):
+        spec(name)
+
+
+@pytest.mark.parametrize("provider,country", [("alfa/CO/versions/1/approve#", "CO"), ("alfa", "CO/../x"), ("ALFA?", "CO")])
+def test_platform_paths_reject_injection(provider, country):
+    from tfg_agents.platform_client import PlatformClient
+    with pytest.raises(ValueError):
+        PlatformClient(token="t", url="http://127.0.0.1:9").check_mapping(provider, country, {})
