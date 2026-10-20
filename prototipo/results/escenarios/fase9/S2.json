@@ -1,0 +1,59 @@
+﻿{
+    "escenario":  "S2",
+    "descripcion":  "Lote asíncrono de comprobantes válidos",
+    "comprobantes":  1000,
+    "mezcla":  {
+                   "CO":  600,
+                   "PE":  400
+               },
+    "ingesta":  {
+                    "file":  "S2-lote.jsonl",
+                    "sha256":  "397ab831dbed839fb5b9bf14526fad81f01852fa6b95b9a82e6580bd86f10e73",
+                    "received":  1000,
+                    "accepted":  1000,
+                    "duplicates":  0,
+                    "rejected":  0
+                },
+    "segundosAceptacion":  1.76,
+    "segundosTotales":  5.86,
+    "rendimientoPorSeg":  170.6,
+    "conteoPorEstado":  {
+                            "RECEIVED":  0,
+                            "PENDING_BATCH":  0,
+                            "SENT":  0,
+                            "AUTHORIZED":  1001,
+                            "FAILED":  0,
+                            "DLQ":  0
+                        },
+    "porPaisProveedor":  [
+                             {
+                                 "country":  "CO",
+                                 "provider":  "alfa",
+                                 "status":  "AUTHORIZED",
+                                 "n":  601
+                             },
+                             {
+                                 "country":  "PE",
+                                 "provider":  "beta",
+                                 "status":  "AUTHORIZED",
+                                 "n":  400
+                             }
+                         ],
+    "conservacion":  {
+                         "registered":  1001,
+                         "authorized":  1001,
+                         "failed":  0,
+                         "dlq":  0,
+                         "inFlight":  0,
+                         "balanced":  true,
+                         "invalidInputsInDlq":  0
+                     },
+    "comprobaciones":  {
+                           "Lote aceptado":  true,
+                           "Registrados 1000":  true,
+                           "Autorizados 1000":  true,
+                           "Ninguno en tránsito":  true,
+                           "Entradas = salidas + DLQ":  true
+                       },
+    "aprobado":  true
+}

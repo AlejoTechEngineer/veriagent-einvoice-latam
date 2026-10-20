@@ -1,0 +1,80 @@
+{
+  "escenario": "S5",
+  "descripcion": "Incorporación del país sintético XX con el proveedor Gamma",
+  "antesDelMapeo": {
+    "http": 422,
+    "codigo": "NO_MAPPING",
+    "estado": "DLQ"
+  },
+  "ciclo": {
+    "proposalId": "prop-bcbf33fa",
+    "status": "PENDING_REVIEW",
+    "agent": "spec-heuristic-v1",
+    "attempts": 1,
+    "pullRequest": "PR-0015",
+    "branch": "mapeo-gamma-XX-20261020200147",
+    "registry": {
+      "provider": "gamma",
+      "country": "XX",
+      "version": 1,
+      "status": "CANDIDATE",
+      "gatePassed": true
+    },
+    "check": {
+      "passed": true,
+      "runtimeDocuments": 50,
+      "runtimeFailed": 0,
+      "ciDocuments": 6,
+      "ciFailed": 0,
+      "findingsByRule": {},
+      "problem": null
+    }
+  },
+  "decision": {
+    "http": 200,
+    "revisor": "reviewer-a"
+  },
+  "activacion": {
+    "version": 1,
+    "status": "ACTIVE",
+    "approvedBy": "reviewer-a",
+    "activatedBy": "reviewer-b"
+  },
+  "despues": [
+    {
+      "http": 200,
+      "estado": "AUTHORIZED",
+      "proveedor": "gamma",
+      "mapeo": 1,
+      "autorizacion": "GAMMA-371F539F439A"
+    },
+    {
+      "http": 200,
+      "estado": "AUTHORIZED",
+      "proveedor": "gamma",
+      "mapeo": 1,
+      "autorizacion": "GAMMA-E1D333135E3A"
+    },
+    {
+      "http": 200,
+      "estado": "AUTHORIZED",
+      "proveedor": "gamma",
+      "mapeo": 1,
+      "autorizacion": "GAMMA-A3B191ED5BDD"
+    }
+  ],
+  "comprobaciones": {
+    "Sin mapeo: el comprobante de XX no sale y queda en DLQ": true,
+    "El agente propone desde la especificación y el kit la deja pasar": true,
+    "Solicitud de cambio abierta en el repositorio de juguete (sin merge)": true,
+    "El agente no puede aprobar (403)": true,
+    "reviewer-a aprueba con su token": true,
+    "El agente no puede activar (403)": true,
+    "reviewer-b activa": true,
+    "Comprobantes de XX autorizados por Gamma con el mapeo nuevo": true,
+    "El comprobante en DLQ se reprocesa y termina autorizado": true,
+    "Balance de conservación": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-20T15:01:49"
+}

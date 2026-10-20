@@ -1,0 +1,80 @@
+﻿{
+    "escenario":  "S1",
+    "descripcion":  "Emisión síncrona correcta",
+    "comprobante":  "CO:900123456-8:INVOICE:SETP990100102",
+    "estado":  "AUTHORIZED",
+    "autorizacion":  "ALFA-21C8BC6DAEA3",
+    "latenciaMs":  410,
+    "historial":  [
+                      {
+                          "from":  null,
+                          "to":  "RECEIVED",
+                          "reason":  "Recibido por el canal SYNC",
+                          "actor":  "operador.demo",
+                          "correlationId":  "corr-co-SETP990100102",
+                          "occurredAt":  "2026-10-20T20:01:20.891653Z"
+                      },
+                      {
+                          "from":  "RECEIVED",
+                          "to":  "SENT",
+                          "reason":  "Verificado por el kit y enviado al proveedor alfa",
+                          "actor":  "operador.demo",
+                          "correlationId":  "corr-co-SETP990100102",
+                          "occurredAt":  "2026-10-20T20:01:20.907667Z"
+                      },
+                      {
+                          "from":  "SENT",
+                          "to":  "AUTHORIZED",
+                          "reason":  "Autorizado por alfa",
+                          "actor":  "operador.demo",
+                          "correlationId":  "corr-co-SETP990100102",
+                          "occurredAt":  "2026-10-20T20:01:21.051286Z"
+                      }
+                  ],
+    "respuesta":  [
+                      {
+                          "id":  1,
+                          "invoice_key":  "CO:900123456-8:INVOICE:SETP990100102",
+                          "status":  "AUTHORIZED",
+                          "channel":  "SYNC",
+                          "target":  "respuesta HTTP de la fachada",
+                          "delivered_at":  "2026-10-20T15:01:21.080303-05:00"
+                      }
+                  ],
+    "archivoLegal":  [
+                         {
+                             "seq":  1,
+                             "object_path":  "CO/2026/1-c3e226c376b9f84e.xml",
+                             "object_sha256":  "c3e226c376b9f84e248ef9d774810fe50812e61bb29cd5ba0adf70ec1d1b0dbf",
+                             "entry_hash":  "7ed5126aa653dfcca43e1e18a7dfde84637e342f26154718eca3f5b528a3bdd5",
+                             "retention_until":  "2031-10-20T05:00:00.000Z"
+                         }
+                     ],
+    "conteoPorEstado":  {
+                            "RECEIVED":  0,
+                            "PENDING_BATCH":  0,
+                            "SENT":  0,
+                            "AUTHORIZED":  1,
+                            "FAILED":  0,
+                            "DLQ":  0
+                        },
+    "conservacion":  {
+                         "registered":  1,
+                         "authorized":  1,
+                         "failed":  0,
+                         "dlq":  0,
+                         "inFlight":  0,
+                         "balanced":  true,
+                         "invalidInputsInDlq":  0
+                     },
+    "comprobaciones":  {
+                           "HTTP 200":  true,
+                           "Estado AUTHORIZED":  true,
+                           "Número de autorización":  true,
+                           "Repetir la emisión es idempotente":  true,
+                           "Respuesta publicada":  true,
+                           "Archivo legal con huella":  true,
+                           "Balance de conservación":  true
+                       },
+    "aprobado":  true
+}

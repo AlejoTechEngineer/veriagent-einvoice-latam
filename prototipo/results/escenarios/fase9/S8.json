@@ -1,0 +1,65 @@
+{
+  "escenario": "S8",
+  "descripcion": "Reversión de un mapeo",
+  "versionAnterior": 1,
+  "versionNueva": 3,
+  "ciclo": {
+    "proposalId": "prop-e41f2868",
+    "status": "PENDING_REVIEW",
+    "agent": "legacy-extraction-v1",
+    "attempts": 1,
+    "pullRequest": "PR-0016",
+    "branch": "mapeo-beta-PE-20261020200225",
+    "registry": {
+      "provider": "beta",
+      "country": "PE",
+      "version": 3,
+      "status": "CANDIDATE",
+      "gatePassed": true
+    },
+    "check": {
+      "passed": true,
+      "runtimeDocuments": 50,
+      "runtimeFailed": 0,
+      "ciDocuments": 7,
+      "ciFailed": 0,
+      "findingsByRule": {},
+      "problem": null
+    }
+  },
+  "conVersionNueva": {
+    "http": 200,
+    "mapeo": 3
+  },
+  "reversion": {
+    "version": 1,
+    "status": "ACTIVE",
+    "activatedBy": "reviewer-a"
+  },
+  "conVersionAnterior": {
+    "http": 200,
+    "mapeo": 1
+  },
+  "auditoria": {
+    "id": 125,
+    "actor": "reviewer-a",
+    "actorRole": "REVIEWER",
+    "action": "MAPPING_ROLLBACK",
+    "target": "mapeo:beta/PE/v1",
+    "details": "S8: reversión",
+    "correlationId": "4dabca25-b0e5-433a-b337-e376e1befd52",
+    "occurredAt": "2026-10-20T20:02:26.692454Z"
+  },
+  "comprobaciones": {
+    "El agente de legado propone una versión que pasa el kit": true,
+    "Aprobada por reviewer-a y activada por reviewer-b": true,
+    "Comprobante con la versión nueva": true,
+    "El agente no puede revertir (403)": true,
+    "reviewer-a revierte a la versión anterior": true,
+    "Comprobante posterior con la versión anterior": true,
+    "Reversión auditada con la identidad del token": true,
+    "Balance de conservación": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-20T15:02:27"
+}

@@ -1,0 +1,60 @@
+{
+  "escenario": "RENDIMIENTO",
+  "descripcion": "Latencia de verificación y emisión, y rendimiento del lote",
+  "verificacionKit": {
+    "documentos": 400,
+    "aprobados": 400,
+    "p50ms": 0.69,
+    "p95ms": 1.52,
+    "http": {
+      "p50ms": 29.49,
+      "p95ms": 48.7
+    }
+  },
+  "emisionSincrona": {
+    "comprobantes": 200,
+    "autorizados": 200,
+    "p50ms": 40.66,
+    "p95ms": 57.42,
+    "maxMs": 144.9,
+    "media": 42.7
+  },
+  "lote": {
+    "comprobantes": 10000,
+    "segundosAceptacion": 4.0,
+    "segundosTotales": 31.2,
+    "porSegundo": 320.4,
+    "proyeccionPorDia": 27681198,
+    "ingesta": {
+      "file": "rendimiento-lote.jsonl",
+      "sha256": "dca179ed0e59f9c37ed802d74d21391de60ffa5eafd2e93630a4b172dbb65446",
+      "received": 10000,
+      "accepted": 10000,
+      "duplicates": 0,
+      "rejected": 0
+    },
+    "estados": {
+      "AUTHORIZED": 10000
+    },
+    "conservacion": {
+      "registered": 11413,
+      "authorized": 11409,
+      "failed": 4,
+      "dlq": 0,
+      "inFlight": 0,
+      "balanced": true,
+      "invalidInputsInDlq": 2
+    }
+  },
+  "umbrales": {
+    "emisionSincronaP95ms": 3000,
+    "diaPico": 200000
+  },
+  "comprobaciones": {
+    "p95 de la emisión síncrona < 3 s (incluye el simulador)": true,
+    "Lote completo sin pérdidas": true,
+    "Capacidad proyectada >= 200.000 comprobantes por día": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-20T15:08:49"
+}

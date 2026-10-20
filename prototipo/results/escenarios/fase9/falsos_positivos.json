@@ -1,0 +1,63 @@
+{
+  "escenario": "FALSOS_POSITIVOS",
+  "descripcion": "Falsos positivos del kit con n explícito",
+  "fuentes": [
+    {
+      "fuente": "S1 (emisión síncrona)",
+      "archivo": "S1.json",
+      "correctos": 1,
+      "bloqueadosPorError": 0
+    },
+    {
+      "fuente": "S2 (lote de 1.000)",
+      "archivo": "S2.json",
+      "correctos": 1000,
+      "bloqueadosPorError": 0
+    },
+    {
+      "fuente": "S6 (idempotencia, sin contar reenvíos)",
+      "archivo": "S6.json",
+      "correctos": 121,
+      "bloqueadosPorError": 0
+    },
+    {
+      "fuente": "S7 (proveedor caído; reprocesados cuentan una vez)",
+      "archivo": "S7.json",
+      "correctos": 80,
+      "bloqueadosPorError": 0
+    },
+    {
+      "fuente": "Medición de latencia síncrona",
+      "archivo": "RENDIMIENTO.json",
+      "correctos": 200,
+      "bloqueadosPorError": 0
+    },
+    {
+      "fuente": "Medición del lote de 10.000",
+      "archivo": "RENDIMIENTO.json",
+      "correctos": 10000,
+      "bloqueadosPorError": 0
+    }
+  ],
+  "n": 11402,
+  "falsosPositivos": 0,
+  "bloqueosKitEnElRegistro": 4,
+  "bloqueosIntencionalesS3": 4,
+  "falsosPositivosEnElRegistro": [],
+  "cotaSuperior95ReglaDeTres": 0.000263,
+  "cotaSuperior95Exacta": 0.000263,
+  "verificacionesDirectas": {
+    "fuente": "Verificación directa del kit en la medición de latencia (documentos ya autorizados; no suman comprobantes nuevos)",
+    "archivo": "RENDIMIENTO.json",
+    "verificaciones": 400,
+    "rechazadasPorError": 0
+  },
+  "comprobaciones": {
+    "Todas las fuentes tienen conteo": true,
+    "0 falsos positivos en 11402 comprobantes correctos": true,
+    "Los únicos bloqueos del kit son los defectos intencionales de S3": true,
+    "Verificaciones directas sin rechazos": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-20T15:08:53"
+}

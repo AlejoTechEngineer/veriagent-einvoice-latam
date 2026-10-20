@@ -441,3 +441,14 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   revisiones simultáneas podían dejar en `audit_log` una decisión que no se aplicó. Corregido: si la actualización
   condicionada (`status = 'PENDING'`) no cambia exactamente una fila, se devuelve 409 y no se registra nada.
   `svc-mapping-registry`: 7 de 7 pruebas. No hay una prueba concurrente específica.
+
+### T5. Banco ampliado y falsos positivos por el sistema real, con el código de la Fase 9
+- Ejecutado: `scripts\escenarios	odos.ps1` desde una plataforma limpia (JAR compilado tras T3; la corrección de
+  concurrencia de T3 se hizo después y no afecta a estos escenarios): todo en verde en 8,3 minutos. S1 a S8, banco
+  de 22, rendimiento, falsos positivos y banco ampliado aprobados.
+- Banco original de 22: ejecución 19 (86 %), sistema 22 (100 %), 0 falsos positivos.
+- Banco ampliado: 129 mutantes (21 equivalentes excluidos de un espacio de 195), ejecución 121 (93,8 %, Wilson
+  88,2–96,8 %), con ejemplos validados 129 (100 %, 97,1–100 %). Idéntico mutante por mutante a la Fase 6b (misma
+  huella del conjunto). Detalle por tipo en `ESCENARIOS.md`.
+- Falsos positivos: 0 de 11.402; cota superior del 95 % 0,026 %.
+- Los resultados se guardan en `results/escenarios/fase9/`; los archivos de la corrida de referencia no cambian.

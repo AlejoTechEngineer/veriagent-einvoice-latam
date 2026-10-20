@@ -1,0 +1,115 @@
+{
+  "escenario": "S3",
+  "descripcion": "Defectos D1 a D6 bloqueados antes del envío, con regla y norma",
+  "clavesDefectuosas": [
+    "CO:900123456-8:INVOICE:SETP990313001",
+    "CO:900123456-8:INVOICE:SETP990313002",
+    "CO:900123456-8:INVOICE:SETP990313003",
+    "CO:900123456-8:INVOICE:SETP990313004",
+    "CO:900123456-8:INVOICE:SETP990303001",
+    "CO:900123456-8:INVOICE:SETP990303002",
+    "CO:900123456-8:INVOICE:SETP990303003",
+    "CO:900123456-8:INVOICE:SETP990303004"
+  ],
+  "sincrono": {
+    "D1": {
+      "http": 422,
+      "codigo": "KIT_BLOCKED",
+      "estado": "FAILED",
+      "hallazgos": [
+        {
+          "ruleId": "R-D1-02",
+          "type": "D1",
+          "source": "perfil-alfa-v2.1.md §4.1",
+          "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a"
+        }
+      ]
+    },
+    "D4": {
+      "http": 422,
+      "codigo": "KIT_BLOCKED",
+      "estado": "FAILED",
+      "hallazgos": [
+        {
+          "ruleId": "XSD-01",
+          "type": "D4",
+          "source": "perfil-alfa-v2.1.md §6 (XSD)",
+          "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a"
+        },
+        {
+          "ruleId": "R-D4-01",
+          "type": "D4",
+          "source": "perfil-alfa-v2.1.md §4.3",
+          "sourceSha256": "ac6fe10e6fced3948ff86e01c644f4748646e7778fd4f0d1952f4c85cda61f3a"
+        }
+      ]
+    },
+    "D2": {
+      "http": 400,
+      "codigo": "INVARIANTS",
+      "estado": null,
+      "hallazgos": []
+    },
+    "D3": {
+      "http": 400,
+      "codigo": "CONTRACT_VIOLATION",
+      "estado": null,
+      "hallazgos": []
+    }
+  },
+  "lote": {
+    "ingesta": {
+      "file": "S3-defectos.jsonl",
+      "sha256": "be28123aad9d598b8e93efed42d4f726ea8ae66952ed48b94f11dccab7e04f09",
+      "received": 4,
+      "accepted": 2,
+      "duplicates": 0,
+      "rejected": 2
+    },
+    "estados": {
+      "D1": "FAILED",
+      "D4": "FAILED",
+      "D2": null,
+      "D3": null
+    }
+  },
+  "mapeo": {
+    "D5-a": {
+      "tipo": "D5",
+      "estado": "BLOCKED",
+      "hallazgosPorTipo": {
+        "D5": 116,
+        "E0": 40
+      },
+      "aprobacion": 409,
+      "mensaje": "No se puede aprobar: la versión 2 no pasó el kit de verificación"
+    },
+    "D6-a": {
+      "tipo": "D6",
+      "estado": "BLOCKED",
+      "hallazgosPorTipo": {
+        "D6": 5,
+        "E0": 1
+      },
+      "aprobacion": 409,
+      "mensaje": "No se puede aprobar: la versión 2 no pasó el kit de verificación"
+    }
+  },
+  "recibidosPorAlfa": {
+    "antes": 601,
+    "despues": 601
+  },
+  "comprobaciones": {
+    "D1 y D4 síncronos: 422 KIT_BLOCKED, estado FAILED": true,
+    "Hallazgos con regla, tipo, fuente normativa y huella": true,
+    "D1 y D4 detectados con su tipo": true,
+    "D2 y D3 síncronos: 400 en la entrada, sin registrar": true,
+    "Lote: D1 y D4 FAILED por el kit": true,
+    "Lote: D2 y D3 rechazados en la ingesta (DLQ de entradas)": true,
+    "D5 y D6 (mapeo): versión BLOQUEADA y aprobación 409": true,
+    "Ningún documento defectuoso llegó al proveedor": true,
+    "Balance de conservación": true
+  },
+  "aprobado": true,
+  "fecha": "2026-10-20T15:01:37"
+}

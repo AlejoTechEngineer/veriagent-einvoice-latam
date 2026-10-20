@@ -132,3 +132,39 @@ La capacidad diaria es una extrapolación lineal de una corrida corta en un solo
 no sustituye una prueba de carga sostenida ni mide Kafka ni PostgreSQL. Las cifras de la corrida de referencia
 están en `RENDIMIENTO.json`. Entre corridas el lote de S2 (1.000) osciló entre 102 y 213 comprobantes por segundo
 (213 en la de referencia) y el de 10.000 entre 290 y 437.
+
+## Repetición por el sistema real en la Fase 9 (T5)
+
+`todos.ps1` completo desde una plataforma limpia, con el código de la Fase 9 (lista blanca de salida del plano
+agéntico y auditoría por muestreo incluidas): todo en verde en 8,3 minutos (2026-10-20). Resultados en
+`results/escenarios/fase9/`; la corrida de referencia de este documento no se sustituye. No se tocó ningún
+operador ni ninguna regla.
+
+Banco original de 22 (el del documento), por el sistema: igual que en la corrida de referencia.
+
+| Banco | Detectados en ejecución | Con ejemplos validados | Falsos positivos |
+|:---|:---|:---|:---|
+| Original (22) | 19 de 22, 86,4 % (Wilson 95 %: 66,7–95,3 %) | 22 de 22, 100 % (85,1–100 %) | 0 (2 líneas base aceptadas) |
+| Ampliado (129, semilla 2026, hasta 30 por tipo) | 121 de 129, 93,8 % (88,2–96,8 %) | 129 de 129, 100 % (97,1–100 %) | ver abajo |
+
+Banco ampliado por tipo (intervalo de Wilson al 95 %):
+
+| Tipo | Espacio | Equivalentes excluidos | Mutantes | En ejecución | Con ejemplos validados |
+|:---|---:|:---|---:|:---|:---|
+| D1 | 85 | 15 (E2) | 30 | 24, 80,0 % (62,7–90,5 %) | 30, 100 % (88,7–100 %) |
+| D2 | 27 | 0 | 27 | 26, 96,3 % (81,7–99,3 %) | 27, 100 % (87,5–100 %) |
+| D3 | 35 | 6 (5 E1, 1 E3) | 29 | 29, 100 % (88,3–100 %) | 29, 100 % (88,3–100 %) |
+| D4 | 35 | 0 | 30 | 30, 100 % (88,7–100 %) | 30, 100 % (88,7–100 %) |
+| D5 | 10 | 0 | 10 | 10, 100 % (72,3–100 %) | 10, 100 % (72,3–100 %) |
+| D6 | 3 | 0 | 3 | 2, 66,7 % (20,8–93,9 %) | 3, 100 % (43,9–100 %) |
+| Total | 195 | 21 | 129 | 121, 93,8 % (88,2–96,8 %) | 129, 100 % (97,1–100 %) |
+
+- Escapan en ejecución los mismos 8: D1-x03, D1-x07, D1-x14, D1-x17, D1-x19, D1-x26, D2-x01 y D6-x02.
+- Solo D1 y D4 admiten 30 mutantes distintos no equivalentes con los operadores existentes.
+- Mutantes idénticos a la Fase 6b (misma huella del conjunto `37aa01b0...0534a`, kit 0.2.0, mismas huellas de
+  `perfil-alfa-v2.1` y `formato-beta-pe-v1`) y mismos resultados por mutante.
+- Falsos positivos sobre todos los comprobantes correctos procesados: **0 de 11.402** (S1 1, S2 1.000, S6 121,
+  S7 80, emisión síncrona de la medición 200 y lote de 10.000). Cota superior del 95 %: 3/n = 0,026 %. Los 4
+  bloqueos del kit en el registro son los defectos intencionales de S3. Verificaciones directas: 400, 0 rechazos.
+- Tiempos de esta corrida (varían entre corridas): emisión síncrona p50 40,7 ms, p95 57,4 ms; lote de 10.000 en
+  31,2 s (320 por segundo), sin pérdidas; S2 1.000 en 5,9 s.
