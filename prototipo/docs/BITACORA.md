@@ -348,3 +348,16 @@ regeneraron después de la corrección.
   mismos conteos (S1 a S8, banco 19 y 22 de 22, falsos positivos 0 de 11.402, banco ampliado 121 y 129 de 129 con
   la misma huella del conjunto). Es la corrida de referencia de `ESCENARIOS.md`; `banco_ampliado.json` registra ya la
   huella LF de `formato-beta-pe-v1.md`.
+
+## Fase 8. Documentación (2026-10-20)
+
+- `README.md` del prototipo reescrito: arquitectura y ciclo gobernado en mermaid, inicio rápido, resultados
+  principales, estructura y enlaces a la documentación.
+- `docs/TRAZABILIDAD.md`: 48 filas (10 requisitos, 8 escenarios de calidad, 10 ADR, 11 servicios y 9 componentes
+  agénticos) con implementación, pruebas, evidencia y estado: 40 cumplen, 6 parciales, 1 no implementado
+  (ADR-02, arquetipo) y 1 no evaluado (disponibilidad mensual).
+- `DESVIACIONES.md`: D-12 a D-16 (PDF y constancia en el archivo, arquetipo, Schema Registry, plantillas y pruebas
+  del agente, búsqueda por correlación). `ESCENARIOS.md`, `SUPUESTOS.md` y `SEGURIDAD.md` revisados.
+- `.gitattributes`: LF también para `ci/normativa.sha256`, para que el gate de huellas funcione en una copia de
+  Windows.
+- El README de la raíz del repositorio no se modificó: el bloque propuesto se presenta al autor para su aprobación.
