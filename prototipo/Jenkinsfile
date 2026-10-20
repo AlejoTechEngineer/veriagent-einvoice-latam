@@ -30,7 +30,7 @@ pipeline {
     stage('Gates previos') {
       parallel {
         stage('Gate · secretos') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-secrets' } } }
-        stage('Gate · huellas de normativa') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-normative' } } }
+        stage('Gate · huellas de normativa') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh test-gate-normative gate-normative' } } }
         stage('Gate · dependencias') { steps { dir('prototipo') { sh 'ci/run-pipeline.sh gate-deps' } } }
       }
     }

@@ -2,7 +2,7 @@
 # Etapas del pipeline del prototipo. Las ejecuta Jenkins (Jenkinsfile) y también se pueden correr en local (Linux o
 # Git Bash en Windows). Lo que corre en Jenkins es exactamente lo que corre en local.
 # Uso: ci/run-pipeline.sh [etapa...]
-#   build test-java test-python gate-secrets gate-deps gate-normative gate-bank gate-mapping package smoke
+#   build test-java test-python gate-secrets gate-deps gate-normative test-gate-normative gate-bank gate-mapping package smoke
 #   normative-manifest (regenera ci/normativa.sha256 tras un cambio de normativa revisado)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -18,7 +18,7 @@ if [ -z "${PYTHON:-}" ]; then
 fi
 PYTHON="$(cd "$(dirname "$PYTHON")" && pwd)/$(basename "$PYTHON")"
 MVN=(mvn -B -q -f integration-plane/pom.xml)
-STAGES=("$@"); [ ${#STAGES[@]} -eq 0 ] && STAGES=(build test-java test-python gate-secrets gate-deps gate-normative gate-bank gate-mapping package smoke)
+STAGES=("$@"); [ ${#STAGES[@]} -eq 0 ] && STAGES=(build test-java test-python gate-secrets gate-deps gate-normative test-gate-normative gate-bank gate-mapping package smoke)
 log() { printf '\n==> [%s] %s\n' "$(date +%H:%M:%S)" "$*"; }
 
 for st in "${STAGES[@]}"; do case "$st" in
@@ -114,10 +114,10 @@ PY
     echo "GATE OK" ;;
   gate-normative)
     log "Gate: huellas SHA-256 de la normativa (ci/normativa.sha256)"
-    grep -v '^#' ci/normativa.sha256 | sha256sum -c --strict
-    n=$(grep -vc '^#' ci/normativa.sha256); total=$(ls specs/*.md catalogs/*.csv schemas/* | wc -l)
-    [ "$n" -eq "$total" ] || { echo "GATE FALLIDO: hay $total documentos normativos y el manifiesto tiene $n"; exit 1; }
-    echo "GATE OK: $n documentos sin cambios" ;;
+    bash ci/gate-normative.sh "$ROOT" ;;
+  test-gate-normative)
+    log "Prueba del gate de huellas: el estado limpio pasa y una alteración lo hace fallar"
+    bash ci/test-gate-normative.sh ;;
   normative-manifest)
     log "Regenerar el manifiesto de huellas de la normativa"
     { echo "# Huellas SHA-256 de la normativa sintética (especificaciones, catálogos y esquemas), con finales de línea LF"

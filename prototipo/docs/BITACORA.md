@@ -378,3 +378,16 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   byte. Base: 40,2 semanas, COP 1.013.168.365 determinístico, P80 42,2 semanas y COP 1.059.219.670. El modelo no usa
   la fase en ningún cálculo; solo la copia a la salida.
 - Se regeneraron los cuatro `results.json` (solo cambia esa línea).
+
+### T1. Gate de huellas de la normativa en CI
+- `ci/gate-normative.sh` (nuevo): recalcula el SHA-256 de cada especificación, catálogo y esquema (`specs/*.md`,
+  `catalogs/*.csv`, `schemas/*`) y lo compara con el manifiesto versionado `ci/normativa.sha256`. Falla si una
+  huella difiere, si falta un documento del manifiesto o si hay un documento normativo que el manifiesto no lista.
+  La etapa `gate-normative` de `ci/run-pipeline.sh` lo invoca; el Jenkinsfile la ejecuta en los gates previos.
+- `ci/test-gate-normative.sh` (nuevo, etapa `test-gate-normative`, también en Jenkins antes del gate): trabaja sobre
+  una copia temporal y no toca el repositorio.
+- Ejecutado: `bash ci/run-pipeline.sh gate-normative test-gate-normative` en Git Bash. Gate: 8 de 8 documentos OK.
+  Prueba: 8 casos correctos de 8: el estado limpio pasa (dos veces) y fallan un espacio añadido a una
+  especificación, una fila alterada en un catálogo, un tipo cambiado en un esquema, finales de línea CRLF, un
+  catálogo borrado y un catálogo nuevo sin declarar.
+- No ejecutado: el Jenkinsfile en un servidor Jenkins (no hay servidor).
