@@ -177,3 +177,5 @@ un-local.ps1 -Clean -Background` (perfil local, 127.0.0.1:8080).
 - pytest (`.venv/Scripts/python -m pytest -q`, con Java 21 en el PATH para el kit): **20 de 20**.
 - Comprobación con uvicorn real en 127.0.0.1: sin token 401; token de agente 403; suplantación en el cuerpo 403;
   revisor A 200 con `reviewer = reviewer-a`.
+- Identidades de demostración: `reviewer-a` y `reviewer-b` (REVIEWER) sustituyen a la única identidad de revisor
+  anterior (S-28). `mvn install` del reactor: **133 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker).

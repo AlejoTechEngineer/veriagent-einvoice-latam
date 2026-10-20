@@ -114,12 +114,16 @@ class SecurityTest {
         assertTrue(Files.exists(file), file.toString());
         var root = ContractJson.mapper().readTree(Files.readString(file));
         Set<String> roles = new HashSet<>();
+        Set<String> reviewers = new HashSet<>();
         for (var n : root.get("tokens")) {
             roles.add(n.get("role").asString());
+            if ("REVIEWER".equals(n.get("role").asString())) reviewers.add(n.get("subject").asString());
             assertTrue(n.get("token").asString().length() >= 40);
             assertTrue(store.resolve(n.get("token").asString()).isPresent());
         }
         assertEquals(Set.of("REVIEWER", "AGENT", "OPERATOR", "SYSTEM"), roles);
+        // Dos revisores distintos: quien propone una versión de mapeo no puede ser quien la aprueba (H-05).
+        assertEquals(Set.of("reviewer-a", "reviewer-b"), reviewers);
         Path other = Files.createTempFile("tokens", ".json");
         DemoTokenStore.generate(other, DemoTokenStore.DEFAULT_IDENTITIES);
         String a = Files.readString(file), b = Files.readString(other);

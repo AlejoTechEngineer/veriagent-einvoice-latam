@@ -36,7 +36,7 @@ class KafkaEventBusIT {
                 (t, e) -> got.add(Events.payload(e, Payloads.MappingActivated.class).version()));
             IntStream.rangeClosed(1, 50).forEach(i -> bus.publish(Topics.MAPPING_ACTIVATED,
                 Events.of(EventTypes.MAPPING_ACTIVATED, null, null, "it",
-                    new Payloads.MappingActivated("alfa", "CO", i, "a".repeat(64), "revisor.demo", null))));
+                    new Payloads.MappingActivated("alfa", "CO", i, "a".repeat(64), "reviewer-a", null))));
             long deadline = System.currentTimeMillis() + 30_000;
             while (got.size() < 50 && System.currentTimeMillis() < deadline) Thread.onSpinWait();
             assertEquals(IntStream.rangeClosed(1, 50).boxed().toList(), got);

@@ -34,10 +34,13 @@ public class DemoTokenStore {
     private static final Logger log = LoggerFactory.getLogger(DemoTokenStore.class);
     private static final SecureRandom RANDOM = new SecureRandom();
 
-    /** Identidades de demostración por defecto. */
+    /**
+     * Identidades de demostración por defecto. Hay dos revisores para que, en los escenarios y la demo, quien
+     * propone una versión de mapeo no sea quien la aprueba (separación de funciones, H-05).
+     */
     public static final List<Actor> DEFAULT_IDENTITIES = List.of(
-        new Actor("revisor.demo", Role.REVIEWER),
-        new Actor("revisora.dos", Role.REVIEWER),
+        new Actor("reviewer-a", Role.REVIEWER),
+        new Actor("reviewer-b", Role.REVIEWER),
         new Actor("agente.mapeo", Role.AGENT),
         new Actor("operador.demo", Role.OPERATOR),
         new Actor("sistema", Role.SYSTEM));

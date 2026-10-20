@@ -131,7 +131,7 @@ class ContractTest {
                 "alfa", "KIT_BLOCKED", "Bloqueado por el kit", null, List.of(kf)), inv.invoiceKey()),
             envelope(EventTypes.INVOICE_DEAD_LETTERED, new Payloads.InvoiceDeadLettered("PROVIDER", Payloads.ErrorCategory.RECOVERABLE,
                 5, "Proveedor no disponible", "beta", List.of()), inv.invoiceKey()),
-            envelope(EventTypes.MAPPING_ACTIVATED, new Payloads.MappingActivated("alfa", "CO", 2, "c".repeat(64), "revisor.demo", "Propuesta aprobada"), null));
+            envelope(EventTypes.MAPPING_ACTIVATED, new Payloads.MappingActivated("alfa", "CO", 2, "c".repeat(64), "reviewer-a", "Propuesta aprobada"), null));
         for (JsonNode e : events) {
             assertEquals(List.of(), validator.validateEvent(e), e.get("eventType").asString());
         }

@@ -27,7 +27,7 @@ class InMemoryEventBusTest {
 
     private static EventEnvelope mapping(int version) {
         return Events.of(EventTypes.MAPPING_ACTIVATED, null, null, "prueba",
-            new Payloads.MappingActivated("alfa", "CO", version, "a".repeat(64), "revisor.demo", null));
+            new Payloads.MappingActivated("alfa", "CO", version, "a".repeat(64), "reviewer-a", null));
     }
 
     @Test
