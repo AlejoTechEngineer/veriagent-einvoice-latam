@@ -11,8 +11,7 @@ import os
 import re
 from typing import Any
 
-import httpx
-
+from . import egress
 from .security import Role, tokens_file
 
 
@@ -32,7 +31,7 @@ def _target(provider: str, country: str) -> tuple[str, str]:
 
 
 def base_url() -> str:
-    return os.environ.get("VERIAGENT_URL", "http://127.0.0.1:8080").rstrip("/")
+    return os.environ.get("VERIAGENT_URL", egress.DEFAULT_PLATFORM_URL).rstrip("/")
 
 
 def token_for(subject: str | None = None, role: Role = Role.AGENT) -> str:
@@ -57,8 +56,8 @@ class PlatformClient:
         return self._token
 
     def _call(self, method: str, path: str, **kw) -> Any:
-        r = httpx.request(method, self.url + path, headers={"Authorization": f"Bearer {self.token}"},
-                          timeout=self.timeout, **kw)
+        r = egress.request(method, self.url + path, headers={"Authorization": f"Bearer {self.token}"},
+                           timeout=self.timeout, **kw)
         body = r.json() if r.content and r.headers.get("content-type", "").startswith("application/json") else r.text
         if r.status_code >= 400:
             raise PlatformError(r.status_code, body)
@@ -80,7 +79,7 @@ class PlatformClient:
 
     # Kit
     def verify_document(self, profile: str, content: str, mode: str = "RUNTIME") -> dict:
-        r = httpx.post(self.url + "/api/kit/verify", params={"profile": profile, "mode": mode},
+        r = egress.request("POST", self.url + "/api/kit/verify", params={"profile": profile, "mode": mode},
                        headers={"Authorization": f"Bearer {self.token}", "Content-Type": "text/plain; charset=utf-8"},
                        content=content.encode("utf-8"), timeout=self.timeout)
         if r.status_code not in (200, 422):

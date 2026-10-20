@@ -391,3 +391,26 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   especificación, una fila alterada en un catálogo, un tipo cambiado en un esquema, finales de línea CRLF, un
   catálogo borrado y un catálogo nuevo sin declarar.
 - No ejecutado: el Jenkinsfile en un servidor Jenkins (no hay servidor).
+
+### T2. Salida de red del plano agéntico
+- (a) `tfg_agents/egress.py` (nuevo): lista blanca de orígenes (esquema, host y puerto) calculada de la
+  configuración del proceso: la plataforma (`VERIAGENT_URL`), que en el prototipo sirve el kit y el registro de
+  mapeos; el kit aparte (`TFG_KIT_URL`) si está definido, y el proveedor del modelo (`ANTHROPIC_BASE_URL` o
+  `https://api.anthropic.com`) solo si hay un modelo configurado (`ANTHROPIC_API_KEY`). Un gancho de httpx revisa
+  cada petición, incluidas las redirecciones, antes de conectar. `PlatformClient`, `ReviewerForwarder` y
+  `kit_client` usan ese cliente; los motores LLM construyen el SDK con `egress.sdk_client()`.
+- Defecto encontrado por la prueba: el SDK del modelo instalado (1.15.0) usa `httpx2` y rechaza un cliente de
+  httpx; `sdk_client()` construye el cliente con `httpx2` (misma API) y la misma lista blanca.
+- (b) Helm (chart 0.3.0): la política de red del plano agéntico ya no tiene la regla abierta al puerto 443. Solo
+  permite el kit (8085), la plataforma (8080), el proxy de salida (`agentic.egress.proxy`, 3128) y el DNS del
+  cluster (53). El despliegue del plano agéntico define `HTTPS_PROXY` hacia ese proxy y `NO_PROXY` para el kit y
+  la plataforma.
+- Ejecutado: `pytest` completo, 57 de 57 (42 anteriores + `test_egress.py` 13 + `test_helm_egress.py` 2).
+  `test_egress.py`: destino del kit permitido; kit aparte solo si está configurado; seis destinos rechazados sin
+  llegar a conectar (otro host, mismo host con otro puerto, otro esquema, `localhost` en vez de `127.0.0.1`,
+  metadatos de la nube y `file://`); proveedor del modelo solo con modelo configurado y solo el configurado;
+  redirección fuera de la lista rechazada; `PlatformClient` con otra URL rechazado; el SDK del modelo y los dos
+  motores LLM pasan por la lista. `test_helm_egress.py` renderiza la política con un sustituto mínimo de Helm y
+  comprueba que toda regla tiene destino con selector de pods, sin bloques de IP ni puerto 443.
+- No ejecutado: `helm template`, `helm lint` y la aplicación de la política en un cluster (sin helm, sin cluster y
+  sin Docker). Que el plugin de red del cluster aplique la política tampoco se comprobó.

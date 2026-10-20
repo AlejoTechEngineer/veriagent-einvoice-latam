@@ -105,7 +105,8 @@ class AnthropicBackend:
     def __init__(self, client: Any | None = None, model: str | None = None):
         if client is None:
             import anthropic  # importación diferida: la PoC funciona sin clave
-            client = anthropic.Anthropic()
+            from . import egress
+            client = anthropic.Anthropic(http_client=egress.sdk_client(timeout=120.0))
         self.client = client
         self.model = model or os.environ.get("TFG_LLM_MODEL", "claude-sonnet-5-5")
 

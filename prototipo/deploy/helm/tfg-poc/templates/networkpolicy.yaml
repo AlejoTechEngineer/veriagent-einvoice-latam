@@ -1,15 +1,29 @@
-# El kit solo acepta tráfico del plano agéntico y del propio namespace (pipeline y adaptadores).
-# El plano agéntico no puede alcanzar sistemas de producción: solo el kit, la API de la plataforma (donde su token
-# de agente solo permite proponer, verificar y registrar triajes) y el proveedor del LLM (HTTPS).
+# Salida del plano agéntico (Fase 9, T2 b). Todo lo que no está aquí queda denegado; no hay ninguna regla abierta
+# a Internet ni por puerto. Destinos permitidos:
+#   - el kit: servicio aparte (8085) y la plataforma, que en el prototipo también lo sirve y aloja el registro de
+#     mapeos (8080; el token del agente solo permite proponer, verificar y registrar triajes);
+#   - la puerta de salida o proxy HTTP(S) (agentic.egress.proxy), único camino hacia el proveedor del modelo; el
+#     proxy aplica su propia lista de dominios y el cliente del agente, la suya (tfg_agents/egress.py);
+#   - DNS, solo hacia el DNS del cluster.
+# No validado en cluster: sin helm ni cluster en la máquina de trabajo (BITACORA, Fase 9).
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
-metadata: { name: {{ .Release.Name }}-agentic-egress }
+metadata:
+  name: {{ .Release.Name }}-agentic-egress
+  labels: {{- include "tfg.labels" . | nindent 4 }}
 spec:
   podSelector: { matchLabels: { app.kubernetes.io/name: agentic-plane } }
   policyTypes: [Egress]
   egress:
     - to: [{ podSelector: { matchLabels: { app.kubernetes.io/name: verification-kit } } }]
-      ports: [{ port: 8085 }]
+      ports: [{ port: 8085, protocol: TCP }]
     - to: [{ podSelector: { matchLabels: { app.kubernetes.io/name: platform } } }]
-      ports: [{ port: 8080 }]
-    - ports: [{ port: 443 }, { port: 53, protocol: UDP }]
+      ports: [{ port: 8080, protocol: TCP }]
+    - to:
+        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: {{ .Values.agentic.egress.proxy.namespace | quote }} } }
+          podSelector: { matchLabels: { app.kubernetes.io/name: {{ .Values.agentic.egress.proxy.podName | quote }} } }
+      ports: [{ port: {{ .Values.agentic.egress.proxy.port }}, protocol: TCP }]
+    - to:
+        - namespaceSelector: { matchLabels: { kubernetes.io/metadata.name: kube-system } }
+          podSelector: { matchLabels: { k8s-app: kube-dns } }
+      ports: [{ port: 53, protocol: UDP }, { port: 53, protocol: TCP }]

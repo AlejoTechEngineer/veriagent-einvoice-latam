@@ -20,6 +20,8 @@ spec:
           env:
             - { name: TFG_KIT_URL, value: "http://{{ .Release.Name }}-kit:8085" }
             - { name: VERIAGENT_URL, value: "http://{{ .Release.Name }}-platform:8080" }
+            - { name: HTTPS_PROXY, value: "http://{{ .Values.agentic.egress.proxy.service }}:{{ .Values.agentic.egress.proxy.port }}" }
+            - { name: NO_PROXY, value: "{{ .Release.Name }}-kit,{{ .Release.Name }}-platform" }
             {{- if .Values.agentic.llmSecretName }}
             - name: ANTHROPIC_API_KEY
               valueFrom: { secretKeyRef: { name: {{ .Values.agentic.llmSecretName }}, key: ANTHROPIC_API_KEY } }

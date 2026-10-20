@@ -107,7 +107,8 @@ class SpecLlmBackend:
     def __init__(self, provider: str, country: str, client: Any | None = None, model: str | None = None):
         if client is None:
             import anthropic
-            client = anthropic.Anthropic()
+            from . import egress
+            client = anthropic.Anthropic(http_client=egress.sdk_client(timeout=120.0))
         self.client = client
         self.model = model or os.environ.get("TFG_LLM_MODEL", "claude-sonnet-5-5")
         self.provider, self.country = provider.lower(), country.upper()

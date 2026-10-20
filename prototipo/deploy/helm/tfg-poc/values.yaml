@@ -10,6 +10,12 @@ agentic:
   replicas: 1
   resources: { requests: { cpu: 250m, memory: 512Mi }, limits: { cpu: "1", memory: 1Gi } }
   llmSecretName: ""      # Secret con ANTHROPIC_API_KEY; vacío = agente heurístico
+  egress:
+    proxy:                 # puerta de salida o proxy HTTP(S): único camino del plano agéntico hacia fuera del cluster
+      namespace: egress-system
+      podName: egress-proxy
+      service: egress-proxy.egress-system.svc.cluster.local
+      port: 3128
   storage: 1Gi
 platform:
   replicas: 1          # un solo pod: los tokens de demostración y la carpeta SFTP simulada viven en /shared

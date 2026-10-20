@@ -6,9 +6,7 @@ import os
 import subprocess
 from pathlib import Path
 
-import httpx
-
-from . import POC_HOME
+from . import POC_HOME, egress
 
 KIT_CLASSES = POC_HOME / "verification-kit" / "build" / "classes"
 
@@ -39,5 +37,5 @@ def verify_batch(rows: list[tuple[str, str, str, Path, Path | None]], workdir: P
 
 def verify_http(content: str, fmt: str = "xml", mode: str = "RUNTIME", base_url: str | None = None) -> dict:
     url = (base_url or os.environ.get("TFG_KIT_URL", "http://localhost:8085")) + "/verify"
-    r = httpx.post(url, params={"format": fmt, "mode": mode}, content=content.encode("utf-8"), timeout=10)
+    r = egress.request("POST", url, params={"format": fmt, "mode": mode}, content=content.encode("utf-8"), timeout=10)
     return r.json()
