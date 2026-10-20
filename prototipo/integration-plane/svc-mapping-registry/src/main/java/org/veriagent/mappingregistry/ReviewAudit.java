@@ -122,11 +122,15 @@ public class ReviewAudit {
             throw new MappingRegistry.ConflictException(
                 "Quien aprobó la versión no puede hacer su segunda revisión: debe hacerla otra persona revisora");
         }
-        jdbc.sql("""
+        int updated = jdbc.sql("""
                 UPDATE review_audit SET status = :s, second_reviewer = :r, outcome_note = :n, decided_at = :t
                 WHERE id = :id AND status = 'PENDING'""")
             .param("s", outcome.name()).param("r", reviewer).param("n", note).param("t", Timestamp.from(Instant.now()))
             .param("id", id).update();
+        if (updated != 1) {
+            // Otra segunda revisión ganó la carrera entre la lectura y la actualización: no se registra nada.
+            throw new MappingRegistry.ConflictException("La auditoría " + id + " ya tiene segunda revisión");
+        }
         audit.record("REVIEW_AUDIT_" + outcome.name(), "mapeo:" + item.provider() + "/" + item.country() + "/v" + item.version(),
             "auditoria=" + id + " muestra=" + item.sampleId() + " aprobada_por=" + item.approvedBy()
                 + (note == null ? "" : " nota=" + note));

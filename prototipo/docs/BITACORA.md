@@ -437,3 +437,7 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   (`KafkaEventBusIT`, sin Docker).
 - No incluido: pantalla del front para la cola (el front mínimo acordado tiene siete pantallas, D-09); la cola se
   usa por la API.
+- Revisión de seguridad posterior al commit: entre la lectura del estado y la actualización, dos segundas
+  revisiones simultáneas podían dejar en `audit_log` una decisión que no se aplicó. Corregido: si la actualización
+  condicionada (`status = 'PENDING'`) no cambia exactamente una fila, se devuelve 409 y no se registra nada.
+  `svc-mapping-registry`: 7 de 7 pruebas. No hay una prueba concurrente específica.
