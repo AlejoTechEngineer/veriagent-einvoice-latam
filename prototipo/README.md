@@ -41,7 +41,7 @@ ANTHROPIC_API_KEY=... python3 -m tfg_agents.orchestrator   # agente con LLM real
 cd review-console-javafx
 javac --module-path $FX --add-modules javafx.controls -d build/classes $(find src/main/java -name '*.java')
 cp -r src/main/resources/* build/classes/
-java --module-path $FX --add-modules javafx.controls -cp build/classes org.tfg.console.ReviewConsoleApp --api=http://localhost:8090
+java --module-path $FX --add-modules javafx.controls -cp build/classes org.tfg.console.ReviewConsoleApp --api=http://127.0.0.1:8080/agents
 
 # Planificación
 cd planning && python3 model.py

@@ -277,3 +277,27 @@ locales; no sustituye una prueba de carga sostenida ni mide Kafka ni PostgreSQL 
 - En esa misma corrida la medición del lote salió en 285 s porque el conteo de estados (10.000 consultas) quedaba
   dentro del tiempo medido. Se movió fuera y se repitió la corrida completa; las cifras publicadas son de la
   corrida corregida (30,8 s).
+
+## Fase 5. API de borde y front mínimo (2026-10-20)
+
+- `svc-gateway`: `GET /api/session`; proxy `/agents/api/**` hacia la API de revisión (lista blanca: `health`, `me`,
+  `proposals`, `proposals/{id}`, `proposals/{id}/decision`); front estático en `/`. `GatewayTest`: 3 de 3
+  (sin token 401, mismo token reenviado, rutas fuera de la lista blanca rechazadas sin reenviar, CSP).
+- `run-local.ps1 -Background` arranca también la API de revisión en 127.0.0.1:8090; `stop-local.ps1` detiene ambas.
+- Front (HTML, CSS puro, JavaScript en módulos, sin dependencias, español, claro y oscuro según el sistema,
+  navegación por teclado y enlace para saltar al contenido): Panel, Comprobantes, Emitir, Cargar lote, Cola DLQ,
+  Propuestas de agentes y Verificador.
+- **Prueba en navegador** (Chrome, perfil local con datos de S1, S2 y S5):
+  - Con el token de `reviewer-a`: las siete pantallas cargan con datos reales; Emitir devuelve "Tu rol no permite
+    esta operación" (403); Propuestas muestra la propuesta de Gamma aprobada por reviewer-a y los botones Revertir.
+  - Con el token de `operador.demo`: Emitir → HTTP 200 AUTHORIZED con número de autorización; el detalle muestra el
+    documento enviado al proveedor; el Verificador da "Sin datos" de hallazgos para ese documento y 1 hallazgo
+    (R-D3-01, §2.1, huella y versión de la regla) al poner el perfil en minúsculas.
+  - Ninguna pantalla muestra "null" ni "undefined"; 0 errores en la consola. Captura: `results/screens/front-panel.jpg`.
+- Defectos encontrados en la prueba y corregidos: se pintaba "null" cuando una vista devolvía elementos nulos o
+  arreglos anidados (el detalle no mostraba el documento enviado); se añadió `fill()` y el aplanado en `render()`.
+- La consola JavaFX compila contra la nueva API (Fase 4a) y llega por `--api=http://127.0.0.1:8080/agents`; no se
+  probó su interfaz gráfica en esta fase.
+- `mvn install` del reactor (21 módulos): **138 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker). En
+  una corrida falló de forma intermitente `ResponseProcessorTest.reconcilesWithReceipt` (gracia de 0 s frente a la
+  precisión de la marca de tiempo guardada); la prueba reintenta ahora la conciliación durante 2 s como máximo.

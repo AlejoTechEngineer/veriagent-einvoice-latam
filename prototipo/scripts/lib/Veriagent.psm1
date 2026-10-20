@@ -146,6 +146,26 @@ function Invoke-AgenticScenario {
     } finally { Pop-Location }
 }
 
+# API de revisión de propuestas de IA en 127.0.0.1:8090 (proceso Python en segundo plano).
+function Start-ReviewApi {
+    $py = Join-Path (Get-VeriagentHome) 'agentic-plane\.venv\Scripts\python.exe'
+    if (-not (Test-Path $py)) { Write-Host 'Sin entorno de Python: la pantalla de propuestas no estará disponible.'; return }
+    $runtime = Join-Path (Get-VeriagentHome) 'results\runtime'
+    $p = Start-Process -FilePath $py -ArgumentList @('-m', 'uvicorn', 'tfg_agents.review_api:app', '--host', '127.0.0.1', '--port', '8090') `
+        -WorkingDirectory (Join-Path (Get-VeriagentHome) 'agentic-plane') -PassThru -WindowStyle Hidden `
+        -RedirectStandardOutput (Join-Path $runtime 'review-api.log') -RedirectStandardError (Join-Path $runtime 'review-api.err.log')
+    $p.Id | Out-File -Encoding ascii (Join-Path $runtime 'review-api.pid')
+    Write-Host "API de revisión de propuestas en http://127.0.0.1:8090 (PID $($p.Id))"
+}
+
+function Stop-ReviewApi {
+    $pidFile = Join-Path (Get-VeriagentHome) 'results\runtime\review-api.pid'
+    if (-not (Test-Path $pidFile)) { return }
+    $id = [int](Get-Content $pidFile)
+    if (Get-Process -Id $id -ErrorAction SilentlyContinue) { Stop-Process -Id $id -Confirm:$false; Write-Host "API de revisión detenida (PID $id)." }
+    Remove-Item $pidFile -Confirm:$false
+}
+
 # Los resultados de los escenarios se publican en results\escenarios (rastreado); las entradas generadas, en runtime.
 function Write-ScenarioResult {
     param([Parameter(Mandatory)][string]$Id, [Parameter(Mandatory)]$Result)

@@ -131,7 +131,13 @@ def write(sid: str, result: dict, file: str | None = None) -> dict:
 
 @contextmanager
 def review_api():
-    """API de revisión de propuestas en 127.0.0.1:8090 durante el escenario."""
+    """API de revisión de propuestas en 127.0.0.1:8090 durante el escenario (reutiliza la de run-local si ya está)."""
+    try:
+        if httpx.get(REVIEW_URL + "/api/health").status_code == 200:
+            yield
+            return
+    except httpx.HTTPError:
+        pass
     p = subprocess.Popen([sys.executable, "-m", "uvicorn", "tfg_agents.review_api:app", "--host", "127.0.0.1",
                           "--port", "8090"], cwd=POC_HOME / "agentic-plane", stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     try:

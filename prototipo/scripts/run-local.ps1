@@ -2,7 +2,8 @@
 .SYNOPSIS
   Arranca la plataforma en el perfil local: un solo proceso, bus en memoria, H2 en archivo, sin Docker.
 .DESCRIPTION
-  Escucha solo en 127.0.0.1:8080. Genera tokens de demostración aleatorios en results\runtime\demo-tokens.json
+  Escucha solo en 127.0.0.1:8080. Con -Background arranca también la API de revisión de propuestas (Python, en
+  127.0.0.1:8090), a la que el front llega por la API de borde (/agents/api/...). Genera tokens de demostración aleatorios en results\runtime\demo-tokens.json
   (ignorado por git). Con -Build compila antes; con -Clean borra el estado local (base H2 y carpetas SFTP).
   Con -Background deja el proceso en segundo plano y guarda su PID en results\runtime\app.pid.
 #>
@@ -42,6 +43,7 @@ if ($Background) {
     Write-Host "Plataforma arrancando (PID $($p.Id)); registro en $log"
     if (-not (Wait-VeriagentHealth -TimeoutSeconds 180)) { throw 'La plataforma no respondió a tiempo; revisa el registro.' }
     Write-Host "Plataforma lista en $(Get-VeriagentBaseUrl)"
+    Start-ReviewApi
 } else {
     Push-Location $home_
     try { & $java @args_ } finally { Pop-Location }

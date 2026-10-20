@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VeriAgent · Facturación electrónica</title>
+  <link rel="stylesheet" href="/app/styles.css">
+  <script type="module" src="/app/main.js"></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+  <header class="top">
+    <div class="brand">
+      <strong>VeriAgent</strong>
+      <span class="muted">Prototipo · datos sintéticos</span>
+    </div>
+    <form id="sesion" class="sesion" autocomplete="off">
+      <label for="token">Token de acceso</label>
+      <input id="token" name="token" type="password" placeholder="token de demostración">
+      <button type="submit">Entrar</button>
+      <button type="button" id="salir" hidden>Salir</button>
+      <span id="quien" class="quien" role="status"></span>
+    </form>
+  </header>
+  <nav class="menu" aria-label="Secciones">
+    <a href="#/panel">Panel</a>
+    <a href="#/comprobantes">Comprobantes</a>
+    <a href="#/emitir">Emitir</a>
+    <a href="#/lote">Cargar lote</a>
+    <a href="#/dlq">Cola DLQ</a>
+    <a href="#/propuestas">Propuestas de agentes</a>
+    <a href="#/verificador">Verificador</a>
+  </nav>
+  <main id="contenido" tabindex="-1" aria-live="polite"></main>
+  <footer class="pie muted">Los tokens de demostración están en results/runtime/demo-tokens.json (archivo local, fuera del repositorio).</footer>
+</body>
+</html>

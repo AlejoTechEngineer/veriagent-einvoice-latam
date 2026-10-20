@@ -47,8 +47,12 @@ veriagent:
     legal-archive: true
     invoice-registry: true
     dlq-handler: true
+    gateway: true
     # Los simuladores de proveedores solo se activan en el perfil local (o en su propio contenedor en full).
     provider-simulators: false
+  gateway:
+    # API de revisión de propuestas de IA (plano agéntico, Python).
+    agents-url: ${VERIAGENT_AGENTS_URL:http://127.0.0.1:8090}
   mappings:
     # registry: los mapeos vigentes salen del registro de versiones (svc-mapping-registry).
     source: registry

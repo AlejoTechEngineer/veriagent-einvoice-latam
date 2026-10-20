@@ -97,8 +97,14 @@ class ResponseProcessorTest {
         Files.createDirectories(receipts);
         var r = new ProviderProtocol.Receipt(inv.invoiceKey(), "beta", "AUTHORIZED", "AUT-AUTORIDAD-1", "2026-10-19T00:00:00Z", "a".repeat(64));
         Files.writeString(receipts.resolve(SafeFiles.sanitize(inv.invoiceKey()) + ".receipt.json"), ContractJson.mapper().writeValueAsString(r));
-        var res = processor.reconcile();
-        assertTrue(res.fromReceipts() >= 1);
+        // Con gracia 0 s, la antigüedad calculada contra la marca guardada puede salir unos microsegundos negativa
+        // (precisión del reloj frente a la de la base): se reintenta la conciliación durante un tiempo acotado.
+        int fromReceipts = 0;
+        for (long end = System.nanoTime() + Duration.ofSeconds(2).toNanos(); fromReceipts == 0 && System.nanoTime() < end; ) {
+            fromReceipts = processor.reconcile().fromReceipts();
+            if (fromReceipts == 0) Thread.sleep(20);
+        }
+        assertTrue(fromReceipts >= 1);
         assertTrue(bus.awaitQuiescence(Duration.ofSeconds(5)));
         var rec = ledger.find(inv.invoiceKey()).orElseThrow();
         assertEquals(InvoiceState.AUTHORIZED, rec.status());

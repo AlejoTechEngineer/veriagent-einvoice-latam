@@ -70,7 +70,7 @@ class SecurityPolicyTest {
         assertEquals(List.of(), missing);
         assertTrue(checked.containsAll(Set.of("InvoiceFacadeController.issue", "DlqController.reprocess", "DlqController.discard",
             "IngestController.upload", "MappingRegistryController.approve", "MappingRegistryController.activate",
-            "SimulatorController.setFault", "DlqController.triage", "MappingRegistryController.check")), checked::toString);
+            "SimulatorController.setFault", "DlqController.triage", "MappingRegistryController.check", "GatewayController.post")), checked::toString);
     }
 
     @Test

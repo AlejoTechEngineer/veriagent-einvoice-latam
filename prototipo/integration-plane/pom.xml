@@ -37,6 +37,7 @@
     <module>svc-dlq-handler</module>
     <module>svc-mapping-registry</module>
     <module>provider-simulators</module>
+    <module>svc-gateway</module>
     <module>platform-app</module>
   </modules>
 
