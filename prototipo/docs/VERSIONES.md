@@ -19,7 +19,7 @@ versión del documento no existe, no está instalada o no es compatible, se elig
 | H2 / controlador PostgreSQL | — | 2.4.240 / 42.7.13 (gestionadas por Spring Boot 4.1.1) | |
 | Cliente de Kafka | Kafka | kafka-clients 4.2.1 (gestionada por Spring Boot 4.1.1) | Se usa el cliente directamente, sin Spring Kafka. |
 | Testcontainers | Testcontainers | 2.0.5 (`testcontainers-redpanda`) | Las pruebas que lo usan se omiten si no hay Docker. |
-| LangGraph | LangGraph | 1.2.16 | Última estable. |
+| LangGraph | LangGraph | 1.2.16 | Última estable. Instalada en la Fase 4 (`pyproject.toml` la fija). |
 | SDK de MCP | MCP 2.x | 2.3.0 | Última estable. |
 | FastAPI, Pydantic, lxml | Sí | 0.148.0, 2.14.1, 6.1.3 | Últimas estables. |
 | SDK de Anthropic | Sí | 1.15.0 | El motor LLM solo se activa con `ANTHROPIC_API_KEY`. |

@@ -116,4 +116,21 @@ class DlqHandlerTest {
         mvc.perform(post("/api/dlq/" + id + "/discard").header("Authorization", tokens.operator())).andExpect(status().isOk());
         assertEquals(DlqRepository.Status.DISCARDED, dlq.find(id).orElseThrow().status());
     }
+
+    @Test
+    @DisplayName("Triaje: el agente registra una recomendación con su identidad; no reprocesa ni cambia el estado")
+    void triageIsOnlyARecommendation() throws Exception {
+        InvoiceRequest inv = quarantined();
+        long id = entryFor(inv);
+        String body = "{\"classification\":\"PROVEEDOR_RECHAZO\",\"recommendation\":\"REPROCESAR_TRAS_CORRECCION\",\"evidence\":[\"x\"]}";
+        mvc.perform(post("/api/dlq/" + id + "/triage").contentType(MediaType.APPLICATION_JSON).content(body)).andExpect(status().isUnauthorized());
+        mvc.perform(post("/api/dlq/" + id + "/triage").header("Authorization", tokens.operator()).contentType(MediaType.APPLICATION_JSON).content(body))
+            .andExpect(status().isForbidden());
+        mvc.perform(post("/api/dlq/" + id + "/triage").header("Authorization", tokens.agent()).contentType(MediaType.APPLICATION_JSON).content(body))
+            .andExpect(status().isOk()).andExpect(jsonPath("$.triage.triagedBy").value("agente.prueba"));
+        var e = dlq.find(id).orElseThrow();
+        assertEquals(DlqRepository.Status.OPEN, e.status());
+        assertTrue(e.triage().contains("REPROCESAR_TRAS_CORRECCION"));
+        assertEquals(InvoiceState.DLQ, ledger.find(inv.invoiceKey()).orElseThrow().status());
+    }
 }

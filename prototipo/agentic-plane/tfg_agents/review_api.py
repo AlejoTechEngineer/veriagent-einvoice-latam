@@ -16,7 +16,8 @@ from pydantic import BaseModel, Field
 
 from . import POC_HOME, proposals
 from .mapping import load_mapping
-from .security import Actor, Role, current_actor, require_consistent, require_role
+from .platform_client import PlatformError, ReviewerForwarder
+from .security import Actor, Role, bearer_token, current_actor, require_consistent, require_role
 
 WEB = POC_HOME / "review-console-web"
 GOLDEN = POC_HOME / "agentic-plane" / "golden" / "mapping-alfa-v2.json"
@@ -65,8 +66,27 @@ def get_proposal(pid: str, _: Actor = Depends(current_actor)) -> dict:
 
 
 @app.post("/api/proposals/{pid}/decision")
-def decide(pid: str, body: Decision, actor: Actor = Depends(require_role(Role.REVIEWER))) -> dict:
+def decide(pid: str, body: Decision, actor: Actor = Depends(require_role(Role.REVIEWER)),
+           token: str = Depends(bearer_token)) -> dict:
     require_consistent(actor, body.reviewer)
+    p = proposals.get(pid)
+    if p is None:
+        raise HTTPException(404, "Propuesta no encontrada")
+    if p["status"] in ("APPROVED", "REJECTED"):
+        raise HTTPException(409, f"La propuesta ya fue {p['status']}")
+    if body.decision == "APPROVE" and not p["gate_passed"]:
+        raise HTTPException(409, "No se puede aprobar: la propuesta no pasó el kit de verificación")
+    if p.get("registry_version") is not None:
+        # Ciclo cerrado: la versión candidata del registro se aprueba o rechaza con el token de ESTA persona.
+        fwd = ReviewerForwarder(token)
+        args = (p["registry_provider"], p["registry_country"], p["registry_version"], body.comment)
+        try:
+            fwd.approve(*args) if body.decision == "APPROVE" else fwd.reject(*args)
+        except PlatformError as e:
+            raise HTTPException(e.status if e.status in (403, 404, 409) else 502,
+                                e.body.get("message", str(e.body)) if isinstance(e.body, dict) else str(e.body))
+        except OSError as e:
+            raise HTTPException(502, f"No se pudo contactar el registro de mapeos: {e}")
     try:
         return proposals.decide(pid, body.decision, actor.subject, body.comment)
     except KeyError:

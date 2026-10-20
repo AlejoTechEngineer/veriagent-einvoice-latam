@@ -94,6 +94,13 @@ def current_actor(credentials: HTTPAuthorizationCredentials | None = Depends(_be
     return actor
 
 
+def bearer_token(credentials: HTTPAuthorizationCredentials | None = Depends(_bearer)) -> str:
+    """Token de la petición, para reenviar la decisión a la plataforma con la misma identidad."""
+    if credentials is None or not credentials.credentials:
+        raise HTTPException(401, "Falta el token de acceso", headers={"WWW-Authenticate": "Bearer"})
+    return credentials.credentials
+
+
 def require_role(*roles: Role):
     """Dependencia que exige uno de los roles; si no, 403."""
     def check(actor: Actor = Depends(current_actor)) -> Actor:

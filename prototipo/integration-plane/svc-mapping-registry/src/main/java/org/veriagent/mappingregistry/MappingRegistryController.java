@@ -58,6 +58,14 @@ public class MappingRegistryController {
         return registry.find(provider, country, version);
     }
 
+    @Operation(summary = "Verificación en seco: aplica el control del kit a un mapeo sin registrarlo (no cambia estado)")
+    @PostMapping("/{provider}/{country}/check")
+    @PreAuthorize("hasAnyRole('AGENT','REVIEWER','SYSTEM')")
+    public MappingGate.Result check(@PathVariable String provider, @PathVariable String country, @RequestBody Proposal body) {
+        if (body == null || body.mapping() == null || !body.mapping().isObject()) throw new IllegalArgumentException("Falta el mapeo");
+        return registry.check(provider, country, body.mapping());
+    }
+
     @Operation(summary = "Propone una versión candidata; el kit la verifica (bloqueada si no pasa)")
     @PostMapping("/{provider}/{country}/candidates")
     @PreAuthorize("hasAnyRole('AGENT','REVIEWER','SYSTEM')")

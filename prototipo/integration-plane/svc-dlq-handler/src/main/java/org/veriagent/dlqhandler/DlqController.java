@@ -20,6 +20,8 @@ import org.veriagent.core.audit.AuditService;
 import org.veriagent.core.bus.EventBus;
 import org.veriagent.core.dlq.DlqRepository;
 import org.veriagent.core.ledger.InvoiceLedger;
+import org.veriagent.contracts.ContractJson;
+import org.veriagent.core.security.CurrentActor;
 import org.veriagent.core.security.IdentityGuard;
 import org.veriagent.core.web.ApiErrors;
 
@@ -38,11 +40,17 @@ import java.util.NoSuchElementException;
 public class DlqController {
     private final DlqHandler handler;
     private final DlqRepository dlq;
+    private final AuditService audit;
 
-    public DlqController(DlqHandler handler, DlqRepository dlq) {
+    public DlqController(DlqHandler handler, DlqRepository dlq, AuditService audit) {
         this.handler = handler;
         this.dlq = dlq;
+        this.audit = audit;
     }
+
+    /** Clasificación del agente de triaje: solo una recomendación; no cambia el estado de la entrada. */
+    public record Triage(String classification, String defectType, String recommendation, String rationale,
+                         List<String> evidence) {}
 
     /** Cuerpo de una decisión. {@code operator} es opcional y, si viene, debe coincidir con el token. */
     public record Decision(String comment, String operator) {}
@@ -83,6 +91,28 @@ public class DlqController {
         } catch (IllegalStateException e) {
             return ApiErrors.body(HttpStatus.CONFLICT, "NOT_OPEN", e.getMessage(), null);
         }
+    }
+
+    @Operation(summary = "Registra el triaje de una entrada (AGENT o SYSTEM); es una recomendación y no reprocesa")
+    @PostMapping("/{id}/triage")
+    @PreAuthorize("hasAnyRole('AGENT','SYSTEM')")
+    public Map<String, Object> triage(@PathVariable long id, @RequestBody Triage body) {
+        var entry = dlq.find(id).orElseThrow(() -> new NoSuchElementException("Entrada de DLQ no encontrada: " + id));
+        if (body == null || body.classification() == null || body.recommendation() == null) {
+            throw new IllegalArgumentException("El triaje necesita clasificación y recomendación");
+        }
+        String by = CurrentActor.get().subject();
+        Map<String, Object> t = new java.util.LinkedHashMap<>();
+        t.put("classification", body.classification());
+        t.put("defectType", body.defectType());
+        t.put("recommendation", body.recommendation());
+        t.put("rationale", body.rationale());
+        t.put("evidence", body.evidence() == null ? List.of() : body.evidence());
+        t.put("triagedBy", by);
+        t.put("triagedAt", java.time.Instant.now().toString());
+        dlq.saveTriage(id, ContractJson.mapper().writeValueAsString(t));
+        audit.record("DLQ_TRIAGED", "dlq:" + id, body.classification() + " -> " + body.recommendation());
+        return Map.of("id", id, "status", entry.status(), "triage", t);
     }
 
     @Configuration

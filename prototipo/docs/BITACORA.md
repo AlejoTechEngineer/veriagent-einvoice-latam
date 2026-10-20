@@ -179,3 +179,29 @@ un-local.ps1 -Clean -Background` (perfil local, 127.0.0.1:8080).
   revisor A 200 con `reviewer = reviewer-a`.
 - Identidades de demostración: `reviewer-a` y `reviewer-b` (REVIEWER) sustituyen a la única identidad de revisor
   anterior (S-28). `mvn install` del reactor: **133 pruebas, 0 fallos, 1 omitida** (`KafkaEventBusIT`, sin Docker).
+
+## Fase 4. Plano agéntico y ciclo cerrado (2026-10-20)
+
+### Componentes (tabla 12)
+| Componente | Implementación | Pruebas |
+|:---|:---|:---|
+| agent-orchestrator | `agent_orchestrator.py`: grafo de LangGraph 1.2.16 (instalado en esta fase): proponer, autocomprobar con el kit, reintentar (solo LLM), abrir solicitud de cambio, registrar la candidata y la propuesta | `test_cycle_*` |
+| mapping-agent | Perfil Alfa (`mapping_agent.py`, base) y especificaciones nuevas (`spec_mapping_agent.py`): heurístico por defecto, LLM solo con `ANTHROPIC_API_KEY` | Gamma: 23 de 23 campos frente al mapeo de referencia |
+| legacy-extraction-agent | `legacy_agent.py` sobre `data/legacy/pkg_fact_beta_pe.sql` (sintético), con archivo y línea | reglas idénticas a la línea base de Beta PE |
+| dlq-triage-agent | `triage_agent.py`: taxonomía determinista, registra la recomendación por `POST /api/dlq/{id}/triage` | 4 casos de taxonomía |
+| mcp-spec-reader, mcp-catalog, mcp-validator, mcp-repo | `mcp_servers.py` (cuatro servidores) | sin herramienta de merge; recorrido de rutas rechazado |
+| Plataforma | `POST /api/mappings/{p}/{c}/check` (verificación en seco) y `POST /api/dlq/{id}/triage` | `MappingRegistryTest` 4 de 4, `DlqHandlerTest` 4 de 4 |
+
+### Resultados
+- pytest: **31 de 31** (con Java 21 en el PATH para el kit). Módulos Java afectados en verde; `platform-app` 5 de 5.
+- **Ciclo cerrado en vivo** (perfil local, plataforma y API de revisión reales, tokens generados al arrancar):
+  1. Comprobante de XX antes del mapeo: 422 `NO_MAPPING`; termina en DLQ.
+  2. `run_cycle("gamma", "XX")`: el agente propone (`spec-heuristic-v1`), el kit lo verifica en seco (50 en
+     ejecución, 6 ejemplos validados en CI, 0 fallos), abre `PR-0001` en el repositorio de juguete y registra la
+     versión 1 como CANDIDATE; propuesta en `agent_proposal` como PENDING_REVIEW.
+  3. El agente intenta aprobar en la plataforma: **403**. `reviewer-a` aprueba en la API de revisión: 200, reenviado
+     al registro con su token (`approvedBy = reviewer-a`).
+  4. El agente intenta activar: **403**. `reviewer-b` activa: 200 (`activatedBy = reviewer-b`).
+  5. Dos comprobantes de XX después de activar: AUTHORIZED por gamma con el mapeo v1 (recarga en caliente).
+  6. El agente de triaje clasifica la entrada de DLQ como `SIN_MAPEO_VIGENTE` → `ACTIVAR_MAPEO_Y_REPROCESAR`;
+     el agente intenta reprocesar: **403**; la operadora reprocesa: 200. Conservación: 3 registrados = 3 autorizados.

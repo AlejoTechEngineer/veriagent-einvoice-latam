@@ -93,4 +93,20 @@ class MappingRegistryTest {
         mvc.perform(post("/api/mappings/alfa/CO/rollback").header("Authorization", rev)).andExpect(status().isOk());
         assertEquals(1, registry.current("alfa", "CO").orElseThrow().version());
     }
+
+    @Test
+    @DisplayName("Verificación en seco: el agente obtiene el resultado del kit sin registrar ninguna versión; el operador no puede")
+    void dryRunCheck() throws Exception {
+        int before = registry.list("alfa", "CO").size();
+        mvc.perform(post("/api/mappings/alfa/CO/check").header("Authorization", tokens.agent())
+                .contentType(MediaType.APPLICATION_JSON).content(proposal(false)))
+            .andExpect(status().isOk()).andExpect(jsonPath("$.passed").value(true)).andExpect(jsonPath("$.runtimeDocuments").value(50));
+        mvc.perform(post("/api/mappings/alfa/CO/check").header("Authorization", tokens.agent())
+                .contentType(MediaType.APPLICATION_JSON).content(proposal(true)))
+            .andExpect(status().isOk()).andExpect(jsonPath("$.passed").value(false));
+        mvc.perform(post("/api/mappings/alfa/CO/check").header("Authorization", tokens.operator())
+                .contentType(MediaType.APPLICATION_JSON).content(proposal(false)))
+            .andExpect(status().isForbidden());
+        assertEquals(before, registry.list("alfa", "CO").size());
+    }
 }

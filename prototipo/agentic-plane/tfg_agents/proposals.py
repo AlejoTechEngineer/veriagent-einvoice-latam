@@ -29,6 +29,10 @@ CREATE TABLE IF NOT EXISTS agent_proposal (
 CREATE INDEX IF NOT EXISTS ix_proposal_status ON agent_proposal(status);
 """
 
+# Columnas añadidas en la Fase 4 (ciclo cerrado con el registro de mapeos); se agregan a bases existentes.
+EXTRA_COLUMNS = {"registry_provider": "TEXT", "registry_country": "TEXT", "registry_version": "INTEGER",
+                 "pull_request": "TEXT"}
+
 
 def db_path() -> Path:
     return Path(os.environ.get("TFG_DB", POC_HOME / "results" / "proposals.db"))
@@ -41,6 +45,10 @@ def connect():
     con = sqlite3.connect(p)
     con.row_factory = sqlite3.Row
     con.executescript(SCHEMA)
+    have = {r["name"] for r in con.execute("PRAGMA table_info(agent_proposal)")}
+    for col, kind in EXTRA_COLUMNS.items():
+        if col not in have:
+            con.execute(f"ALTER TABLE agent_proposal ADD COLUMN {col} {kind}")
     try:
         yield con
         con.commit()
@@ -48,14 +56,18 @@ def connect():
         con.close()
 
 
-def save(agent: str, kind: str, mapping: dict, verification: dict, gate_passed: bool) -> str:
+def save(agent: str, kind: str, mapping: dict, verification: dict, gate_passed: bool,
+         registry: tuple[str, str, int] | None = None, pull_request: str | None = None) -> str:
     pid = f"prop-{uuid.uuid4().hex[:8]}"
+    rp, rc, rv = registry or (None, None, None)
     with connect() as con:
-        con.execute("INSERT INTO agent_proposal VALUES (?,?,?,?,?,?,?,?,?,NULL,NULL,NULL)",
+        con.execute("INSERT INTO agent_proposal (id, agent, kind, created_at, spec_sha256, mapping_json, verification_json,"
+                    " gate_passed, status, registry_provider, registry_country, registry_version, pull_request)"
+                    " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)",
                     (pid, agent, kind, datetime.now(timezone.utc).isoformat(timespec="seconds"),
-                     mapping.get("specSha256", ""), json.dumps(mapping, ensure_ascii=False),
+                     mapping.get("specSha256", mapping.get("legacySha256", "")), json.dumps(mapping, ensure_ascii=False),
                      json.dumps(verification, ensure_ascii=False), int(gate_passed),
-                     "PENDING_REVIEW" if gate_passed else "BLOCKED_BY_GATE"))
+                     "PENDING_REVIEW" if gate_passed else "BLOCKED_BY_GATE", rp, rc, rv, pull_request))
     return pid
 
 
@@ -73,7 +85,8 @@ def get(pid: str) -> dict | None:
 
 def list_all() -> list[dict]:
     with connect() as con:
-        rows = con.execute("SELECT id, agent, kind, created_at, gate_passed, status, reviewer, decided_at "
+        rows = con.execute("SELECT id, agent, kind, created_at, gate_passed, status, reviewer, decided_at, "
+                           "registry_provider, registry_country, registry_version, pull_request "
                            "FROM agent_proposal ORDER BY created_at DESC").fetchall()
     return [dict(r) | {"gate_passed": bool(r["gate_passed"])} for r in rows]
 

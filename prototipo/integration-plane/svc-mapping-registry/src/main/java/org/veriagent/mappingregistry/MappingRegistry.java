@@ -97,6 +97,11 @@ public class MappingRegistry implements MappingProvider {
         refresh(provider, country);
     }
 
+    /** Control del kit sin registrar nada (autocomprobación de los agentes). */
+    public MappingGate.Result check(String provider, String country, JsonNode body) {
+        return gate.verify(norm(provider), Country.valueOf(country.toUpperCase(Locale.ROOT)), body);
+    }
+
     /** Registra una versión candidata y la somete al kit. Pueden proponer agentes, revisores y el sistema. */
     @Transactional
     public Version propose(String provider, String country, JsonNode body, String source, String proposalRef) {
