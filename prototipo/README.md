@@ -100,7 +100,7 @@ Git Bash). El perfil full (Redpanda y PostgreSQL) se levanta con `docker compose
 
 | Evidencia | Resultado | Detalle |
 |:---|:---|:---|
-| Pruebas | Java: 138, 0 fallos, 1 omitida (Kafka, sin Docker); Python: 42 de 42 | `docs/BITACORA.md` |
+| Pruebas | Java: 141, 0 fallos, 1 omitida (Kafka, sin Docker); Python: 57 de 57 (Fase 9) | `docs/BITACORA.md` |
 | Escenarios S1 a S8 | 8 de 8 en verde con un comando | `docs/ESCENARIOS.md` |
 | Banco original (22, el del documento), por el sistema real | ejecución 86 %, kit + ejemplos validados 100 %, 0 falsos positivos | `results/escenarios/BANCO.json` |
 | Banco ampliado (129 mutantes, semilla 2026) | ejecución 93,8 % (IC 95 % 88,2–96,8 %), con ejemplos validados 100 % (97,1–100 %) | `results/escenarios/banco_ampliado.json` |

@@ -443,7 +443,7 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   `svc-mapping-registry`: 7 de 7 pruebas. No hay una prueba concurrente específica.
 
 ### T5. Banco ampliado y falsos positivos por el sistema real, con el código de la Fase 9
-- Ejecutado: `scripts\escenarios	odos.ps1` desde una plataforma limpia (JAR compilado tras T3; la corrección de
+- Ejecutado: `scripts\escenarios\todos.ps1` desde una plataforma limpia (JAR compilado tras T3; la corrección de
   concurrencia de T3 se hizo después y no afecta a estos escenarios): todo en verde en 8,3 minutos. S1 a S8, banco
   de 22, rendimiento, falsos positivos y banco ampliado aprobados.
 - Banco original de 22: ejecución 19 (86 %), sistema 22 (100 %), 0 falsos positivos.
@@ -452,3 +452,7 @@ Un commit por tarea. Los resultados de cada tarea se resumen en `docs/RESULTADOS
   huella del conjunto). Detalle por tipo en `ESCENARIOS.md`.
 - Falsos positivos: 0 de 11.402; cota superior del 95 % 0,026 %.
 - Los resultados se guardan en `results/escenarios/fase9/`; los archivos de la corrida de referencia no cambian.
+
+### T6. Resultados para el documento
+- `docs/RESULTADOS_PARA_DOCUMENTO.md`: estado, pruebas, commit y números de cada tarea T1 a T6. Copia fuera del
+  repositorio en `%USERPROFILE%\tfg_work\prisma_e2\`. `README.md`: totales de pruebas actualizados.
