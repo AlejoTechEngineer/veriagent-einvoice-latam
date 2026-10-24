@@ -109,8 +109,8 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
   <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final_2.docx</code></td><td>Versión editable en Word de la Entrega 2 corregida</td></tr>
   <tr><td><code>README.md</code></td><td><a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: qué se agregó en la versión corregida, estructura, metodología y resultados del prototipo</td></tr>
   <tr><td colspan="2"><b>entrega-3-borrador-final/</b></td></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar.pdf</code></td><td><b>Entrega 3 (borrador final)</b>: incorpora el <b>desarrollo de la solución</b>, los <b>resultados</b> y las <b>conclusiones</b> sobre el contenido de las entregas anteriores</td></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar.docx</code></td><td>Versión editable en Word de la Entrega 3</td></tr>
+  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.pdf</code></td><td><b>Entrega 3 (borrador final)</b>: la Entrega 2 corregida más el <b>cumplimiento de los objetivos (5.8)</b> y el <b>capítulo 6, Conclusiones</b>, con las observaciones del director atendidas</td></tr>
+  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.docx</code></td><td>Versión editable en Word de la Entrega 3</td></tr>
   <tr><td colspan="2"><b>prototipo/</b></td></tr>
   <tr><td><code>README.md</code></td><td><a href="prototipo/README.md"><b>Prototipo funcional</b></a>: código, escenarios, resultados medidos y cómo ejecutarlo</td></tr>
 </table>
@@ -144,20 +144,20 @@ Es un instrumento de validación técnica, no apto para producción.
 | Entrega | Archivos | Páginas | Estado |
 |:---|:---|:---:|:---|
 | [**1 · Borrador inicial**](entrega-1-borrador-inicial/) | `TFG_Entrega1_DeMendozaTovar_Final.pdf` y `.docx` | 27 | Entregada; las observaciones del director se atendieron en la Entrega 2 corregida |
-| [**2 · Versión corregida**](entrega-2-borrador-intermedio/) | `TFG_Entrega2_DeMendozaTovar_Final_2.pdf` y `.docx` | 119 | Corregida con las observaciones del director; capítulo 6 en desarrollo |
-| [**3 · Borrador final**](entrega-3-borrador-final/) | `TFG_Entrega3_DeMendozaTovar.pdf` y `.docx` | 75 | En curso: borrador del 18 de octubre, pendiente de incorporar la Entrega 2 corregida y los resultados del prototipo |
+| [**2 · Versión corregida**](entrega-2-borrador-intermedio/) | `TFG_Entrega2_DeMendozaTovar_Final_2.pdf` y `.docx` | 119 | Corregida con las observaciones del director; el capítulo 6 se completa en la Entrega 3 |
+| [**3 · Borrador final**](entrega-3-borrador-final/) | `TFG_Entrega3_DeMendozaTovar_Final_1.pdf` y `.docx` | 128 | Versión final del borrador (24 de octubre): Entrega 2 corregida, apartado 5.8 y capítulo 6 completos; 59 tablas, 24 figuras y 105 referencias |
 
 
-| Capítulo | Contenido | Entrega 1 | Entrega 2 corregida | Entrega 3 (borrador) |
+| Capítulo | Contenido | Entrega 1 | Entrega 2 corregida | Entrega 3 |
 |:---|:---|:---:|:---:|:---:|
 | **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | Completo | Completo | Completo |
 | **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | Completo | Completo | Completo |
 | **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | Pendiente | Completo | Completo |
 | **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | Pendiente | Completo | Completo |
-| **5. Resultados obtenidos** | Resultados por objetivo específico | Pendiente | Completo | Completo |
+| **5. Resultados obtenidos** | Resultados por objetivo y cumplimiento de los objetivos (5.8) | Pendiente | Completo (sin 5.8) | Completo |
 | **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | Pendiente | En desarrollo | Completo |
 | **Referencias Bibliográficas** | Fuentes citadas en el trabajo | Completo | Completo | Completo |
-| **Anexos** | Decisiones arquitectónicas, supuestos, banco de defectos, matriz del estado del arte y búsquedas | Pendiente | Completo (A a E) | Completo (A a C) |
+| **Anexos** | Decisiones arquitectónicas, supuestos, banco de defectos, matriz del estado del arte y búsquedas | Pendiente | Completo (A a E) | Completo (A a E) |
 
 <details>
 <summary><b>Entrega 1 — Borrador inicial</b></summary>
@@ -190,16 +190,14 @@ Es un instrumento de validación técnica, no apto para producción.
 <details>
 <summary><b>Entrega 3 — Borrador final</b></summary>
 
-- Aportación: taxonomía de defectos y **kit de verificación determinista**.
-- Requisitos y atributos de calidad, **matriz de decisión multicriterio** y **arquitectura de referencia (modelo C4)** con diez decisiones documentadas.
-- **Perfiles del equipo y matriz RACI**, EDT, PERT, **cronograma nivelado por recursos** y presupuesto con referentes salariales y análisis de sensibilidad.
-- Análisis de riesgos, plan de calidad, integración y despliegue continuos con Jenkins, y evaluación de la solución.
-- Resultados: prueba de concepto, **banco de 22 defectos inyectados** (86 % de detección en ejecución y 100 % con integración continua, sin falsos positivos), simulación de **Monte Carlo** y punto de equilibrio.
-- Conclusiones, limitaciones y trabajo futuro.
+- Parte de la **Entrega 2 corregida**, con las observaciones del director atendidas: revisión sistemática asistida y parcial, matriz del estado del arte, protocolo de evaluación, vistas, modelo de amenazas, anexos A a E y resultados del prototipo.
+- **5.8 Cumplimiento de los objetivos**: resultado de cada objetivo, marcado como medido, estimado o hipótesis; la meta del 80 % se cumple como estimación puntual con el banco de 22 (86,4 %) y con una confianza del 95 % con el banco ampliado de 129 (93,8 %; 88,2 % a 96,8 %), sobre datos sintéticos.
+- **Capítulo 6, Conclusiones**, en siete apartados: síntesis, respuesta a la pregunta guía y a sus tres subpreguntas (la tercera como hipótesis con protocolo), discusión de los objetivos, contribuciones, implicaciones, limitaciones y trabajo futuro.
+- **128 páginas, 59 tablas, 24 figuras y 105 referencias**.
 
 </details>
 
-> Las entregas son acumulativas. La Entrega 2 corregida incluye la Entrega 1, la metodología, el desarrollo de la solución y los resultados del prototipo. La Entrega 3 añade las conclusiones; su carpeta todavía contiene el borrador del 18 de octubre, que se actualizará con la Entrega 2 corregida.
+> Las entregas son acumulativas. La Entrega 2 corregida incluye la Entrega 1, la metodología, el desarrollo de la solución y los resultados del prototipo. La Entrega 3 parte de ella y añade el cumplimiento de los objetivos (5.8) y las conclusiones.
 >
 > Completo = capítulo desarrollado en esa entrega · Iniciado = capítulo con avance parcial · Pendiente = aún no desarrollado
 
@@ -398,7 +396,7 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 |:---|:---|
 | **Leer** una entrega | Entra a la carpeta de la entrega y abre el **PDF** |
 | **Revisar o editar** | Descarga el archivo **Word (.docx)** |
-| **Ver el trabajo más actualizado** | Abre la **Entrega 2 corregida** para la metodología, la revisión sistemática y los resultados del prototipo, y la **Entrega 3** para las conclusiones del borrador del 18 de octubre |
+| **Ver el trabajo más actualizado** | Abre la **Entrega 3**: contiene todo lo corregido de la Entrega 2 más el cumplimiento de los objetivos y las conclusiones |
 | **Ejecutar el prototipo** | Sigue [`prototipo/README.md`](prototipo/README.md) |
 
 ---

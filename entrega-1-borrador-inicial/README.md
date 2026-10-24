@@ -71,7 +71,7 @@ Las observaciones del director sobre esta entrega se atendieron en la [**Entrega
 | Carpeta | Contenido |
 |:---|:---|
 | [Entrega 2 corregida](../entrega-2-borrador-intermedio/) | Versión corregida con metodología, revisión sistemática, desarrollo de la solución y resultados del prototipo |
-| [Entrega 3](../entrega-3-borrador-final/) | Borrador final, en actualización |
+| [Entrega 3](../entrega-3-borrador-final/) | Borrador final con conclusiones y las observaciones atendidas |
 | [Prototipo](../prototipo/README.md) | Prototipo funcional con datos sintéticos |
 
 ---
