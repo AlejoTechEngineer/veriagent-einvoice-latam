@@ -109,8 +109,8 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
   <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final_2.docx</code></td><td>Versión editable en Word de la Entrega 2 corregida</td></tr>
   <tr><td><code>README.md</code></td><td><a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: qué se agregó en la versión corregida, estructura, metodología y resultados del prototipo</td></tr>
   <tr><td colspan="2"><b>entrega-3-borrador-final/</b></td></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.pdf</code></td><td><b>Entrega 3 (borrador final)</b>: la Entrega 2 corregida más el <b>cumplimiento de los objetivos (5.8)</b> y el <b>capítulo 6, Conclusiones</b>, con las observaciones del director atendidas</td></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.docx</code></td><td>Versión editable en Word de la Entrega 3</td></tr>
+  <tr><td><a href="entrega-3-borrador-final/TFG_Entrega3_DeMendozaTovar_Final_BF.pdf"><code>TFG_Entrega3_DeMendozaTovar_Final_BF.pdf</code></a></td><td><b>Entrega 3 (borrador final)</b>: la Entrega 2 corregida más el <b>cumplimiento de los objetivos (5.8)</b> y el <b>capítulo 6, Conclusiones</b>, con las observaciones del director atendidas</td></tr>
+  <tr><td><a href="entrega-3-borrador-final/TFG_Entrega3_DeMendozaTovar_Final_BF.docx"><code>TFG_Entrega3_DeMendozaTovar_Final_BF.docx</code></a></td><td>Versión editable en Word de la Entrega 3</td></tr>
   <tr><td colspan="2"><b>prototipo/</b></td></tr>
   <tr><td><code>README.md</code></td><td><a href="prototipo/README.md"><b>Prototipo funcional</b></a>: código, escenarios, resultados medidos y cómo ejecutarlo</td></tr>
 </table>
@@ -145,7 +145,7 @@ Es un instrumento de validación técnica, no apto para producción.
 |:---|:---|:---:|:---|
 | [**1 · Borrador inicial**](entrega-1-borrador-inicial/) | `TFG_Entrega1_DeMendozaTovar_Final.pdf` y `.docx` | 27 | Entregada; las observaciones del director se atendieron en la Entrega 2 corregida |
 | [**2 · Versión corregida**](entrega-2-borrador-intermedio/) | `TFG_Entrega2_DeMendozaTovar_Final_2.pdf` y `.docx` | 119 | Corregida con las observaciones del director; el capítulo 6 se completa en la Entrega 3 |
-| [**3 · Borrador final**](entrega-3-borrador-final/) | `TFG_Entrega3_DeMendozaTovar_Final_1.pdf` y `.docx` | 126 | Versión final del borrador (24 de octubre): Entrega 2 corregida, apartado 5.8 y capítulo 6 completos; 59 tablas, 24 figuras y 105 referencias |
+| [**3 · Borrador final**](entrega-3-borrador-final/) | [`TFG_Entrega3_DeMendozaTovar_Final_BF.pdf`](entrega-3-borrador-final/TFG_Entrega3_DeMendozaTovar_Final_BF.pdf) y [`.docx`](entrega-3-borrador-final/TFG_Entrega3_DeMendozaTovar_Final_BF.docx) | 126 | Versión final del borrador (24 de octubre): Entrega 2 corregida, apartado 5.8 y capítulo 6 completos; 59 tablas, 24 figuras y 105 referencias |
 
 
 | Capítulo | Contenido | Entrega 1 | Entrega 2 corregida | Entrega 3 |

@@ -76,8 +76,8 @@ La **Entrega 3** responde a la pregunta **qué se diseñó, qué se obtuvo y qu�
 
 <table align="center">
   <tr><th>Archivo</th><th>Descripción</th></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.pdf</code></td><td><b>Versión de lectura</b> de la Entrega 3 (126 páginas)</td></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.docx</code></td><td><b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
+  <tr><td><a href="TFG_Entrega3_DeMendozaTovar_Final_BF.pdf"><code>TFG_Entrega3_DeMendozaTovar_Final_BF.pdf</code></a></td><td><b>Versión de lectura</b> de la Entrega 3 (126 páginas)</td></tr>
+  <tr><td><a href="TFG_Entrega3_DeMendozaTovar_Final_BF.docx"><code>TFG_Entrega3_DeMendozaTovar_Final_BF.docx</code></a></td><td><b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
   <tr><td><code>README.md</code></td><td>Este documento: resumen de lo que contiene la entrega</td></tr>
 </table>
 
