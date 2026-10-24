@@ -9,6 +9,16 @@ tres países sintéticos (CO, PE y XX) con tres proveedores simulados (Alfa, Bet
 con un kit determinista antes de enviarlo y deja que los agentes de IA propongan mapeos que solo una persona puede
 aprobar y activar. Ningún nombre, especificación, catálogo ni comprobante corresponde a una organización real.
 
+## Contenido
+
+- [Arquitectura](#arquitectura)
+- [Cómo ejecutarlo](#cómo-ejecutarlo)
+- [Resultados principales](#resultados-principales)
+- [Gráficos de evaluación](#gráficos-de-evaluación)
+- [Modelos de lenguaje: dónde intervienen y qué se entrena](#modelos-de-lenguaje-dónde-intervienen-y-qué-se-entrena)
+- [Estructura](#estructura)
+- [Documentación](#documentación)
+
 ## Arquitectura
 
 ```mermaid
@@ -78,23 +88,127 @@ sequenceDiagram
   P->>K: revertir a la versión anterior
 ```
 
-## Inicio rápido (Windows, sin Docker)
+## Cómo ejecutarlo
 
-Requisitos: JDK 21, Maven 3.9, Python 3.12 con `uv` y PowerShell 5.1 o superior.
+Las instrucciones se validaron el 24 de octubre de 2026 desde un clon limpio del repositorio en una carpeta temporal cuya ruta
+tiene espacios (Windows 11, PowerShell 5.1). Cada paso indica si se validó; lo marcado **no validado** no se
+ejecutó en esa prueba.
+
+### 1. Requisitos
+
+| Herramienta | Versión | Windows | Linux (Debian o Ubuntu) |
+|:---|:---|:---|:---|
+| JDK | 21 | `winget install EclipseAdoptium.Temurin.21.JDK` y `JAVA_HOME` apuntando a ese JDK | `sudo apt install openjdk-21-jdk` |
+| Maven | 3.9 o superior | `choco install maven`, o el ZIP de maven.apache.org en el `PATH` | `sudo apt install maven` (si la versión es menor que 3.9, el ZIP de maven.apache.org) |
+| Python | 3.12 | lo instala `uv` (siguiente fila) | lo instala `uv` |
+| uv | reciente (se probó 0.11.7) | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
+| Git | cualquiera reciente | `winget install Git.Git` | `sudo apt install git` |
+
+Los comandos de instalación de esta tabla son los oficiales de cada herramienta, pero **no se validaron** en la
+prueba, porque la máquina ya las tenía instaladas: JDK 21.0.12 (portable), Maven 3.9.16, uv 0.11.7 y Git; Python 3.12.15 lo aportó uv. Compruébalo con `java -version`, `mvn -v` y `uv --version`.
+
+### 2. Clonar
 
 ```powershell
-cd prototipo\agentic-plane; uv venv --python 3.12; uv pip install -e ".[test]" packaging; cd ..
-scripts\run-local.ps1 -Build -Clean -Background   # plataforma en 127.0.0.1:8080 y API de revisión en 127.0.0.1:8090
-start http://127.0.0.1:8080                       # front; los tokens están en results\runtime\demo-tokens.json
-scripts\escenarios\todos.ps1                      # S1 a S8, banco de 22, rendimiento, falsos positivos y banco ampliado
+git clone https://github.com/AlejoTechEngineer/veriagent-einvoice-latam.git
+cd veriagent-einvoice-latam\prototipo
+```
+
+Validado.
+
+### 3. Dependencias de Python (plano agéntico)
+
+```powershell
+cd agentic-plane
+uv venv --python 3.12                 # descarga Python 3.12 si no está instalado
+uv pip install -e ".[test]" packaging
+cd ..
+```
+
+Validado: 17 s, 70 paquetes. No hace falta ninguna clave de API: sin `ANTHROPIC_API_KEY`, los agentes usan el motor
+heurístico (ver [Modelos de lenguaje](#modelos-de-lenguaje-dónde-intervienen-y-qué-se-entrena)).
+
+### 4. Compilar y arrancar la plataforma
+
+```powershell
+scripts\run-local.ps1 -Build -Clean -Background
+```
+
+Compila con Maven, arranca la plataforma en el perfil local (un proceso Java, bus en memoria y H2 en archivo, sin
+Docker) y, en segundo plano, la API de revisión de propuestas en Python. Validado: 79 s hasta «Plataforma lista», compilación incluida.
+
+En Linux no hay `run-local.sh`. El equivalente manual es este (**no validado**; los escenarios son scripts de
+PowerShell y en Linux se ejecutan con `pwsh`, también **no validado**):
+
+```bash
+mvn -B -q -f integration-plane/pom.xml install -DskipTests
+VERIAGENT_HOME="$PWD" java -jar integration-plane/platform-app/target/platform-app-0.1.0.jar --spring.profiles.active=local
+```
+
+### 5. Abrir el front y la documentación de la API
+
+| Qué | Dirección | Validado |
+|:---|:---|:---|
+| Front mínimo | http://127.0.0.1:8080/ | Sí (200) |
+| Documentación de la API (Swagger UI) | http://127.0.0.1:8080/swagger-ui.html | Sí (200) |
+| Contrato OpenAPI | http://127.0.0.1:8080/v3/api-docs | Sí (200) |
+| API de revisión de propuestas (FastAPI) | http://127.0.0.1:8090/docs | Sí (200) |
+| Salud | http://127.0.0.1:8080/actuator/health | Sí (200) |
+
+### 6. Tokens de demostración
+
+Al arrancar se generan tokens aleatorios en `results\runtime\demo-tokens.json`, un archivo local que **git ignora**
+(se comprobó con `git check-ignore`). Hay uno por identidad: `reviewer-a` y `reviewer-b` (REVIEWER), `agente.mapeo` (AGENT), `operador.demo` (OPERATOR) y `sistema` (SYSTEM). Para entrar al front, copia el token del
+rol que quieras probar. Los tokens cambian en cada arranque y no son autenticación real.
+
+### 7. Pruebas automáticas
+
+El repositorio **no tiene** `scripts\test-all.ps1`. Los comandos equivalentes son estos:
+
+```powershell
+mvn -B -q -f integration-plane/pom.xml verify          # reactor Java (incluye el kit)
+# clases del kit que el plano agéntico usa en modo lote (Maven no las genera; el pipeline sí)
+javac -d verification-kit\build\classes (Get-ChildItem verification-kit\src\main\java -Recurse -Filter *.java).FullName
+cd agentic-plane; .\.venv\Scripts\python.exe -m pytest -q; cd ..
+```
+
+Validado: Maven, 141 pruebas en 32 suites, 0 fallos y 1 omitida (la de Kafka, sin Docker), en unos 3 minutos; pytest, 57 de 57 en 25 s. Sin el paso de `javac`, 4 pruebas de pytest fallan en un clon limpio (las que ejecutan el kit en modo lote), porque `verification-kit/build/classes` no existe; los escenarios de `todos.ps1` no lo necesitan. Con Git Bash o en Linux, `bash ci/run-pipeline.sh` ejecuta todas las etapas del pipeline
+(compilación, pruebas, gates y prueba de humo); **no validado** en esta prueba.
+
+### 8. Demostración y escenarios
+
+El repositorio **no tiene** `scripts\demo.ps1`. Para una demostración corta, con la plataforma en marcha (paso 4):
+
+```powershell
+scripts\escenarios\S1.ps1     # una emisión síncrona de principio a fin
+scripts\escenarios\S5.ps1     # el agente propone un mapeo y dos personas lo aprueban y lo activan
 scripts\stop-local.ps1
 ```
 
-`scripts\escenarios\todos.ps1` arranca y detiene la plataforma por sí mismo. Cada escenario tiene su script
-(`S1.ps1` a `S8.ps1`, `banco.ps1`, `rendimiento.ps1`, `falsos_positivos.ps1`, `banco_ampliado.ps1`) y deja su
-resultado en `results/escenarios/`. El pipeline completo corre en local con `bash ci/run-pipeline.sh` (Linux o
-Git Bash). El perfil full (Redpanda y PostgreSQL) se levanta con `docker compose up -d --build` tras copiar
-`.env.example` a `.env`; no se ejecutó en la máquina de trabajo (sin Docker).
+Para todos los escenarios (S1 a S8, banco de 22, rendimiento, falsos positivos y banco ampliado):
+
+```powershell
+scripts\escenarios\todos.ps1   # arranca y detiene la plataforma por sí mismo
+```
+
+Validado: código de salida 0 en 428 s (unos 7 minutos); los 12 resultados quedaron aprobados, con el banco ampliado en 121 de 129 en ejecución y 129 de 129 con ejemplos validados, y 0 falsos positivos en 11.402 comprobantes correctos. Los resultados quedan en `results\escenarios\`.
+
+### 9. Perfil full con Docker
+
+El perfil full (Redpanda y PostgreSQL) se levanta con `docker compose up -d --build`, tras copiar `.env.example` a
+`.env`. **No validado:** no se ejecutó en la máquina de trabajo porque el daemon de Docker no estaba disponible.
+Solo se comprobó la sintaxis con `docker compose config`.
+
+### 10. Problemas frecuentes
+
+| Problema | Síntoma | Solución |
+|:---|:---|:---|
+| `JAVA_HOME` apunta a otro JDK | Maven o el script usan un Java distinto de 21 y la compilación o el arranque fallan | `run-local.ps1` usa primero `JAVA_HOME` y Maven también. Apúntalo a un JDK 21 (`$env:JAVA_HOME = 'C:\ruta\al\jdk-21'`). Se observó en la prueba: la máquina tenía `JAVA_HOME` en un JDK 17 |
+| Ruta con espacios | Rutas cortadas en los argumentos de Java o de Python | Los scripts entrecomillan las rutas; la prueba se hizo en una carpeta con espacios y funcionó. Si algo falla, clona en una ruta sin espacios (por ejemplo `C:\src`) |
+| Configuración regional del JDK | Con `es`, el validador XML devuelve mensajes traducidos | El kit clasifica los errores del esquema por su código (`cvc-...`), no por el texto, y su suite se ejecuta con `es` y con `en`. Si un fallo depende del idioma, repite con `-Duser.language=en` para aislarlo |
+| Puertos ocupados | `run-local.ps1` no llega a «Plataforma lista» o la API de revisión no arranca | La plataforma usa 8080 y la API de revisión 8090. Busca el proceso con `Get-NetTCPConnection -LocalPort 8080` (Windows) o `ss -ltnp \| grep 8080` (Linux) y detenlo; `scripts\stop-local.ps1` detiene una plataforma anterior |
+| Falta el entorno de Python | `No existe ...\agentic-plane\.venv\Scripts\python.exe` | Repite el paso 3 |
+| Falta el JAR | `No existe ...platform-app-0.1.0.jar` | Arranca con `-Build` (paso 4) |
 
 ## Resultados principales
 
@@ -107,6 +221,62 @@ Git Bash). El perfil full (Redpanda y PostgreSQL) se levanta con `docker compose
 | Falsos positivos | 0 de 11.402 comprobantes correctos (cota superior 95 %: 0,026 %) | `results/escenarios/falsos_positivos.json` |
 | Emisión síncrona | p95 54 ms (umbral del documento: 3 s) | `results/escenarios/RENDIMIENTO.json` |
 | Lote | 10.000 comprobantes en 22,9 s, sin pérdidas | ídem |
+
+## Gráficos de evaluación
+
+Los tres gráficos se generan con matplotlib a partir de los resultados guardados en `results/escenarios/`
+(corrida de referencia) y `results/escenarios/fase9/` (repetición). Todos usan **datos sintéticos**.
+
+![Detección por tipo de defecto y mecanismo](docs/img/deteccion_por_tipo.png)
+
+**Detección por tipo de defecto (D1 a D6) y mecanismo**, en el banco original (22 mutantes) y en el ampliado (129),
+con el intervalo de Wilson al 95 %. Con los ejemplos validados se detectan todos en ambos bancos. En ejecución
+escapan sobre todo D1 (códigos válidos pero intercambiados) y D6. Con 2 a 30 mutantes por tipo los intervalos son
+anchos: las tasas por tipo son indicativas y la total del banco ampliado (121 de 129, 88,2–96,8 %) es la más estable.
+
+![Latencias de verificación y de emisión síncrona](docs/img/latencias.png)
+
+**Latencias** (p50 y p95, escala logarítmica) de la verificación del kit en proceso y por HTTP, y de la emisión
+síncrona completa con el simulador del proveedor, en dos corridas. La p95 de la emisión (54 a 57 ms) queda muy por
+debajo del umbral de 3 s.
+
+![Rendimiento del lote de 10.000 comprobantes](docs/img/lote_10000.png)
+
+**Lote de 10.000 comprobantes**: tiempo de extremo a extremo y comprobantes por segundo en las dos corridas
+(22,9 s y 31,2 s), con los 10.000 autorizados y sin pérdidas. Es una corrida corta en un solo proceso con
+simuladores locales: no sustituye una prueba de carga sostenida.
+
+## Modelos de lenguaje: dónde intervienen y qué se entrena
+
+**El prototipo no entrena ni ajusta ningún modelo.** No contiene redes neuronales ni aprendizaje automático
+propio, y no hay curvas de entrenamiento, porque no hay entrenamiento. Las dependencias de Python
+(`agentic-plane/pyproject.toml`) son pydantic, lxml, FastAPI, uvicorn, httpx, mcp, anthropic y langgraph, y las de
+prueba, pytest e hypothesis. Ni el código ni las dependencias incluyen torch, tensorflow, keras, scikit-learn,
+transformers, xgboost u otras librerías de aprendizaje automático. La única librería numérica es NumPy, en
+`planning/model.py`, para la simulación de Monte Carlo de la planificación.
+
+Cuando se usa un modelo de lenguaje, es un modelo **preentrenado por su proveedor** (un transformador, es decir,
+una red neuronal entrenada fuera de este trabajo) al que el prototipo llama por API. El prototipo solo construye
+el prompt con la especificación sintética y el modelo canónico y filtra la respuesta.
+
+| Componente | ¿Usa un modelo? | Detalle |
+|:---|:---|:---|
+| `mapping-agent` (`tfg_agents/mapping_agent.py`, Perfil Alfa, CO) | Opcional | Motor por defecto `heuristic-v1`: similitud léxica con un glosario mínimo, determinista. Con `ANTHROPIC_API_KEY` usa `anthropic-llm` (modelo en `TFG_LLM_MODEL`), que devuelve JSON y del que se descartan los campos inventados |
+| Agente de mapeo por especificación (`tfg_agents/spec_mapping_agent.py`, Gamma, XX, escenario S5) | Opcional | Lee la especificación **vía MCP** (`mcp-spec-reader`). Motor por defecto `spec-heuristic-v1`, determinista; con `ANTHROPIC_API_KEY`, `SpecLlmBackend` |
+| `legacy-extraction-agent` (`tfg_agents/legacy_agent.py`) | **No** | Extrae tablas de códigos y saneamientos del código heredado sintético con expresiones regulares y cita archivo y línea. Determinista |
+| `dlq-triage-agent` (`tfg_agents/triage_agent.py`) | **No** | Clasifica los fallos de la DLQ a partir de los hallazgos del kit y del proveedor. Determinista; nunca reprocesa |
+| Servidores MCP (`spec-reader`, `catalog`, `validator`, `repo`) | **No** | Herramientas deterministas que los agentes consultan |
+| Orquestador (`tfg_agents/agent_orchestrator.py`, LangGraph) | No por sí mismo | Encadena proponer, verificar con el kit, abrir la solicitud de cambio y registrar la versión candidata. Elige el motor de cada destino; solo el motor LLM reintenta con los hallazgos |
+| **Kit de verificación** (`verification-kit/`, Java) | **Nunca** | Esquema, reglas D1 a D6 y ejemplos validados. Es determinista: la misma entrada da siempre el mismo resultado |
+
+Sin `ANTHROPIC_API_KEY`, todo el prototipo, con sus pruebas y escenarios, funciona con los motores heurísticos.
+Las cifras de este README salen de esa configuración. Con la clave, la salida del modelo sigue siendo solo una
+propuesta: pasa por el kit y por dos personas, y la lista blanca de salida (`tfg_agents/egress.py`) limita las
+conexiones al kit, a la plataforma y al proveedor del modelo.
+
+**Trabajo futuro:** una línea base de aprendizaje automático para el agente de mapeo (por ejemplo, un clasificador
+de correspondencias entrenado con mapeos validados) que compare su exactitud por campo con el motor heurístico y
+con el LLM, con el mismo kit como verificador.
 
 ## Estructura
 
