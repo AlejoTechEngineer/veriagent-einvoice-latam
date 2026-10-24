@@ -27,6 +27,8 @@ node_modules/
 data/generated/
 data/sandbox-repo/
 results/runtime/
+# Propuestas creadas al ejecutar el agente (demo.ps1, escenarios); las publicadas como evidencia ya están rastreadas
+results/proposals/prop-*/
 build-reports/
 
 # Secretos y configuración local (solo se publica .env.example)

@@ -29,8 +29,27 @@ function Initialize-Java {
 
 function Get-PlatformJar {
     $jar = Join-Path (Get-VeriagentHome) 'integration-plane\platform-app\target\platform-app-0.1.0.jar'
-    if (-not (Test-Path $jar)) { throw "No existe $jar. Ejecuta antes scripts\run-local.ps1 -Build o scripts\test-all.ps1." }
+    if (-not (Test-Path $jar)) { throw "No existe $jar. Ejecuta antes scripts\run-local.ps1 -Build (o scripts\demo.ps1 -Build)." }
     return $jar
+}
+
+# Compila el kit en verification-kit\build\classes, que el plano agéntico usa en modo lote (Maven no lo genera; el pipeline sí).
+function Initialize-KitClasses {
+    param([switch]$Force)
+    $classes = Join-Path (Get-VeriagentHome) 'verification-kit\build\classes'
+    if (-not $Force -and (Test-Path (Join-Path $classes 'org\tfg\kit\cli\Main.class'))) { return $classes }
+    $java = Initialize-Java
+    $javac = Join-Path (Split-Path $java) 'javac.exe'
+    if (-not (Test-Path $javac)) { throw "No se encontró javac junto a $java. Hace falta un JDK 21, no un JRE." }
+    if (Test-Path $classes) { Remove-Item -Recurse -Force $classes }
+    New-Item -ItemType Directory -Force -Path $classes | Out-Null
+    # Archivo de argumentos con barras normales y comillas: evita el límite de la línea de órdenes y las rutas con espacios.
+    $argFile = Join-Path (Split-Path $classes) 'javac-sources.txt'
+    Get-ChildItem (Join-Path (Get-VeriagentHome) 'verification-kit\src\main\java') -Recurse -Filter *.java |
+        ForEach-Object { '"' + ($_.FullName -replace '\\', '/') + '"' } | Out-File -Encoding ascii $argFile
+    & $javac -encoding UTF-8 -d $classes "@$argFile"
+    if ($LASTEXITCODE -ne 0) { throw "javac terminó con código $LASTEXITCODE" }
+    return $classes
 }
 
 # Token de demostración de un rol (REVIEWER, AGENT, OPERATOR, SYSTEM), leído del archivo local.

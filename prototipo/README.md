@@ -163,26 +163,55 @@ rol que quieras probar. Los tokens cambian en cada arranque y no son autenticaci
 
 ### 7. Pruebas automáticas
 
-El repositorio **no tiene** `scripts\test-all.ps1`. Los comandos equivalentes son estos:
+```powershell
+scripts\test-all.ps1          # Maven verify, clases del kit con javac y pytest; -SoloJava o -SoloPython para una parte
+```
+
+No necesita la plataforma en marcha ni Docker, pero sí el entorno de Python del paso 3. Antes de pytest compila con
+`javac` las clases del kit en `verification-kit\build\classes`, que las pruebas del modo lote necesitan y Maven no
+genera; sin ese paso, 4 pruebas de pytest fallan en un clon limpio. Comprueba que el Java en uso sea la versión 21 y
+termina con código 1 si alguna parte falla.
+
+Validado el 24 de octubre de 2026 en un clon limpio nuevo: código de salida 0 en 254 s; Maven, 141 pruebas en 32
+suites, 0 fallos y 1 omitida (la de Kafka, sin Docker); pytest, 57 de 57 en 32 s.
+
+Los comandos equivalentes, por si se quieren ejecutar a mano:
 
 ```powershell
 mvn -B -q -f integration-plane/pom.xml verify          # reactor Java (incluye el kit)
-# clases del kit que el plano agéntico usa en modo lote (Maven no las genera; el pipeline sí)
 javac -d verification-kit\build\classes (Get-ChildItem verification-kit\src\main\java -Recurse -Filter *.java).FullName
 cd agentic-plane; .\.venv\Scripts\python.exe -m pytest -q; cd ..
 ```
 
-Validado: Maven, 141 pruebas en 32 suites, 0 fallos y 1 omitida (la de Kafka, sin Docker), en unos 3 minutos; pytest, 57 de 57 en 25 s. Sin el paso de `javac`, 4 pruebas de pytest fallan en un clon limpio (las que ejecutan el kit en modo lote), porque `verification-kit/build/classes` no existe; los escenarios de `todos.ps1` no lo necesitan. Con Git Bash o en Linux, `bash ci/run-pipeline.sh` ejecuta todas las etapas del pipeline
+Los escenarios de `todos.ps1` no necesitan las clases del kit. Con Git Bash o en Linux, `bash ci/run-pipeline.sh` ejecuta todas las etapas del pipeline
 (compilación, pruebas, gates y prueba de humo); **no validado** en esta prueba.
 
 ### 8. Demostración y escenarios
 
-El repositorio **no tiene** `scripts\demo.ps1`. Para una demostración corta, con la plataforma en marcha (paso 4):
+```powershell
+scripts\demo.ps1 -Build       # -Build la primera vez (compila); -NoAbrir para no abrir el navegador
+scripts\stop-local.ps1        # al terminar
+```
+
+`demo.ps1` detiene una plataforma anterior, borra el estado local (como `run-local.ps1 -Clean`) y la base de
+propuestas de demostración (`results\proposals.db`), y arranca la plataforma con la API de revisión. Después siembra
+datos sintéticos: un lote de 50 comprobantes válidos (30 de Colombia y 20 de Perú) por la ingesta, una emisión
+síncrona, un comprobante rechazado por el proveedor simulado Alfa que queda en la DLQ y dos propuestas de mapeo del
+agente (una bloqueada por el kit y otra pendiente de revisión). Al final muestra los tokens de demostración de los
+roles OPERATOR, REVIEWER y AGENT y abre http://127.0.0.1:8080/. La plataforma queda en marcha.
+
+Validado el 24 de octubre de 2026 en un clon limpio nuevo, con `-Build`: código de salida 0 en unos 40 s (se ejecutó
+después de `test-all.ps1` en el mismo clon, así que la compilación fue incremental). Se comprobó por la API: 52 comprobantes registrados, 51 autorizados y 1 en la DLQ (rechazo
+`PROVIDER_REJECTED`, HTTP 422), balance de conservación correcto, 2 propuestas visibles por la API de borde
+(`PENDING_REVIEW` y `BLOCKED_BY_GATE`), y el front (8080) y la API de revisión (8090) respondiendo 200. No se
+comprobó a la vista que el navegador abriera la pestaña. Tras las pruebas y la demo, `git status` del clon no
+mostró archivos generados.
+
+Para recorrer escenarios concretos con la plataforma en marcha:
 
 ```powershell
 scripts\escenarios\S1.ps1     # una emisión síncrona de principio a fin
 scripts\escenarios\S5.ps1     # el agente propone un mapeo y dos personas lo aprueban y lo activan
-scripts\stop-local.ps1
 ```
 
 Para todos los escenarios (S1 a S8, banco de 22, rendimiento, falsos positivos y banco ampliado):
@@ -208,7 +237,7 @@ Solo se comprobó la sintaxis con `docker compose config`.
 | Configuración regional del JDK | Con `es`, el validador XML devuelve mensajes traducidos | El kit clasifica los errores del esquema por su código (`cvc-...`), no por el texto, y su suite se ejecuta con `es` y con `en`. Si un fallo depende del idioma, repite con `-Duser.language=en` para aislarlo |
 | Puertos ocupados | `run-local.ps1` no llega a «Plataforma lista» o la API de revisión no arranca | La plataforma usa 8080 y la API de revisión 8090. Busca el proceso con `Get-NetTCPConnection -LocalPort 8080` (Windows) o `ss -ltnp \| grep 8080` (Linux) y detenlo; `scripts\stop-local.ps1` detiene una plataforma anterior |
 | Falta el entorno de Python | `No existe ...\agentic-plane\.venv\Scripts\python.exe` | Repite el paso 3 |
-| Falta el JAR | `No existe ...platform-app-0.1.0.jar` | Arranca con `-Build` (paso 4) |
+| Falta el JAR | `No existe ...platform-app-0.1.0.jar. Ejecuta antes scripts\run-local.ps1 -Build (o scripts\demo.ps1 -Build).` | Arranca con `-Build` (paso 4 o paso 8) |
 
 ## Resultados principales
 
@@ -288,7 +317,7 @@ data-generator/         generador de comprobantes sintéticos con semilla
 agentic-plane/          agentes, orquestador LangGraph, servidores MCP, API de revisión, escenarios y bancos
 specs/ catalogs/ schemas/   normativa sintética (huellas en ci/normativa.sha256)
 data/                   numeración, enrutamiento, mapeos, ejemplos validados y legado sintético
-scripts/                arranque local y escenarios (PowerShell)
+scripts/                arranque local, demostración, pruebas y escenarios (PowerShell)
 ci/ Jenkinsfile         pipeline y gates
 deploy/ docker-compose.yml  imágenes, perfil full y chart de Helm
 review-console-web/ review-console-javafx/  consolas de revisión de la prueba de concepto base
