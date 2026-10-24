@@ -145,7 +145,7 @@ Es un instrumento de validación técnica, no apto para producción.
 |:---|:---|:---:|:---|
 | [**1 · Borrador inicial**](entrega-1-borrador-inicial/) | `TFG_Entrega1_DeMendozaTovar_Final.pdf` y `.docx` | 27 | Entregada; las observaciones del director se atendieron en la Entrega 2 corregida |
 | [**2 · Versión corregida**](entrega-2-borrador-intermedio/) | `TFG_Entrega2_DeMendozaTovar_Final_2.pdf` y `.docx` | 119 | Corregida con las observaciones del director; el capítulo 6 se completa en la Entrega 3 |
-| [**3 · Borrador final**](entrega-3-borrador-final/) | `TFG_Entrega3_DeMendozaTovar_Final_1.pdf` y `.docx` | 128 | Versión final del borrador (24 de octubre): Entrega 2 corregida, apartado 5.8 y capítulo 6 completos; 59 tablas, 24 figuras y 105 referencias |
+| [**3 · Borrador final**](entrega-3-borrador-final/) | `TFG_Entrega3_DeMendozaTovar_Final_1.pdf` y `.docx` | 126 | Versión final del borrador (24 de octubre): Entrega 2 corregida, apartado 5.8 y capítulo 6 completos; 59 tablas, 24 figuras y 105 referencias |
 
 
 | Capítulo | Contenido | Entrega 1 | Entrega 2 corregida | Entrega 3 |
@@ -193,7 +193,7 @@ Es un instrumento de validación técnica, no apto para producción.
 - Parte de la **Entrega 2 corregida**, con las observaciones del director atendidas: revisión sistemática asistida y parcial, matriz del estado del arte, protocolo de evaluación, vistas, modelo de amenazas, anexos A a E y resultados del prototipo.
 - **5.8 Cumplimiento de los objetivos**: resultado de cada objetivo, marcado como medido, estimado o hipótesis; la meta del 80 % se cumple como estimación puntual con el banco de 22 (86,4 %) y con una confianza del 95 % con el banco ampliado de 129 (93,8 %; 88,2 % a 96,8 %), sobre datos sintéticos.
 - **Capítulo 6, Conclusiones**, en siete apartados: síntesis, respuesta a la pregunta guía y a sus tres subpreguntas (la tercera como hipótesis con protocolo), discusión de los objetivos, contribuciones, implicaciones, limitaciones y trabajo futuro.
-- **128 páginas, 59 tablas, 24 figuras y 105 referencias**.
+- **126 páginas, 59 tablas, 24 figuras y 105 referencias**.
 
 </details>
 

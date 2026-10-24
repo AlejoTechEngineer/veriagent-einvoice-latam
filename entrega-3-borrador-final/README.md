@@ -8,7 +8,7 @@
 
 [![Entrega](https://img.shields.io/badge/Entrega-3%20%C2%B7%20Borrador%20final-1F6FEB.svg)]()
 [![Capítulos](https://img.shields.io/badge/Cap%C3%ADtulos-1%20a%206%20completos-0052CC.svg)]()
-[![Páginas](https://img.shields.io/badge/Documento-128%20p%C3%A1ginas-3776AB.svg)]()
+[![Páginas](https://img.shields.io/badge/Documento-126%20p%C3%A1ginas-3776AB.svg)]()
 [![Referencias](https://img.shields.io/badge/Referencias-105-6F42C1.svg)]()
 [![Detección](https://img.shields.io/badge/Detecci%C3%B3n%20en%20ejecuci%C3%B3n-86%20%25%20(22)%20%C2%B7%2093%2C8%20%25%20(129)-150458.svg)]()
 [![Plazo](https://img.shields.io/badge/Plazo%20P80-42%2C2%20semanas-E36209.svg)]()
@@ -76,7 +76,7 @@ La **Entrega 3** responde a la pregunta **qué se diseñó, qué se obtuvo y qu�
 
 <table align="center">
   <tr><th>Archivo</th><th>Descripción</th></tr>
-  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.pdf</code></td><td><b>Versión de lectura</b> de la Entrega 3 (128 páginas)</td></tr>
+  <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.pdf</code></td><td><b>Versión de lectura</b> de la Entrega 3 (126 páginas)</td></tr>
   <tr><td><code>TFG_Entrega3_DeMendozaTovar_Final_1.docx</code></td><td><b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
   <tr><td><code>README.md</code></td><td>Este documento: resumen de lo que contiene la entrega</td></tr>
 </table>
@@ -94,81 +94,81 @@ La **Entrega 3** responde a la pregunta **qué se diseñó, qué se obtuvo y qu�
 | **Figuras** | 24 | **24** |
 | **Tablas** | 58 | **59** |
 | **Referencias** | 105 | **105** |
-| **Páginas** | 119 | **128** |
+| **Páginas** | 119 | **126** |
 | **Capítulos 1 a 4** | Completos | Se conservan |
 
 ---
 
 ## Estructura del Documento
 
-El cuerpo, de la Introducción al final de las Referencias, ocupa las páginas 15 a 108.
+El cuerpo, de la Introducción al final de las Referencias, ocupa las páginas 13 a 106.
 
 | Capítulo / Apartado | Contenido | Pág. | Estado |
 |:---|:---|:---:|:---:|
-| **1. Introducción** | Problema, justificación, objetivos, pregunta guía y elementos innovadores | 15 | Completo |
-| **2. Descripción de la situación de partida y planteamiento del problema** | Organización de referencia, puntos de dolor, taxonomía D1 a D6 y revisión sistemática asistida y parcial (PRISMA 2020) | 23 | Completo |
-| **3. Metodología** | Enfoque DSRM, revisión de la literatura, diagnóstico, decisión, diseño, validación, planificación y protocolo de evaluación | 36 | Completo |
-| **4. Desarrollo de la solución** | Kit de verificación, arquitectura de referencia con vistas, agentes, revisión humana y amenazas, 12 ADR y plan del proyecto | 48 | Completo |
-| &nbsp;&nbsp;4.1 Aportación: taxonomía de defectos y kit de verificación | Taxonomía D1 a D6 y kit de verificación | 48 | |
-| &nbsp;&nbsp;4.2 Requisitos y atributos de calidad | Requisitos funcionales, escenarios de calidad y restricciones | 51 | |
-| &nbsp;&nbsp;4.3 Selección de la alternativa de solución | Matriz de decisión ponderada | 52 | |
-| &nbsp;&nbsp;4.4 Arquitectura de referencia | C4, stack, contratos, datos, seguridad, siete vistas, agentes y permisos, revisión humana, amenazas e integridad | 52 | |
-| &nbsp;&nbsp;4.5 Decisiones arquitectónicas | Doce ADR | 64 | |
-| &nbsp;&nbsp;4.6 Perfiles de trabajo y matriz de responsabilidades | Equipo y matriz RACI | 66 | |
-| &nbsp;&nbsp;4.7 Planificación de tareas, esfuerzos y cronograma | Fases, EDT de 24 paquetes, nivelación y cronograma | 66 | |
-| &nbsp;&nbsp;4.8 Presupuesto | Partidas, consumo de LLM y referentes salariales | 71 | |
-| &nbsp;&nbsp;4.9 Análisis de riesgos | Registro de riesgos con funciones del NIST AI RMF | 74 | |
-| &nbsp;&nbsp;4.10 Plan de calidad, integración y despliegue continuos y gobierno del proyecto | Plan de pruebas, pipeline de Jenkins y gobierno | 75 | |
-| &nbsp;&nbsp;4.11 Evaluación de la solución | Indicadores y criterio de éxito | 76 | |
-| **5. Resultados obtenidos** | Prototipo, bancos de defectos, agente de mapeo, consolas, pipeline, planificación, amenazas a la validez y cumplimiento | 78 | Completo |
-| &nbsp;&nbsp;5.1 Prueba de concepto: alcance, implementación y pruebas | Alcance, implementación y pruebas automatizadas | 78 | |
-| &nbsp;&nbsp;5.2 Banco de defectos por inyección | Banco original de 22 mutantes y banco ampliado de 129 | 79 | |
-| &nbsp;&nbsp;5.3 Agente de mapeo y ciclo gobernado | Propuesta, bloqueo por el kit y corrección | 83 | |
-| &nbsp;&nbsp;5.4 Consolas de revisión | Consola web y consola JavaFX | 83 | |
-| &nbsp;&nbsp;5.5 Pipeline, despliegue y madurez alcanzada | Pipeline y nivel de madurez tecnológica | 85 | |
-| &nbsp;&nbsp;5.6 Resultados de la planificación | Monte Carlo, criticidad y punto de equilibrio | 86 | |
-| &nbsp;&nbsp;5.7 Amenazas a la validez | Límites de la evidencia | 89 | |
-| &nbsp;&nbsp;5.8 Cumplimiento de los objetivos | **Restaurado:** resultado y naturaleza de la evidencia por objetivo | 89 | |
-| **6. Conclusiones** | Síntesis, respuesta a la pregunta guía, objetivos, contribuciones, implicaciones, limitaciones y trabajo futuro | 91 | Completo |
-| &nbsp;&nbsp;6.1 Síntesis del trabajo |  | 91 | |
-| &nbsp;&nbsp;6.2 Respuesta a la pregunta guía |  | 91 | |
-| &nbsp;&nbsp;6.3 Discusión de los objetivos |  | 93 | |
-| &nbsp;&nbsp;6.4 Contribuciones del trabajo |  | 94 | |
-| &nbsp;&nbsp;6.5 Implicaciones para la práctica |  | 94 | |
-| &nbsp;&nbsp;6.6 Limitaciones |  | 95 | |
-| &nbsp;&nbsp;6.7 Líneas de trabajo futuro |  | 96 | |
-| **Referencias bibliográficas** | 105 referencias en formato APA | 98 | Completo |
-| **Anexos** | Anexo A (109), Anexo B (115), Anexo C (116), Anexo D (117), Anexo E (124) | 109 | Completo |
+| **1. Introducción** | Problema, justificación, objetivos, pregunta guía y elementos innovadores | 13 | Completo |
+| **2. Descripción de la situación de partida y planteamiento del problema** | Organización de referencia, puntos de dolor, taxonomía D1 a D6 y revisión sistemática asistida y parcial (PRISMA 2020) | 21 | Completo |
+| **3. Metodología** | Enfoque DSRM, revisión de la literatura, diagnóstico, decisión, diseño, validación, planificación y protocolo de evaluación | 34 | Completo |
+| **4. Desarrollo de la solución** | Kit de verificación, arquitectura de referencia con vistas, agentes, revisión humana y amenazas, 12 ADR y plan del proyecto | 46 | Completo |
+| &nbsp;&nbsp;4.1 Aportación: taxonomía de defectos y kit de verificación | Taxonomía D1 a D6 y kit de verificación | 46 | |
+| &nbsp;&nbsp;4.2 Requisitos y atributos de calidad | Requisitos funcionales, escenarios de calidad y restricciones | 49 | |
+| &nbsp;&nbsp;4.3 Selección de la alternativa de solución | Matriz de decisión ponderada | 50 | |
+| &nbsp;&nbsp;4.4 Arquitectura de referencia | C4, stack, contratos, datos, seguridad, siete vistas, agentes y permisos, revisión humana, amenazas e integridad | 50 | |
+| &nbsp;&nbsp;4.5 Decisiones arquitectónicas | Doce ADR | 62 | |
+| &nbsp;&nbsp;4.6 Perfiles de trabajo y matriz de responsabilidades | Equipo y matriz RACI | 64 | |
+| &nbsp;&nbsp;4.7 Planificación de tareas, esfuerzos y cronograma | Fases, EDT de 24 paquetes, nivelación y cronograma | 64 | |
+| &nbsp;&nbsp;4.8 Presupuesto | Partidas, consumo de LLM y referentes salariales | 69 | |
+| &nbsp;&nbsp;4.9 Análisis de riesgos | Registro de riesgos con funciones del NIST AI RMF | 72 | |
+| &nbsp;&nbsp;4.10 Plan de calidad, integración y despliegue continuos y gobierno del proyecto | Plan de pruebas, pipeline de Jenkins y gobierno | 73 | |
+| &nbsp;&nbsp;4.11 Evaluación de la solución | Indicadores y criterio de éxito | 74 | |
+| **5. Resultados obtenidos** | Prototipo, bancos de defectos, agente de mapeo, consolas, pipeline, planificación, amenazas a la validez y cumplimiento | 76 | Completo |
+| &nbsp;&nbsp;5.1 Prueba de concepto: alcance, implementación y pruebas | Alcance, implementación y pruebas automatizadas | 76 | |
+| &nbsp;&nbsp;5.2 Banco de defectos por inyección | Banco original de 22 mutantes y banco ampliado de 129 | 77 | |
+| &nbsp;&nbsp;5.3 Agente de mapeo y ciclo gobernado | Propuesta, bloqueo por el kit y corrección | 81 | |
+| &nbsp;&nbsp;5.4 Consolas de revisión | Consola web y consola JavaFX | 81 | |
+| &nbsp;&nbsp;5.5 Pipeline, despliegue y madurez alcanzada | Pipeline y nivel de madurez tecnológica | 83 | |
+| &nbsp;&nbsp;5.6 Resultados de la planificación | Monte Carlo, criticidad y punto de equilibrio | 84 | |
+| &nbsp;&nbsp;5.7 Amenazas a la validez | Límites de la evidencia | 87 | |
+| &nbsp;&nbsp;5.8 Cumplimiento de los objetivos | **Restaurado:** resultado y naturaleza de la evidencia por objetivo | 87 | |
+| **6. Conclusiones** | Síntesis, respuesta a la pregunta guía, objetivos, contribuciones, implicaciones, limitaciones y trabajo futuro | 89 | Completo |
+| &nbsp;&nbsp;6.1 Síntesis del trabajo |  | 89 | |
+| &nbsp;&nbsp;6.2 Respuesta a la pregunta guía |  | 89 | |
+| &nbsp;&nbsp;6.3 Discusión de los objetivos |  | 91 | |
+| &nbsp;&nbsp;6.4 Contribuciones del trabajo |  | 92 | |
+| &nbsp;&nbsp;6.5 Implicaciones para la práctica |  | 92 | |
+| &nbsp;&nbsp;6.6 Limitaciones |  | 93 | |
+| &nbsp;&nbsp;6.7 Líneas de trabajo futuro |  | 94 | |
+| **Referencias bibliográficas** | 105 referencias en formato APA | 96 | Completo |
+| **Anexos** | Anexo A (107), Anexo B (113), Anexo C (114), Anexo D (115), Anexo E (122) | 107 | Completo |
 
 <details>
 <summary><b>Figuras de la entrega</b></summary>
 
 | Elemento | Título | Pág. |
 |:---|:---|:---:|
-| Figura 1 | Arquitectura propuesta: flujos de integración, kit de verificación y plano agéntico | 18 |
-| Figura 2 | Arquitectura actual de integración: flujos asíncrono y síncrono | 24 |
-| Figura 3 | Flujos actuales de emisión asíncrona y síncrona, estados del comprobante y origen de los defectos | 25 |
-| Figura 4 | Diagrama de flujo de la revisión sistemática asistida y parcial (PRISMA 2020) | 32 |
-| Figura 5 | Fases de la metodología, objetivos y entregables | 36 |
-| Figura 6 | Diagrama Ishikawa rechazo de comprobantes por defectos de mapeo | 40 |
-| Figura 7 | Componentes del kit de verificación (C4, nivel 3) | 49 |
-| Figura 8 | Diagrama de contexto (C4, nivel 1) | 53 |
-| Figura 9 | Diagrama de contenedores (C4, nivel 2) | 53 |
-| Figura 10 | Secuencia del ciclo gobernado de una propuesta de IA | 65 |
-| Figura 11 | Carga semanal por rol tras la nivelación | 69 |
-| Figura 12 | Cronograma nivelado con ruta crítica, P50 y P80 | 70 |
-| Figura 13 | Presupuesto por partida | 72 |
-| Figura 14 | Detección de defectos por tipo y mecanismo | 80 |
-| Figura 15 | Consola web de revisión con una propuesta bloqueada por el kit | 84 |
-| Figura 16 | Consola de escritorio JavaFX con una propuesta pendiente de revisión | 85 |
-| Figura 17 | Distribución del plazo total: plan base y escenario con dos personas de QA | 86 |
-| Figura 18 | Índice de criticidad de los paquetes de trabajo | 87 |
-| Figura 19 | Punto de equilibrio en esfuerzo acumulado | 88 |
-| Figura 20 | Búsqueda S1 con los filtros de tipo de documento e idioma: 1007 documentos | 125 |
-| Figura 21 | Búsqueda S2 con los filtros aplicados: 768 documentos | 126 |
-| Figura 22 | Búsqueda S3 con los filtros aplicados: 3945 documentos | 127 |
-| Figura 23 | Búsqueda S4 con los filtros aplicados: 86 documentos | 128 |
-| Figura 24 | Búsquedas guardadas S1 a S4 con su número de resultados | 128 |
+| Figura 1 | Arquitectura propuesta: flujos de integración, kit de verificación y plano agéntico | 16 |
+| Figura 2 | Arquitectura actual de integración: flujos asíncrono y síncrono | 22 |
+| Figura 3 | Flujos actuales de emisión asíncrona y síncrona, estados del comprobante y origen de los defectos | 23 |
+| Figura 4 | Diagrama de flujo de la revisión sistemática asistida y parcial (PRISMA 2020) | 30 |
+| Figura 5 | Fases de la metodología, objetivos y entregables | 34 |
+| Figura 6 | Diagrama Ishikawa rechazo de comprobantes por defectos de mapeo | 38 |
+| Figura 7 | Componentes del kit de verificación (C4, nivel 3) | 47 |
+| Figura 8 | Diagrama de contexto (C4, nivel 1) | 51 |
+| Figura 9 | Diagrama de contenedores (C4, nivel 2) | 51 |
+| Figura 10 | Secuencia del ciclo gobernado de una propuesta de IA | 63 |
+| Figura 11 | Carga semanal por rol tras la nivelación | 67 |
+| Figura 12 | Cronograma nivelado con ruta crítica, P50 y P80 | 68 |
+| Figura 13 | Presupuesto por partida | 70 |
+| Figura 14 | Detección de defectos por tipo y mecanismo | 78 |
+| Figura 15 | Consola web de revisión con una propuesta bloqueada por el kit | 82 |
+| Figura 16 | Consola de escritorio JavaFX con una propuesta pendiente de revisión | 83 |
+| Figura 17 | Distribución del plazo total: plan base y escenario con dos personas de QA | 84 |
+| Figura 18 | Índice de criticidad de los paquetes de trabajo | 85 |
+| Figura 19 | Punto de equilibrio en esfuerzo acumulado | 86 |
+| Figura 20 | Búsqueda S1 con los filtros de tipo de documento e idioma: 1007 documentos | 123 |
+| Figura 21 | Búsqueda S2 con los filtros aplicados: 768 documentos | 124 |
+| Figura 22 | Búsqueda S3 con los filtros aplicados: 3945 documentos | 125 |
+| Figura 23 | Búsqueda S4 con los filtros aplicados: 86 documentos | 126 |
+| Figura 24 | Búsquedas guardadas S1 a S4 con su número de resultados | 126 |
 
 </details>
 
@@ -177,65 +177,65 @@ El cuerpo, de la Introducción al final de las Referencias, ocupa las páginas 1
 
 | Elemento | Título | Pág. |
 |:---|:---|:---:|
-| Tabla 1 | Análisis de Pareto de los defectos de mapeo del caso de referencia | 17 |
-| Tabla 2 | Puntos de dolor del proceso actual | 26 |
-| Tabla 3 | Taxonomía de defectos de mapeo | 26 |
-| Tabla 4 | Cobertura de las necesidades del problema por enfoque | 30 |
-| Tabla 5 | Flujo de registros de la revisión sistemática asistida y parcial (PRISMA 2020) | 31 |
-| Tabla 6 | Resultado del cribado por título y resumen por búsqueda y tema | 33 |
-| Tabla 7 | Cruce de brecha sobre los 5659 registros únicos con tres diccionarios | 33 |
-| Tabla 8 | Concordancia entre la regla y la verificación del autor (muestra de 60 registros) | 34 |
-| Tabla 9 | Actividades del DSRM, fases, técnicas y apartados | 37 |
-| Tabla 10 | Estrategia de búsqueda ejecutada en Scopus el 20 de octubre de 2026 | 38 |
-| Tabla 11 | Métricas de evaluación derivadas con el enfoque GQM | 42 |
-| Tabla 12 | Trazabilidad entre objetivos, fases, métodos y entregables | 43 |
-| Tabla 13 | Definiciones de la evaluación del verificador | 45 |
-| Tabla 14 | Definición formal de la taxonomía D1 a D6 | 49 |
-| Tabla 15 | Requisitos funcionales | 51 |
-| Tabla 16 | Escenarios de atributos de calidad | 51 |
-| Tabla 17 | Matriz de decisión ponderada | 52 |
-| Tabla 18 | Microservicios del plano de integración | 53 |
-| Tabla 19 | Componentes del plano agéntico | 54 |
-| Tabla 20 | Lenguajes y su justificación | 54 |
-| Tabla 21 | Frameworks, librerías e infraestructura | 55 |
-| Tabla 22 | Tablas del núcleo del modelo de datos | 56 |
-| Tabla 23 | Vistas de la arquitectura | 57 |
-| Tabla 24 | Despliegue del prototipo según el chart de Helm (commit 0b6406c) | 58 |
-| Tabla 25 | Agentes y responsabilidades | 58 |
-| Tabla 26 | Permisos mínimos de cada agente sobre las herramientas | 59 |
-| Tabla 27 | Estados de una propuesta y transiciones | 59 |
-| Tabla 28 | Modelo de amenazas y controles | 62 |
-| Tabla 29 | Controles de integridad de la normativa y de las reglas | 64 |
-| Tabla 30 | Resumen de las decisiones arquitectónicas | 64 |
-| Tabla 31 | Equipo del proyecto | 66 |
-| Tabla 32 | Matriz RACI | 66 |
-| Tabla 33 | Fases e hitos de control del proyecto | 67 |
-| Tabla 34 | Estructura de desglose del trabajo con estimaciones de tres puntos | 67 |
-| Tabla 35 | Razones o/m y p/m de las estimaciones por grupo de paquetes | 70 |
-| Tabla 36 | Convergencia de la simulación con tres semillas | 71 |
-| Tabla 37 | Presupuesto por partida (millones de COP) | 72 |
-| Tabla 38 | Consumo estimado de LLM por agente | 72 |
-| Tabla 39 | Salario base implícito por rol y referentes públicos del mercado colombiano | 73 |
-| Tabla 40 | Sensibilidad del costo del proyecto a las tarifas por rol | 74 |
-| Tabla 41 | Registro de riesgos | 74 |
-| Tabla 42 | Etapas del pipeline de Jenkins | 75 |
-| Tabla 43 | Plan de evaluación de la solución | 77 |
-| Tabla 44 | Naturaleza de los resultados | 78 |
-| Tabla 45 | Componentes implementados en la prueba de concepto | 79 |
-| Tabla 46 | Suites de pruebas y resultados | 79 |
-| Tabla 47 | Mutantes detectados por tipo y mecanismo | 80 |
-| Tabla 48 | Intervalos de confianza de la detección y de los falsos positivos | 81 |
-| Tabla 49 | Banco ampliado: detección por tipo con su intervalo de confianza del 95 % (Wilson) | 82 |
-| Tabla 50 | Resultados de la simulación de Monte Carlo | 86 |
-| Tabla 51 | Supuestos del punto de equilibrio | 88 |
-| Tabla 52 | Sensibilidad del punto de equilibrio al esfuerzo asistido | 89 |
-| Tabla 53 | Cumplimiento de los objetivos y naturaleza de la evidencia | 89 |
-| Tabla 54 | Costo empresa mensual por rol (supuesto) | 116 |
-| Tabla 55 | Otros supuestos del modelo | 116 |
-| Tabla 56 | Resultado por mutante | 116 |
-| Tabla 57 | Matriz del estado del arte: selección dirigida de 40 estudios | 117 |
-| Tabla 58 | Resumen de la verificación de las referencias | 123 |
-| Tabla 59 | Referencias dudosas, pendientes de verificación del autor | 124 |
+| Tabla 1 | Análisis de Pareto de los defectos de mapeo del caso de referencia | 15 |
+| Tabla 2 | Puntos de dolor del proceso actual | 24 |
+| Tabla 3 | Taxonomía de defectos de mapeo | 24 |
+| Tabla 4 | Cobertura de las necesidades del problema por enfoque | 28 |
+| Tabla 5 | Flujo de registros de la revisión sistemática asistida y parcial (PRISMA 2020) | 29 |
+| Tabla 6 | Resultado del cribado por título y resumen por búsqueda y tema | 31 |
+| Tabla 7 | Cruce de brecha sobre los 5659 registros únicos con tres diccionarios | 31 |
+| Tabla 8 | Concordancia entre la regla y la verificación del autor (muestra de 60 registros) | 32 |
+| Tabla 9 | Actividades del DSRM, fases, técnicas y apartados | 35 |
+| Tabla 10 | Estrategia de búsqueda ejecutada en Scopus el 20 de octubre de 2026 | 36 |
+| Tabla 11 | Métricas de evaluación derivadas con el enfoque GQM | 40 |
+| Tabla 12 | Trazabilidad entre objetivos, fases, métodos y entregables | 41 |
+| Tabla 13 | Definiciones de la evaluación del verificador | 43 |
+| Tabla 14 | Definición formal de la taxonomía D1 a D6 | 47 |
+| Tabla 15 | Requisitos funcionales | 49 |
+| Tabla 16 | Escenarios de atributos de calidad | 49 |
+| Tabla 17 | Matriz de decisión ponderada | 50 |
+| Tabla 18 | Microservicios del plano de integración | 51 |
+| Tabla 19 | Componentes del plano agéntico | 52 |
+| Tabla 20 | Lenguajes y su justificación | 52 |
+| Tabla 21 | Frameworks, librerías e infraestructura | 53 |
+| Tabla 22 | Tablas del núcleo del modelo de datos | 54 |
+| Tabla 23 | Vistas de la arquitectura | 55 |
+| Tabla 24 | Despliegue del prototipo según el chart de Helm (commit 0b6406c) | 56 |
+| Tabla 25 | Agentes y responsabilidades | 56 |
+| Tabla 26 | Permisos mínimos de cada agente sobre las herramientas | 57 |
+| Tabla 27 | Estados de una propuesta y transiciones | 57 |
+| Tabla 28 | Modelo de amenazas y controles | 60 |
+| Tabla 29 | Controles de integridad de la normativa y de las reglas | 62 |
+| Tabla 30 | Resumen de las decisiones arquitectónicas | 62 |
+| Tabla 31 | Equipo del proyecto | 64 |
+| Tabla 32 | Matriz RACI | 64 |
+| Tabla 33 | Fases e hitos de control del proyecto | 65 |
+| Tabla 34 | Estructura de desglose del trabajo con estimaciones de tres puntos | 65 |
+| Tabla 35 | Razones o/m y p/m de las estimaciones por grupo de paquetes | 68 |
+| Tabla 36 | Convergencia de la simulación con tres semillas | 69 |
+| Tabla 37 | Presupuesto por partida (millones de COP) | 70 |
+| Tabla 38 | Consumo estimado de LLM por agente | 70 |
+| Tabla 39 | Salario base implícito por rol y referentes públicos del mercado colombiano | 71 |
+| Tabla 40 | Sensibilidad del costo del proyecto a las tarifas por rol | 72 |
+| Tabla 41 | Registro de riesgos | 72 |
+| Tabla 42 | Etapas del pipeline de Jenkins | 73 |
+| Tabla 43 | Plan de evaluación de la solución | 75 |
+| Tabla 44 | Naturaleza de los resultados | 76 |
+| Tabla 45 | Componentes implementados en la prueba de concepto | 77 |
+| Tabla 46 | Suites de pruebas y resultados | 77 |
+| Tabla 47 | Mutantes detectados por tipo y mecanismo | 78 |
+| Tabla 48 | Intervalos de confianza de la detección y de los falsos positivos | 79 |
+| Tabla 49 | Banco ampliado: detección por tipo con su intervalo de confianza del 95 % (Wilson) | 80 |
+| Tabla 50 | Resultados de la simulación de Monte Carlo | 84 |
+| Tabla 51 | Supuestos del punto de equilibrio | 86 |
+| Tabla 52 | Sensibilidad del punto de equilibrio al esfuerzo asistido | 87 |
+| Tabla 53 | Cumplimiento de los objetivos y naturaleza de la evidencia | 87 |
+| Tabla 54 | Costo empresa mensual por rol (supuesto) | 114 |
+| Tabla 55 | Otros supuestos del modelo | 114 |
+| Tabla 56 | Resultado por mutante | 114 |
+| Tabla 57 | Matriz del estado del arte: selección dirigida de 40 estudios | 115 |
+| Tabla 58 | Resumen de la verificación de las referencias | 121 |
+| Tabla 59 | Referencias dudosas, pendientes de verificación del autor | 122 |
 
 </details>
 
