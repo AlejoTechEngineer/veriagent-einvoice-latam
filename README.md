@@ -35,6 +35,7 @@
 - [Pregunta de Investigación](#pregunta-de-investigación)
 - [Objetivos](#objetivos)
 - [Contenido del Repositorio](#contenido-del-repositorio)
+- [Prototipo](#prototipo)
 - [Entregas](#entregas)
 - [Arquitectura](#arquitectura)
 - [Ciclo Gobernado de una Propuesta](#ciclo-gobernado-de-una-propuesta)
@@ -104,28 +105,59 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
   <tr><td><code>TFG_Entrega1_DeMendozaTovar_Final.docx</code></td><td>Versión editable en Word de la Entrega 1</td></tr>
   <tr><td><code>README.md</code></td><td><a href="entrega-1-borrador-inicial/"><b>Resumen detallado de la Entrega 1</b></a>: problema, Pareto, objetivos, situación de partida, puntos de dolor, taxonomía y análisis</td></tr>
   <tr><td colspan="2"><b>entrega-2-borrador-intermedio/</b></td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td><b>Entrega 2 (borrador intermedio)</b>: incorpora la <b>metodología</b> completa y el <b>inicio del capítulo 4</b> con las primeras evidencias del prototipo, sobre el contenido de la Entrega 1</td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td>Versión editable en Word de la Entrega 2</td></tr>
-  <tr><td><code>README.md</code></td><td><a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: enfoque, diagnóstico, decisión, diseño, validación, métricas GQM, planificación y primeras evidencias del banco de defectos</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final_2.pdf</code></td><td><b>Entrega 2 corregida</b> con las observaciones del director: metodología, <b>revisión sistemática (PRISMA 2020)</b>, matriz del estado del arte, protocolo de evaluación, <b>desarrollo de la solución</b> y <b>resultados del prototipo</b></td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final_2.docx</code></td><td>Versión editable en Word de la Entrega 2 corregida</td></tr>
+  <tr><td><code>README.md</code></td><td><a href="entrega-2-borrador-intermedio/"><b>Resumen detallado de la Entrega 2</b></a>: qué se agregó en la versión corregida, estructura, metodología y resultados del prototipo</td></tr>
   <tr><td colspan="2"><b>entrega-3-borrador-final/</b></td></tr>
   <tr><td><code>TFG_Entrega3_DeMendozaTovar.pdf</code></td><td><b>Entrega 3 (borrador final)</b>: incorpora el <b>desarrollo de la solución</b>, los <b>resultados</b> y las <b>conclusiones</b> sobre el contenido de las entregas anteriores</td></tr>
   <tr><td><code>TFG_Entrega3_DeMendozaTovar.docx</code></td><td>Versión editable en Word de la Entrega 3</td></tr>
+  <tr><td colspan="2"><b>prototipo/</b></td></tr>
+  <tr><td><code>README.md</code></td><td><a href="prototipo/README.md"><b>Prototipo funcional</b></a>: código, escenarios, resultados medidos y cómo ejecutarlo</td></tr>
 </table>
+
+---
+
+## Prototipo
+
+La carpeta [`prototipo/`](prototipo/) contiene el prototipo funcional que valida la viabilidad técnica de la
+arquitectura con datos **sintéticos**: plano de integración en Java 21 y Spring Boot, kit de verificación
+determinista, proveedores simulados, plano agéntico en Python con LangGraph y MCP, API de borde y front mínimo.
+
+| Evidencia | Resultado |
+|---|---|
+| Escenarios S1 a S8 por el sistema real | 8 de 8 en verde con un comando |
+| Banco original de 22 defectos por el sistema | Kit en ejecución 19 de 22 (86 %), con ejemplos validados 22 de 22 (100 %) |
+| Banco ampliado (129 mutantes) | 121 de 129 en ejecución, 93,8 % (IC 95 % 88,2–96,8 %), y 129 de 129 con ejemplos validados (IC 95 % 97,1–100 %) |
+| Falsos positivos | 0 de 11.402 comprobantes correctos |
+| Verificación del kit por documento | p50 0,66 ms y p95 1,72 ms (por HTTP con token: p95 45,7 ms) |
+| Emisión síncrona | p95 de 54,3 ms (umbral: 3 s) |
+| Lote de 10.000 comprobantes | 22,9 s de extremo a extremo, sin pérdidas |
+
+Detalles en [`prototipo/README.md`](prototipo/README.md), [trazabilidad](prototipo/docs/TRAZABILIDAD.md) y
+[escenarios](prototipo/docs/ESCENARIOS.md). Las latencias son de la corrida de referencia y varían entre corridas.
+Es un instrumento de validación técnica, no apto para producción.
 
 ---
 
 ## Entregas
 
-| Capítulo | Contenido | Entrega 1 | Entrega 2 | Entrega 3 |
+| Entrega | Archivos | Páginas | Estado |
+|:---|:---|:---:|:---|
+| [**1 · Borrador inicial**](entrega-1-borrador-inicial/) | `TFG_Entrega1_DeMendozaTovar_Final.pdf` y `.docx` | 27 | Entregada; las observaciones del director se atendieron en la Entrega 2 corregida |
+| [**2 · Versión corregida**](entrega-2-borrador-intermedio/) | `TFG_Entrega2_DeMendozaTovar_Final_2.pdf` y `.docx` | 119 | Corregida con las observaciones del director; capítulo 6 en desarrollo |
+| [**3 · Borrador final**](entrega-3-borrador-final/) | `TFG_Entrega3_DeMendozaTovar.pdf` y `.docx` | 75 | En curso: borrador del 18 de octubre, pendiente de incorporar la Entrega 2 corregida y los resultados del prototipo |
+
+
+| Capítulo | Contenido | Entrega 1 | Entrega 2 corregida | Entrega 3 (borrador) |
 |:---|:---|:---:|:---:|:---:|
 | **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | Completo | Completo | Completo |
 | **2. Situación de partida** | Organización de referencia, flujos asíncrono y síncrono, puntos de dolor, taxonomía y estado del arte | Completo | Completo | Completo |
 | **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | Pendiente | Completo | Completo |
-| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | Pendiente | Iniciado | Completo |
-| **5. Resultados obtenidos** | Resultados por objetivo específico | Pendiente | Pendiente | Completo |
-| **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | Pendiente | Pendiente | Completo |
+| **4. Desarrollo de la solución** | Arquitectura, kit de verificación, prototipo y plan del proyecto | Pendiente | Completo | Completo |
+| **5. Resultados obtenidos** | Resultados por objetivo específico | Pendiente | Completo | Completo |
+| **6. Conclusiones** | Respuesta a la pregunta de investigación y trabajo futuro | Pendiente | En desarrollo | Completo |
 | **Referencias Bibliográficas** | Fuentes citadas en el trabajo | Completo | Completo | Completo |
-| **Anexos** | Decisiones arquitectónicas completas, supuestos de planificación y resultados del banco de defectos | Pendiente | Pendiente | Completo |
+| **Anexos** | Decisiones arquitectónicas, supuestos, banco de defectos, matriz del estado del arte y búsquedas | Pendiente | Completo (A a E) | Completo (A a C) |
 
 <details>
 <summary><b>Entrega 1 — Borrador inicial</b></summary>
@@ -140,16 +172,18 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 </details>
 
 <details>
-<summary><b>Entrega 2 — Borrador intermedio</b></summary>
+<summary><b>Entrega 2 — Versión corregida</b></summary>
 
 - Enfoque de **investigación en ciencia del diseño** con fases encadenadas a los objetivos.
-- Revisión de la literatura con un **protocolo de búsqueda inspirado en PRISMA 2020**.
+- **Revisión sistemática asistida y parcial (PRISMA 2020)**, ecuaciones de búsqueda en Scopus y **matriz del estado del arte** con 40 estudios.
 - Diagnóstico con **diagrama de Ishikawa** y **análisis de Pareto** por juicio experto y centroide de rangos.
 - **Análisis de decisión multicriterio** con análisis de sensibilidad para seleccionar la solución.
 - Diseño arquitectónico con escenarios de calidad **ISO/IEC 25010**, **modelo C4** y **registros de decisión (ADR)**.
 - Validación con **banco de defectos por inyección** (pruebas de mutación) y métricas **GQM**.
 - Planificación con **EDT, PERT, nivelación de recursos y simulación de Monte Carlo**, y riesgos de IA según **NIST AI RMF**.
-- **Inicio del capítulo 4**: aportación (taxonomía D1–D6 y kit de verificación) y **primeras evidencias** del banco de defectos: el kit detecta el **86 %** en ejecución y el **100 %** con integración continua, con **cero falsos positivos**.
+- **Protocolo de evaluación experimental**, arquitectura de referencia con **vistas** y **modelo de amenazas**.
+- **Resultados del prototipo**: banco original (19 de 22 en ejecución y 22 de 22 con ejemplos validados) y banco ampliado (121 de 129 y 129 de 129), con 0 falsos positivos en 11.402 comprobantes correctos.
+- **119 páginas, 58 tablas, 24 figuras y 105 referencias**; el capítulo 6 queda en desarrollo.
 
 </details>
 
@@ -165,7 +199,7 @@ Este trabajo planifica una arquitectura en la que **agentes de inteligencia arti
 
 </details>
 
-> Las entregas son acumulativas: la Entrega 2 incluye la Entrega 1 más la metodología, y la Entrega 3 incluye todo lo anterior más el desarrollo de la solución, los resultados y las conclusiones.
+> Las entregas son acumulativas. La Entrega 2 corregida incluye la Entrega 1, la metodología, el desarrollo de la solución y los resultados del prototipo. La Entrega 3 añade las conclusiones; su carpeta todavía contiene el borrador del 18 de octubre, que se actualizará con la Entrega 2 corregida.
 >
 > Completo = capítulo desarrollado en esa entrega · Iniciado = capítulo con avance parcial · Pendiente = aún no desarrollado
 
@@ -364,7 +398,8 @@ Derivadas con el enfoque **objetivo · pregunta · métrica** (Basili et al., 19
 |:---|:---|
 | **Leer** una entrega | Entra a la carpeta de la entrega y abre el **PDF** |
 | **Revisar o editar** | Descarga el archivo **Word (.docx)** |
-| **Ver el trabajo completo hasta hoy** | Abre la **Entrega 3**. Las entregas son acumulativas: la Entrega 2 incluye la Entrega 1 más la metodología, y la Entrega 3 incluye todo lo anterior más el desarrollo de la solución, los resultados y las conclusiones. |
+| **Ver el trabajo más actualizado** | Abre la **Entrega 2 corregida** para la metodología, la revisión sistemática y los resultados del prototipo, y la **Entrega 3** para las conclusiones del borrador del 18 de octubre |
+| **Ejecutar el prototipo** | Sigue [`prototipo/README.md`](prototipo/README.md) |
 
 ---
 

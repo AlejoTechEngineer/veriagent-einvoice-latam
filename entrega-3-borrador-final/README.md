@@ -14,7 +14,7 @@
 [![Plazo](https://img.shields.io/badge/Plazo%20P80-42%2C2%20semanas-E36209.svg)]()
 [![Anexos](https://img.shields.io/badge/Anexos-A%2C%20B%20y%20C-success.svg)]()
 
-**[Entrega 1](../entrega-1-borrador-inicial/) • [Entrega 2](../entrega-2-borrador-intermedio/) • [Repositorio](../README.md) • [Desarrollo](#desarrollo-de-la-solución) • [Resultados](#resultados-obtenidos) • [Conclusiones](#conclusiones)**
+**[Entrega 1](../entrega-1-borrador-inicial/) • [Entrega 2](../entrega-2-borrador-intermedio/) • [Prototipo](../prototipo/README.md) • [Repositorio](../README.md) • [Desarrollo](#desarrollo-de-la-solución) • [Resultados](#resultados-obtenidos) • [Conclusiones](#conclusiones)**
 
 <img src="https://img.shields.io/badge/PDF-lectura-B30B00?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="PDF"/>
 <img src="https://img.shields.io/badge/Word-editable-2B579A?style=flat-square&logo=microsoftword&logoColor=white" alt="Word"/>
@@ -29,6 +29,7 @@
 ## Tabla de Contenidos
 
 - [Propósito de la Entrega](#propósito-de-la-entrega)
+- [Estado de esta Carpeta](#estado-de-esta-carpeta)
 - [Archivos de esta Carpeta](#archivos-de-esta-carpeta)
 - [Novedades frente a la Entrega 2](#novedades-frente-a-la-entrega-2)
 - [Estructura del Documento](#estructura-del-documento)
@@ -56,6 +57,18 @@ La **Entrega 3** responde a la pregunta **qué se diseñó, qué se obtuvo y qu�
 - **Una evidencia medible**: el kit detecta el **86 %** de los defectos en ejecución y el **100 %** con integración continua, **sin falsos positivos**, frente al **23 %** de la validación de esquema.
 - **Un plazo y un costo con su probabilidad**: **42,2 semanas** y **COP 1.059 millones** con una confianza del **80 %**.
 - **Un umbral de rentabilidad**: punto de equilibrio en **2,9 países** para los agentes y en **5,4** para la inversión completa.
+
+---
+
+## Estado de esta Carpeta
+
+> Esta carpeta contiene el **borrador final del 18 de octubre de 2026** (con la revisión del 19 de octubre). Todavía **no incorpora** los cambios de la [**Entrega 2 corregida**](../entrega-2-borrador-intermedio/) (revisión sistemática, matriz del estado del arte, protocolo de evaluación, vistas, modelo de amenazas y bibliografía completa) ni los resultados actuales del [**prototipo**](../prototipo/README.md), como el banco ampliado de 129 mutantes. Se actualizará con ambos; mientras tanto, las cifras de este documento y de este resumen son las del borrador.
+
+| Carpeta | Contenido |
+|:---|:---|
+| [Entrega 1](../entrega-1-borrador-inicial/) | Problema, objetivos y situación de partida |
+| [Entrega 2 corregida](../entrega-2-borrador-intermedio/) | Versión corregida con las observaciones del director |
+| [Prototipo](../prototipo/README.md) | Código, escenarios y resultados medidos |
 
 ---
 

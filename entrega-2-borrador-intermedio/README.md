@@ -2,23 +2,24 @@
 
 # Entrega 2 — Borrador Intermedio
 
-### *Metodología completa: diagnóstico, decisión, diseño, validación y planificación cuantitativa del proyecto*
+### *Versión corregida: metodología, revisión sistemática, desarrollo de la solución y resultados del prototipo*
 
 **Veriagent eInvoice LATAM · Trabajo de Fin de Grado · Ingeniería Informática · UNIR**
 
-[![Entrega](https://img.shields.io/badge/Entrega-2%20%C2%B7%20Borrador%20intermedio-1F6FEB.svg)]()
-[![Capítulos](https://img.shields.io/badge/Cap%C3%ADtulos-1%2C%202%20y%203%20completos-0052CC.svg)]()
-[![Páginas](https://img.shields.io/badge/Documento-35%20p%C3%A1ginas-3776AB.svg)]()
-[![Referencias](https://img.shields.io/badge/Referencias-53%20%C2%B7%2016%20nuevas-6F42C1.svg)]()
+[![Entrega](https://img.shields.io/badge/Entrega-2%20%C2%B7%20Versi%C3%B3n%20corregida-1F6FEB.svg)]()
+[![Capítulos](https://img.shields.io/badge/Cap%C3%ADtulos-1%20a%205%20desarrollados%20%C2%B7%206%20en%20desarrollo-0052CC.svg)]()
+[![Páginas](https://img.shields.io/badge/Documento-119%20p%C3%A1ginas-3776AB.svg)]()
+[![Referencias](https://img.shields.io/badge/Referencias-105-6F42C1.svg)]()
+[![Tablas y figuras](https://img.shields.io/badge/Tablas%20y%20figuras-58%20%C2%B7%2024-8250DF.svg)]()
 [![Enfoque](https://img.shields.io/badge/Enfoque-Design%20Science%20Research-150458.svg)]()
 [![Fases](https://img.shields.io/badge/Fases-0%E2%80%934%20encadenadas%20a%20OE1%E2%80%93OE3-E36209.svg)]()
-[![Estado](https://img.shields.io/badge/Estado-Entregada-success.svg)]()
+[![Estado](https://img.shields.io/badge/Estado-Corregida%20con%20las%20observaciones%20del%20director-success.svg)]()
 
-**[Entrega 1](../entrega-1-borrador-inicial/) • [Repositorio](../README.md) • [Enfoque](#enfoque-metodológico) • [Diagnóstico](#métodos-de-diagnóstico) • [Diseño](#métodos-de-diseño-arquitectónico) • [Validación](#método-de-validación-técnica) • [Planificación](#métodos-de-planificación)**
+**[Entrega 1](../entrega-1-borrador-inicial/) • [Entrega 3](../entrega-3-borrador-final/) • [Prototipo](../prototipo/README.md) • [Repositorio](../README.md) • [Enfoque](#enfoque-metodológico) • [Diagnóstico](#métodos-de-diagnóstico) • [Diseño](#métodos-de-diseño-arquitectónico) • [Validación](#método-de-validación-técnica) • [Planificación](#métodos-de-planificación)**
 
 <img src="https://img.shields.io/badge/PDF-lectura-B30B00?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="PDF"/>
 <img src="https://img.shields.io/badge/Word-editable-2B579A?style=flat-square&logo=microsoftword&logoColor=white" alt="Word"/>
-<img src="https://img.shields.io/badge/Acumulativa-Entrega%201%20%2B%20metodolog%C3%ADa-8250DF?style=flat-square" alt="Acumulativa"/>
+<img src="https://img.shields.io/badge/Acumulativa-Entrega%201%20%2B%20metodolog%C3%ADa%2C%20soluci%C3%B3n%20y%20resultados-8250DF?style=flat-square" alt="Acumulativa"/>
 <img src="https://img.shields.io/badge/Citas-APA-555555?style=flat-square" alt="APA"/>
 <img src="https://img.shields.io/badge/Idioma-Espa%C3%B1ol-yellow?style=flat-square" alt="Idioma"/>
 
@@ -30,6 +31,7 @@
 
 - [Propósito de la Entrega](#propósito-de-la-entrega)
 - [Archivos de esta Carpeta](#archivos-de-esta-carpeta)
+- [Qué se Agregó en la Versión Corregida](#qué-se-agregó-en-la-versión-corregida)
 - [Novedades frente a la Entrega 1](#novedades-frente-a-la-entrega-1)
 - [Estructura del Documento](#estructura-del-documento)
 - [Enfoque Metodológico](#enfoque-metodológico)
@@ -41,8 +43,8 @@
 - [Métricas GQM](#métricas-gqm)
 - [Métodos de Planificación](#métodos-de-planificación)
 - [Trazabilidad Objetivos → Entregables](#trazabilidad-objetivos--entregables)
-- [Inicio del Capítulo 4: Primeras Evidencias](#inicio-del-capítulo-4-primeras-evidencias)
-- [Próximas Entregas](#próximas-entregas)
+- [Resultados del Prototipo](#resultados-del-prototipo)
+- [Estado del Documento](#estado-del-documento)
 - [Referencias](#referencias)
 - [Confidencialidad](#confidencialidad)
 - [Autor](#autor)
@@ -51,11 +53,11 @@
 
 ## Propósito de la Entrega
 
-La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desarrolla por completo el capítulo 3, **Metodología**, sobre el contenido de la Entrega 1, y justifica cada método por la necesidad concreta que atiende de los objetivos específicos: **diagnosticar** el problema con evidencia, **decidir** la solución sin subjetividad, **diseñarla** de forma verificable y **planificar** su ejecución con plazos y costos cuantificados. Además, **inicia el capítulo 4** con la aportación del trabajo y las **primeras evidencias** del prototipo.
+La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Esta carpeta contiene la **versión corregida**, que atiende las observaciones del director sobre la versión entregada: conserva el contenido de la Entrega 1, completa la metodología y documenta el **desarrollo de la solución** y los **resultados del prototipo**. El capítulo 6, **Conclusiones**, aparece con el texto «Apartado en desarrollo»: se cierra en la Entrega 3.
 
 > **Enfoque:** investigación en ciencia del diseño, con un ciclo de vida por fases y un entregable al final de cada una.
 > **Diseño:** mixto. Cualitativo (análisis de causas, juicio experto) y cuantitativo (simulación y medición de la detección de defectos).
-> **Resultado de la entrega:** **8 apartados metodológicos**, **5 fases**, **5 métricas GQM** una **matriz de trazabilidad** que conecta cada objetivo con su método y su entregable, y un **banco de 22 defectos inyectados** con sus primeros resultados.
+> **Resultado de la entrega:** **119 páginas**, **58 tablas**, **24 figuras** y **105 referencias**; capítulos 1 a 5 desarrollados, una **revisión sistemática asistida y parcial (PRISMA 2020)**, un **protocolo de evaluación experimental** y los resultados del prototipo con un banco original de **22 mutantes** y uno ampliado de **129**.
 
 ### ¿Qué deja establecido esta entrega?
 
@@ -65,7 +67,7 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 - **Un diseño justificable**: escenarios de calidad ISO/IEC 25010, modelo C4 y registros de decisión (ADR).
 - **Una validación objetiva**: banco de defectos por inyección con pruebas de mutación y métricas GQM.
 - **Un plan cuantitativo**: EDT, PERT, nivelación por recursos, Monte Carlo y riesgos de IA según NIST.
-- **Una primera evidencia medible**: el kit detecta el 86 % de los defectos en ejecución y el 100 % con integración continua, sin falsos positivos.
+- **Una evidencia medible**: en el banco original el kit detecta 19 de 22 mutantes en ejecución (86 %) y 22 de 22 con ejemplos validados; en el ampliado, 121 de 129 (93,8 %) y 129 de 129, con 0 falsos positivos en 11.402 comprobantes correctos (datos sintéticos).
 
 ---
 
@@ -73,10 +75,28 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 
 <table align="center">
   <tr><th>Archivo</th><th>Descripción</th></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.pdf</code></td><td><b>Versión de lectura</b> de la Entrega 2 (37 páginas)</td></tr>
-  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final.docx</code></td><td><b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final_2.pdf</code></td><td><b>Versión de lectura</b> de la Entrega 2 corregida (119 páginas)</td></tr>
+  <tr><td><code>TFG_Entrega2_DeMendozaTovar_Final_2.docx</code></td><td><b>Versión editable</b> en Word, con índices de contenidos, figuras y tablas</td></tr>
   <tr><td><code>README.md</code></td><td>Este documento: resumen de lo que contiene la entrega</td></tr>
 </table>
+
+> La versión anterior (`TFG_Entrega2_DeMendozaTovar_Final`, 37 páginas) se retiró de la carpeta y se conserva en el historial de Git.
+
+---
+
+## Qué se Agregó en la Versión Corregida
+
+| Agregado | Dónde está en el documento |
+|:---|:---|
+| **Revisión sistemática asistida y parcial (PRISMA 2020)**: flujo de registros, cribado por título y resumen y resultados | Apartado 2.3.4, tablas 5 y 6, figura 4 |
+| **Ecuaciones de búsqueda** ejecutadas en Scopus y su evidencia | Tabla 10 y anexo E (figuras 20 a 24) |
+| **Matriz del estado del arte** con 40 estudios seleccionados, con su ficha bibliográfica en las referencias | Anexo D, tabla 56 |
+| **Verificación de las referencias** con fuentes primarias | Anexo D, tablas 57 y 58 |
+| **Protocolo de evaluación experimental**: verificador, agente de mapeo, comparación manual frente a asistido y reproducibilidad | Apartado 3.9 |
+| **Arquitectura de referencia** con C4, contratos, modelo de datos y **vistas de la arquitectura** | Apartado 4.4, tabla 23 |
+| **Modelo de amenazas y controles** e integridad de la normativa | Apartados 4.4.10 y 4.4.11, tabla 28 |
+| **Resultados del prototipo**: prueba de concepto, banco original y banco ampliado, consolas, pipeline y planificación | Capítulo 5 |
+| **Amenazas a la validez** | Apartado 5.7 |
 
 ---
 
@@ -84,13 +104,16 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 
 | Elemento | Entrega 1 | Entrega 2 |
 |:---|:---:|:---:|
-| **Capítulo 3 · Metodología** | Enunciado | **8 apartados completos** |
-| **Figuras** | 3 | **5** · nuevas: fases de la metodología (Fig. 4) y diagrama de Ishikawa (Fig. 5) |
-| **Capítulo 4 · Desarrollo de la solución** | Enunciado | **Iniciado**: aportación, primeras evidencias y avance por objetivo (4.1 a 4.3) |
-| **Tablas** | 4 | **8** · nuevas: protocolo de búsqueda (T5), métricas GQM (T6), trazabilidad (T7) y resultados del banco de defectos (T8) |
-| **Referencias** | 37 | **53** · 16 nuevas sobre metodología, arquitectura y gestión de proyectos |
-| **Páginas** | 27 | **37** |
-| **Capítulos 1 y 2** | Completos | Se conservan; la revisión de la literatura remite ahora al apartado 3.2 |
+| **Capítulo 3 · Metodología** | Enunciado | **9 apartados completos**, con el protocolo de evaluación experimental (3.9) |
+| **Capítulo 4 · Desarrollo de la solución** | Enunciado | **Desarrollado**: apartados 4.1 a 4.11 |
+| **Capítulo 5 · Resultados obtenidos** | Enunciado | **Desarrollado**: apartados 5.1 a 5.7 |
+| **Capítulo 6 · Conclusiones** | Enunciado | «Apartado en desarrollo» |
+| **Anexos** | No había | **A a E** |
+| **Figuras** | 3 | **24** |
+| **Tablas** | 4 | **58** |
+| **Referencias** | 37 | **105** |
+| **Páginas** | 27 | **119** |
+| **Capítulos 1 y 2** | Completos | Se conservan; el apartado 2.3.4 añade la revisión sistemática |
 
 ---
 
@@ -98,42 +121,34 @@ La **Entrega 2** responde a la pregunta **cómo se va a hacer el trabajo**. Desa
 
 | Capítulo / Apartado | Contenido | Pág. | Estado |
 |:---|:---|:---:|:---:|
-| **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | 8 | |
-| **2. Situación de partida** | Organización de referencia, puntos de dolor, taxonomía y análisis | 15 | |
-| **3. Metodología** | **Novedad de esta entrega** | **23** | |
-| &nbsp;&nbsp;3.1 Enfoque metodológico y fases | Ciencia del diseño, ciclo de vida por fases y diseño mixto | 23 | |
-| &nbsp;&nbsp;3.2 Revisión de la literatura | Protocolo de búsqueda inspirado en PRISMA 2020 | 24 | |
-| &nbsp;&nbsp;3.3 Métodos de diagnóstico | Diagrama de Ishikawa y análisis de Pareto | 24 | |
-| &nbsp;&nbsp;3.4 Método de decisión | Análisis de decisión multicriterio | 26 | |
-| &nbsp;&nbsp;3.5 Métodos de diseño arquitectónico | Requisitos, escenarios de calidad, C4 y ADR | 26 | |
-| &nbsp;&nbsp;3.6 Método de validación técnica | Prototipo, pruebas de mutación y GQM | 27 | |
-| &nbsp;&nbsp;3.7 Métodos de planificación | EDT, PERT, nivelación, Monte Carlo y riesgos de IA | 28 | |
-| &nbsp;&nbsp;3.8 Trazabilidad | Objetivos, fases, métodos y entregables | 29 | |
-| **4. Desarrollo de la solución** | **Iniciado en esta entrega** | **29** | |
-| &nbsp;&nbsp;4.1 Aportación | Taxonomía de defectos y kit de verificación | 29 | |
-| &nbsp;&nbsp;4.2 Primeras evidencias | Banco de defectos por inyección | 30 | |
-| &nbsp;&nbsp;4.3 Avance frente a los objetivos | Estado de OE1, OE2 y OE3 | 30 | |
-| **5–6. Resultados y conclusiones** | Se desarrollan en entregas posteriores | 31 | |
-| **Referencias bibliográficas** | 53 referencias en formato APA | 32 | |
+| **1. Introducción** | Problema, justificación, objetivos y elementos innovadores | 13 | |
+| **2. Situación de partida** | Organización de referencia, problema y análisis | 21 | |
+| &nbsp;&nbsp;2.3.4 Revisión sistemática | Ejecución y resultados (PRISMA 2020) | 28 | |
+| **3. Metodología** | Enfoque, diagnóstico, decisión, diseño, validación, planificación y trazabilidad | 34 | |
+| &nbsp;&nbsp;3.9 Protocolo de evaluación experimental | Verificador, agente de mapeo, comparación y reproducibilidad | 42 | |
+| **4. Desarrollo de la solución** | Aportación, requisitos, arquitectura, decisiones, planificación, presupuesto, riesgos y calidad | 46 | |
+| &nbsp;&nbsp;4.4 Arquitectura de referencia | C4, stack, contratos, datos, seguridad, vistas, agentes, revisión humana y amenazas | 50 | |
+| &nbsp;&nbsp;4.11 Evaluación de la solución | Contraste con los requisitos | 74 | |
+| **5. Resultados obtenidos** | Prueba de concepto, bancos de defectos, ciclo gobernado, consolas, pipeline y planificación | 76 | |
+| &nbsp;&nbsp;5.2.1 Banco ampliado | Ejecutado por el sistema real | 79 | |
+| &nbsp;&nbsp;5.7 Amenazas a la validez | Límites de los resultados | 87 | |
+| **6. Conclusiones** | «Apartado en desarrollo» | 88 | Pendiente |
+| **Referencias bibliográficas** | 105 referencias en formato APA | 89 | |
+| **Anexos A a E** | Decisiones, supuestos, banco de defectos, matriz del estado del arte y búsquedas en Scopus | 100 | |
 
 <details>
 <summary><b>Figuras y tablas de la entrega</b></summary>
 
+El documento tiene **24 figuras** y **58 tablas**; los índices completos, con su página, están al inicio del PDF. Algunas de consulta frecuente:
+
 | Elemento | Título | Pág. |
 |:---|:---|:---:|
-| Figura 1 | Arquitectura propuesta: flujos de integración, kit de verificación y plano agéntico | 11 |
-| Figura 2 | Arquitectura actual de integración: flujos asíncrono y síncrono | 16 |
-| Figura 3 | Flujos actuales de emisión asíncrona y síncrona, estados del comprobante y origen de los defectos | 17 |
-| Figura 4 | Fases de la metodología, objetivos y entregables | 23 |
-| Figura 5 | Diagrama Ishikawa rechazo de comprobantes por defectos de mapeo | 25 |
-| Tabla 1 | Análisis de Pareto de los defectos de mapeo del caso de referencia | 10 |
-| Tabla 2 | Puntos de dolor del proceso actual | 18 |
-| Tabla 3 | Taxonomía de defectos de mapeo | 18 |
-| Tabla 4 | Cobertura de las necesidades del problema por enfoque | 22 |
-| Tabla 5 | Protocolo de búsqueda de la literatura | 24 |
-| Tabla 6 | Métricas de evaluación derivadas con el enfoque GQM | 28 |
-| Tabla 7 | Trazabilidad entre objetivos, fases, métodos y entregables | 29 |
-| Tabla 8 | Resultados del banco de defectos por mecanismo de verificación | 30 |
+| Figura 4 | Diagrama de flujo de la revisión sistemática asistida y parcial (PRISMA 2020) | 30 |
+| Tabla 10 | Estrategia de búsqueda ejecutada en Scopus el 20 de octubre de 2026 | 36 |
+| Tabla 23 | Vistas de la arquitectura | 55 |
+| Tabla 28 | Modelo de amenazas y controles | 60 |
+| Tabla 56 | Matriz del estado del arte: selección dirigida de 40 estudios | 108 |
+| Tabla 57 | Resumen de la verificación de las referencias | 114 |
 
 </details>
 
@@ -340,49 +355,47 @@ Cada objetivo específico tiene **al menos un método** que lo desarrolla y **un
 
 ---
 
-## Inicio del Capítulo 4: Primeras Evidencias
+## Resultados del Prototipo
 
-La aportación central es un **kit de verificación determinista** construido sobre la taxonomía D1–D6. Somete cada comprobante transformado a tres controles sucesivos: **validación de esquema**, **reglas de negocio** por tipo de defecto y, en integración continua, **comparación con ejemplos validados por personas**. Cada hallazgo es trazable hasta la sección de la norma que lo origina.
+La aportación central es un **kit de verificación determinista** construido sobre la taxonomía D1–D6. Somete cada comprobante transformado a **validación de esquema**, **reglas de negocio** por tipo de defecto y, en integración continua, **comparación con ejemplos validados por personas**. El capítulo 5 presenta su evaluación con el [prototipo](../prototipo/README.md), siempre con **datos sintéticos**:
 
-El kit opera en **modo de ejecución** (bloquea comprobantes defectuosos antes de salir hacia el proveedor) y en **modo de integración continua** (gate obligatorio sobre las propuestas de los agentes). Se validó con un **prototipo en Java 21**, sin dependencias externas y con **datos sintéticos**.
+| Banco | Mecanismo | Detectados | Tasa |
+|:---|:---|:---:|:---:|
+| Original (22 mutantes) | Solo validación de esquema | 5 de 22 | 23 % |
+| Original (22 mutantes) | Kit en ejecución | 19 de 22 | **86 %** |
+| Original (22 mutantes) | Kit con ejemplos validados | 22 de 22 | **100 %** |
+| Ampliado (129 mutantes) | Kit en ejecución | 121 de 129 | **93,8 %** (IC 95 %: 88,2–96,8 %) |
+| Ampliado (129 mutantes) | Kit con ejemplos validados | 129 de 129 | **100 %** (IC 95 %: 97,1–100 %) |
 
-Con **pruebas de mutación** se generaron **22 versiones defectuosas** de un mapeo correcto, al menos una por tipo de defecto:
-
-| Mecanismo de verificación | Defectos detectados | Tasa de detección | Falsos positivos |
-|:---|:---:|:---:|:---:|
-| Solo validación de esquema | 5 de 22 | 23 % | 0 |
-| Kit en ejecución | 19 de 22 | **86 %** | 0 |
-| Kit con ejemplos validados en integración continua | 22 de 22 | **100 %** | 0 |
-
-- El kit en ejecución **supera la meta del 80 %** del OE2 sin rechazar ningún comprobante correcto.
-- Los 3 defectos que escapan en ejecución solo se distinguen con conocimiento del negocio y los detecta el control de integración continua.
-- El agente de mapeo propuso correctamente **23 de 24 campos** (95,8 %) de una especificación nueva; el campo erróneo lo bloqueó el kit antes de la revisión humana.
+- **Falsos positivos:** 0 en 11.402 comprobantes correctos.
+- Los mutantes que escapan en ejecución los bloquean los ejemplos validados, y ninguno bloqueado se puede aprobar.
+- Los bancos son sintéticos: bastan para mostrar el patrón, no para estimar tasas con precisión estadística (apartado 5.7).
 
 | Objetivo | Avance |
 |:---|:---|
-| **OE1** · Caracterizar | Cumplido: seis tipos de defecto, cada uno con su regla de verificación y su operador de mutación |
-| **OE2** · Diseñar | Avance verificable: el kit supera la meta de detección; falta documentar todas las decisiones arquitectónicas |
-| **OE3** · Planificar | Plan con plazo y costo por simulación de Monte Carlo en la siguiente entrega |
+| **OE1** · Caracterizar | Seis tipos de defecto, cada uno con su regla de verificación y su operador de mutación |
+| **OE2** · Diseñar | Arquitectura de referencia, decisiones, modelo de amenazas y evaluación del kit (capítulos 4 y 5) |
+| **OE3** · Planificar | EDT, cronograma nivelado, presupuesto, riesgos y simulación de Monte Carlo (apartados 4.7 a 4.9 y 5.6) |
 
 ---
 
-## Próximas Entregas
+## Estado del Documento
 
-| Capítulo | Qué contendrá |
+| Parte | Estado en la versión corregida |
 |:---|:---|
-| **4. Desarrollo de la solución** | Completar la arquitectura de referencia y sus decisiones (ADR) y el plan del proyecto, incluido el modelo de punto de equilibrio |
-| **5. Resultados obtenidos** | Resultados por objetivo específico frente a las métricas GQM |
-| **6. Conclusiones** | Respuesta a la pregunta de investigación |
-| **Anexos** | Repositorio del prototipo funcional, bitácora de búsqueda bibliográfica, EDT y cronograma del proyecto |
+| **Capítulos 1 a 5** | Desarrollados |
+| **Capítulo 6 · Conclusiones** | «Apartado en desarrollo»; se cierra en la [Entrega 3](../entrega-3-borrador-final/) |
+| **Anexos A a E** | Incluidos |
+| **Referencias** | 105, verificadas según el resumen de la tabla 57; las dudosas quedan en la tabla 58 sin cambios |
 
 ---
 
 ## Referencias
 
-La entrega se apoya en **53 referencias** en formato APA. Las **16 nuevas** respecto a la Entrega 1 sustentan los métodos del capítulo 3:
+La versión corregida tiene **105 referencias** en formato APA. Entre ellas están las fichas de los 40 estudios de la matriz del estado del arte (anexo D), con metadatos tomados de Scopus. Estas **16** sustentan los métodos del capítulo 3:
 
 <details>
-<summary><b>Ver las 16 referencias nuevas</b></summary>
+<summary><b>Ver las 16 referencias metodológicas</b></summary>
 
 | Ámbito | Referencia |
 |:---|:---|

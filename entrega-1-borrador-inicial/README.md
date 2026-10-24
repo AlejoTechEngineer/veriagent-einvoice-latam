@@ -14,7 +14,7 @@
 [![Puntos de dolor](https://img.shields.io/badge/Puntos%20de%20dolor-7%20identificados-150458.svg)]()
 [![Estado](https://img.shields.io/badge/Estado-Entregada-success.svg)]()
 
-**[Repositorio](../README.md) • [Problema](#planteamiento-del-problema) • [Objetivos](#objetivos) • [Situación de partida](#situación-de-partida) • [Taxonomía](#taxonomía-de-defectos-d1d6) • [Análisis](#análisis-del-problema) • [Entrega 2](../entrega-2-borrador-intermedio/)**
+**[Repositorio](../README.md) • [Problema](#planteamiento-del-problema) • [Objetivos](#objetivos) • [Situación de partida](#situación-de-partida) • [Taxonomía](#taxonomía-de-defectos-d1d6) • [Análisis](#análisis-del-problema) • [Entrega 2](../entrega-2-borrador-intermedio/) • [Entrega 3](../entrega-3-borrador-final/) • [Prototipo](../prototipo/README.md)**
 
 <img src="https://img.shields.io/badge/PDF-lectura-B30B00?style=flat-square&logo=adobeacrobatreader&logoColor=white" alt="PDF"/>
 <img src="https://img.shields.io/badge/Word-editable-2B579A?style=flat-square&logo=microsoftword&logoColor=white" alt="Word"/>
@@ -28,6 +28,7 @@
 ## Tabla de Contenidos
 
 - [Propósito de la Entrega](#propósito-de-la-entrega)
+- [Estado](#estado)
 - [Archivos de esta Carpeta](#archivos-de-esta-carpeta)
 - [Estructura del Documento](#estructura-del-documento)
 - [Planteamiento del Problema](#planteamiento-del-problema)
@@ -60,6 +61,18 @@ La **Entrega 1** construye la base del Trabajo de Fin de Grado: **qué problema 
 - **Una contribución original**: la taxonomía D1–D6, con regla de verificación y operador de mutación por tipo.
 - **La situación real de partida**: plataforma de integración con flujos **asíncrono** y **síncrono**, y un procedimiento tácito que explica buena parte de los defectos.
 - **El vacío en la literatura**: no se encontraron propuestas que combinen IA generativa, verificación determinista trazable a la norma y un plan de proyecto que gobierne ambas.
+
+---
+
+## Estado
+
+Las observaciones del director sobre esta entrega se atendieron en la [**Entrega 2 corregida**](../entrega-2-borrador-intermedio/). Este documento se conserva tal como se entregó.
+
+| Carpeta | Contenido |
+|:---|:---|
+| [Entrega 2 corregida](../entrega-2-borrador-intermedio/) | Versión corregida con metodología, revisión sistemática, desarrollo de la solución y resultados del prototipo |
+| [Entrega 3](../entrega-3-borrador-final/) | Borrador final, en actualización |
+| [Prototipo](../prototipo/README.md) | Prototipo funcional con datos sintéticos |
 
 ---
 
